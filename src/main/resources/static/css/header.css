@@ -1,1 +1,140 @@
 @charset "UTF-8";
+
+/*
+    헤더 로고
+*/
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    font-family: ns-r;
+    color:#111111;
+}
+.header-wrap{
+    width: 100%;
+    height: 155px;    
+}
+.header-title{
+    width: 100%;
+    height: 50%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ececec;
+    overflow: hidden;
+    text-align: center;    
+}
+.header-space{
+    width: calc(100% / 3);
+    height: 100%;
+    display: block;
+    float: left;
+}
+.header-logo{
+    width: calc(100% / 3);
+    height: 100%;
+    display: block;
+    float: left;
+    line-height: 75px;
+}
+.header-logo>a{
+    font-family: lob;
+    font-size: 50px;
+    height: 100%;
+    width: 100px;
+    
+}
+.header-category{
+    line-height: 75px;
+    width: calc(100% / 3);
+    height: 100%;
+    display: block;
+    float: right;
+    font-size: 13px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding-right: 60px;
+}
+.header-category > a{
+    float: right;
+    color:#999;
+    padding-right: 30px;
+}
+/*
+    헤더 메뉴
+*/
+.header-menu{
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ececec;
+}
+/* menu1=여백*/
+.menu1{
+    height: 100%;
+    width: 20%;
+    display: block;
+    float: left;
+}
+/*menu2= 카테고리 메뉴*/
+.menu2{
+    height: 100%;
+    width: 60%;
+    display: block;
+    float: left;
+    overflow: hidden;
+    padding-left: 100px;
+    padding-right: 100px;
+    box-sizing: border-box;
+}
+.main-menu>li{
+    display: block;
+    float: left;
+    width: calc(100% /4);
+    height: 100%;
+    text-align: center;
+    line-height: 75px;
+    padding-left: 60px;
+    padding-right: 60px;
+    box-sizing: border-box;
+}
+.main-menu>li>a{
+    width: 100%;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
+    font-family: ns-eb;
+}
+
+/*menu3 = 장바구니,검색*/
+.menu3{
+    height: 100%;
+    width: 20%;
+    display: block;
+    float: left;
+    text-align: center;
+   
+    overflow: hidden;  
+}
+.menu3>a{
+    width: 40px;
+    height: 40px;
+    display: block;
+    float: right;
+    padding-right: 15px;
+    line-height: 90px;  
+}
+.menu3>a>span{
+    width: 90%;
+    height: 90%;    
+}
+.menu3>a:first-child{
+    padding-right: 80px;
+}
+
+
+
+
+.sub-menu{
+   display:none;
+}

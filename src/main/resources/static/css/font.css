@@ -1,0 +1,24 @@
+@font-face {
+    font-family: ns-b;
+    src: url(/font/NanumGothic-Bold.ttf);
+}
+@font-face {
+    font-family: ns-eb;
+    src: url(/font/NanumGothic-ExtraBold.ttf);
+}
+@font-face {
+    font-family: ns-r;
+    src: url(/font/NanumGothic-Regular.ttf);
+}
+@font-face {
+    font-family: mon-lt;
+    src: url(/font/Montserrat-Italic-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: mon;
+    src: url(/font/Montserrat-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: lob;
+    src: url(/font/Lobster-Regular.ttf);
+}
