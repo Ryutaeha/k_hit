@@ -117,6 +117,12 @@ body {
     font-family: ns-eb;
 }
 
+/* 메뉴 효과주기*/
+.main-menu>li:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+    
+}
 /*menu3 = 장바구니,검색*/
 .menu3{
     height: 100%;
@@ -191,6 +197,36 @@ body {
     padding-bottom: 25px;
     box-sizing: border-box;
     border-top: 1px solid #ececec;
-    float: left;
+    float: left;    
+}
+.search-box{
+    height: 230px;
+    border-bottom: 1px solid #ececec;
     
+}
+.search{
+    height: 100%;
+   
+    width: 60%;
+    text-align: center;
+    
+    margin: 0 auto;
+}
+.search2{
+    height: 40px;
+    width: 900px;
+    border: none;
+    margin: 0 auto;
+    border-bottom: 2px solid #111111;
+    line-height: 40px;
+    padding-top: 100px;
+}
+.search2>input{
+    width: 80%;
+    height: 30px;
+}
+.search2>span{
+    font-size: 23px;
+    width: 20%;
+    font-family: ns-b;
 }
