@@ -3,6 +3,7 @@
     overflow: hidden;
     width: 900px;
     margin: 0 auto;
+    padding-top: 150px; 
 }
 .login{
     width: 350px;
@@ -50,7 +51,7 @@
     text-decoration:underline;
 }
 .login-button{
-    margin: 30px 0;
+    margin: 40px 0;
     
 }
 .login-button>button{
