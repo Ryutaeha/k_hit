@@ -16,23 +16,22 @@
 }
 .admin-wrap>div{
     float: left;
-    
-}
-.admin-wrap>div:last-child{
-    width: 85%;
-    
 }
 .admin-menu{
+    padding-bottom: 100%;
     height: 100%;
-    width: 15%;
+    width: 250px;
+    background-color: aqua;
 }
 .logo{
     font-family: Lobster;
     font-size: 50px;
 }
-
 .admin-submenu{
     display: block;
     width: 100px;
-    height: 20px;
+    height: 100px;
+}
+
+.admin-wrap>div:last-child{
 }
