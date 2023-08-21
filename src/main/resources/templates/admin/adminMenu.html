@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>관리자 페이지</title>
-</head>
-<body>
-    <div>
+    <link rel="stylesheet" href="/css/admin.css"/>
+    <script src="/js/jquery-3.6.0.js"></script>
+    <div class="admin-menu">
         <div>
-            <h1>K-hit</h1>
+            <span class="logo">K-hit</span>
         </div>
         <div>
             <ul>
                 <li>
-                    <span>사용자 관리</span>
+                    <span class="admin-submenu">사용자 관리</span>
                     <div>
                         <ul>
                             <li>소비자</li>
@@ -21,7 +18,7 @@
                     </div>
                 </li>
                 <li>
-                    <span>상품 관리</span>
+                    <span class="admin-submenu">상품 관리</span>
                     <ul>
                         <li>판매 상품</li>
                         <li>검수 필요</li>
@@ -30,7 +27,7 @@
                     </ul>
                 </li>
                 <li>
-                    <span>통계</span>
+                    <span class="admin-submenu">통계</span>
                     <ul>
                         <li>총 매출</li>
                         <li>판매자 수익</li>
@@ -38,15 +35,16 @@
                     </ul>
                 </li>
                 <li>
-                    <span>공지사항</span>
+                    <span class="admin-submenu">공지사항</span>
                     <ul>
                         <li>작성</li>
                         <li>수정 삭제</li>
                     </ul>
                 </li>
-                <li>문의사항</li>
+                <li>
+                    <span class="admin-submenu">문의사항</span>
+                </li>
             </ul>
         </div>
     </div>
-</body>
 </html>

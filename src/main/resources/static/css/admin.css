@@ -1,1 +1,38 @@
 @charset "UTF-8";
+
+@font-face{
+    font-family: Lobster;
+    src: url(../font/Lobster-Regular.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+}
+.admin-wrap{
+    overflow: hidden;
+}
+.admin-wrap>div{
+    float: left;
+    
+}
+.admin-wrap>div:last-child{
+    width: 85%;
+    
+}
+.admin-menu{
+    height: 100%;
+    width: 15%;
+}
+.logo{
+    font-family: Lobster;
+    font-size: 50px;
+}
+
+.admin-submenu{
+    display: block;
+    width: 100px;
+    height: 20px;
+}
