@@ -10,10 +10,20 @@
     text-decoration: none;
     font-family: ns-r;
     color:#111111;
+    list-style-type: none;
 }
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .page-content{
+	min-height:80vh;
+  }
 .header-wrap{
     width: 100%;
-    height: 155px;    
+    height: 155px;
+    min-width: 1600px;    
 }
 .header-title{
     width: 100%;
@@ -21,7 +31,8 @@
     box-sizing: border-box;
     border-bottom: 1px solid #ececec;
     overflow: hidden;
-    text-align: center;    
+    text-align: center;   
+    min-width: 1600px; 
 }
 .header-space{
     width: calc(100% / 3);
@@ -131,10 +142,55 @@
 .menu3>a:first-child{
     padding-right: 80px;
 }
-
-
-
-
 .sub-menu{
    display:none;
+}
+
+
+/* 풋터 */
+.footer-wrap{
+    overflow: hidden;
+    box-sizing: border-box;
+    min-width: 1600px;
+    
+}
+.footer-company{    
+    height: 250px;
+    width: 60%;
+    display: block;
+    padding-left: 400px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    box-sizing: border-box;
+    border-top: 1px solid #ececec;
+    float: left;
+}
+.footer-title{
+    padding-bottom: 13px;
+}
+.footer-title span{
+    font-family: ns-eb;
+    font-weight: 900;
+    font-size: 25px;
+}
+.footer-info{
+    padding-bottom: 25px;
+}
+.footer-info>a{
+    font-family: ns-b;
+}
+.footer-info2{
+    font-size: 13px;    
+}
+.footer-company2{    
+    height: 250px;
+    width: 40%;
+    display: block;
+    padding-right: 400px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    box-sizing: border-box;
+    border-top: 1px solid #ececec;
+    float: left;
+    
 }
