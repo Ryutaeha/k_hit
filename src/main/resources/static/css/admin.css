@@ -14,12 +14,12 @@
 .admin-wrap{
     overflow: hidden;
 }
-.admin-wrap>div{
-    float: left;
-}
+
 .admin-menu{
-    padding-bottom: 100%;
-    height: 100%;
+	left:0;
+	top:0;
+	position:fixed;
+    height: 100vh;
     width: 250px;
     background-color: aqua;
 }
@@ -29,9 +29,7 @@
 }
 .admin-submenu{
     display: block;
-    width: 100px;
-    height: 100px;
 }
-
-.admin-wrap>div:last-child{
+.admin-content{
+	padding-left:250px;
 }
