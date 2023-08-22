@@ -196,8 +196,8 @@
     border-radius: 5px;
     width: 800px;
     overflow: hidden;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     margin-bottom : 20px
 }
 .content-amount>div{
@@ -209,11 +209,12 @@
 }
 .amount>div:first-child{
     font-family: ns_r;
-    font-size: 20px;
+    font-size: 18px;
 }
 .amount>div:last-child{
     font-family: ns_b;
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: bold;
 }
 .sign{
     width: 5%;
@@ -227,12 +228,13 @@
 }
 .order>div:first-child{
     font-family: ns_b;
-    font-size: 22px;
+    font-size: 18px;
 }
 .order>div:last-child{
     font-family: ns_black;
-    font-size: 27px;
-    color: #19BBAE;
+    font-size: 30px;
+    color: #0c0c0c;
+    font-weight: bold;
 }
 .order>div{
     display: inline;
