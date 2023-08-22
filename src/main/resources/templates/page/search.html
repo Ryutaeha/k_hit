@@ -7,7 +7,7 @@
 <body>
 	<th:block th:include="common/header"></th:block>
 	<div class="page-content">
-		<div class="search-title">
+		<div class="seller-header">
 			<span>S E A R C H</span>
 		</div>
 		<div class="search-input">
@@ -16,15 +16,17 @@
 					<fieldset class="search2">
 						<span>검색</span>
 						<input type="text" name="productName">
-						<span>GO</span>						
+						<button>GO</button>						
 					</fieldset>
 				</form>                
 			</div>
 		</div>
 		<div class="search-sentence">
-			<span>총 * 개의 상품이 검색되었습니다.</span>
+			<p>총 * 개의 상품이 검색되었습니다.</p>
 		</div>
-		<div class="search-list-wrap"></div>
+		<div class="search-list-wrap">
+			검색리스트가 나오는 div
+		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
 </body>
