@@ -112,3 +112,27 @@
 .signinfo-content{
     display: none;
 }
+
+.join-textarea{
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.textarea-title{  
+    display: block;
+    float: left;  
+    width: 150px;
+    height: 300px;
+    line-height: 300px;
+}
+.textarea-title>label{
+    color: #0c0c0c;
+    font-size: 16px;
+    font-family: ns-b;
+    
+}
+textarea.input-form {
+    resize: none;
+    min-height: 300px;
+    min-width: 480px;
+    box-sizing: border-box;
+  }
