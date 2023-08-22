@@ -17,4 +17,9 @@ public class AdminController {
 	public String adminIndex() {
 		return "/admin/adminIndex";
 	}
+	@GetMapping(value = "/question")
+	public String question() {
+		return "/admin/question";
+	}
 }
+

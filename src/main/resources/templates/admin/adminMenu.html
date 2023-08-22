@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="stylesheet" href="/css/admin.css"/>
     <script src="/js/jquery-3.6.0.js"></script>
     <div class="admin-menu">
@@ -9,40 +10,62 @@
         <div>
             <ul>
                 <li>
-                    <span class="admin-submenu">사용자 관리</span>
-                    <div>
+                    <div class="admin-submenu">
+                        <span class="material-icons">manage_accounts</span>
+                        <span>관리</span>
+                    </div>
+                    <div class="sub-choice">
                         <ul>
                             <li>소비자</li>
                             <li>판매자</li>
+                            <li>메인 배너</li>
                         </ul>
                     </div>
                 </li>
                 <li>
-                    <span class="admin-submenu">상품 관리</span>
-                    <ul>
-                        <li>판매 상품</li>
-                        <li>검수 필요</li>
-                        <li>반려 상품</li>
-                        <li>판매 중지 상품</li>
-                    </ul>
+                    <div class="admin-submenu">
+                        <span class="material-icons">flaky</span>
+                        <span>상품관리</span>
+                    </div>
+                    <div class="sub-choice">
+                        <ul>
+                            <li>판매 상품</li>
+                            <li>검수 필요</li>
+                            <li>반려 상품</li>
+                            <li>판매 중지 상품</li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
-                    <span class="admin-submenu">통계</span>
-                    <ul>
-                        <li>총 매출</li>
-                        <li>판매자 수익</li>
-                        <li>소비자 매출</li>
-                    </ul>
+                    <div class="admin-submenu">
+                        <span class="material-icons">insert_chart_outlined</span>
+                        <span>통계</span>
+                    </div>
+                    <div class="sub-choice">
+                        <ul>
+                            <li>총 매출</li>
+                            <li>판매자 수익</li>
+                            <li>소비자 매출</li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
-                    <span class="admin-submenu">공지사항</span>
-                    <ul>
-                        <li>작성</li>
-                        <li>수정 삭제</li>
-                    </ul>
+                    <div class="admin-submenu">
+                        <span class="material-icons">notifications</span>
+                        <span>공지사항</span>
+                    </div>
+                    <div class="sub-choice">
+                        <ul>
+                            <li>작성</li>
+                            <li>수정/삭제</li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
-                    <span class="admin-submenu">문의사항</span>
+                    <div class="admin-submenu">
+                        <span class="material-icons">support_agent</span>
+                        <span>문의사항</span>
+                    </div>
                 </li>
             </ul>
         </div>

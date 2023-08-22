@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="admin-wrap">
+        <th:block th:include="/admin/adminMenu"></th:block>
+        <div class="admin-content">
+            <div class="content-logo">
+                <span>문의사항</span>
+            </div>
+            <div class="content-view">
+                <div class="content-select">
+                    <div>
+                        <ul>
+                            <li>전체 문의 사항</li>
+                            <li>미답변 문의 사항</li>
+                            <li>답변한 문의 사항</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-check">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

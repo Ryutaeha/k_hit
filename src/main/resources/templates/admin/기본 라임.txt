@@ -1,0 +1,16 @@
+ <div class="admin-wrap">
+        <th:block th:include="/admin/adminMenu"></th:block>
+        <div class="admin-content">
+            <div class="content-logo">
+                <span></span>
+            </div>
+            <div class="content-view">
+                <div class="content-select">
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="content-check"></div>
+            </div>
+        </div>
+    </div>

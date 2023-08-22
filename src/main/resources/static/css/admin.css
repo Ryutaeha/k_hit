@@ -21,15 +21,81 @@
 	position:fixed;
     height: 100vh;
     width: 250px;
-    background-color: aqua;
+    border-right: 1px solid black;
 }
 .logo{
+    display: block;
+    height: 60px;
+    width: 100%;
     font-family: Lobster;
     font-size: 50px;
+    text-align: center;
+    margin: 20px 0;
 }
 .admin-submenu{
-    display: block;
+    padding-left: 20px;
+    font-size: 20px;
+    line-height: 100%;
+    height: 50px;
+    overflow: hidden;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    cursor: pointer;
 }
+.admin-submenu>span{
+    line-height: 50px;
+    float: left;
+    display: block;
+    margin-right: 10px;
+}
+.sub-choice{
+    /*
+    display: none;
+    */
+}
+.sub-choice>ul>li{
+    background-color: aqua;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
 .admin-content{
 	padding-left:250px;
+    height: 100vh;
+}
+
+.content-logo{
+    background-color: antiquewhite;
+}
+.content-logo>span{
+    display: block;
+    height: 100px;
+    font-size: 30px;
+    width: 200px;
+}
+.content-view{
+    overflow: hidden;
+    position: relative;
+}
+.content-view>div{
+    float: left;
+}
+.content-select{
+    height: 100vh;
+    width: 300px;
+    background-color: aquamarine;
+}
+.content-check{
+    position: absolute;
+    background-color: cadetblue;
+    height: 100vh;
+    left: 300px;
+}
+.content-check>div{
+    width: 200px;
+    height: 200px;
+    background-color: blueviolet;
 }
