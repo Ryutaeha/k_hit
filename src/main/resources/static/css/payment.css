@@ -10,8 +10,12 @@
     margin: 100px 0;
 }
 
+.payment-content>h3{
+    font-size: 20;
+    padding-bottom: 20px;
+    
+}
 .payment-wrap{
-    border-radius: 10px;
     background-color: white;
     width: 1000px;
     margin: 0 auto;
@@ -131,91 +135,60 @@
     font-size: 18px;
     font-family: ns_r;
 }
-
-
-.info-bottom{
-    height: 40px;
-    overflow: hidden;
-}
-.info-bottom>div{
-    line-height: 40px;
-    float: left;
-    width: 75px;
-    text-align: center;
-}
-.info-bottom>div>input{
-    
-    width: 20px;
-    height: 20px;
-}
-.info-bottom{
+.payment-bottom{
+    text-align: right;
     padding-top: 20px;
+}
+.payment-bottom>span{
+    font-size: 20px;
+    text-align: right;
+    
+}
+.payment-bottom>span:last-child{
+    font-weight: bold;
+    font-size: 30px;
+    text-align: right;
+}
+
+/* 주문자정보 */
+.customer-wrap>h3{
+    font-size: 20px;
+    padding-top: 100px;
+}
+
+.customer-wrap>hr{
+    border: 2px solid #0c0c0c;
+}
+.customer-info{
+    padding: 0 40px;
+    width: auto;
+    line-height: 1.5em;
+    font-size: 13px;
+    vertical-align: middle;
+    padding-top: 20px;
+}
+
+.customer-info>h2{
+    font-weight: bold;
+    font-size: 18px;
+    float: left;
+}
+.customer-info>span{
+    padding-bottom: 20px;
+    display: block;
+    font-size: 18px;
+    margin: 0 0 20px;
+    padding: 0 5px 0 100px;
+    min-height: 22px;
+    line-height: 22px;
+}
+
+/* 배송정보 */
+.delivery-wrap>h3{
+    font-size: 20px;
+    padding-top: 100px;
     padding-bottom: 20px;
 }
-.info-bottom>label{
-    line-height: 40px;
-    padding-right: 10px;
-    font-size: 15px;
-    font-family: ns_r;
-}
-.info-bottom>button{
-    /* width: 100px; */
-    height: 20px;
-    padding-left: 10px;
-    border: none;
-    background-color: transparent;
-    border-left: 3px solid lightgray;
-    font-family: ns_r;
-    font-size: 15px;
-}
-/* 총 구매금액 */
-.content-amount{
-    margin: 0 auto;
-    border : solid 1px lightgray;
-    border-radius: 5px;
-    width: 800px;
-    overflow: hidden;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    margin-bottom : 20px
-}
-.content-amount>div{
-    float: left;
-}
-.amount{
-    width: 25%;
-    text-align: center;
-}
-.amount>div:first-child{
-    font-family: ns_r;
-    font-size: 18px;
-}
-.amount>div:last-child{
-    font-family: ns_b;
-    font-size: 20px;
-    font-weight: bold;
-}
-.sign{
-    width: 5%;
-    text-align: center;
-    padding-top: 15px;
-}
-.order{
-    width: 40%;
-    text-align: center;
-    padding-top: 5px;
-}
-.order>div:first-child{
-    font-family: ns_b;
-    font-size: 18px;
-}
-.order>div:last-child{
-    font-family: ns_black;
-    font-size: 30px;
-    color: #0c0c0c;
-    font-weight: bold;
-}
-.order>div{
-    display: inline;
-    padding-left: 15px;
+.delivery-wrap>hr{
+    border: 2px solid #0c0c0c;
 }
