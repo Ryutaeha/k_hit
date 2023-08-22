@@ -10,6 +10,7 @@
     height: 90px;
     line-height: 90px;
     margin: 0 auto;
+    margin-top: 120px;
     text-align: center;
     padding: 30px;
     border: 1px solid #5E5E5E;
@@ -17,7 +18,7 @@
 }
 .complete-btn{
     text-align: center;
-    margin: 30px;
+    margin: 60px;
 }
 
 .complete-button{
