@@ -18,6 +18,11 @@ public class CustomerController {
 	public String customerCart() {
 		return "/customer/cart";
 	}
+	//결제하기
+		@GetMapping(value="/payment")
+		public String customerPayment() {
+			return "/customer/payment";
+		}
 	//회원가입 완료
 	@PostMapping(value="/joinComplete")
 	public String joinComplete() {
