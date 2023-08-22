@@ -15,6 +15,8 @@
 
   .page-content{
 	min-height:80vh;
+    min-width: 1600px;
+
   }
 .header-wrap{
     width: 100%;
