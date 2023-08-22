@@ -7,7 +7,7 @@
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-	<div class="payment-all-wrap">
+	    <div class="payment-all-wrap">
             <div class="payment-wrap">
                 <div class="payment-title">
                     <h2 class="title1">PAYMENT</h2>
@@ -15,6 +15,7 @@
                 <div class="payment-content">
                     <h3>주문상품</h3>
                     <hr>
+                    <!-- 상품이름,옵션,배송비,상품금액 -->
                     <div class="content-info">
                         <div class="payment info-top">
                             <div class="info1">
@@ -53,8 +54,31 @@
                         </div>
                     </div>
                 </div>
+                <hr>
+                <div class="payment-bottom">
+                    <span>최종 결제 금액</span>
+                    <span>000000원</span>
+                </div>
             </div>
-        </div>
+            <div class="customer-wrap">
+                <h3>주문자 정보</h3>
+                <hr>
+                <div class="customer-info">
+                        <h2>주문고객</h2>
+                        <span>이름</span>
+                        <h2>전화번호</h2>
+                        <span>전화번호</span>
+                        <h2>이메일</h2>
+                        <span>test@email</span>
+                </div>
+            </div>
+            <div class="delivery-wrap">
+                <h3>배송 정보</h3>
+                <hr>
+                <div class="delivery-info">
+                </div>
+            </div>
+        </div>  <!-- payment-wrap -->
     </div>
 	 <th:block th:include="common/footer"></th:block>
 </body>
