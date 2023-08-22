@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+		<div class="search-title">
+			<span>S E A R C H</span>
+		</div>
+		<div class="search-input">
+			<div class="search1">                
+				<form action="/page/search">
+					<fieldset class="search2">
+						<span>검색</span>
+						<input type="text" name="productName">
+						<span>GO</span>						
+					</fieldset>
+				</form>                
+			</div>
+		</div>
+		<div class="search-sentence">
+			<span>총 * 개의 상품이 검색되었습니다.</span>
+		</div>
+		<div class="search-list-wrap"></div>
+	</div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

@@ -73,7 +73,7 @@
     width: 100%;
     height: 50%;
     overflow: hidden;
-    box-sizing: border-box;
+    
     border-bottom: 1px solid #ececec;
 }
 /* menu1=여백*/
@@ -101,22 +101,28 @@
     height: 100%;
     text-align: center;
     line-height: 75px;
-    padding-left: 60px;
-    padding-right: 60px;
-    box-sizing: border-box;
+   
+    
 }
 .main-menu>li>a{
     width: 100%;
     height: 100%;
     display: block;
-    box-sizing: border-box;
+    
     font-family: ns-eb;
 }
 
+
+.sub-menu{
+    background-color: rgb(46, 184, 92);
+    
+  }
+  
 /* 메뉴 효과주기*/
 .main-menu>li:hover{
     transform: scale(1.1);
     transition: 0.3s;
+    
     
 }
 /*menu3 = 장바구니,검색*/
@@ -144,9 +150,6 @@
 .menu3>a:first-child{
     padding-right: 80px;
 }
-.sub-menu{
-   display:none;
-}
 
 /* 검색 창 */
 .search-box{
@@ -155,6 +158,9 @@
     height: 230px;
     border-bottom: 1px solid #ececec;
     box-shadow: 0 10px 10px -5px;
+    background-color: #FFF;
+   
+    
 }
 .search1{
     height: 100%;   
@@ -209,6 +215,17 @@
 .clear:hover{
     transform: rotate(180deg);
 }
+
+/* 검색 후 페이지*/
+.search-title{
+    width: 100%;
+    height: 155px;
+    
+}
+
+
+
+
 /* 풋터 */
 .footer-wrap{
     overflow: hidden;
