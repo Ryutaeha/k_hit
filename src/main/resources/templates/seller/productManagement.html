@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	 
+	<div>
+		<th:block th:include="seller/sellerHeader"></th:block> 
+		<th:block th:include="seller/sellerMenu"></th:block> 
+	</div>
+	<div class="seller-content">
+		<div>PRODUCT MANAGEMENT</div>
+	</div>
+	
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

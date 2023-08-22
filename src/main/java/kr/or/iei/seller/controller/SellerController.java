@@ -17,4 +17,9 @@ public class SellerController {
 	public String sellerMenu() {
 		return "/seller/sellerMenu";
 	}
+	
+	@GetMapping(value="/productManagement")
+	public String productManagement() {
+		return "/seller/productManagement";
+	}
 }
