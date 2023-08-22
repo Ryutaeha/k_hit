@@ -13,13 +13,20 @@ public class SellerController {
 	@Autowired
 	private SellerService sellerService;
 	
+	/*
 	@GetMapping(value="/sellerMenu")
 	public String sellerMenu() {
 		return "/seller/sellerMenu";
 	}
+	*/
 	
 	@GetMapping(value="/productManagement")
 	public String productManagement() {
 		return "/seller/productManagement";
+	}
+	
+	@GetMapping(value="/addNewProduct")
+	public String addNewProduct() {
+		return "/seller/addNewProduct";
 	}
 }
