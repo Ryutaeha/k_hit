@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>join complete</title>
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/complete.css">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+		<div class="complete">
+	        <div class="complete-title">
+	            <h2 class="title1">회 원 가 입 완 료</h2>
+	        </div>
+	        <div class="complete-content">
+	            환영합니다. [ 고객 ] 회원가입이 완료되었습니다.
+	        </div>
+	        <div class="complete-btn">
+	            <button type="button" class="btn2 complete-button" onclick="location.href='/common/login'">로그인하러 가기</button>
+	        </div>
+	    </div>
+    </div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

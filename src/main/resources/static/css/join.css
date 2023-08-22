@@ -54,7 +54,7 @@
     margin: 0 5px;
 }
 .btn1:hover{
-    background-color: #0c0c0c;
+    background-color: #5E5E5E;
     color: #f3f3f3;
     cursor: pointer;
 }
@@ -89,7 +89,7 @@
     border: none;
 }
 .dup-btn:hover{
-    background-color: #0c0c0c;
+    background-color:#5E5E5E;
     color: #f3f3f3;
     cursor: pointer;
 }
@@ -107,4 +107,8 @@
     font-size: 15px;
     font-family: ns-b;
     color: #0c0c0c;
+}
+
+.signinfo-content{
+    display: none;
 }

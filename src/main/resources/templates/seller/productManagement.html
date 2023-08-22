@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/seller.css">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	
+	<div>
+		<th:block th:include="seller/sellerHeader"></th:block>
+		<div class="seller-wrap"> 
+			<th:block th:include="seller/sellerMenu"></th:block> 
+			<div class="seller-content">
+				<div class="content-title">PRODUCT MANAGEMENT</div>
+				<div class="content-main">내용</div>
+			</div>
+		</div>	
+	</div>
+	
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>
