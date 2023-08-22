@@ -5,10 +5,103 @@
 <title>cart</title>
 </head>
 <body>
-	    <div class="admin-wrap">
-        <th:block th:include="/admin/adminMenu"></th:block>
-        <div class="admin-content">
+	  <th:block th:include="common/header"></th:block>
+	  <div class="cart-all-wrap">
+        <div class="cart-wrap">
+            <div class="cart-title">
+                <h2 class="title1">CART</h2>
+            </div>
+            <div class="cart-content">
+                    <hr>
+                <div class="content-info">
+                    <div class="cart info-top">
+                        <div class="info1">
+                            <input type="checkbox" name="check-all">
+                        </div>  
+                        <div class="info2">
+                            <span>상품정보</span>
+                        </div>
+                        <div class="info3">
+                            <span>수량</span>
+                        </div>
+                        <div class="info4">
+                            <span>상품금액</span>
+                        </div>
+                        <div class="info5">
+                            <span>배송비</span>
+                        </div>
+                        <div class="info6"></div>
+                    </div>
+                <div class="cart info-main">
+                    <div class="info1">
+                        <input type="checkbox" name="check1">
+                    </div>
+                    <div class="info2">
+                        <div class="info-img">
+                            <img src="img/icemallimage/ice1.png">
+                        </div>
+                        <div class="info-name">
+                            <span>상품이름</span>
+                            <div>옵션</div>
+                        </div>
+                    </div>
+                    <div class="info3">
+                        <button type="button">-</button>
+                        <input type="text" value="1">
+                        <button type="button">+</button>
+                    </div>
+                    <div class="info4">
+                        3800원
+                    </div>
+                    <div class="info5">
+                        0원
+                    </div>
+                    <div class="info6">
+                        <button type="button">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 장바구니 전체 선택 및 버튼 -->
+                <div class="info-bottom">
+                    <div>
+                        <input type="checkbox" name="check-all" id="check-all">
+                    </div>
+                    <label for="check-all">전체선택(3/3)</label>
+                    <button type="button">선택상품 삭제</button>
+                </div>
+                </div>
+                    <div class="content-amount">
+                        <div class="amount product">
+                            <div>상품금액</div>
+                            <div>15,200원</div>
+                        </div>
+                        <div class="sign">
+                            <span class="material-icons">add</span>
+                        </div>
+                        <div class="amount delivery">
+                            <div>배송비</div>
+                            <div>0원</div>
+                        </div>
+                        <div class="sign">
+                            <span class="material-icons">double_arrow</span>
+                        </div>
+                        <div class="order">
+                            <div>총 주문금액</div>
+                            <div>15,200원</div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                    <!--  계속 쇼핑하기, 구매하기 버튼 -->
+                    <div class="content-bottom">
+                        <button type="button">계속 쇼핑하기</button>
+                        <button type="button">구매하기</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+	  <th:block th:include="common/footer"></th:block>
 </body>
 </html>
