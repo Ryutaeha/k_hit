@@ -31,6 +31,7 @@ public class CustomerController {
 			return "/customer/payment";
 		}
 
+
 	//회원가입
 	@PostMapping(value="/joinComplete")
 	public String joinComplete(Customer customer) {
