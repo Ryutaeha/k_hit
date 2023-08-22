@@ -12,16 +12,17 @@ import kr.or.iei.seller.model.service.SellerService;
 @RequestMapping(value="/seller")
 public class SellerController {
 	@Autowired
-	private SellerService sellerService;	
+	private SellerService sellerService;
 	
+	//판매상품관리
 	@GetMapping(value="/productManagement")
 	public String productManagement() {
 		return "/seller/productManagement";
 	}
-	
-	@GetMapping(value="/addNewProduct")
-	public String addNewProduct() {
-		return "/seller/addNewProduct";
+	//판매등록 조회
+	@GetMapping(value="/addNewProductList")
+	public String addNewProductList() {
+		return "/seller/addNewProductList";
 	}
 	//판매자 회원가입
 	@GetMapping(value="/join")
