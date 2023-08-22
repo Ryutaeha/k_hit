@@ -1,0 +1,291 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: ns-r;
+    color: #1e1e1e;
+}
+.title1{
+    text-align: center;
+    margin: 100px 0;
+}
+.cart-title{
+    padding-top: 20px;
+    padding-bottom: 100px;
+    text-align: center;
+}
+
+.cart-wrap{
+    border-radius: 10px;
+    background-color: white;
+    width: 1000px;
+    margin: 0 auto;
+}
+.content-info>.cart{
+    width: 1000px;
+    overflow: hidden;
+}
+.cart-content>hr{
+    border: 2px solid #0c0c0c;
+}
+
+
+.content-info>.cart{
+    width: 1000px;
+    overflow: hidden;
+}
+
+.content-info>.cart>div{
+    float: left;
+}
+.content-info>.cart:first-child>div{
+    height: 40px;
+}
+.info-top>.info1{
+    text-align: center;
+    display: none;
+} 
+
+.info1>input{
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+}
+.info-top>div{
+    text-align: center;
+    line-height: 40px;
+}
+.info-top{
+    border-bottom: 3px solid #ccc;
+
+}
+.info-top>div>span{
+    font-size: 20px;
+    font-family: ns_m;
+    color: #0c0c0c;
+}
+.content-info>.cart>.info1{
+    width: 7.5%;
+}
+.content-info>.cart>.info2{
+    width: 40%;
+}
+.content-info>.cart>.info3{
+    width: 15%;
+}
+.content-info>.cart>.info4{
+    width: 15%;
+}
+.content-info>.cart>.info5{
+    width: 15%;
+}
+.content-info>.cart>.info6{
+    width: 7.5%;
+}
+.info-main{
+    border-bottom: 3px solid #ccc;
+}
+.info-main>.info1{
+    text-align: center;
+    line-height: 150px;
+}
+.info-main>.info2>.info-img{
+    margin: 25px;
+}
+.info-main>.info2 img{
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.info-main>.info2{
+    overflow: none;
+    height: 150px;
+}
+.info-main>.info2>div{
+    float: left;
+}
+.info-name{
+    padding-top: 50px;
+}
+.info-name>span{
+    font-family: ns_b;
+    font-size: 20px;
+}
+.info-name>div{
+    font-family: ns_m;
+    color: brown;
+}
+
+.info-main>.info3{
+    overflow: hidden;
+    padding-left: 15px;
+    padding-top: 60px;
+    box-sizing: border-box;
+}
+.info-main>.info3>button{
+    float: left;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    font-family: ns_b;
+    text-align: center;
+    line-height: 20px;
+}
+.info-main>.info3>input{
+    float: left;
+    width: 60px;
+    height: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.info-main>.info4{
+    text-align: center;
+    line-height: 150px;
+    font-size: 18px;
+    font-family: ns_r;
+}
+.info-main>.info5{
+    text-align: center;
+    line-height: 150px;
+    font-size: 18px;
+    font-family: ns_r;
+}
+.info-main>.info6{
+    text-align: center;
+    line-height: 150px;
+    font-size: 18px;
+    font-family: ns_r;
+}
+
+.info-bottom{
+    height: 40px;
+    overflow: hidden;
+}
+.info-bottom>div{
+    line-height: 40px;
+    float: left;
+    width: 75px;
+    text-align: center;
+}
+.info-bottom>div>input{
+    
+    width: 20px;
+    height: 20px;
+}
+.info-bottom{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.info-bottom>label{
+    line-height: 40px;
+    padding-right: 10px;
+    font-size: 15px;
+    font-family: ns_r;
+}
+.info-bottom>button{
+    /* width: 100px; */
+    height: 20px;
+    padding-left: 10px;
+    border: none;
+    background-color: transparent;
+    border-left: 3px solid lightgray;
+    font-family: ns_r;
+    font-size: 15px;
+}
+/* 총 구매금액 */
+.content-amount{
+    margin: 0 auto;
+    border : solid 1px lightgray;
+    border-radius: 5px;
+    width: 800px;
+    overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom : 20px
+}
+.content-amount>div{
+    float: left;
+}
+.amount{
+    width: 25%;
+    text-align: center;
+}
+.amount>div:first-child{
+    font-family: ns_r;
+    font-size: 20px;
+}
+.amount>div:last-child{
+    font-family: ns_b;
+    font-size: 22px;
+}
+.sign{
+    width: 5%;
+    text-align: center;
+    padding-top: 15px;
+}
+.order{
+    width: 40%;
+    text-align: center;
+    padding-top: 5px;
+}
+.order>div:first-child{
+    font-family: ns_b;
+    font-size: 22px;
+}
+.order>div:last-child{
+    font-family: ns_black;
+    font-size: 27px;
+    color: #19BBAE;
+}
+.order>div{
+    display: inline;
+    padding-left: 15px;
+}
+
+/* 계속 쇼핑하기, 구매하기 버튼 */
+.content-bottom{
+    padding-top: 50px;
+    width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 100px;
+}
+.content-bottom>button{
+    width: 220px;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: ns_b;
+    font-size: 20px;
+    color: #282828;
+    background-color: rgb(224, 224, 224);
+}
+.content-bottom>button:hover{
+    font-family: ns_b;
+    font-size: 20px;
+    color: #fff;
+    background-color: rgb(94, 94, 94);
+    cursor: pointer;
+}
+.info-bottom>label:hover{
+    cursor: pointer;
+}
+.info-bottom>button{
+    cursor: pointer;
+}
+.info-main>.info6>button{
+    border: none;
+    background-color: transparent;
+}
+.info-main>.info6>button:hover{
+    cursor: pointer;
+}
+
+
+
