@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/font.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/css/seller.css">
 <script src="/js/jquery-3.6.0.js"></script>
 <body>
 	<div class="header-wrap">
@@ -38,11 +39,13 @@
 					</li>
 					<li><a href="#">BEST</a></li>
 					<li><a href="#">NEW</a></li>
-					<li><a href="#">COMMUNITY</a></li>
+					<li><a href="#">COMMUNITY</a>
+						
+					</li>
 				</ul>
 			</div>
 			<div class="menu3">
-				<a href="#"><span class="material-icons search">
+				<a href="#none"><span class="material-icons search">
 					search
 					</span></a>
 				<a href="/customer/cart"><span class="material-icons">
@@ -52,11 +55,11 @@
 		</div>
         <div class="search-box">                
             <div class="search1">                
-                    <form action="#">
+                    <form action="/page/search">
                         <fieldset class="search2">
                             <span>검색</span>
                             <input type="text" name="productName">
-                            <span>GO</span>
+                            <button>GO</button>
                             <p>
 								<span class="material-icons clear">
 									clear
