@@ -248,19 +248,16 @@
 	                            </div>
 	                            <div class="agreecheck-buttom">
 	                                <input type="checkbox" id="optionalAgreement" class="agreeCheck">
-	                                <label for="optionalAgreement">약관에 동의합니다.</label>
+	                                <label for="optionalAgreement">(선택)약관에 동의합니다.</label>
 	                            </div>
 	                        </div>
 	                    </div>
 	                    <div class="signup-btn">
-	                        <button type="button" class="btn1 cancel-btn">취소</button>
+	                        <button type="button" class="btn1 cancel-btn" onclick="location.href='/'">취소</button>
 	                        <button type="button" class="btn1 next-btn">다음으로</button>
 	                    </div>
 	                </div>
 	                <div class="signinfo-content">
-	                    <div class="signup-title">
-	                        <h2 class="title1">JOIN</h2>
-	                    </div>
 	                    <div class="join-input-wrap"> 
 	                        <div class="join-input"> 
 	                            <label for="customerId">아이디</label>
@@ -270,7 +267,7 @@
 	
 	                        <div class="join-input"> 
 	                            <label for="customerPw">비밀번호</label>
-	                            <input type="password" name="customerPw" id="customerPw" placeholder="영문,특수문자와 숫자를 포함하여 최소 8자 이상" required>
+	                            <input type="password" name="customerPw" id="customerPw" placeholder="영문,특수문자와 숫자를 포함하여 최소 8자 이상">
 	                            
 	                        </div>
 	
@@ -306,7 +303,7 @@
 	                    </div>
 	
 	                    <div class="signup-btn">
-	                        <button type="button" class="btn1 cancel-btn">취소</button>
+	                        <button type="button" class="btn1 cancel-btn" onclick="location.href='/'">취소</button>
 	                        <button type="submit" class="btn1 signup-btn">회원가입</button>
 	                    </div>
 	                </div>
@@ -315,5 +312,8 @@
 	    </div>
 	    <th:block th:include="common/footer"></th:block>
 	</div>
+	
+	<script src="/js/join.js"></script>
+</body>
 </body>
 </html>

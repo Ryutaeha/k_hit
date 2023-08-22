@@ -108,3 +108,7 @@
     font-family: ns-b;
     color: #0c0c0c;
 }
+
+.signinfo-content{
+    display: none;
+}
