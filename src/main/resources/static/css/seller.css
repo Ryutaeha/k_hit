@@ -25,7 +25,7 @@
 .seller-title{
     width: 100%;
     height: 120px;
-    min-width: 1600px;    
+    /*min-width: 1600px;*/
     line-height: 130px;
     padding-left: 300px;
     background-color: beige;
@@ -39,7 +39,9 @@
     width: 50px;
     height: 50px;
 }
-
+.menu-wrap{
+    overflow: hidden;
+}
 .left-menu{
     width: 200px;
     height: 300px;
@@ -48,6 +50,7 @@
     border: 1px solid #e0e0e0;
     padding-top: 50px;
     margin-left: 300px;
+    float: left;
 }
 
 .left-menu>ul>li{
@@ -60,4 +63,8 @@
     padding-left: 25px;
     font-size: 20px;
     padding-top: 10px;
+}
+
+.seller-content{
+    float: left;
 }
