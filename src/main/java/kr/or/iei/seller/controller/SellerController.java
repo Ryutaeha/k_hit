@@ -22,4 +22,9 @@ public class SellerController {
 	public String productManagement() {
 		return "/seller/productManagement";
 	}
+	
+	@GetMapping(value="/addNewProduct")
+	public String addNewProduct() {
+		return "/seller/addNewProduct";
+	}
 }
