@@ -12,11 +12,7 @@
     color:#111111;
     list-style-type: none;
 }
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+
   .page-content{
 	min-height:80vh;
   }
@@ -117,6 +113,12 @@ body {
     font-family: ns-eb;
 }
 
+/* 메뉴 효과주기*/
+.main-menu>li:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+    
+}
 /*menu3 = 장바구니,검색*/
 .menu3{
     height: 100%;
@@ -146,7 +148,67 @@ body {
    display:none;
 }
 
-
+/* 검색 창 */
+.search-box{
+    display:none;
+    color: #ececec;
+    height: 230px;
+    border-bottom: 1px solid #ececec;
+    box-shadow: 0 10px 10px -5px;
+}
+.search1{
+    height: 100%;   
+    width: 60%;
+    text-align: center;    
+    margin: 0 auto;
+}
+.search2{
+    height: 40px;
+    width: 900px;
+    border: none;
+    margin: 0 auto;
+    border-bottom: 2px solid #111111;
+    line-height: 40px;
+    padding-top: 100px;
+    
+}
+.search2>input{
+    width: 80%;
+    height: 30px;
+    border: none;
+    font-size: 23px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.search2>span{
+    font-size: 23px;
+    width: 10%;
+    font-family: ns-b;
+    
+}
+.search2>p{
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    box-sizing: border-box;
+}
+.search2:last-child:hover{
+    cursor: pointer;
+}
+.clear{
+    box-sizing: border-box;
+    
+    margin-top: 10px;
+    font-size: 23px;
+    color: #999;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: all ease 1s;
+}
+.clear:hover{
+    transform: rotate(180deg);
+}
 /* 풋터 */
 .footer-wrap{
     overflow: hidden;
@@ -191,6 +253,5 @@ body {
     padding-bottom: 25px;
     box-sizing: border-box;
     border-top: 1px solid #ececec;
-    float: left;
-    
+    float: left;    
 }

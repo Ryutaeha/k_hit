@@ -6,15 +6,16 @@
 <link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/font.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="/js/jquery-3.6.0.js"></script>
 <body>
 	<div class="header-wrap">
 		<div class="header-title">
 			<div class="header-space"></div>
 			<div class="header-logo">
-				<a href="#">K-hIT</a>
+				<a href="/">K-hIT</a>
 			</div>
 			<div class="header-category">
-				<a href="#">LOGIN</a>
+				<a href="common/login">LOGIN</a>
 				<a href="#">JOIN</a>
 				<a href="#">ORDER</a>
 				<a href="#">MY PAGE</a>
@@ -41,15 +42,36 @@
 				</ul>
 			</div>
 			<div class="menu3">
-				<a href="#"><span class="material-icons">
+				<a href="#"><span class="material-icons search">
 					search
 					</span></a>
-				<a href="#"><span class="material-icons">
+				<a href="#none"><span class="material-icons">
 					shopping_cart
 					</span></a>
 			</div>
 		</div>
+        <div class="search-box">                
+            <div class="search1">                
+                    <form action="#">
+                        <fieldset class="search2">
+                            <span>검색</span>
+                            <input type="text" name="productName">
+                            <span>GO</span>
+                            <p>
+								<span class="material-icons clear">
+									clear
+									</span>
+							</p>
+								
+                        </fieldset>
+                    </form>                
+            </div>            
+        </div>
 	</div>
+    
 
+
+
+	<script src="/js/search.js"></script>
 </body>
 </html>

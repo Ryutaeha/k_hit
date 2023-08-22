@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+		<div class="login-wrapper">
+	        <div class="login">
+	            <div class="login-top">
+	                <h2>고객</h2>
+	                <h2>LOGIN</h2>
+	            </div>
+	            <form action="/customer/signin" method="post">
+	                <div class="login-content">
+	                    <div class="login-inputbox">
+	                        <input type="text" name="signId" id="signId" class="input-form" placeholder="아이디를 입력하세요">
+	                    </div>
+	                    <div class="login-inputbox">
+	                        <input type="password" name="signPw" id="signPw" class="input-form" placeholder="비밀번호를 입력하세요">
+	                    </div>
+	                    <div class="login-tag">
+	                        <a href="#">아이디/비밀번호 찾기</a>
+	                        <span>|</span>
+	                        <a href="#">회원가입</a>
+	                    </div>
+	                </div>
+	                <div class="login-button">
+	                    <button type="submit" class="">LOGIN</button>
+	                </div>
+	            </form>
+	        </div>
+	        <div class="login">
+	            <div class="login-top">
+	                <h2 class="">판매자</h2>
+	                <h2 class="">LOGIN</h2>
+	            </div>
+	            <form action="/seller/signin" method="post">
+	                <div class="login-content">
+	                    <div class="login-inputbox">
+	                        <input type="text" name="signId" id="signId" class="input-form" placeholder="아이디를 입력하세요">
+	                    </div>
+	                    <div class="login-inputbox">
+	                        <input type="password" name="signPw" id="signPw" class="input-form" placeholder="비밀번호를 입력하세요">
+	                    </div>
+	                    <div class="login-tag">
+	                        <a href="#">아이디/비밀번호 찾기</a>
+	                        <span>|</span>
+	                        <a href="#">회원가입</a>
+	                    </div>
+	                </div>
+	                <div class="login-button">
+	                    <button type="submit" class="">LOGIN</button>
+	                </div>
+	            </form>
+	        </div>
+	    </div>
+	</div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>
