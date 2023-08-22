@@ -6,14 +6,18 @@
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-	 
+	
 	<div>
-		<th:block th:include="seller/sellerHeader"></th:block> 
-		<th:block th:include="seller/sellerMenu"></th:block> 
+		<th:block th:include="seller/sellerHeader"></th:block>
+		<div class="seller-wrap"> 
+			<th:block th:include="seller/sellerMenu"></th:block> 
+			<div class="seller-content">
+				<div class="content-title">PRODUCT MANAGEMENT</div>
+				<div class="content-main">내용</div>
+			</div>
+		</div>	
 	</div>
-	<div class="seller-content">
-		<div>PRODUCT MANAGEMENT</div>
-	</div>
+
 	
 	<th:block th:include="common/footer"></th:block>
 </body>
