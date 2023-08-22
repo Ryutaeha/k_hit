@@ -1,0 +1,36 @@
+.title1{
+    text-align: center;
+    margin: 100px 0;
+}
+.complete-content{
+    font-family: ns-eb;
+    color: #5E5E5E;
+    font-size: 20px;
+    width: 450px;
+    height: 90px;
+    line-height: 90px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px;
+    border: 1px solid #5E5E5E;
+    border-radius: 3px;
+}
+.complete-btn{
+    text-align: center;
+    margin: 30px;
+}
+
+.complete-button{
+    border: none;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    color: #0c0c0c;
+    background-color: #f3f3f3;
+    font-family: ns-b;
+    border-radius: 3px;
+}
+.complete-button:hover{
+    background-color: #5E5E5E;
+    color: #f3f3f3;
+}
