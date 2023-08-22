@@ -1,5 +1,7 @@
 package kr.or.iei.customer.model.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,6 +21,15 @@ public class CustomerDao {
 		Object[] params = {customer.getCustomerId(),customer.getCustomerPw(),customer.getCustomerName(),customer.getCustomerPhone(),customer.getCustomerEmail()};
 		int result = jdbc.update(query,params);
 		return result;
+	}
+
+	public Customer selectCustomerId(String customerId) {
+		String query = "select * from customer_tbl where customer_id=?";
+		List list = jdbc.query(query, customerRowMapper, customerId);
+		if(list.isEmpty()) {
+			return null;
+		}
+		return (Customer)list.get(0);
 	}
 
 }

@@ -18,4 +18,9 @@ public class CustomerService {
 		return result;
 	}
 
+	public Customer selectCustomerId(String customerId) {
+		Customer c = customerDao.selectCustomerId(customerId);
+		return c;
+	}
+
 }
