@@ -1,0 +1,221 @@
+@charset "UTF-8";*{
+    margin: 0;
+    padding: 0;
+    font-family: ns-r;
+    color: #1e1e1e;
+}
+
+.title1{
+    text-align: center;
+    margin: 100px 0;
+}
+
+.payment-wrap{
+    border-radius: 10px;
+    background-color: white;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.content-info>.payment{
+    width: 1000px;
+    overflow: hidden;
+}
+.payment-content>hr{
+    border: 2px solid #0c0c0c;
+}
+
+.content-info>.payment{
+    width: 1000px;
+    overflow: hidden;
+}
+
+.content-info>.payment>div{
+    float: left;
+}
+.content-info>.payment:first-child>div{
+    height: 40px;
+}
+
+.info-top>div{
+    text-align: center;
+    line-height: 40px;
+}
+.info-top{
+    border-bottom: 3px solid #ccc;
+
+}
+.info-top>div>span{
+    font-size: 20px;
+    font-family: ns_m;
+    color: #0c0c0c;
+}
+
+.content-info>.payment>.info1{
+    width: 40%;
+}
+.content-info>.payment>.info2{
+    width: 15%;
+}
+.content-info>.payment>.info3{
+    width: 15%;
+}
+.content-info>.payment>.info4{
+    width: 15%;
+}
+.content-info>.payment>.info6{
+    width: 7.5%;
+}
+
+
+.info-main>.info1>.info-img{
+    margin: 25px;
+}
+.info-main>.info1 img{
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.info-main>.info1{
+    overflow: none;
+    height: 150px;
+}
+.info-main>.info1>div{
+    float: left;
+}
+.info-name{
+    padding-top: 50px;
+}
+.info-name>span{
+    font-family: ns_b;
+    font-size: 20px;
+}
+.info-name>div{
+    font-family: ns_m;
+    color: brown;
+}
+
+.info-main>.info2{
+    overflow: hidden;
+    padding-left: 15px;
+    padding-top: 60px;
+    box-sizing: border-box;
+}
+.info-main>.info2>button{
+    float: left;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    font-family: ns_b;
+    text-align: center;
+    line-height: 20px;
+}
+.info-main>.info2>input{
+    float: left;
+    width: 60px;
+    height: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.info-main>.info3{
+    text-align: center;
+    line-height: 150px;
+    font-size: 18px;
+    font-family: ns_r;
+}
+.info-main>.info4{
+    text-align: center;
+    line-height: 150px;
+    font-size: 18px;
+    font-family: ns_r;
+}
+
+
+.info-bottom{
+    height: 40px;
+    overflow: hidden;
+}
+.info-bottom>div{
+    line-height: 40px;
+    float: left;
+    width: 75px;
+    text-align: center;
+}
+.info-bottom>div>input{
+    
+    width: 20px;
+    height: 20px;
+}
+.info-bottom{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.info-bottom>label{
+    line-height: 40px;
+    padding-right: 10px;
+    font-size: 15px;
+    font-family: ns_r;
+}
+.info-bottom>button{
+    /* width: 100px; */
+    height: 20px;
+    padding-left: 10px;
+    border: none;
+    background-color: transparent;
+    border-left: 3px solid lightgray;
+    font-family: ns_r;
+    font-size: 15px;
+}
+/* 총 구매금액 */
+.content-amount{
+    margin: 0 auto;
+    border : solid 1px lightgray;
+    border-radius: 5px;
+    width: 800px;
+    overflow: hidden;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-bottom : 20px
+}
+.content-amount>div{
+    float: left;
+}
+.amount{
+    width: 25%;
+    text-align: center;
+}
+.amount>div:first-child{
+    font-family: ns_r;
+    font-size: 18px;
+}
+.amount>div:last-child{
+    font-family: ns_b;
+    font-size: 20px;
+    font-weight: bold;
+}
+.sign{
+    width: 5%;
+    text-align: center;
+    padding-top: 15px;
+}
+.order{
+    width: 40%;
+    text-align: center;
+    padding-top: 5px;
+}
+.order>div:first-child{
+    font-family: ns_b;
+    font-size: 18px;
+}
+.order>div:last-child{
+    font-family: ns_black;
+    font-size: 30px;
+    color: #0c0c0c;
+    font-weight: bold;
+}
+.order>div{
+    display: inline;
+    padding-left: 15px;
+}
