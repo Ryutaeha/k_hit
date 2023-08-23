@@ -19,6 +19,18 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
+	//회원가입 confirm
+	@GetMapping(value = "/joinConfirm")
+	public String joinConfirm(Model model) {
+		model.addAttribute("title","회원가입");
+		model.addAttribute("msg", "[고객] 회원가입이 맞으신가요?");
+		model.addAttribute("icon", "question");
+		model.addAttribute("loc", "/customer/join");
+		model.addAttribute("cancelLoc", "/common/login");
+		
+		return "common/confirmMsg";
+	}
+	
 	//회원가입 페이지 이동
 	@GetMapping(value = "/join")
 	public String customerJoin() {
@@ -29,23 +41,18 @@ public class CustomerController {
 	public String customerGetCart() {
 		return "/customer/cart";
 	}
-<<<<<<< HEAD
 
-=======
 	//결제하기
 	@GetMapping(value="/payment")
 	public String customerPayment() {
 		return "/customer/payment";
 	}
->>>>>>> main
-
-	//회원가입 confirm
-	
-		
 	//회원가입
 	@PostMapping(value="/joinComplete")
+
 	public String joinComplete(Customer customer, String customerEmail2) {
 		int result = customerService.insertCustomer(customer,customerEmail2);
+
 		if(result>0) {
 			return "customer/joinComplete";			
 		}else {

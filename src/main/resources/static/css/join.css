@@ -139,10 +139,40 @@ textarea.input-form {
     resize: none;
     min-height: 300px;
     min-width: 480px;
+    box-sizing: border-box;    
+    padding-left: 15px;
+    font-size: 15px;
+    font-family: ns-r;
+    color: #0c0c0c;
+  }
+  .join-input{
+    overflow: hidden;
+  }
+.img-title{
+    display: block;
+    float: left;
+    width: 150px;
+    height: 200px;
+    line-height: 200px;
+}
+.img-title>label{
+    color: #0c0c0c;
+    font-size: 16px;
+    font-family: ns-b;
+}
+.img-div{
+    display: block;
+    float: left;
+    border: 1px solid #0c0c0c;
+    min-height: 300px;
+    min-width: 480px;
     box-sizing: border-box;
- }
+}
+
+
  
  .joinCheck{
  	padding-top: 5px;
  	padding-left: 150px;
  }
+

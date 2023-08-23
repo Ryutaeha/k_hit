@@ -53,7 +53,6 @@
     
 }
 .header-category{
-    line-height: 75px;
     width: calc(100% / 3);
     height: 100%;
     display: block;
@@ -63,11 +62,20 @@
     overflow: hidden;
     padding-right: 60px;
 }
-.header-category > a{
+.header-category > .a{
     float: right;
     color:#999;
     padding-right: 30px;
+    line-height : 75px;
 }
+
+.join{
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+
 /*
     헤더 메뉴
 */
@@ -289,4 +297,34 @@
     box-sizing: border-box;
     border-top: 1px solid #ececec;
     float: left;    
+}
+
+
+/* 스와이퍼 슬라이드*/
+.swiper{
+    width: 100%;
+    height: 500px;
+    text-align: center;
+    overflow: visible;
+}
+.swiper img{
+    width: 100%;
+    height: 100%;
+}
+.swpier-wrapper {
+    transition-timing-function: linear;
+}
+span.swiper-pagination-bullet-active /*불릿 활성화 기호*/
+{
+    background-color: rgb(255, 255, 255);
+}
+.swiper-button-prev::after, .swiper-button-next:after /*슬라이더 화살표 '<', '>'*/
+{
+    color: #3a3a3a;
+    opacity: 0.5;
+}
+.swiper-button-prev:hover:after, .swiper-button-next:hover:after /*hover적용 순서 -> :after:hover X*/
+{
+    color: #fff;
+    opacity: 1;
 }
