@@ -19,13 +19,13 @@
                         <button class="add-btn">검색</button>
                     </div>
                     <table style="width:90%;" class="tbl">
-                        <tr>   
+                        <tr class="test">   
                             <th style="width:20%">번호</th>
                             <th style="width:25%">아이디</th>
                             <th style="width:25%">이름</th>
                             <th style="width:30%">가입일</th>
                         </tr>
-                        <tr th:if="${code}==1" th:each="list : ${list}">
+                        <tr th:if="${code}==1" th:each="list : ${list}" >
                             <td th:text="${list.customerNo}"></td>
                             <td th:text="${list.customerId}"></td>
                             <td th:text="${list.customerName}"></td>

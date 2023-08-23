@@ -6,3 +6,6 @@ $(".admin-submenu").on('click',function(){
         $(this).next().slideUp();
     }
 })
+$(".add-btn").on('click',function(){
+	$(".test").nextAll().remove();
+})
