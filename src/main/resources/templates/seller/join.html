@@ -14,7 +14,7 @@
 	            <div class="signup-title">
 	                <h2 class="title1">JOIN</h2>
 	            </div>
-	            <form action="/seller/joinComplete" method="post">
+	            <form action="/seller/joinComplete" method="post" enctype="multipart/form-data">
 	                <div class="agree-content">
 	                    <div class="all-agree">
 	                        <input type="checkbox" id="allAgreement">
@@ -287,8 +287,16 @@
 	                        </div>
 	                        <!-- 이미지 첨부필요 -->
 							<div class="join-input"> 
-	                            <label for="sellerImg">제품 이미지</label>
-	                            <input type="text" name="sellerImg" id="sellerImg" >
+	                            <label for="imgFile">대표 이미지 등록</label>
+	                            <input type="file" name="imgFile" id="imgFile" accept=".jpg,.png,.jpeg">
+	                        </div>
+	                        <div class="join-input">
+								<div class="img-title">
+									<label>이미지 미리보기</label>
+								</div>
+	                        	<div class="img-div">
+	                        		<img id="img-view" width="300px">
+	                        	</div>
 	                        </div>
 	                        <div class="join-input">
 	                            <label for="sellerEmail">이메일</label>
@@ -308,7 +316,7 @@
 								<div class="textarea-title">
 									<label for="sellerIntroduce">자기소개</label>
 								</div>
-	                        	<textarea class="input-form" id="sellerIntroduce"></textarea>
+	                        	<textarea class="input-form" id="sellerIntroduce" name="sellerIntroduce"></textarea>
 	                        </div>
 	                        
 	                    </div>

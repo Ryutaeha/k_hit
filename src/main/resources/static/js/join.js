@@ -41,3 +41,25 @@ emailSelect.on("change",function(){
     email2.val(selectValue);
 });
 
+$("#sel-re").on("click",function(){
+    confirm("[판매자]회원가입이 맞으신가요?")
+  
+});
+$("#cus-re").on("click",function(){
+    confirm("[고객]회원가입이 맞으신가요?")    
+});
+
+// 판매자 회원가입 이미지 미리보기 ajax
+$("[name=imgFile]").on("change",function(){
+    if(this.files.length != 0 && this.files[0] !=0){
+        const reader = new FileReader();//파일정보를 얻어올 수 있는 객체
+        //선택한 파일 정보를 읽어옴(비동기요청)
+        reader.readAsDataURL(this.files[0]);
+        //파일리더가 정보를 다 읽어오면 동작할 함수
+        reader.onload = function(e){
+            $("#img-view").attr("src",e.target.result);
+        }
+    }else{
+        $("#img-view").attr("src","");
+    }
+});

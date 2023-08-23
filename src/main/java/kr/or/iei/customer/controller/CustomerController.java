@@ -37,6 +37,7 @@ public class CustomerController {
 	@PostMapping(value="/joinComplete")
 	public String joinComplete(Customer customer) {
 		int result = customerService.insertCustomer(customer);
+		
 		if(result>0) {
 			return "/customer/joinComplete";			
 		}else {
