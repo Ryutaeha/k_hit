@@ -34,4 +34,9 @@ public class SellerController {
 	public String joinComplete() {
 		return "/seller/joinComplete";
 	}
+	//판매상품 재고관리
+	@GetMapping(value="/productStockManagement")
+	public String productStockManagement() {
+		return "/seller/productStockManagement";
+	}
 }

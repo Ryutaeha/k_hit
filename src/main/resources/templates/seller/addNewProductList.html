@@ -13,7 +13,8 @@
 			<th:block th:include="seller/sellerMenu"></th:block> 
 			<div class="seller-content">
 				<div class="content-title">ADD NEW PRODUCT</div>
-				<a th:if="${session.m != null && session.m.memberCode == 2}" href="/seller/addProductFrmEditor">판매등록</a>
+				<a href="/seller/addProductFrmEditor">판매등록</a>
+				<!-- 나중에  th:if="${session.m != null && session.m.memberCode == 2}" 추가-->
 				<table>
 					<tr>
 						<th style="width:15%">상품번호</th>
