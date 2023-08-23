@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +29,19 @@ public class CustomerController {
 	public String customerGetCart() {
 		return "/customer/cart";
 	}
+<<<<<<< HEAD
 
+=======
+	//결제하기
+	@GetMapping(value="/payment")
+	public String customerPayment() {
+		return "/customer/payment";
+	}
+>>>>>>> main
 
+	//회원가입 confirm
+	
+		
 	//회원가입
 	@PostMapping(value="/joinComplete")
 	public String joinComplete(Customer customer, String customerEmail2) {
@@ -55,18 +67,23 @@ public class CustomerController {
 	
 	//로그인
 	@PostMapping(value="/signin")
-	public String signIn(String customerSignId, String customerSignPw,HttpSession session) {
+	public String signIn(String customerSignId, String customerSignPw,HttpSession session, Model model) {
 		Customer c = customerService.selectOneCustomer(customerSignId,customerSignPw);
 		if(c != null) {
 			//로그인한 고객 회원 정보 저장
 			session.setAttribute("c", c);
-			System.out.println("로그인 성공"); //모달 만들면 삭제하기
-			return "redirect:/";
 			
+			model.addAttribute("title","로그인 성공");
+			model.addAttribute("msg", "환영합니다.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/");
 		}else {
-			System.out.println("로그인 실패"); //모달 만들면 삭제하기
-			return "common/login";
+			model.addAttribute("title","로그인 실패");
+			model.addAttribute("msg", "아이디/비밀번호를 확인해 주세요.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/common/login");
 		}
+		return "common/msg";
 		
 	}
 	
