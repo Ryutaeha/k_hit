@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.iei.admin.model.vo.AdminRowMapper;
+import kr.or.iei.customer.model.vo.CustomerRowMapper;
 
 @Repository
 public class AdminDao {
@@ -14,9 +15,12 @@ public class AdminDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private AdminRowMapper adminRowMapper;
+	@Autowired
+	private CustomerRowMapper customerRowMapper;
+	
 	public List memberList(int memberCode) {
 		String query = "SELECT * FROM CUSTOMER_TBL";
-//		List list = jdbc.query(query, rowMapper)
-		return null;
+		List list = jdbc.query(query, customerRowMapper);
+		return list;
 	}
 }
