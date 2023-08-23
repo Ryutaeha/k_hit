@@ -29,15 +29,12 @@ public class CustomerController {
 	public String customerGetCart() {
 		return "/customer/cart";
 	}
-<<<<<<< HEAD
 
-=======
 	//결제하기
 	@GetMapping(value="/payment")
 	public String customerPayment() {
 		return "/customer/payment";
 	}
->>>>>>> main
 
 	//회원가입 confirm
 	
