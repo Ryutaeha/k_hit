@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.iei.admin.model.service.AdminService;
-import kr.or.iei.customer.model.vo.CustomerVo;
+import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.seller.model.vo.Seller;
 
 @Controller
@@ -37,7 +37,9 @@ public class AdminController {
 		@GetMapping(value="/member")
 	public String member(int memberCode, Model model){
 			if(memberCode == 1) {
-				List<CustomerVo> list = adminService.memberList(memberCode);				
+				List<Customer> list = adminService.memberList(memberCode);
+				model.addAttribute("list", list);
+				model.addAttribute("code",memberCode);
 			}else if(memberCode == 2){
 				
 			}

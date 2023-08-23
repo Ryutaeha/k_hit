@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.iei.admin.model.dao.AdminDao;
-import kr.or.iei.customer.model.vo.CustomerVo;
+import kr.or.iei.customer.model.vo.Customer;
 
 @Service
 public class AdminService {
 	@Autowired
 	private AdminDao adminDao;
 
-	public List<CustomerVo> memberList(int memberCode) {
-		List memberList = adminDao.memberList(memberCode);
-		return null;
+	public List<Customer> memberList(int memberCode) {
+		List list = adminDao.memberList(memberCode);
+		return list;
 	}
 }
