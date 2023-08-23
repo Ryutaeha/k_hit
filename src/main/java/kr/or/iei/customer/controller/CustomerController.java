@@ -19,6 +19,18 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
+	//회원가입 confirm
+	@GetMapping(value = "/joinConfirm")
+	public String joinConfirm(Model model) {
+		model.addAttribute("title","회원가입");
+		model.addAttribute("msg", "[고객] 회원가입이 맞으신가요?");
+		model.addAttribute("icon", "question");
+		model.addAttribute("loc", "/customer/join");
+		model.addAttribute("cancelLoc", "/common/login");
+		
+		return "common/confirmMsg";
+	}
+	
 	//회원가입 페이지 이동
 	@GetMapping(value = "/join")
 	public String customerJoin() {
@@ -35,10 +47,6 @@ public class CustomerController {
 	public String customerPayment() {
 		return "/customer/payment";
 	}
-
-	//회원가입 confirm
-	
-		
 	//회원가입
 	@PostMapping(value="/joinComplete")
 
