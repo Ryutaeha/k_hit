@@ -18,11 +18,10 @@ public class SellerRowMapper implements RowMapper<Seller>{
 		s.setSellerId(rs.getString("seller_id"));
 		s.setSellerPw(rs.getString("seller_pw"));
 		s.setSellerName(rs.getString("seller_name"));
-		s.setSellerImg(rs.getString("seller_Img"));
+		s.setSellerImg(rs.getString("seller_img"));
 		s.setSellerPhone(rs.getString("seller_phone"));
 		s.setSellerIntroduce(rs.getString("seller_introduce"));
 		s.setSellerEnrollDate(rs.getString("seller_enrolldate"));
 		return s;
 	}
-
 }

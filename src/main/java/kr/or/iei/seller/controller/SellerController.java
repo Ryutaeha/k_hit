@@ -2,7 +2,8 @@ package kr.or.iei.seller.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,10 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.FileUtil;
 import kr.or.iei.seller.model.service.SellerService;
+import kr.or.iei.seller.model.vo.ProductListData;
 import kr.or.iei.seller.model.vo.Seller;
 
 @Controller
@@ -33,7 +36,10 @@ public class SellerController {
 	}
 	//판매상품관리
 	@GetMapping(value="/productManagement")
-	public String productManagement() {
+	public String productManagement(@SessionAttribute(required = false) Seller s, Model model, int reqPage) {
+		ProductListData pld = sellerService.selectProductList(21,reqPage);
+		model.addAttribute("productList", pld.getProductList());
+		model.addAttribute("pageNavi", pld.getPageNavi());
 		return "/seller/productManagement";
 	}
 	//판매등록 조회
@@ -96,5 +102,33 @@ public class SellerController {
 	@PostMapping(value="/addNewProduct")
 	public String addNewProduct() {
 		return null;
+	}
+	
+	//로그인
+	@PostMapping(value="signin")
+	public String signIn(String sellerSignId, String sellerSignPw,HttpSession session, Model model) {
+		Seller s = sellerService.selectOneSeller(sellerSignId,sellerSignPw);
+		if(s != null) {
+			//로그인한 판매자 회원 정보 저장
+			session.setAttribute("s", s);
+			
+			model.addAttribute("title","로그인 성공");
+			model.addAttribute("msg", "환영합니다.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/");
+		}else {
+			model.addAttribute("title","로그인 실패");
+			model.addAttribute("msg", "아이디/비밀번호를 확인해 주세요.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/common/login");
+		}
+		return "common/msg";
+	}
+	
+	//로그아웃 
+	@GetMapping(value="/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
 }
