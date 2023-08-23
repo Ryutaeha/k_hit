@@ -11,7 +11,7 @@
 }
 
 .payment-content>h3{
-    font-size: 20;
+    font-size: 20px;
     padding-bottom: 20px;
     
 }
@@ -71,7 +71,6 @@
     width: 7.5%;
 }
 
-
 .info-main>.info1>.info-img{
     margin: 25px;
 }
@@ -96,8 +95,9 @@
     font-family: ns_b;
     font-size: 20px;
 }
-.info-name>div{
+.info-name>div>span{
     font-family: ns_m;
+    font-size: 13px;
     color: brown;
 }
 
@@ -138,12 +138,9 @@
 .payment-bottom{
     text-align: right;
     padding-top: 20px;
+    font-size: 25px;
 }
-.payment-bottom>span{
-    font-size: 20px;
-    text-align: right;
-    
-}
+
 .payment-bottom>span:last-child{
     font-weight: bold;
     font-size: 30px;
@@ -153,7 +150,8 @@
 /* 주문자정보 */
 .customer-wrap>h3{
     font-size: 20px;
-    padding-top: 100px;
+    padding-bottom: 20px;
+    padding-top: 30px;
 }
 
 .customer-wrap>hr{
@@ -174,21 +172,182 @@
     float: left;
 }
 .customer-info>span{
-    padding-bottom: 20px;
     display: block;
     font-size: 18px;
     margin: 0 0 20px;
     padding: 0 5px 0 100px;
     min-height: 22px;
-    line-height: 22px;
 }
 
 /* 배송정보 */
 .delivery-wrap>h3{
     font-size: 20px;
-    padding-top: 100px;
+    padding-top:30px;
     padding-bottom: 20px;
 }
 .delivery-wrap>hr{
     border: 2px solid #0c0c0c;
+}
+
+/* 배송 주소 */
+.tabs-wrap{
+    width: 800px;
+    margin: 0 auto;
+}
+.tabs{
+    list-style-type: none ;
+    overflow: hidden;
+    padding-top: 30px;
+}
+.tabs>li{
+    float: left;
+    border-radius: 10px;
+    width: 400px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #ccc;
+    color: #0c0c0c;
+}
+.tabs>li:hover{
+    color: #fff;
+    background-color: #5e5e5e;
+    cursor: pointer;
+}
+/* 기본배송지 및 정보수정버튼 */
+.tabscontent1{
+    width: 95%;
+    margin: 0 auto;
+    padding: 30px 0px;
+    display: block;
+    border: 1px solid #0c0c0c;
+    border-radius: 5px;
+}
+.tabscontent1>span{
+    display: block;
+    font-size: 18px;
+    margin: 0 0 20px;
+    padding: 0 5px 0 100px;
+    min-height: 22px;
+    font-size: 18px;
+}
+.tabscontent1>span:first-child{
+    font-weight: bold;
+    font-size: 18px;
+}
+.delivery-update-btn{
+    padding-left: 100px;
+}
+.delivery-update-btn>button{
+    border : none;
+    font-size: 18px;
+    width: 100px;
+    height: 30px;
+    background-color: #ccc;
+    color: #0c0c0c;
+    border-radius: 5px;
+}
+.delivery-update-btn>button:hover{
+    color: #fff;
+    background-color: #5e5e5e;
+    cursor: pointer;
+    
+}
+/* 배송지 신규입력 */
+.tabscontent2{
+    width: 95%;
+    margin: 0 auto;
+    padding: 30px 0px;
+    display: block;
+    border: 1px solid #0c0c0c;
+    border-radius: 5px;
+}
+.tabscontent2>div{
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+.tabscontent2>div>label{
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0 5px 0 100px;
+}
+.tabscontent2>div>input{
+    width: 400px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #5e5e5e;
+}
+.tabscontent2>.adress>div{
+    padding-bottom: 20px;
+}
+.tabscontent2>.adress>div>label{
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0 5px 0 100px;
+}
+.tabscontent2>.adress>div>input{
+    width: 400px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #5e5e5e;
+}
+.tabscontent2>.adress>div>button{
+    border : none;
+    font-size: 12px;
+    width: 145px;
+    font-weight: bold;
+    height: 30px;
+    background-color: #ccc;
+    color: #0c0c0c;
+    border-radius: 5px;
+}
+.tabscontent2>.adress>div>button:hover{
+    color: #fff;
+    background-color: #5e5e5e;
+    cursor: pointer;
+    border : none;
+}
+/* 결제수단 */
+.payment-way-content>h3{
+    font-size: 20px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+.payment-way-content>hr{
+    border: 2px solid #0c0c0c;
+}
+.payment-way{
+    padding : 50px 0px 50px 0px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+.payment-way>p{
+    padding: 10px 0px 10px 0px;
+}
+.payment-way>label>input{
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+/*최종 결제 버튼*/
+.total-payment-btn{
+    text-align: center;
+    padding-top: 50px;
+}
+.total-payment-btn>button{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    width: 400px;
+    height: 60px;
+    background-color: #ccc;
+    color: #0c0c0c;
+    border-radius: 5px;
+    border : none;
+}
+.total-payment-btn>button:hover{
+    color: #fff;
+    background-color: #5e5e5e;
+    cursor: pointer;
 }
