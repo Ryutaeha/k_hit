@@ -31,6 +31,14 @@
                             <td th:text="${list.customerName}"></td>
                             <td th:text="${list.customerEnrolldate}"></td>
                         </tr>
+                         <tr th:if="${code}==2" th:each="list : ${list}">
+                            <td th:text="${list.sellerNo}"></td>
+                            <td th:text="${list.sellerId}"></td>
+                            <td th:text="${list.sellerName}"></td>
+                            <td th:text="${list.sellerEnrollDate}"></td>
+                        </tr>
+                        <!-- 
+                         -->
                     </table>
                 </div>
             </div>

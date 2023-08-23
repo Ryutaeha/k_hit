@@ -37,11 +37,13 @@ public class AdminController {
 		@GetMapping(value="/member")
 	public String member(int memberCode, Model model){
 			if(memberCode == 1) {
-				List<Customer> list = adminService.memberList(memberCode);
+				List<Customer> list = adminService.customerList(memberCode);
 				model.addAttribute("list", list);
 				model.addAttribute("code",memberCode);
 			}else if(memberCode == 2){
-				
+				List<Seller> list = adminService.sellerList(memberCode);
+				model.addAttribute("list",list);
+				model.addAttribute("code",memberCode);
 			}
 		return "/admin/member";
 	}
