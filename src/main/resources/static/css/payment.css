@@ -322,13 +322,18 @@
     font-weight: bold;
     font-size: 25px;
 }
-.payment-way>p{
+.payment-way>span{
     padding: 10px 0px 10px 0px;
+    text-align: left;
+    display: block;
 }
-.payment-way>label>input{
+.payment-way>span>input{
+    display: inline;
+    line-height: 10px;
     position: relative;
     width: 20px;
     height: 20px;
+
 }
 /*최종 결제 버튼*/
 .total-payment-btn{
