@@ -23,16 +23,11 @@ public class CustomerController {
 	public String customerJoin() {
 		return "customer/join";
 	}
-	//장바구니
+	//장바구니 페이지
 	@GetMapping(value="/cart")
-	public String customerCart() {
+	public String customerGetCart() {
 		return "/customer/cart";
 	}
-	//결제하기
-		@GetMapping(value="/payment")
-		public String customerPayment() {
-			return "/customer/payment";
-		}
 
 
 	//회원가입
