@@ -17,7 +17,7 @@
 				<a href="/">K-hIT</a>
 			</div>
 			<div class="header-category">
-				<th:block th:if="${session.c == null}">
+				<th:block th:if="${session.c == null && session.s == null}">
 					<a href="/common/login" class="a">LOGIN</a>
 					<button type="button" class="a join">JOIN</button>
 					<div id="join-modalWrap">
@@ -41,16 +41,17 @@
 				   	 </div>
 					<a href="#" class="a">MY PAGE</a>
 				</th:block>
+				<!-- 고객 로그인 -->
 				<th:block th:if="${session.c != null}">
 					<a href="/customer/logout" class="a">LOGOUT</a>
 					<a href="/customer/mypage" class="a">MY PAGE</a>
 				</th:block>
-				<!-- 
+ 				<!-- 판매자 로그인 -->
 				<th:block th:if="${session.s != null}">
-					<a href="/common/logout">LOGOUT</a>
-					<a href="#">MY PAGE</a>
+					<a href="/seller/logout" class="a">LOGOUT</a>
+					<a href="/seller/mypage" class="a">MY PAGE</a>
 				</th:block>
-				 -->
+
 
 			</div>
 		</div>

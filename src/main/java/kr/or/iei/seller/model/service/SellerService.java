@@ -74,4 +74,9 @@ public class SellerService {
 		return pld;
 	}
 
+	public Seller selectOneSeller(String sellerSignId, String sellerSignPw) {
+		Seller s = sellerDao.selectOneSeller(sellerSignId,sellerSignPw);
+		return s;
+	}
+
 }

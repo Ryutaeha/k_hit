@@ -37,4 +37,13 @@ public class SellerDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
+
+	public Seller selectOneSeller(String sellerSignId, String sellerSignPw) {
+		String query = "select * from seller_tbl where seller_id=? and seller_pw=?";
+		List list = jdbc.query(query, sellerRowMapper, sellerSignId, sellerSignPw);
+		if(list.isEmpty()) {
+			return null;
+		}
+		return (Seller)list.get(0);
+	}
 }
