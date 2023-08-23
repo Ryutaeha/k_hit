@@ -13,9 +13,14 @@ public class CustomerService {
 	private CustomerDao customerDao;
 	
 	@Transactional
-	public int insertCustomer(Customer customer) {
-		int result = customerDao.insertCustomer(customer);
+	public int insertCustomer(Customer customer, String customerEmail2) {
+		int result = customerDao.insertCustomer(customer, customerEmail2);
 		return result;
+	}
+
+	public Customer selectCustomerId(String customerId) {
+		Customer c = customerDao.selectCustomerId(customerId);
+		return c;
 	}
 
 }

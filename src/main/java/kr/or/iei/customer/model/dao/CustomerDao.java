@@ -1,5 +1,7 @@
 package kr.or.iei.customer.model.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,11 +16,20 @@ public class CustomerDao {
 	@Autowired
 	private CustomerRowMapper customerRowMapper;
 	
-	public int insertCustomer(Customer customer) {
+	public int insertCustomer(Customer customer, String customerEmail2) {
 		String query = "insert into customer_tbl values(customer_seq.nextval,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),default)";
-		Object[] params = {customer.getCustomerId(),customer.getCustomerPw(),customer.getCustomerName(),customer.getCustomerPhone(),customer.getCustomerEmail()};
+		Object[] params = {customer.getCustomerId(),customer.getCustomerPw(),customer.getCustomerName(),customer.getCustomerPhone(),customer.getCustomerEmail()+"@"+customerEmail2};
 		int result = jdbc.update(query,params);
 		return result;
+	}
+
+	public Customer selectCustomerId(String customerId) {
+		String query = "select * from customer_tbl where customer_id=?";
+		List list = jdbc.query(query, customerRowMapper, customerId);
+		if(list.isEmpty()) {
+			return null;
+		}
+		return (Customer)list.get(0);
 	}
 
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.iei.customer.model.service.CustomerService;
 import kr.or.iei.customer.model.vo.Customer;
@@ -34,12 +35,24 @@ public class CustomerController {
 
 	//회원가입
 	@PostMapping(value="/joinComplete")
-	public String joinComplete(Customer customer) {
-		int result = customerService.insertCustomer(customer);
+	public String joinComplete(Customer customer, String customerEmail2) {
+		int result = customerService.insertCustomer(customer,customerEmail2);
 		if(result>0) {
 			return "/customer/joinComplete";			
 		}else {
 			return "/";
+		}
+	}
+	
+	//회원가입 로그인 중복확인
+	@ResponseBody
+	@GetMapping(value="checkId")
+	public String checkId(String customerId) {
+		Customer c = customerService.selectCustomerId(customerId);
+		if(c == null) {
+			return "0";
+		}else {
+			return "1";
 		}
 	}
 }
