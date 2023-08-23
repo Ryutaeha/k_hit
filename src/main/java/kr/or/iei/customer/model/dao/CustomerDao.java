@@ -16,9 +16,9 @@ public class CustomerDao {
 	@Autowired
 	private CustomerRowMapper customerRowMapper;
 	
-	public int insertCustomer(Customer customer) {
+	public int insertCustomer(Customer customer, String customerEmail2) {
 		String query = "insert into customer_tbl values(customer_seq.nextval,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),default)";
-		Object[] params = {customer.getCustomerId(),customer.getCustomerPw(),customer.getCustomerName(),customer.getCustomerPhone(),customer.getCustomerEmail()};
+		Object[] params = {customer.getCustomerId(),customer.getCustomerPw(),customer.getCustomerName(),customer.getCustomerPhone(),customer.getCustomerEmail()+"@"+customerEmail2};
 		int result = jdbc.update(query,params);
 		return result;
 	}
@@ -28,6 +28,15 @@ public class CustomerDao {
 		List list = jdbc.query(query, customerRowMapper, customerId);
 		if(list.isEmpty()) {
 			return null;
+		}
+		return (Customer)list.get(0);
+	}
+
+	public Customer selectOneCustomer(String customerSignId, String customerSignPw) {
+		String query = "select * from customer_tbl where customer_id=? and customer_pw=?";
+		List list = jdbc.query(query,customerRowMapper,customerSignId,customerSignPw);
+		if(list.isEmpty()) {
+			return null;			
 		}
 		return (Customer)list.get(0);
 	}

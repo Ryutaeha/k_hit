@@ -13,13 +13,19 @@ public class CustomerService {
 	private CustomerDao customerDao;
 	
 	@Transactional
-	public int insertCustomer(Customer customer) {
-		int result = customerDao.insertCustomer(customer);
+	//고객회원가입
+	public int insertCustomer(Customer customer, String customerEmail2) {
+		int result = customerDao.insertCustomer(customer, customerEmail2);
 		return result;
 	}
-
+	//고객아이디 찾기
 	public Customer selectCustomerId(String customerId) {
 		Customer c = customerDao.selectCustomerId(customerId);
+		return c;
+	}
+	//고객 로그인
+	public Customer selectOneCustomer(String customerSignId, String customerSignPw) {
+		Customer c = customerDao.selectOneCustomer(customerSignId,customerSignPw);
 		return c;
 	}
 

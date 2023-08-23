@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="admin-wrap">
+        <th:block th:include="/admin/adminMenu"></th:block>
+        <div class="admin-content">
+            <div class="content-logo">
+                <span>회원 관리</span>
+            </div>
+            <div class="content-view">
+                <div class="member-box box">
+                    <div class="search-box">
+                        <input type="text" id="notice" name="input" placeholder="공지 사항 검색">
+                        <button class="add-btn">검색</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/admin.js"></script>
+</body>
+</html>

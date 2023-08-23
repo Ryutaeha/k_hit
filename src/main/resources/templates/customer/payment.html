@@ -2,83 +2,141 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>payment</title>
+<title>PAYMENT</title>
 <link rel="stylesheet" href="/css/payment.css">
+<script src="js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-	   <div class="payment-all-wrap">
-            <div class="payment-wrap">
-                <div class="payment-title">
-                    <h2 class="title1">PAYMENT</h2>
-                </div>
-                <div class="payment-content">
-                    <h3>주문상품</h3>
-                    <hr>
-                    <!-- 상품이름,옵션,배송비,상품금액 -->
-                    <div class="content-info">
-                        <div class="payment info-top">
+	  <div class="payment-all-wrap">
+                <div class="payment-wrap">
+                    <div class="payment-title">
+                        <h2 class="title1">PAYMENT</h2>
+                    </div>
+                    <div class="payment-content">
+                        <h3>주문상품</h3>
+                        <hr>
+                        <!-- 상품이름,옵션,배송비,상품금액 -->
+                        <div class="content-info">
+                            <div class="payment info-top">
+                                <div class="info1">
+                                    <span>상품정보</span>
+                                </div>
+                                <div class="info2">
+                                    <span>수량</span>
+                                </div>
+                                <div class="info3">
+                                    <span>상품금액</span>
+                                </div>
+                                <div class="info4">
+                                    <span>배송비</span>
+                                </div>
+                            </div>
+                        <div class="payment info-main">
                             <div class="info1">
-                                <span>상품정보</span>
+                                <div class="info-img">
+                                    <img src="img/icemallimage/ice1.png">
+                                </div>
+                                <div class="info-name">
+                                    <span>상품이름</span>
+                                    <div><span>1. 옵션</span> <span>2. 옵션</span> <span>3. 옵션</span></div>
+                                </div>
                             </div>
+                            <!-- 상품수량 -->
                             <div class="info2">
-                                <span>수량</span>
+                                <button type="button">-</button>
+                                <input type="text" value="1">
+                                <button type="button">+</button>
                             </div>
+                            <!-- 상품금액 -->
                             <div class="info3">
-                                <span>상품금액</span>
+                                <span>3800원</span>
                             </div>
+                            <!-- 배송비 -->
                             <div class="info4">
-                                <span>배송비</span>
+                                <span>0000원</span>
                             </div>
                         </div>
-                    <div class="payment info-main">
-                        <div class="info1">
-                            <div class="info-img">
-                                <img src="img/icemallimage/ice1.png">
+                    </div>
+                    <hr>
+                    <div class="payment-bottom">
+                        <span>최종 결제 금액</span>
+                        <span>000000원</span>
+                    </div>
+                </div>
+                <!-- 주문자 정보 페이지 -->
+                <div class="customer-wrap">
+                    <h3>주문자 정보</h3>
+                    <hr>
+                    <div class="customer-info">
+                            <h2>주문고객</h2>
+                            <span>이름</span>
+                            <h2>전화번호</h2>
+                            <span>전화번호</span>
+                            <h2>이메일</h2>
+                            <span>test@email</span>
+                    </div>
+                </div>
+                <!-- 배송 정보 페이지 -->
+                <div class="delivery-wrap">
+                    <h3>배송 정보</h3>
+                    <hr>
+                    <div class="delivery-info">
+                        <div class="tabs-wrap">
+                            <ul class="tabs">
+                                <li>기본 배송지</li>
+                                <li>신규 입력</li>
+                            </ul>
+                            <div class="tabscontent1">
+                                <span>이름</span>
+                                <span>이름</span>
+                                <span>이름</span>
+                                <div class="delivery-update-btn">
+                                    <button type="button">정보수정</button>
+                                </div>
                             </div>
-                            <div class="info-name">
-                                <span>상품이름</span>
-                                <div>옵션</div>
+                            <div class="tabscontent2">
+                                <div>
+                                    <label>수령인</label>
+                                    <input type="text" placeholder="이름을 입력해주세요">
+                                </div>
+                                <div>
+                                    <label>전화번호</label>
+                                    <input type="text" placeholder="전화번호를 입력해주세요.">
+                                </div>
+                                <div class="adress">
+                                    <div>
+                                        <label>주소</label>
+                                        <input type="text" placeholder="우편번호" style="width:200px;">
+                                        <button type="button" onclick="execDaumPostcode()">우편번호 찾기</button>
+                                    </div>
+                                    <div style="padding-left: 147px;">
+                                        <input type="text" id="address-1" placeholder="도로명주소">      
+                                    </div>
+                                    <div style="padding-left: 147px;">
+                                        <input type="text" id="address-2" placeholder="상세주소">           
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="info2">
-                            <button type="button">-</button>
-                            <input type="text" value="1">
-                            <button type="button">+</button>
-                        </div>
-                        <div class="info3">
-                            3800원
-                        </div>
-                        <div class="info4">
-                            0원
                         </div>
                     </div>
                 </div>
-                <hr>
-                <div class="payment-bottom">
-                    <span>최종 결제 금액</span>
-                    <span>000000원</span>
+                <!-- 결제수단 페이지 -->
+                <div class="payment-way-wrap">
+                    <div class="payment-way-content">
+                    <h3>결제 수단</h3>
+                    <hr>
+                    <div class="payment-way">
+                        <span><input type="checkbox">카드결제</span>
+                        <span><input type="checkbox">계좌이체/무통장입금</span>
+                        <span><input type="checkbox">휴대폰 결제</span>
+                    </div>
+                    <div class="total-payment-btn">
+                        <button type="button"><span>000000원</span> <span>결제하기</span></button>
+                    </div>
                 </div>
-            </div>
-            <div class="customer-wrap">
-                <h3>주문자 정보</h3>
-                <hr>
-                <div class="customer-info">
-                        <h2>주문고객</h2>
-                        <span>이름</span>
-                        <h2>전화번호</h2>
-                        <span>전화번호</span>
-                        <h2>이메일</h2>
-                        <span>test@email</span>
-                </div>
-            </div>
-            <div class="delivery-wrap">
-                <h3>배송 정보</h3>
-                <hr>
-                <div class="delivery-info">
-                </div>
-            </div>
-        </div>  <!-- payment-wrap -->
+            </div>  <!-- payment-wrap -->
+        </div>
     </div>
 	 <th:block th:include="common/footer"></th:block>
 </body>

@@ -72,4 +72,29 @@ public class SellerController {
 			return "/";
 		}
 	}
+	//판매상품 재고관리
+	@GetMapping(value="/productStockManagement")
+	public String productStockManagement() {
+		return "/seller/productStockManagement";
+	}
+	//판매상품 수정폼
+	@GetMapping(value="/updateProductFrm")
+	public String updateProductFrm() {
+		return "/seller/updateProductFrm";
+	}
+	//판매상품 수정2
+	@PostMapping(value="/updateProduct")
+	public String updateProduct() {
+		return null;
+	}
+	//판매상품 등록폼
+	@GetMapping(value="/addNewProductFrm")
+	public String addNewProductFrm() {
+		return "/seller/addNewProductFrm";
+	}
+	//판매상품 등록2
+	@PostMapping(value="/addNewProduct")
+	public String addNewProduct() {
+		return null;
+	}
 }

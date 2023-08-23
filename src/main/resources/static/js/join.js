@@ -41,6 +41,7 @@ emailSelect.on("change",function(){
     email2.val(selectValue);
 });
 
+
 $("#sel-re").on("click",function(){
     confirm("[판매자]회원가입이 맞으신가요?")
   
@@ -63,3 +64,29 @@ $("[name=imgFile]").on("change",function(){
         $("#img-view").attr("src","");
     }
 });
+
+$(".dup-btn").on("click",function(){
+    const customerId = $("#cutomerId").val();
+    const idReg = /^[a-zA-Z0-9]{4,15}$/;
+    if(idReg.test(customerId)){
+        $.ajax({
+					url:"/customer/checkId",
+					type : "get",
+					data : {customerId : customerId},
+					success : function(data){
+						if(data == "0"){
+							$(".checkId").text("* 중복체크 완료.")
+							$(".checkId").css("color","#146C94");
+						}else{
+							$(".checkId").text("* 아이디를 다시 입력해 주세요.")
+							$(".checkId").css("color","red");
+						}
+					}
+				});
+    }else{
+    	$(".checkId").text("영어/숫자로 4~15글자를 입력해 주세요.")
+    	$(".checkId").css("color","red");
+    }
+});
+
+
