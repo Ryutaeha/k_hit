@@ -10,25 +10,24 @@
         <th:block th:include="/admin/adminMenu"></th:block>
         <div class="admin-content">
             <div class="content-logo">
-                <span>문의사항</span>
+                <span>공지사항</span>
             </div>
             <div class="content-view">
-                <div class="question-box box">
+                <div class="notice-box box">
                     <div class="search-box">
-                        <input type="text" id="question" name="input" placeholder="문의 사항 검색">
+                        <input type="text" id="member" name="input" placeholder="아이디 검색">
+                        <input type="hidden" id="memberCode">
                         <button class="add-btn">검색</button>
                     </div>
-                    <div class="list Qlist">
+                    <div class="list Nlist">
                         <div>
                             <div>번호</div>
                             <div>제목</div>
-                            <div>작성자</div>
                             <div>작성일</div>
-                            <div>응답</div>
                             <div>고정</div>
                         </div>
                     </div>
-                    <div class="question-list list">
+                    <div class="notice-list list">
                         
                     </div>
                 </div>
