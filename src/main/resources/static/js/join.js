@@ -41,10 +41,16 @@ emailSelect.on("change",function(){
     email2.val(selectValue);
 });
 
-
+// 로그인창에서 되묻기 컬럼
 $("#sel-re").on("click",function(){
-    confirm("[판매자]회원가입이 맞으신가요?")
-  
+    confirm("[판매자]회원가입이 맞으신가요?")    
+    if(confirm){
+        console.log(typeof(con));
+        location.href="/seller/join";
+    }else if(!confirm){
+        console.log(typeof(con));
+        return false;
+    }
 });
 $("#cus-re").on("click",function(){
     confirm("[고객]회원가입이 맞으신가요?")    
