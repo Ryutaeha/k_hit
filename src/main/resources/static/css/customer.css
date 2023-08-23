@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    font-family: ns-r;
+    color: black;
+    list-style-type: none;
+}
+.title1{
+    text-align: center;
+    margin: 100px 0;
+    font-size: 30px;
+}
+
+.customer-info{
+    width: 100%;
+    height: 155px;
+    overflow: hidden;
+    min-width: 1600px; 
+    box-sizing: border-box;
+    background-color: #FFF6E0;
+    float: left;
+}
+.customer-info>.info{
+    margin: 25px;
+}
+.customer-info>.info>img{
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.info>span{
+    vertical-align: text-bottom;
+}
+.info>span>button{
+    border: none;
+    background-color: transparent;
+    width: 200px;
+    height: 100px;
+    font-size: 20px;
+}
+.info>span>button:hover{
+    font-weight: bold;
+}
+
+/* 좌측 메뉴 */
+.left-menu{
+    width: 200px;
+    height: 300px;
+    padding-top: 50px;
+    float: left;
+}
+
+.left-menu>ul>li{
+    height: 40px;
+}
+
+.left-menu>ul>li>a{
+    width: 300px;
+    height: 200px;
+    padding-left: 25px;
+    font-size: 20px;
+    padding-top: 10px;
+}
+.left-menu>ul>li>a:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
