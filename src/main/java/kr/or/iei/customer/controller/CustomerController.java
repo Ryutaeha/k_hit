@@ -47,7 +47,6 @@ public class CustomerController {
 	public String customerPayment() {
 		return "/customer/payment";
 	}
-		
 	//회원가입
 	@PostMapping(value="/joinComplete")
 
