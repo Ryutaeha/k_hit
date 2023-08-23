@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>cart</title>
 <link rel="stylesheet" href="/css/cart.css">
+<script src="js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	  <th:block th:include="common/header"></th:block>
@@ -43,7 +44,7 @@
                         </div>
                         <div class="info-name">
                             <span>상품이름</span>
-                            <div>옵션</div>
+                            <div><span>1. 옵션</span> <span>2. 옵션</span> <span>3. 옵션</span></div>
                         </div>
                     </div>
                     <div class="info3">
@@ -51,11 +52,13 @@
                         <input type="text" value="1">
                         <button type="button">+</button>
                     </div>
+                    <!-- 상품금액 -->
                     <div class="info4">
-                        3800원
+                        <span>3800원</span>
                     </div>
                     <div class="info5">
-                        0원
+                    <!-- 배송비 -->
+                        <span>0000원</span>
                     </div>
                     <div class="info6">
                         <button type="button">
@@ -76,21 +79,21 @@
                     <div class="content-amount">
                         <div class="amount product">
                             <div>상품금액</div>
-                            <div>15,200원</div>
+                            <div><span>15,200원</span></div>
                         </div>
                         <div class="sign">
                             <span class="material-icons">add</span>
                         </div>
                         <div class="amount delivery">
                             <div>배송비</div>
-                            <div>0원</div>
+                            <div><span>0000원</span></div>
                         </div>
                         <div class="sign">
                             <span class="material-icons">double_arrow</span>
                         </div>
                         <div class="order">
-                            <div>총 주문금액</div>
-                            <div>15,200원</div>
+                            <div><span>결제 예정 금액</span></div>
+                            <div><span>15,200원</span></div>
                         </div>
                     </div>
                     <hr>
@@ -102,6 +105,7 @@
                     </div>
                 </div>
             </div>
+        </div>
 	  <th:block th:include="common/footer"></th:block>
 </body>
 </html>

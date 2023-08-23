@@ -16,10 +16,21 @@
 				<a href="/">K-hIT</a>
 			</div>
 			<div class="header-category">
-				<a href="/common/login">LOGIN</a>
-				<a href="/customer/join">JOIN</a>
-				<a href="#">ORDER</a>
-				<a href="#">MY PAGE</a>
+				<th:block th:if="${session.c == null}">
+					<a href="/common/login">LOGIN</a>
+					<a href="/customer/join">JOIN</a>
+					<a href="#">MY PAGE</a>
+				</th:block>
+				<th:block th:if="${session.c != null}">
+					<a href="/customer/logout">LOGOUT</a>
+					<a href="/customer/mypage">MY PAGE</a>
+				</th:block>
+				<!-- 
+				<th:block th:if="${session.s != null}">
+					<a href="/common/logout">LOGOUT</a>
+					<a href="#">MY PAGE</a>
+				</th:block>
+				 -->
 			</div>
 		</div>
 		<div class="header-menu">
