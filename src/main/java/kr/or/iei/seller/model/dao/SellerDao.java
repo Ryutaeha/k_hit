@@ -46,4 +46,10 @@ public class SellerDao {
 		}
 		return (Seller)list.get(0);
 	}
+
+	public List addNewProductList(int sellerNo, int start, int end) {
+		String query = "select * from (select rownum as rnum, n.* from (select * from PRODUCT_TBL where seller_no=21 order by 1 desc)n) where rnum between ? and ?";
+		List list = jdbc.query(query, productRowMapper,start,end);
+		return list;
+	}
 }

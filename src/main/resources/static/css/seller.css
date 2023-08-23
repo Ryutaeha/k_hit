@@ -129,3 +129,15 @@
   background-color: #252a34;
   color: #fff;
 }
+
+.addProductBtn{
+  border: none;
+  padding: 20px;
+  display: inline-block;
+  box-sizing: border-box;
+  transition-duration: 0.5s;
+  font-size: 16px;
+  background-color: lightgrey;
+  color: #fff;
+  border: 1px solid lightgrey;
+}

@@ -44,7 +44,10 @@ public class SellerController {
 	}
 	//판매등록 조회
 	@GetMapping(value="/addNewProductList")
-	public String addNewProductList() {
+	public String addNewProductList(@SessionAttribute(required = false) Seller s, Model model, int reqPage) {
+		ProductListData pld = sellerService.addNewProductList(21,reqPage);
+		model.addAttribute("productList", pld.getProductList());
+		model.addAttribute("pageNavi", pld.getPageNavi());		
 		return "/seller/addNewProductList";
 	}
 	//판매자 회원가입창으로 넘어가기
