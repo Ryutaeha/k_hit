@@ -42,7 +42,7 @@ public class CustomerController {
 		if(result>0) {
 			return "customer/joinComplete";			
 		}else {
-			return "/";
+			return "redirect:/"; //메인페이지 (모달)
 		}
 	}
 	
@@ -75,7 +75,12 @@ public class CustomerController {
 		
 	}
 	
-	//로그아웃 -header 변경 시 만들기!!!
+	//로그아웃 
+	@GetMapping(value="/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 	
 }
 
