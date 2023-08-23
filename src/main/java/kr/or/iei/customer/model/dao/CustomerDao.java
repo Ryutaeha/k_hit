@@ -32,4 +32,13 @@ public class CustomerDao {
 		return (Customer)list.get(0);
 	}
 
+	public Customer selectOneCustomer(String customerSignId, String customerSignPw) {
+		String query = "select * from customer_tbl where customer_id=? and customer_pw=?";
+		List list = jdbc.query(query,customerRowMapper,customerSignId,customerSignPw);
+		if(list.isEmpty()) {
+			return null;			
+		}
+		return (Customer)list.get(0);
+	}
+
 }

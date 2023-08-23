@@ -1,5 +1,7 @@
 package kr.or.iei.customer.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,7 @@ public class CustomerController {
 	//회원가입 페이지 이동
 	@GetMapping(value = "/join")
 	public String customerJoin() {
-		return "/customer/join";
+		return "customer/join";
 	}
 	//장바구니
 	@GetMapping(value="/cart")
@@ -38,15 +40,15 @@ public class CustomerController {
 	public String joinComplete(Customer customer, String customerEmail2) {
 		int result = customerService.insertCustomer(customer,customerEmail2);
 		if(result>0) {
-			return "/customer/joinComplete";			
+			return "customer/joinComplete";			
 		}else {
-			return "/";
+			return "redirect:/"; //메인페이지 (모달)
 		}
 	}
 	
 	//회원가입 로그인 중복확인
 	@ResponseBody
-	@GetMapping(value="checkId")
+	@GetMapping(value="/checkId")
 	public String checkId(String customerId) {
 		Customer c = customerService.selectCustomerId(customerId);
 		if(c == null) {
@@ -55,4 +57,45 @@ public class CustomerController {
 			return "1";
 		}
 	}
+	
+	//로그인
+	@PostMapping(value="/signin")
+	public String signIn(String customerSignId, String customerSignPw,HttpSession session) {
+		Customer c = customerService.selectOneCustomer(customerSignId,customerSignPw);
+		if(c != null) {
+			//로그인한 고객 회원 정보 저장
+			session.setAttribute("c", c);
+			System.out.println("로그인 성공"); //모달 만들면 삭제하기
+			return "redirect:/";
+			
+		}else {
+			System.out.println("로그인 실패"); //모달 만들면 삭제하기
+			return "common/login";
+		}
+		
+	}
+	
+	//로그아웃 
+	@GetMapping(value="/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
