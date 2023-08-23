@@ -35,8 +35,8 @@ public class CustomerController {
 
 	//회원가입
 	@PostMapping(value="/joinComplete")
-	public String joinComplete(Customer customer) {
-		int result = customerService.insertCustomer(customer);
+	public String joinComplete(Customer customer, String customerEmail2) {
+		int result = customerService.insertCustomer(customer,customerEmail2);
 		if(result>0) {
 			return "/customer/joinComplete";			
 		}else {
