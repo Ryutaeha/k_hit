@@ -2,11 +2,15 @@ package kr.or.iei.seller.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.iei.seller.model.service.SellerService;
+import kr.or.iei.seller.model.vo.ProductListData;
+import kr.or.iei.seller.model.vo.Seller;
 
 @Controller
 @RequestMapping(value="/seller")
@@ -16,7 +20,10 @@ public class SellerController {
 	
 	//판매상품관리
 	@GetMapping(value="/productManagement")
-	public String productManagement() {
+	public String productManagement(@SessionAttribute(required = false) Seller s, Model model, int reqPage) {
+		ProductListData pld = sellerService.selectProductList(21,reqPage);
+		model.addAttribute("productList", pld.getProductList());
+		model.addAttribute("pageNavi", pld.getPageNavi());
 		return "/seller/productManagement";
 	}
 	//판매등록 조회
