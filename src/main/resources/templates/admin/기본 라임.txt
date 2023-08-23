@@ -5,12 +5,10 @@
                 <span></span>
             </div>
             <div class="content-view">
-                <div class="content-select">
-                    <ul>
-                        <li></li>
-                    </ul>
+                <div class="box">
+                    
                 </div>
-                <div class="content-check"></div>
             </div>
         </div>
     </div>
+    <script src="/js/admin.js"></script>

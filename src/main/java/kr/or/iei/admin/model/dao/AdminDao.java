@@ -1,5 +1,7 @@
 package kr.or.iei.admin.model.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,4 +14,9 @@ public class AdminDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private AdminRowMapper adminRowMapper;
+	public List memberList(int memberCode) {
+		String query = "SELECT * FROM CUSTOMER_TBL";
+//		List list = jdbc.query(query, rowMapper)
+		return null;
+	}
 }

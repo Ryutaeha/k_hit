@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="admin-wrap">
+        <th:block th:include="/admin/adminMenu"></th:block>
+        <div class="admin-content">
+            <div class="content-logo">
+                <span>공지사항</span>
+            </div>
+            <div class="content-view">
+                <div class="noticeFrm-box box">
+                    <form action="/notice/write" method="post" enctype="multipart/form-data">
+                        <table class="tbl noticeWrite">
+                            <tr class="tr-1">
+                                <th class="td-3">제목</th>
+                                <td colspan="3">
+                                    <input type="text" name="noticeTitle" class="input-form">
+                                </td>
+                            </tr>
+                            <tr class="tr-1">
+                                <th class="td-3">작성자</th>
+                                <td>
+                                    <span ></span>
+                                    <input type="hidden" name="noticeWriter">
+                                </td>
+                                <th class="td-3">첨부파일</th>
+                                <td>
+                                    <input type="file" name="upfile" multiple>
+                                </td>
+                            </tr>
+                            <tr class="tr-1">
+                                <td colspan="4">
+                                    <textarea class="input-form" name="noticeContent"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <button type="submit" class="btn bc1 bs4">공지사항작성</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/admin.js"></script>
+</body>
+</html>
