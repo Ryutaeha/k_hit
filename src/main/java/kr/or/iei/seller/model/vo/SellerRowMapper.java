@@ -24,5 +24,4 @@ public class SellerRowMapper implements RowMapper<Seller>{
 		s.setSellerEnrollDate(rs.getString("seller_enrolldate"));
 		return s;
 	}
-
 }

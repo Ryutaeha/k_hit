@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.iei.seller.model.dao.SellerDao;
 import kr.or.iei.seller.model.vo.Seller;
@@ -13,6 +14,12 @@ import kr.or.iei.seller.model.vo.ProductListData;
 public class SellerService {
 	@Autowired
 	private SellerDao sellerDao;
+	
+	@Transactional
+	public int insertSeller(Seller s,String customerEmail2) {
+		int result = sellerDao.insertSeller(s,customerEmail2);
+		return result;
+	}
 
 	public ProductListData selectProductList(int sellerNo, int reqPage) {
 		int numPerPage = 2;
