@@ -21,6 +21,7 @@
 						<th style="width:20%">검수신청일</th>
 						<th style="width:20%">검수결과</th>
 					</tr>
+					<!-- 아래 부분 다시 해야함 -->
 					<tr th:each="product : ${addNewProductList}">
 						<td th:text="${product.productNo}"></td>
 						<td><a th:href="@{/product/view(productNo=${product.productNo})}" th:text="${product.productName}"></a></td>
