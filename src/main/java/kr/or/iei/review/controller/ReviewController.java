@@ -18,4 +18,10 @@ public class ReviewController {
 	public String reviewWrtie() {
 		return "review/reviewWriteFrm"; //경로 나중에 수정하기
 	}
+	
+	//리뷰 상세 보기
+	@GetMapping("/reviewView")
+	public String reviewVeiw() {
+		return "review/reviewView";//경로 나중에 수정하기
+	}
 }
