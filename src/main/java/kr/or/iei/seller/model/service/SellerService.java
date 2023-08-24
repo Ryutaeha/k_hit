@@ -85,8 +85,6 @@ public class SellerService {
 		List productList = sellerDao.addNewProductList(sellerNo,start,end);
 		int totalCount = sellerDao.selectProductTotalCount(sellerNo);
 		int totalPage = (int)(Math.ceil(totalCount)/(double)numPerPage);
-		System.out.println(totalPage);
-		System.out.println(totalCount);
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
 		

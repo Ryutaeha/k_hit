@@ -13,6 +13,10 @@ public class WebConfig implements WebMvcConfigurer{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		//원래 기본설정 추가(html -> templates, 기본자원들 -> static폴더 사용
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/templates/","classpath:/static/");
+		
+		registry.addResourceHandler("/product/**").addResourceLocations("file:///C:/khit/upload/product/");
+		
+		registry.addResourceHandler("/editor/**").addResourceLocations("file:///C:/khit/upload/editor/");
 	}
 	
 }
