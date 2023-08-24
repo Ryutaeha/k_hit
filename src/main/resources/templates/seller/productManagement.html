@@ -11,23 +11,27 @@
 	
 	<div>
 		<th:block th:include="seller/sellerHeader"></th:block>
-		<div class="seller-wrap"> 
+		<div class="seller-wrap">
 			<th:block th:include="seller/sellerMenu"></th:block> 
 			<div class="seller-content">
 				<div class="content-title">PRODUCT MANAGEMENT</div>
 				<div class="content-main">
 					<table>
 						<tr>
-							<th style="width:10%">No.</th>
+							<th style="width:10%">상품번호</th>
 							<th style="width:15%">상품이미지</th>
 							<th style="width:25%">상품명</th>
 							<th style="width:15%">판매가</th>
 							<th style="width:15%">상품상태</th>
 							<th style="width:20%">수정/삭제</th>
+							
 						</tr>
 						<tr th:each="product : ${productList}">
 							<td th:text="${product.productNo}"></td>
-							<td th:text="${product.productImg}"></td>
+							<!-- <td th:text="${product.productImg}"></td> -->
+							<td class="product-img">
+							<img th:src="'/product/'+${product.productImg}">	
+							</td>
 							<td th:text="${product.productName}"></td>
 							<td th:text="${product.productPrice}"></td>
 							<td th:switch="${product.productCheck}">
