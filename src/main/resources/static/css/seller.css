@@ -67,6 +67,7 @@
     text-align: center;
     margin-top: 15px;
     overflow: hidden;
+    border: 1px solid #ececec;
 }
 .id-wrap>span>img{
     
@@ -74,7 +75,9 @@
     height: 100%;
     box-sizing: border-box;
 }
-
+#sup{
+    color: red;
+  }
 
 
 /*마이페이지 메뉴*/
@@ -194,4 +197,12 @@
 .product-img>img{
 	width: 65px;
 	height: 65px;
+}
+
+/*판매자 정보수정*/
+.info-wrap{
+    
+}
+#hr{
+    color: #ececec;
 }

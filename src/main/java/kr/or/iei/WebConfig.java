@@ -17,6 +17,8 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addResourceHandler("/product/**").addResourceLocations("file:///C:/khit/upload/product/");
 		
 		registry.addResourceHandler("/editor/**").addResourceLocations("file:///C:/khit/upload/editor/");
+		
+		registry.addResourceHandler("/seller/**").addResourceLocations("file:///C:/khit/upload/seller/");
 	}
 	
 }
