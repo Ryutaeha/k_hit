@@ -141,3 +141,8 @@
   color: #fff;
   border: 1px solid lightgrey;
 }
+
+.product-img>img{
+	width: 65px;
+	height: 65px;
+}
