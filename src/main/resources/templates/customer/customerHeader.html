@@ -10,12 +10,12 @@
 <body>
         <div class="customer-head-wrap">
             <div class="customer-title">
-                <h2 class="title1">M Y P A G E</h2>
+                <h2 class="title1">MY PAGE</h2>
             </div>
             <div class="customer-info">
                 <div class="info">
                     <img src="/img/common/person.png">
-                    <button type="button" id="mypage-memberName">구매자아이디 <span>></span></button>
+                    <button type="button" id="mypage-memberName" th:text="${session.c.getCustomerId}"></button>
                 </div>
             </div>
         </div>
