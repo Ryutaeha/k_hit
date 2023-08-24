@@ -30,9 +30,9 @@ public class SellerController {
 	@Value("${file.root}")
 	private String root;
 	
-	@GetMapping(value="/mypage")
-	public String mypage() {
-		return "/seller/mypage";
+	@GetMapping(value="/selling")
+	public String sellingPage() {
+		return "seller/selling";
 	}
 	//판매상품관리
 	@GetMapping(value="/productManagement")
