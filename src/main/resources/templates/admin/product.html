@@ -34,14 +34,23 @@
                     	<tr th:each="product : ${product}">
                     		<td th:text="${product.productNo}"></td>
                     		<td th:text="${product.productName}"></td>
-                    		<td th:text="${product.sellerNo}"></td>
-                    		<td th:text="${product.categoryNo}"></td>
-                    		<td th:text="${product.productCheck}"></td>
+                    		<td th:text="${product.sellerId}"></td>
+                    		<td th:text="${product.categoryName}"></td>
+                    		<td th:if="${product.productCheck}==1">판매중</td>
+                    		<td th:if="${product.productCheck}==2">검수중</td>
+                    		<td th:if="${product.productCheck}==3">반려</td>
+                    		<td th:if="${product.productCheck}==4">판매중지</td>
                     	</tr>
                     </table>
                 </div>
             </div>
         </div>
+    </div>
+    
+    <div class="modal-wrap">
+    	<div class="modal-inpo">
+    		
+    	</div>
     </div>
     <script src="/js/admin.js"></script>
 </body>

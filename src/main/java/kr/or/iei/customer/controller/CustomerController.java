@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.iei.customer.model.service.CustomerService;
+import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
 
 @Controller
@@ -36,10 +37,23 @@ public class CustomerController {
 	public String customerJoin() {
 		return "customer/join";
 	}
+	
 	//장바구니 페이지
 	@GetMapping(value="/cart")
-	public String customerGetCart() {
-		return "/customer/cart";
+	public String Cart(int cartNo,String customerSignId, String customerSignPw, HttpSession session,Model model) {
+		Customer c = customerService.selectOneCustomer(customerSignId,customerSignPw);
+		Cart cart = customerService.selectMyCart(cartNo);
+		if(c == null) {
+			model.addAttribute("title","접근 실패");
+			model.addAttribute("msg", "로그인 후 접근 가능합니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/common/login");
+		}else {
+			session.setAttribute("c", c);
+			
+			return "customer/cart";
+		}
+		return "common/msg";
 	}
 
 	//결제하기
