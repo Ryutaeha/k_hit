@@ -28,7 +28,6 @@
 						</tr>
 						<tr th:each="product : ${productList}">
 							<td th:text="${product.productNo}"></td>
-							<!-- <td th:text="${product.productImg}"></td> -->
 							<td class="product-img">
 							<img th:src="'/product/'+${product.productImg}">	
 							</td>
