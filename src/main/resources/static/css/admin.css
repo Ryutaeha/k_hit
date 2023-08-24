@@ -17,8 +17,7 @@ body{
     outline: none;
 }
 .admin-wrap{
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .admin-menu{
@@ -114,6 +113,7 @@ body{
 }
 .content-view{
     padding-top: 50px;
+   	overflow: auto;
 }
 
 .box{
@@ -163,3 +163,24 @@ body{
 .Nlist>div>div:nth-child(2){width: 60%;}
 .Nlist>div>div:nth-child(3){width: 15%;}
 .Nlist>div>div:nth-child(4){width: 15%;}
+
+
+.modal-wrap{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0,0,0,0.5);
+    position: fixed;
+    top:  0;
+    left: 0;
+    display: flex;
+    /*
+    */
+    justify-content: center;
+    align-items: center;
+}
+.modal-inpo{
+	width: 500px;
+	background-color: white;
+	padding: 30px;
+	border-radius: 10px;
+}

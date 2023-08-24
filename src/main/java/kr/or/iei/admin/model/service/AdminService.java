@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.or.iei.admin.model.dao.AdminDao;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.product.model.vo.Category;
-import kr.or.iei.product.model.vo.Product;
+import kr.or.iei.product.model.vo.ProductDetail;
 import kr.or.iei.seller.model.vo.Seller;
 
 @Service
@@ -31,7 +31,7 @@ public class AdminService {
 		return category;
 	}
 
-	public List<Product> product(String input, int categoryNo, int productCheck) {
+	public List<ProductDetail> product(String input, int categoryNo, int productCheck) {
 		List product;
 		if(categoryNo==0) {
 			product = adminDao.product(input,productCheck);
