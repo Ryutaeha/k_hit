@@ -140,4 +140,14 @@ public class SellerController {
 		session.invalidate();
 		return "redirect:/";
 	}
+	//취소환불내역 페이지이동
+	@GetMapping(value="/cancelRefund")
+	public String concelRefundPage() {
+		return "/seller/cancelRefund";
+	}
+	//판매자 정보수정페이지이동
+	@GetMapping(value="/myInfo")
+	public String myInfoPage() {
+		return "/seller/myInfo";
+	}
 }

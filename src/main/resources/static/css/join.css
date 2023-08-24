@@ -156,6 +156,9 @@ textarea.input-form {
   .join-input{
     overflow: hidden;
   }
+  #sup{
+    color: red;
+  }
 .img-title{
     display: block;
     float: left;

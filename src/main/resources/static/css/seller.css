@@ -67,6 +67,7 @@
     text-align: center;
     margin-top: 15px;
     overflow: hidden;
+    border: 1px solid #ececec;
 }
 .id-wrap>span>img{
     
@@ -74,7 +75,9 @@
     height: 100%;
     box-sizing: border-box;
 }
-
+#sup{
+    color: red;
+  }
 
 
 /*마이페이지 메뉴*/
@@ -204,6 +207,15 @@
 	height: 65px;
 }
 
+
+/*판매자 정보수정*/
+.info-wrap{
+    
+}
+#hr{
+    color: #ececec;
+}
+
 /*테이블 디자인*/
 .tbl{
 	width: 100%;
@@ -218,6 +230,7 @@
   text-align: center;
   border-bottom: 1px solid #D8D9DA;
 }
+
 .tbl-menu>th{
   padding: 1rem;
   text-align: center;
