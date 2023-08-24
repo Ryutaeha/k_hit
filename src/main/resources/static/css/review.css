@@ -1,0 +1,158 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: ns-r;
+    color: #1e1e1e;
+    list-style-type: none;
+}
+
+.title1{
+    text-align: center;
+    margin: 100px 0;
+}
+
+.review-wrap{
+    border-radius: 10px;
+    background-color: white;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.review-content>hr{
+    border: 2px solid #0c0c0c;
+    margin-bottom: 50px;
+
+}
+
+.review-info{
+    width: 700px;
+    margin: 0 auto;
+}
+
+
+.review-id{
+    font-size: 22px;
+    font-family: ns-b;
+    margin-bottom: 40px;
+}
+.review-product{
+    overflow: hidden;
+}
+.review-product-info{
+    float: left;
+    padding-left: 20px;
+}
+.review-product-img{
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    float: left;
+}
+.review-product-name{
+    font-size: 18px;
+    margin-top: 25px;
+    font-weight: 600;
+}
+.review-product-option{
+    font-size: 16px;
+    margin-top: 7px;
+}
+
+.review-info-title{
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-family: ns-b;
+    font-size: 18px;
+}
+
+/* 별점 */
+.star-wrap{
+    overflow: hidden;
+}
+.star-wrap>span{
+    float: left;
+    color: lightgray;
+    font-size: 30px;
+    cursor: pointer;
+    
+}
+
+.detailed-review{
+    padding: 20px;
+    width: 700px;
+    height: 250px;
+    font-size: 17px;
+    resize: none;
+    border-radius: 3px;
+    
+}
+
+/* 사진 첨부 */
+#review-img{
+    display: none;
+}
+
+.review-img-view{
+    width: 150px;
+    height: 150px;
+    border: 1px solid #0c0c0c;
+}
+
+.review-img-viewer{
+	height: 30px	
+}
+
+.review-img-label{
+    overflow: hidden;
+}
+
+.review-img-label>*{
+    float: left;
+    cursor: pointer;
+}
+.review-img-label>span{
+    font-size: 30px;
+}
+
+.review-img-btn{
+    display: block;
+    width: 120px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    background-color: #D8D9DA;
+    border-radius: 3px;
+    margin-left: 15px;
+    font-family: ns-b;
+    font-size: 14px;
+}
+
+.review-img-btn:hover{
+    font-family: ns-b;
+    background-color: #61677A;
+    color: #f3f3f3;
+}
+.btn1{
+    width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    font-family: ns-b;
+    margin: 0 5px;
+    color: #272829;
+    background-color: #D8D9DA;
+}
+.btn1:hover{
+    background-color: #61677A;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.reviewWrite-btn{
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 150px;
+}

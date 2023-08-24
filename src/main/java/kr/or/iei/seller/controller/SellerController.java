@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.FileUtil;
+import kr.or.iei.product.model.vo.ProductOptionListData;
 import kr.or.iei.seller.model.service.SellerService;
 import kr.or.iei.seller.model.vo.ProductListData;
 import kr.or.iei.seller.model.vo.Seller;
@@ -30,9 +31,9 @@ public class SellerController {
 	@Value("${file.root}")
 	private String root;
 	
-	@GetMapping(value="/mypage")
-	public String mypage() {
-		return "/seller/mypage";
+	@GetMapping(value="/selling")
+	public String sellingPage() {
+		return "seller/selling";
 	}
 	//판매상품관리
 	@GetMapping(value="/productManagement")
@@ -83,7 +84,11 @@ public class SellerController {
 	}
 	//판매상품 재고관리
 	@GetMapping(value="/productStockManagement")
-	public String productStockManagement() {
+	public String productStockManagement(@SessionAttribute(required = false) Seller s, Model model, int reqPage){
+		ProductOptionListData pold = sellerService.productStockManagement(21,reqPage);
+		//System.out.println(pold);
+		model.addAttribute("prductOptionList", pold.getProductOptionList());
+		model.addAttribute("pageNavi", pold.getPageNavi());
 		return "/seller/productStockManagement";
 	}
 	//판매상품 수정폼

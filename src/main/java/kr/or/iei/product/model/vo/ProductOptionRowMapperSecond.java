@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductOptionRowMapper implements RowMapper<ProductOptionSecond>{
+public class ProductOptionRowMapperSecond implements RowMapper<ProductOptionSecond>{
 
 	@Override
 	public ProductOptionSecond mapRow(ResultSet rs, int rowNum) throws SQLException {

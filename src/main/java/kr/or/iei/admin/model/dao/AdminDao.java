@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.iei.admin.model.vo.AdminRowMapper;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
+import kr.or.iei.product.model.vo.CategoryRowMapper;
+import kr.or.iei.product.model.vo.ProductRowMapper;
 import kr.or.iei.seller.model.vo.SellerRowMapper;
 
 @Repository
@@ -20,7 +22,10 @@ public class AdminDao {
 	private CustomerRowMapper customerRowMapper;
 	@Autowired
 	private SellerRowMapper sellerRowMapper;
-	
+	@Autowired
+	private CategoryRowMapper categoryRowMapper;
+	@Autowired
+	private ProductRowMapper productRowMapper;
 	public List customerList(String input) {
 		System.out.println(input);
 		String query = "SELECT * FROM CUSTOMER_TBL WHERE CUSTOMER_ID LIKE ?";
@@ -35,7 +40,20 @@ public class AdminDao {
 	}
 
 	public List category() {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT * FROM PRODUCT_CATEGORY_TBL";
+		List list = jdbc.query(query, categoryRowMapper);
+		return list;
+	}
+
+	public List product(String input, int categoryNo, int productCheck) {
+		String query = "SELECT s.SELLER_ID,pc.* FROM SELLER_TBL s,(SELECT p.*,c.CATEGORY_NAME FROM PRODUCT_TBL p,(SELECT * FROM PRODUCT_CATEGORY_TBL) c WHERE p.CATEGORY_NO=c.CATEGORY_NO) pc WHERE pc.SELLER_NO=s.SELLER_NO AND PRODUCT_NAME LIKE ? AND CATEGORY_NO = ? AND PRODUCT_CHECK = ?";
+		List list = jdbc.query(query, productRowMapper,"%"+input+"%",categoryNo,productCheck);
+		return list;
+	}
+	public List product(String input, int productCheck) {
+		List list;
+		String query = "SELECT s.SELLER_ID,pc.* FROM SELLER_TBL s,(SELECT p.*,c.CATEGORY_NAME FROM PRODUCT_TBL p,(SELECT * FROM PRODUCT_CATEGORY_TBL) c WHERE p.CATEGORY_NO=c.CATEGORY_NO) pc WHERE pc.SELLER_NO=s.SELLER_NO AND PRODUCT_NAME LIKE ? AND PRODUCT_CHECK = ?";
+		list = jdbc.query(query, productRowMapper,"%"+input+"%",productCheck);
+		return list;
 	}
 }

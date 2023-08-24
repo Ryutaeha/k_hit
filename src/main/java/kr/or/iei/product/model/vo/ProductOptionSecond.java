@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ProductOption {
+public class ProductOptionSecond {
 	private int productOptionNo;
 	private int productNo;
 	private String optionSize;

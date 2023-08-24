@@ -44,7 +44,7 @@
 				            </div>
 				        </div>
 				   	 </div>
-					<a href="#" class="a">MY PAGE</a>
+					<a href="/common/login" class="a">MY PAGE</a>
 				</th:block>
 				<!-- 고객 로그인 -->
 				<th:block th:if="${session.c != null}">
@@ -54,7 +54,7 @@
  				<!-- 판매자 로그인 -->
 				<th:block th:if="${session.s != null}">
 					<a href="/seller/logout" class="a">LOGOUT</a>
-					<a href="/seller/mypage" class="a">MY PAGE</a>
+					<a href="/seller/selling" class="a">MY PAGE</a>
 				</th:block>
 
 
