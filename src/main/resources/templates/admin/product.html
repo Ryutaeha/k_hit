@@ -14,7 +14,13 @@
             </div>
             <div class="content-view">
                 <div class="box">
-                    
+                    <form action="/admin/product" class="search-box">
+                        <select name="productCategory" id="productCategory">
+                            <option value="%">전체</option>
+                        </select>
+                        <input type="text" id="product" name="input" placeholder="상품 검색">
+                        <button class="add-btn">검색</button>
+                    </form>
                 </div>
             </div>
         </div>

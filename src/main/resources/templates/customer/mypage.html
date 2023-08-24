@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+	<th:block th:include="customer/customerHeader"></th:block>
+	<th:block th:include="customer/customerMenu"></th:block>
+	</div>
+	<div>고객마이페이지</div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>
