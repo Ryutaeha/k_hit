@@ -21,15 +21,21 @@ public class AdminDao {
 	@Autowired
 	private SellerRowMapper sellerRowMapper;
 	
-	public List customerList(int memberCode) {
-		String query = "SELECT * FROM CUSTOMER_TBL";
-		List list = jdbc.query(query, customerRowMapper);
+	public List customerList(String input) {
+		System.out.println(input);
+		String query = "SELECT * FROM CUSTOMER_TBL WHERE CUSTOMER_ID LIKE ?";
+		List list = jdbc.query(query, customerRowMapper, "%"+input+"%");
 		return list;
 	}
 
-	public List sellerList(int memberCode) {
-		String query = "SELECT * FROM seller_tbl";
-		List list = jdbc.query(query, sellerRowMapper);
+	public List sellerList(String input) {
+		String query = "SELECT * FROM seller_tbl WHERE seller_ID LIKE ?";
+		List list = jdbc.query(query, sellerRowMapper,"%"+input+"%");
 		return list;
+	}
+
+	public List category() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

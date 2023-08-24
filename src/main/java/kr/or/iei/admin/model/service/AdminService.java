@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.iei.admin.model.dao.AdminDao;
 import kr.or.iei.customer.model.vo.Customer;
+import kr.or.iei.product.model.vo.Product;
 import kr.or.iei.seller.model.vo.Seller;
 
 @Service
@@ -14,13 +15,19 @@ public class AdminService {
 	@Autowired
 	private AdminDao adminDao;
 
-	public List<Customer> customerList(int memberCode) {
-		List list = adminDao.customerList(memberCode);
+	public List<Customer> customerList(String input) {
+		List list = adminDao.customerList(input);
 		return list;
 	}
 
-	public List<Seller> sellerList(int memberCode) {
-		List list = adminDao.sellerList(memberCode);
+	public List<Seller> sellerList(String input) {
+		List list = adminDao.sellerList(input);
 		return list;
 	}
+
+	public List<Product> category() {
+		List category = adminDao.category();
+		return category;
+	}
+	
 }
