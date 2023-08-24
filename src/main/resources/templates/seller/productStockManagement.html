@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/seller.css">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -13,20 +14,40 @@
             <th:block th:include="seller/sellerMenu"></th:block> 
 			<div class="seller-content">
 				<div class="content-title">PRODUCT STOCK MANAGEMENT</div>
-				<table>
-					<tr>
-						<th style="width:10%">No.</th>
-						<th style="width:30%">상품명</th>
-						<th style="width:30%">옵션명</th>
-						<th style="width:10%">재고</th>
-						<th style="width:20%">재고변경</th>
-					</tr>
-                </table>     
-				<div class="content-main">내용</div>                
+				<div class="content-main">
+					<table>
+						<tr>
+							<th style="width:10%">상품번호</th>
+							<th style="width:30%">상품명</th>
+							<th style="width:30%">옵션명</th>
+							<th style="width:10%">재고</th>
+							<th style="width:20%">재고변경</th>
+						</tr>
+						<tr th:each="productOption : ${prductOptionList}">
+							<td th:text="${productOption.productNo}"></td>
+							<td th:text="${productOption.productName}"></td>
+							<td>
+								사이즈 : <span th:text="${productOption.optionSize}"></span> / 색상 : <span th:text="${productOption.optionColor}"></span>
+							</td>
+							<td th:text="${productOption.optionStock}"></td>
+							<td>
+								<button class="changeStock">재고변경</button>
+							</td>
+						</tr>
+					</table>
+					<div id="pageNavi" th:utext="${pageNavi}"></div>      
+				</div>       
             </div>                   
 		</div>
 	</div>
 	
 	<th:block th:include="common/footer"></th:block>
+	<script>
+		$(".changeStock").on("click",function(){
+			const optionStock = $(this).parent().prev().val();
+			//재고값
+			const option
+		});
+	</script>
 </body>
 </html>

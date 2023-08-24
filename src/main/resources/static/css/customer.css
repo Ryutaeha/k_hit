@@ -1,21 +1,14 @@
-*{
-    margin: 0;
-    padding: 0;
-    outline: none;
-    text-decoration: none;
-    font-family: ns-r;
-    color: black;
-    list-style-type: none;
-}
+
 .title1{
     text-align: center;
     margin: 100px 0;
     font-size: 30px;
+    letter-spacing: 10px;
 }
 
 .customer-info{
     width: 100%;
-    height: 155px;
+    height: 120px;
     overflow: hidden;
     min-width: 1600px; 
     box-sizing: border-box;
@@ -23,49 +16,99 @@
     float: left;
 }
 .customer-info>.info{
-    margin: 25px;
+    margin: 15px 200px;
 }
 .customer-info>.info>img{
-    width: 100px;
-    height: 100px;
-    border: 1px solid #ccc;
+    width: 90px;
+    height: 90px;
     box-sizing: border-box;
     border-radius: 5px;
 }
-.info>span{
-    vertical-align: text-bottom;
+.info{
+    overflow: hidden;
 }
-.info>span>button{
+.info>*{
+    float: left;
+}
+#mypage-memberName{
     border: none;
     background-color: transparent;
-    width: 200px;
-    height: 100px;
+    width: 180px;
+    height: 90px;
+    font-size: 25px;
+    font-family: ns-b;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
+#mypage-memberName:hover{
+    font-family: ns-eb;
+}
+#mypage-memberName>span{
     font-size: 20px;
+    font-family: ns-eb;
+    padding-left: 15px;
 }
-.info>span>button:hover{
-    font-weight: bold;
-}
+
 
 /* 좌측 메뉴 */
 .left-menu{
-    width: 200px;
-    height: 300px;
+    width: 200px;    
+    margin: 0;
+    margin-top: 50px;
     padding-top: 50px;
+    padding-bottom: 50px;
+    display: block;
     float: left;
+    margin-left: 160px;
+    margin-right: 10px;
 }
 
 .left-menu>ul>li{
     height: 40px;
+    margin-bottom: 10px;
+    width: 200px;
+    box-sizing: border-box;
 }
 
 .left-menu>ul>li>a{
-    width: 300px;
-    height: 200px;
-    padding-left: 25px;
+    display: block;    
     font-size: 20px;
-    padding-top: 10px;
+    height: 100%;
+    padding-left: 10px;
+    
+    box-sizing: border-box;
+    line-height: 40px;
 }
 .left-menu>ul>li>a:hover{
-    cursor: pointer;
-    font-weight: bold;
+    transition: 0.5;
+    transform: scale(1.1);
+    font-family: ns-b;
+}
+/* 마이페이지 컨텐츠 디자인*/
+.content-wrap{
+    overflow: hidden;
+    width: 70%;
+    min-height: 800px;    
+    display: block;
+    float: left;   
+    margin: 0 auto;    
+    border-left: 1px solid #ececec;
+}
+.content-title{
+    height: 50px;    
+    font-size: 40px;
+    padding: 0px 40px;
+    padding-top: 20px;
+    border-left: 1px solid #ececec;
+}
+.content-title>span{
+    font-family: ns-eb;
+    letter-spacing: 3px;
+}
+.content-main{
+    border-left: 1px solid #ececec;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 35px 40px;
 }

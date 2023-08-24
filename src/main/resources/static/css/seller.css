@@ -1,23 +1,18 @@
-@charset "UTF-8";
 
-*{
-    margin: 0;
-    padding: 0;
-    outline: none;
-    text-decoration: none;
-    font-family: ns-r;
-    color: black;
-    list-style-type: none;
-}
+
+/*마이페이지헤더 글귀*/
 .seller-header{
     width: 100%;
-    height: 155px;
+    height: 235px;
     min-width: 1600px;    
-    /* background-color: aquamarine; */
     text-align: center;
-    line-height: 150px;
+    line-height: 235px;
+    
+}
+.seller-header>span{
+    letter-spacing: 10px;
     font-size: 30px;
-    height: 100%;
+    font-family: ns-b;
 }    
 
 .seller-headers{
@@ -28,69 +23,123 @@
 }
 .seller-header-blank{
     height: 100%;
-    width: 20%;
+    width: 200px;
     display: block;
     float: left;
     box-sizing: border-box;
-    background-color: beige;
+    background-color: #FFF6E0;
     padding-left: 50px;
     padding-top: 50px;
 }
 .seller-header-id{
     height: 100%;
-    width: 80%;
+    width: calc(100% - 200px);
     display: block;
     float: left;
     box-sizing: border-box;
     line-height: 120px;
-    background-color: beige;
+    background-color: #FFF6E0;
 }
-.seller-header-id>a{
+.id-wrap{
+    overflow: hidden;
+    width: 300px;
+    height: 100%;    
+}
+.id-wrap>a{
     font-size: 25px;
     height: 100%;
-    width: 120px;
+    width: 70%;
+    display: block;
+    float: left;
+    padding-left: 50px;
+    box-sizing: border-box;
+    letter-spacing: 2px;
+    font-family: ns-b;
 }
-.seller-header-id>span>img{
-    width: 40px;
-    height: 40px;
-    margin-top: 20px;
-}
-
-.seller-wrap{
+.id-wrap>span{
+    display: block;
+    float: left;
+    width: 30%;
+    height: 90px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 100%;
+    text-align: center;
+    margin-top: 15px;
     overflow: hidden;
 }
+.id-wrap>span>img{
+    
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+
+/*마이페이지 메뉴*/
 .left-menu{
-    width: 200px;
-    height: 300px;
+    width: 200px;    
     margin: 0;
-    background-color: #f8f8f8;
+    margin-top: 50px;
     padding-top: 50px;
+    padding-bottom: 50px;
+    display: block;
     float: left;
+    margin-left: 160px;
+    margin-right: 10px;
 }
 
 .left-menu>ul>li{
     height: 40px;
+    margin-bottom: 10px;
+    width: 200px;
+    box-sizing: border-box;
 }
 
 .left-menu>ul>li>a{
-    width: 300px;
-    height: 200px;
-    padding-left: 25px;
+    display: block;    
     font-size: 20px;
-    padding-top: 10px;
+    height: 100%;
+    padding-left: 10px;
+    
+    box-sizing: border-box;
+    line-height: 40px;
 }
-
+.left-menu>ul>li>a:hover{
+    transition: 0.5;
+    transform: scale(1.1);
+    font-family: ns-b;
+}
+/* 마이페이지 컨텐츠 디자인*/
+.content-wrap{
+    overflow: hidden;
+    width: 70%;
+    min-height: 800px;    
+    display: block;
+    float: left;   
+    margin: 0 auto;    
+    border-left: 1px solid #ececec;
+}
 .content-title{
-    background-color: aquamarine;
+    height: 50px;    
+    font-size: 40px;
+    padding: 0px 40px;
+    padding-top: 20px;
+    border-left: 1px solid #ececec;
+}
+.content-title>span{
+    font-family: ns-eb;
+    letter-spacing: 3px;
 }
 .content-main{
-    background-color: burlywood;
+    border-left: 1px solid #ececec;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 35px 40px;
 }
 
-.seller-wrap{
-    width: 1200px;
-    margin: 0 auto;
-}
 .seller-content{
     float: left;
     width: 1000px;
@@ -140,4 +189,9 @@
   background-color: lightgrey;
   color: #fff;
   border: 1px solid lightgrey;
+}
+
+.product-img>img{
+	width: 65px;
+	height: 65px;
 }

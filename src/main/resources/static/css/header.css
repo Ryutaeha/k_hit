@@ -9,14 +9,15 @@
     outline: none;
     text-decoration: none;
     font-family: ns-r;
-    color:#111111;
+    color:#0c0c0c;
     list-style-type: none;
+    
 }
 
   .page-content{
 	min-height:80vh;
     min-width: 1600px;
-
+    overflow: hidden;
   }
 .header-wrap{
     width: 100%;

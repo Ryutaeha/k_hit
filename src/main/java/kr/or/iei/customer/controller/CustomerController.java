@@ -101,6 +101,11 @@ public class CustomerController {
 		return "redirect:/";
 	}
 	
+	//마이페이지 이동
+	@GetMapping(value = "/mypage")
+	public String customerMypage() {
+		return "customer/mypage";
+	}
 }
 
 
