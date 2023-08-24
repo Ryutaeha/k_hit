@@ -8,16 +8,17 @@
 <body>
 	<th:block th:include="common/header"></th:block>
 	
-	<div>
-		<th:block th:include="seller/sellerHeader"></th:block>
-		<div class="seller-wrap"> 
-			<th:block th:include="seller/sellerMenu"></th:block> 
-			<div class="seller-content">
-				<div class="content-title">ADD NEW PRODUCT</div>
-				<a href="/seller/addProductFrmEditor" class="addProductBtn">판매등록</a>
-				<!-- 나중에  th:if="${session.m != null && session.m.memberCode == 2}" 추가-->
-				<div class="content-main">
-					<table>
+	    <div class="page-content">
+        <th:block th:include="seller/sellerHeader"></th:block>
+            <th:block th:include="seller/sellerMenu"></th:block>
+
+            <div class="content-wrap">
+                <div class="content-title">
+                	<span>ADD NEW PRODUCT</span>
+               	</div>
+                <div class="content-main">
+                <a th:if="${session.s != null && session.s.memberCode == 2}" href="/seller/addProductFrmEditor" class="addProductBtn">판매등록</a>
+                	<table class="tbl">
 						<tr>
 							<th style="width:15%">상품번호</th>
 							<th style="width:45%">상품이름</th>
@@ -37,11 +38,10 @@
 						</tr>
 					</table>
 				<div id="pageNavi" th:utext="${pageNavi}"></div>
-				</div>
-			</div>
-		</div>	
-	</div>
-	
+                </div>
+            </div>
+        </div>        
+
 	<th:block th:include="common/footer"></th:block>
 </body>
 </html>

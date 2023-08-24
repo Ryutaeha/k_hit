@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Basket {
-	private int basketNo;
+public class Cart {
+	private int cartNo;
 	private int customerNo;
 	private int	productOptionNo;
-	private int	basketCount;
+	private int	cartCount;
 }

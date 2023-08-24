@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductOptionRowMapper implements RowMapper<ProductOptionSecond>{
+public class ProductOptionRowMapperSecond implements RowMapper<ProductOptionSecond>{
 
 	@Override
 	public ProductOptionSecond mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -17,6 +17,8 @@ public class ProductOptionRowMapper implements RowMapper<ProductOptionSecond>{
 		po.setOptionStock(rs.getInt("option_stock"));
 		po.setProductNo(rs.getInt("product_no"));
 		po.setProductOptionNo(rs.getInt("product_option_no"));
+		//판매상품 재고관리를 위해 추가한 부분
+		po.setProductName(rs.getString("product_name"));
 		return po;
 	}
 

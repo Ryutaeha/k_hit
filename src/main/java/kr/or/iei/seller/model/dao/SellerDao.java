@@ -5,9 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import kr.or.iei.product.model.vo.ProductOptionRowMapperSecond;
+import kr.or.iei.product.model.vo.ProductOptionRowMapper;
 import kr.or.iei.product.model.vo.ProductRowMapper;
 import kr.or.iei.seller.model.vo.Seller;
 import kr.or.iei.seller.model.vo.SellerRowMapper;
+
 
 @Repository
 public class SellerDao {
@@ -17,17 +21,23 @@ public class SellerDao {
 	private SellerRowMapper sellerRowMapper;
 	@Autowired
 	private ProductRowMapper productRowMapper;
+	@Autowired
+	private ProductRowMapper productRowMapperSecond;
+	@Autowired
+	private ProductOptionRowMapperSecond productOptionRowMapper;
+	@Autowired
+	private ProductOptionRowMapperSecond productOptionRowMapperSecond;
 	
 	public List selectProductList(int sellerNo, int start, int end) {
-		String query = "select * from (select rownum as rnum, n.* from (select * from PRODUCT_TBL where seller_no=21 order by 1 desc)n) where rnum between ? and ?";
-		List list = jdbc.query(query, productRowMapper,start,end);
+		String query = "select * from (select rownum as rnum, n.* from (select * from PRODUCT_TBL where seller_no=? order by 1 desc)n) where rnum between ? and ?";
+		List list = jdbc.query(query, productRowMapper,sellerNo,start,end);
 		return list;
 	}
 
 	public int selectProductTotalCount(int sellerNo) {
 		String query = "select count(*) as cnt from PRODUCT_TBL where seller_no=?";
 		
-		int totalCount = jdbc.queryForObject(query, Integer.class,21);
+		int totalCount = jdbc.queryForObject(query, Integer.class,sellerNo);
 		//int totalCount = jdbc.(query,params);
 		return totalCount;
 	}
@@ -48,8 +58,20 @@ public class SellerDao {
 	}
 
 	public List addNewProductList(int sellerNo, int start, int end) {
-		String query = "select * from (select rownum as rnum, n.* from (select * from PRODUCT_TBL where seller_no=21 order by 1 desc)n) where rnum between ? and ?";
-		List list = jdbc.query(query, productRowMapper,start,end);
+		String query = "select * from (select rownum as rnum, n.* from (select * from PRODUCT_TBL where seller_no=? order by 1 desc)n) where rnum between ? and ?";
+		List list = jdbc.query(query, productRowMapper,sellerNo,start,end);
 		return list;
+	}
+
+	public List productStockManagement(int sellerNo, int start, int end) {
+		String query = "select * from (select rownum as rnum, n.* from (select * from PRODUCT_OPTION_TBL JOIN PRODUCT_TBL USING (PRODUCT_NO) where seller_no=? order by 1 desc)n) where rnum between ? and ?";
+		List list = jdbc.query(query, productOptionRowMapperSecond,sellerNo,start,end);
+		return list;
+	}
+
+	public int selectProductOptionTotalCount(int sellerNo) {
+		String query = "SELECT count(*) FROM PRODUCT_OPTION_TBL WHERE PRODUCT_NO IN (SELECT PRODUCT_NO FROM PRODUCT_TBL WHERE SELLER_NO=?)";
+		int totalCount = jdbc.queryForObject(query, Integer.class,sellerNo);
+		return totalCount;
 	}
 }
