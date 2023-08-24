@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.iei.admin.model.service.AdminService;
 import kr.or.iei.customer.model.vo.Customer;
+import kr.or.iei.product.model.vo.Category;
 import kr.or.iei.product.model.vo.Product;
 import kr.or.iei.seller.model.vo.Seller;
 
@@ -60,11 +61,12 @@ public class AdminController {
 	}
 
 	@GetMapping(value="/product")
-	public String product(Model model, String input, int categoryNo){
-		List<Product> category = adminService.category();
-//		List<Product> product = adminService.product(input,categoryNo);
+	public String product(Model model, String input, int categoryNo, int productCheck){
+		List<Category> category = adminService.category();
+		List<Product> product = adminService.product(input,categoryNo,productCheck);
+		model.addAttribute("productCheck",productCheck);
 		model.addAttribute("category",category);
-//		model.addAttribute("product",product);
+		model.addAttribute("product",product);
 		return "/admin/product";
 	}
 
