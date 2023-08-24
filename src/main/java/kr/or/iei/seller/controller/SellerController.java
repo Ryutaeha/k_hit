@@ -38,7 +38,7 @@ public class SellerController {
 	//판매상품관리
 	@GetMapping(value="/productManagement")
 	public String productManagement(@SessionAttribute(required = false) Seller s, Model model, int reqPage) {
-		ProductListData pld = sellerService.selectProductList(21,reqPage);
+		ProductListData pld = sellerService.selectProductList(s.getSellerNo(),reqPage);
 		model.addAttribute("productList", pld.getProductList());
 		model.addAttribute("pageNavi", pld.getPageNavi());
 		return "/seller/productManagement";
@@ -46,7 +46,7 @@ public class SellerController {
 	//판매등록 조회
 	@GetMapping(value="/addNewProductList")
 	public String addNewProductList(@SessionAttribute(required = false) Seller s, Model model, int reqPage) {
-		ProductListData pld = sellerService.addNewProductList(21,reqPage);
+		ProductListData pld = sellerService.addNewProductList(s.getSellerNo(),reqPage);
 		model.addAttribute("productList", pld.getProductList());
 		model.addAttribute("pageNavi", pld.getPageNavi());		
 		return "/seller/addNewProductList";
@@ -85,16 +85,17 @@ public class SellerController {
 	//판매상품 재고관리
 	@GetMapping(value="/productStockManagement")
 	public String productStockManagement(@SessionAttribute(required = false) Seller s, Model model, int reqPage){
-		ProductOptionListData pold = sellerService.productStockManagement(21,reqPage);
+		System.out.println(s);
+		ProductOptionListData pold = sellerService.productStockManagement(s.getSellerNo(),reqPage);
 		//System.out.println(pold);
 		model.addAttribute("prductOptionList", pold.getProductOptionList());
 		model.addAttribute("pageNavi", pold.getPageNavi());
-		return "/seller/productStockManagement";
+		return "seller/productStockManagement";
 	}
 	//판매상품 수정폼
 	@GetMapping(value="/updateProductFrm")
 	public String updateProductFrm() {
-		return "/seller/updateProductFrm";
+		return "seller/updateProductFrm";
 	}
 	//판매상품 수정2
 	@PostMapping(value="/updateProduct")
@@ -104,7 +105,7 @@ public class SellerController {
 	//판매상품 등록폼
 	@GetMapping(value="/addNewProductFrm")
 	public String addNewProductFrm() {
-		return "/seller/addNewProductFrm";
+		return "seller/addNewProductFrm";
 	}
 	//판매상품 등록2
 	@PostMapping(value="/addNewProduct")
