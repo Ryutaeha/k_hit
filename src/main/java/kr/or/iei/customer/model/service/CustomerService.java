@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.iei.customer.model.dao.CustomerDao;
+import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
 
 @Service
@@ -27,6 +28,11 @@ public class CustomerService {
 	public Customer selectOneCustomer(String customerSignId, String customerSignPw) {
 		Customer c = customerDao.selectOneCustomer(customerSignId,customerSignPw);
 		return c;
+	}
+	//장바구니 가져오기
+	public Cart selectMyCart(int cartNo) {
+		Cart cart = customerDao.selectMyCart(cartNo);
+		return cart;
 	}
 
 }
