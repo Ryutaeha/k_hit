@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
 
@@ -40,5 +41,11 @@ public class CustomerDao {
 		}
 		return (Customer)list.get(0);
 	}
+
+	public Cart selectMyCart(int cartNo) {
+		String query = "";
+		return null;
+	}
+
 
 }

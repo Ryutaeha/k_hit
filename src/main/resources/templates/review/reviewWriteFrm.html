@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>review작성/수정</title>
+<link rel="stylesheet" href="/css/review.css">
+<link rel="stylesheet" href="/css/font.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="review-all-wrap">
+        <div class="review-wrap">
+            <div class="review-title">
+                <h2 class="title1">REVIEW</h2>
+            </div>
+            <div class="review-content">
+                    <hr>
+                <div class="review-info">
+                    <form action="/review/write" method="post">
+                        <div class="review-id">아이디(데이터가져오기)</div>
+                        <div class="review-product">
+                            <div class="review-product-img">
+                                <img src="">
+                            </div>
+                            <div class="review-product-info">
+                                <div class="review-product-name">상품이름(데이터가져오기)</div>
+                                <div class="review-product-option">옵션(데이터가져오기)</div>
+                            </div>
+                        </div>
+                        <div class="review-info-title">별점</div>
+                        <div class="star-wrap star-wrap1">
+                            <span class="material-icons">star</span>
+                            <span class="material-icons">star</span>
+                            <span class="material-icons">star</span>
+                            <span class="material-icons">star</span>
+                            <span class="material-icons">star</span>
+                        </div>
+                        <input type="hidden" id="star-result" name="starCount">
+                        <div class="review-info-title">상세 리뷰</div>
+                        <textarea class="detailed-review" name="reviewContent" placeholder="상품에 대한 평가를 상세히 작성해 주세요."></textarea>
+                        <div class="review-info-title">사진 첨부</div>
+                        <div class="review-image">
+                            <label for="review-img" class="review-img-label">
+                            	<span class="material-icons">photo_camera</span>
+                            	<div class="review-img-btn">사진 첨부하기</div>
+                            </label>
+                            <input type="file" name="imageFile" id="review-img" accept=".jpg,.png,.jpeg">
+                            <div class="review-img-viewer">
+                                <img id="review-img-view" width="500px">
+                            </div>
+                        </div>
+                        <div class="reviewWrite-btn">
+                            <button type="button" class="btn1 reviewCancel-btn" onclick="location.href='/'">취소</button>
+                            <button type="submit" class="btn1 reviewWriteConfirm-btn">등록</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+	<th:block th:include="common/footer"></th:block>
+
+    <script src="/js/review.js"></script>
+</body>
+</html>

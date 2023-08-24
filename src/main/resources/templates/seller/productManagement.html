@@ -8,13 +8,13 @@
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-	
-	<div>
+	<div class="page-content">
 		<th:block th:include="seller/sellerHeader"></th:block>
-		<div class="seller-wrap">
 			<th:block th:include="seller/sellerMenu"></th:block> 
-			<div class="seller-content">
-				<div class="content-title">PRODUCT MANAGEMENT</div>
+			<div class="content-wrap">
+				<div class="content-title">
+					<span>PRODUCT MANAGEMENT</span>
+				</div>
 				<div class="content-main">
 					<table>
 						<tr>
@@ -28,7 +28,6 @@
 						</tr>
 						<tr th:each="product : ${productList}">
 							<td th:text="${product.productNo}"></td>
-							<!-- <td th:text="${product.productImg}"></td> -->
 							<td class="product-img">
 							<img th:src="'/product/'+${product.productImg}">	
 							</td>
@@ -50,7 +49,6 @@
 				</div>
 			</div>
 		</div>	
-	</div>
 	
 	<th:block th:include="common/footer"></th:block>
 </body>

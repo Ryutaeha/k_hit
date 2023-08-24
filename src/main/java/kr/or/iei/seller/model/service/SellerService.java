@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.or.iei.product.model.vo.ProductOptionListData;
 import kr.or.iei.seller.model.dao.SellerDao;
 import kr.or.iei.seller.model.vo.Seller;
 import kr.or.iei.seller.model.vo.ProductListData;
@@ -92,7 +93,7 @@ public class SellerService {
 		if(pageNo != 1) {
 			pageNavi += "<li>";
 			pageNavi += "<a class='page-item' href='/seller/addNewProductList?reqPage="+(pageNo-1)+"'>";
-			pageNavi += "<span class='material-icons'>chevron_left</span>";
+			pageNavi += "<span class='material-icons'>keyboard_double_arrow_left</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";
 		}
@@ -118,7 +119,7 @@ public class SellerService {
 		if(pageNo <= totalPage) {
 			pageNavi += "<li>";
 			pageNavi += "<a class='page-item' href='/seller/addNewProductList?reqPage="+(pageNo)+"'>";
-			pageNavi += "<span class='material-icons'>chevron_right</span>";
+			pageNavi += "<span class='material-icons'>keyboard_double_arrow_right</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";
 		}
@@ -126,6 +127,57 @@ public class SellerService {
 		
 		ProductListData pld = new ProductListData(productList, pageNavi);
 		return pld;
+	}
+
+	public ProductOptionListData productStockManagement(int sellerNo, int reqPage) {
+		int numPerPage = 5;
+		int end = reqPage * numPerPage;
+		int start = end - numPerPage + 1;
+		
+		List productOptionList = sellerDao.productStockManagement(sellerNo,start,end);
+		int totalCount = sellerDao.selectProductOptionTotalCount(sellerNo);
+		int totalPage = (int)(Math.ceil(totalCount)/(double)numPerPage);
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
+		
+		String pageNavi = "<ul class='pagination circle-style'>";
+		if(pageNo != 1) {
+			pageNavi += "<li>";
+			pageNavi += "<a class='page-item' href='/seller/productStockManagement?reqPage="+(pageNo-1)+"'>";
+			pageNavi += "<span class='material-icons'>chevron_left</span>";
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+		for(int i=0;i<pageNaviSize;i++) {
+			if(pageNo == reqPage) {
+				pageNavi += "<li>";
+				pageNavi += "<a class='page-item active-page' href='/seller/productStockManagement?reqPage="+(pageNo)+"'>";
+				pageNavi += pageNo;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			}else {
+				pageNavi += "<li>";
+				pageNavi += "<a class='page-item' href='/seller/productStockManagement?reqPage="+(pageNo)+"'>";
+				pageNavi += pageNo;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			}
+			pageNo++;
+			if(pageNo>totalPage) {
+				break;
+			}
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<li>";
+			pageNavi += "<a class='page-item' href='/seller/productStockManagement?reqPage="+(pageNo)+"'>";
+			pageNavi += "<span class='material-icons'>chevron_right</span>";
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+		pageNavi += "</ul>";
+		
+		ProductOptionListData pold = new ProductOptionListData(productOptionList, pageNavi);
+		return pold;
 	}
 
 }

@@ -162,14 +162,19 @@
   line-height: 40px;
   overflow: hidden;
 }
-.pagination.circle-style > li {
-  border-radius: 50%;
-}
 .pagination > li > a.page-item {
   display: block;
   width: 100%;
   height: 100%;
   font-size: 18px;
+  border-right: 1px solid #000;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  box-sizing: border-box;
+  border-collapse: collapse;
+}
+.pagination>li:first-child>a{
+    border-left: 1px solid #000;
 }
 .pagination > li > a.page-item > span.material-icons {
   display: block;
@@ -178,8 +183,9 @@
   line-height: 40px;
 }
 .pagination .page-item.active-page {
-  background-color: #252a34;
+  background-color: #000;
   color: #fff;
+  border: 1px solid #000;
 }
 
 .addProductBtn{
@@ -192,12 +198,14 @@
   background-color: lightgrey;
   color: #fff;
   border: 1px solid lightgrey;
+  border-radius: 10px;
 }
 
 .product-img>img{
 	width: 65px;
 	height: 65px;
 }
+
 
 /*판매자 정보수정*/
 .info-wrap{
@@ -206,3 +214,18 @@
 #hr{
     color: #ececec;
 }
+
+/*테이블 디자인*/
+.tbl{
+	width: 100%;
+	border-spacing: 0px;
+	border-collapse: collapse;
+	margin: 20px;
+}
+.tbl th,
+.tbl td {
+  padding: 1rem;
+  text-align: center;
+  background-color: grey;
+}
+
