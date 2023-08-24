@@ -7,5 +7,9 @@ $(".admin-submenu").on('click',function(){
     }
 })
 $(".add-btn").on('click',function(){
-	$(".test").nextAll().remove();
+	
 })
+
+function searchMember(){
+    
+}

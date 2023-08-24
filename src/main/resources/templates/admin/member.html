@@ -14,10 +14,11 @@
             </div>
             <div class="content-view">
                 <div class="member-box box">
-                    <div class="search-box">
-                        <input type="text" id="notice" name="input" placeholder="회원 검색">
+                    <form action="/admin/member" class="search-box">
+                        <input type="hidden" th:value="${code}" id="memberCode" name="memberCode">
+                        <input type="text" id="member" name="input" placeholder="아이디로 회원 검색">
                         <button class="add-btn">검색</button>
-                    </div>
+                    </form>
                     <table style="width:90%;" class="tbl">
                         <tr class="test">   
                             <th style="width:20%">번호</th>
@@ -31,14 +32,14 @@
                             <td th:text="${list.customerName}"></td>
                             <td th:text="${list.customerEnrolldate}"></td>
                         </tr>
-                         <tr th:if="${code}==2" th:each="list : ${list}">
+                        <tr th:if="${code}==2" th:each="list : ${list}">
                             <td th:text="${list.sellerNo}"></td>
                             <td th:text="${list.sellerId}"></td>
                             <td th:text="${list.sellerName}"></td>
                             <td th:text="${list.sellerEnrollDate}"></td>
                         </tr>
                         <!-- 
-                         -->
+                        -->
                     </table>
                 </div>
             </div>
