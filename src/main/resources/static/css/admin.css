@@ -4,8 +4,12 @@
     font-family: Lobster;
     src: url(../font/Lobster-Regular.ttf);
 }
+@font-face {
+    font-family: ns-b;
+    src: url(/font/NanumGothic-Bold.ttf);
+}
 body{
-    background-color:  darkgray;
+    background-color:  rgb(255,246,224,0.3);
 }
 
 *{
@@ -15,13 +19,14 @@ body{
     list-style-type: none;
     color: black;
     outline: none;
+    font-family: ns-b;
 }
 .admin-wrap{
     overflow: hidden;
 }
 
 .admin-menu{
-    background-color: white;
+    background-color: rgb(255,246,224,0.3);
 	left:0;
 	top:0;
 	position:fixed;
@@ -37,15 +42,16 @@ body{
     font-family: Lobster;
     font-size: 50px;
     text-align: center;
-    margin: 20px 0;
+    padding: 20px 0;
+    border-bottom: 1px solid black;
 }
 
 .admin-submenu{
     font-size: 20px;
     line-height: 100%;
-    border-top: 1px solid black;
     border-bottom: 1px solid black;
     cursor: pointer;
+    background-color: #FFF6E0;
 }
 .admin-submenu>a{
     padding-left: 20px;
@@ -64,9 +70,12 @@ body{
     /*
     */
     display: none;
+    border-bottom: 1px solid black;
+}
+.sub-choice>ul{
+
 }
 .sub-choice>ul>li>a{
-    background-color: aqua;
     display: block;
     height: 40px;
     line-height: 40px;
@@ -88,12 +97,17 @@ body{
 /* 여기까지 기본 서브메뉴*/
 .tbl{
     margin: auto;
-    background-color: aqua;
+    background-color: #cccccc;
+
+}
+.tbl>tbody>tr>th{
+	height: 50px;
 }
 .tbl>tbody>tr>td{
     text-align: center;
 }
-
+.menu-tbl{
+}
 /* 중복으로 사용할 것*/
 
 .admin-content{
@@ -101,7 +115,7 @@ body{
 }
 
 .content-logo{
-    background-color: antiquewhite;
+    background-color: #FFF6E0;
 }
 .content-logo>span{
     display: block;
@@ -114,16 +128,18 @@ body{
 .content-view{
     padding-top: 50px;
    	overflow: auto;
+    height:calc(100vh - 150px)
+
 }
 
 .box{
-    width: 1200px;
+    width: 100%;
     padding: 20px 0;
-    background-color: brown;
     margin: auto;
+    min-width : 1200px;
 }
 .search-box{
-    width: 80%;
+    width: 90%;
     margin: auto;
     overflow: hidden;
     padding-bottom: 10px;
@@ -131,18 +147,46 @@ body{
 .search-box>*{
     box-sizing: border-box;
     float: left;
-    font-size: 18px;
+    font-size: 24px;
 }
 .search-box>input{
     width: 80%;
     padding: 10px 30px;
-    height: 40px;
+    height: 60px;
 }
 .search-box>button{
     width: 20%;
-    height: 40px;
+    height: 60px;
     border: none;
     font-weight: 900;
+    cursor: pointer;
+    background-color: #FFF6E0;
+}
+.select-box{
+	width: 90%;
+    margin: auto;
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+.select-box>*{
+	box-sizing: border-box;
+    float: left;
+    font-size: 24px;
+}
+.select-box>select{
+	width: 20%;
+    height: 60px;
+}
+.select-box>input{
+	width: 60%;
+    padding: 10px 30px;
+    height: 60px;
+}
+.select-box>button{
+	width: 20%;
+    height: 60px;
+    background-color: #FFF6E0;
+   	font-weight: 900;
     cursor: pointer;
 }
 .list>div{
@@ -151,20 +195,29 @@ body{
     margin: auto;
     background-color: beige;
 }
-.list>div>*{float: left; text-align: center; border: 1px solid black; box-sizing: border-box; height: 40px; line-height: 40px; cursor: pointer;}
-.Qlist>div>div:nth-child(1){width: 10%;}
-.Qlist>div>div:nth-child(2){width: 50%;}
-.Qlist>div>div:nth-child(3){width: 15%;}
-.Qlist>div>div:nth-child(4){width: 15%;}
-.Qlist>div>div:nth-child(5){width: 5%;}
-.Qlist>div>div:nth-child(6){width: 5%;}
 
-.Nlist>div>div:nth-child(1){width: 10%;}
-.Nlist>div>div:nth-child(2){width: 60%;}
-.Nlist>div>div:nth-child(3){width: 15%;}
-.Nlist>div>div:nth-child(4){width: 15%;}
-
-
+.product-tbl{
+    padding: 0 5% ;
+    border-collapse: collapse;
+    background-color: #eeeeee;
+}
+.product-tbl>tbody>tr{
+	height: 50px;
+	border-top: 2px solid black;
+}
+.product-select:hover{
+	background-color: #cccccc;
+}
+.seller-menu{
+	box-sizing: border-box;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	display: block;
+}
+.seller-menu:hover{
+	background-color:#FFF6E0; 
+}
 .modal-wrap{
     width: 100vw;
     height: 100vh;
@@ -172,15 +225,20 @@ body{
     position: fixed;
     top:  0;
     left: 0;
-    display: flex;
-    /*
-    */
+    display: none;
     justify-content: center;
     align-items: center;
 }
 .modal-inpo{
-	width: 500px;
+	width: 600px;
 	background-color: white;
 	padding: 30px;
 	border-radius: 10px;
+	height: 800px;
+}
+.modal-inpo>button{
+	float: right;
+}
+.modal-tbl{
+	width: 100%;
 }

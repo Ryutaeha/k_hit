@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>REFUNT LIST</title>
+<link rel="stylesheet" href="/css/refundlist.css">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="refund-content">
+		<th:block th:include="customer/customerHeader"></th:block>
+		<th:block th:include="customer/customerMenu"></th:block>
+        <div class="refund-wrap">
+            <div class="refund-head-title">
+                <h2>REFUND LIST</h2>
+            </div>
+            <div class="content-date">
+                <span>yyyy/mm/dd</span>
+            </div>
+                <div class="content-info">
+                    <div class="refund info-top">
+                        <div class="info1">
+                            <span>No.</span>
+                        </div>  
+                        <div class="info2">
+                            <span>상품정보</span>
+                        </div>
+                        <div class="info3">
+                            <span>수량</span>
+                        </div>
+                        <div class="info4">
+                            <span>상품금액</span>
+                        </div>
+                        <div class="info5">
+                            <span>처리상태</span>
+                        </div>
+                        <div class="info6"></div>
+                    </div>
+                    <div class="refund info-main">
+                        <div class="info1">
+                            <span>20230825</span>
+                        </div>
+                        <div class="info2">
+                            <div class="info-img">
+                                <img src="img/icemallimage/ice1.png">
+                            </div>
+                            <div class="info-name">
+                                <span>상품이름</span>
+                                <div><span>1. 옵션</span> <span>2. 옵션</span> <span>3. 옵션</span></div>
+                            </div>
+                        </div>
+                        <div class="info3">
+                            <span>0개</span>
+                        </div>
+                        <!-- 상품금액 -->
+                        <div class="info4">
+                            <span>3800원</span>
+                        </div>
+                        <div class="info5">
+                        <!-- 상품상태 -->
+                            <span>취소/환불접수</span>
+                        </div>
+                    </div>
+                    <div class="refund-info-bottom">
+                        <button type="button">더보기</button>
+                    </div>
+                </div>
+                
+            </div>
+    </div>
+	
+
+	<th:bolck th:include="common/footer"></th:bolck>
+
+</body>
+</html>

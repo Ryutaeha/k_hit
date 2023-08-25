@@ -5,11 +5,13 @@ $(".admin-submenu").on('click',function(){
     }else{
         $(this).next().slideUp();
     }
-})
-$(".add-btn").on('click',function(){
-	
+});
+
+$(".pSelect").on('click',function(){
+	console.log("히히");
 })
 
-function searchMember(){
-    
-}
+$(".sMenu").on('click',function(){
+	console.log("zlzl");
+    event.stopPropagation();
+})
