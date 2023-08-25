@@ -17,15 +17,15 @@
                 	<span>ADD NEW PRODUCT</span>
                	</div>
                 <div class="content-main">
-                <a th:if="${session.s != null && session.s.memberCode == 2}" href="/seller/addProductFrmEditor" class="addProductBtn">판매등록</a>
+                <a th:if="${session.s != null && session.s.memberCode == 2}" href="/seller/addNewProductFrmEditor" class="addProductBtn">판매등록</a>
                 	<table class="tbl">
-						<tr>
+						<tr class="tbl-menu">
 							<th style="width:15%">상품번호</th>
 							<th style="width:45%">상품이름</th>
 							<th style="width:20%">검수신청일</th>
 							<th style="width:20%">검수결과</th>
 						</tr>
-						<tr th:each="product : ${productList}">
+						<tr class="tbl-row" th:each="product : ${productList}">
 							<td th:text="${product.productNo}"></td>
 							<td th:text="${product.productName}"></td>
 							<td th:text="${product.productRegDate}"></td>
