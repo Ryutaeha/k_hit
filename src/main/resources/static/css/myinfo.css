@@ -84,12 +84,22 @@ select{
     width: 130px;
     height: 45px;
     color: #fff;
-   
+    background-color: #888787;
+    line-height: 45px;
+    font-size: 16px;    
+}
+.input-btn>a>input{
+    display: block;
+    float: left;
+    border: none;
+    width: 130px;
+    height: 45px;
+    color: #fff;
+    background-color: #888787;
     line-height: 45px;
     font-size: 16px;
-    
 }
 .input-btn>input:first-child{
-    margin-right: 10px;
+    margin-left: 10px;
     background-color: #585858;
 }
