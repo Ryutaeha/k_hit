@@ -133,6 +133,9 @@ public class SellerController {
 		for(String size : optionSize) {
 			System.out.println(size);
 		}
+		for(String color : optionColor) {
+			System.out.println(color);
+		}
 		//서비스 	-> 1. product테이블에 insert
 		//		-> 2. product테이블에 방금 insert한 productNo 조회
 		//		-> 3. optionColor배열에서 1개꺼내고, optionSize배열에서 1개
