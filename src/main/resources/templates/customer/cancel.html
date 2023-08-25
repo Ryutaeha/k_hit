@@ -2,27 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
 <title>Insert title here</title>
 </head>
 <body>
 	<th:block th:include="common/header">
-	
 	<div class="cancel-all-wrap">
+				<th:block th:include="customer/customerHeader"></th:block>
+        		<th:block th:include="customer/customermenu"></th:block>
                 <div class="cancel-wrap">
                     <div class="cancel-title">
                         <h2 class="title1">CANCEL/REFUND</h2>
-=======
-<title>CANCEL/REFUND</title>
-<link rel="stylesheet" href="/css/cancel.css">
-</head>
-<body>
-	<th:block th:include="common/header"></th:block>
-	<div class="cancel-all-wrap">
-                <div class="cancel-wrap">
-                    <div class="cancel-title">
-                        <h2 class="title1">C A N C E L / R E F U N D</h2>
->>>>>>> main
                     </div>
                     <div class="cancel-content">
                         <h3>주문상품</h3>
@@ -91,13 +80,7 @@
                         <span><input type="checkbox">수량을 잘못 선택함</span>
                         <span><input type="checkbox">상품 불량</span>
                         <span><input type="checkbox">기타사유</span>
-<<<<<<< HEAD
                         <textarea class="canceldescription">상세 사유를 입력해주세요.</textarea>
-=======
-                    </div>
-                    <div class="canceldescription">
-                        <textarea class="canceldescription" placeholder="상세 사유를 입력해주세요."></textarea>
->>>>>>> main
                     </div>
                     <div class="total-cancel-btn">
                         <button type="button">취소</button>
@@ -107,12 +90,5 @@
             </div>  <!-- cancel-wrap -->
         </div>
     </div>
-	
-<<<<<<< HEAD
-	<th:block th:include="common/footer">
-
-=======
-	<th:block th:include="common/footer"></th:block>
->>>>>>> main
 </body>
 </html>
