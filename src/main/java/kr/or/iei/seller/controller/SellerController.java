@@ -104,9 +104,9 @@ public class SellerController {
 		return null;
 	}
 	//판매상품 등록폼
-	@GetMapping(value="/addNewProductFrm")
-	public String addNewProductFrm() {
-		return "seller/addNewProductFrm";
+	@GetMapping(value="/addNewProductFrmEditor")
+	public String addNewProductFrmEditor() {
+		return "seller/addNewProductFrmEditor";
 	}
 	//판매상품 등록2
 	@PostMapping(value="/addNewProduct")
@@ -166,4 +166,15 @@ public class SellerController {
 			return "common/msg";
 		}
 	}
+	/*
+	@ResponseBody
+	@PostMapping(value="/editor",produces = "plain/text;charset=utf-8")
+	public String editorUpload(MultipartFile file) {
+		String savepath = root+"seller/";
+		String filepath = fileUtil.getFilepath(savepath, file.getOriginalFilename());
+		File image = new File(savepath+filepath);
+		
+		
+	}
+	*/
 }

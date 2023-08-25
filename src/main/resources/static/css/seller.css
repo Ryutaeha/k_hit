@@ -268,3 +268,13 @@ border-top-left-radius: 10px;
 	width:120px;
 	font-size: 16px;
 }
+
+/*상품등록 테이블 디자인*/
+.tbl-newProduct{
+	width: 100%;
+	border-spacing: 0px;
+	border-collapse: collapse;
+	margin: 20px;
+	font-size: 1.2em;
+	background-color: beige;
+}
