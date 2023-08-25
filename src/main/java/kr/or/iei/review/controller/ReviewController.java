@@ -10,11 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.FileUtil;
-import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.review.model.service.ReviewService;
 import kr.or.iei.review.model.vo.Review;
 

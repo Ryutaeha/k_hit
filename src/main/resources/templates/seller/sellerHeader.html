@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="/css/seller.css">
 	<link rel="stylesheet" href="/css/font.css">
 	
+	
 </head>
 <body>
 	<div class="seller-head-wrap">
@@ -17,7 +18,7 @@
 			<div class="seller-header-id">
 				<div class="id-wrap">
 					<span><img th:src="'/seller/' + ${session.s.sellerImg}"></span>
-					<a href="#" th:text="${session.s.sellerId}"></a>
+					<a href="#" th:text="${session.s.sellerName}"></a>
 				</div>
 			</div>
 		</div>

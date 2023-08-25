@@ -4,6 +4,8 @@ $(".main-menu").children().children().hover(function(){
 });
 */
 
+
+
 //검색창
 $(".search").click(function() {
     $(".search-box").slideToggle();

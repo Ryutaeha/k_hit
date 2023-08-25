@@ -58,7 +58,6 @@ public class AdminDao {
 		List list;
 		String query = "SELECT s.SELLER_ID,pc.* FROM SELLER_TBL s,(SELECT p.*,c.CATEGORY_NAME FROM PRODUCT_TBL p,(SELECT * FROM PRODUCT_CATEGORY_TBL) c WHERE p.CATEGORY_NO=c.CATEGORY_NO) pc WHERE pc.SELLER_NO=s.SELLER_NO AND PRODUCT_NAME LIKE ? AND PRODUCT_CHECK = ?";
 		list = jdbc.query(query, productDetailRowMapper,"%"+input+"%",productCheck);
-		System.out.println(list);
 		return list;
 	}
 }

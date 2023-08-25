@@ -14,7 +14,7 @@
             </div>
             <div class="content-view">
                 <div class="box">
-                    <form action="/admin/product" class="search-box">
+                    <form action="/admin/product" class="select-box">
                     	<input type="hidden" th:value="${productCheck}" name="productCheck" id="productCheck">
                         <select name="categoryNo" id="categoryNo">
                             <option value="0">전체</option>
@@ -23,23 +23,25 @@
                         <input type="text" id="product" name="input" placeholder="상품 검색">
                         <button class="add-btn">검색</button>
                     </form>
-                    <table style="width: 90%" class="tbl">
-                    	<tr>
+                    <table style="width: 90%" class="tbl menu-tbl">
+                    	<tr class="th-inpo">
                     		<th style="width: 10%">번호</th>
                     		<th style="width: 40%">이름</th>
                     		<th style="width: 20%">판매자</th>
                     		<th style="width: 20%">카테고리</th>
                     		<th style="width: 10%">검수현황</th>
                     	</tr>
-                    	<tr th:each="product : ${product}">
-                    		<td th:text="${product.productNo}"></td>
-                    		<td th:text="${product.productName}"></td>
-                    		<td th:text="${product.sellerId}"></td>
-                    		<td th:text="${product.categoryName}"></td>
-                    		<td th:if="${product.productCheck}==1">판매중</td>
-                    		<td th:if="${product.productCheck}==2">검수중</td>
-                    		<td th:if="${product.productCheck}==3">반려</td>
-                    		<td th:if="${product.productCheck}==4">판매중지</td>
+                    </table>
+                    <table style="width: 90%" class="tbl product-tbl">
+                    	<tr th:each="product : ${product}" class="product-select pSelect">
+                    		<td th:text="${product.productNo}" style="width: 10%"></td>
+                    		<td th:text="${product.productName}" style="width: 40%"></td>
+                    		<td style="width: 20%"><a th:text="${product.sellerId}" href="javascript:void(0);" class="seller-menu sMenu"></a></td>
+                    		<td th:text="${product.categoryName}" style="width: 20%"></td>
+                    		<td th:if="${product.productCheck}==1" style="width: 10%">판매중</td>
+                    		<td th:if="${product.productCheck}==2" style="width: 10%">검수중</td>
+                    		<td th:if="${product.productCheck}==3" style="width: 10%">반려</td>
+                    		<td th:if="${product.productCheck}==4" style="width: 10%">판매중지</td>
                     	</tr>
                     </table>
                 </div>
@@ -49,7 +51,29 @@
     
     <div class="modal-wrap">
     	<div class="modal-inpo">
-    		
+    		<button style="height: 50px; width: 50px">X</button>
+    		<table class="tbl modal-tbl">
+				<tr>
+					<td rowspan="3" style="height: 300px; width: 300px;"></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<td colspan="3" style="height: 100px"></td>
+				</tr>
+				<tr>
+					<td colspan="3" style="height: 150px"></td>
+				</tr>
+				<tr>
+					<td colspan="3" style="height: 150px"></td>
+				</tr>
+			</table>
     	</div>
     </div>
     <script src="/js/admin.js"></script>
