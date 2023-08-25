@@ -2,6 +2,7 @@ package kr.or.iei.seller.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +18,10 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.FileUtil;
+import kr.or.iei.product.model.service.ProductService;
+import kr.or.iei.product.model.vo.AddNewProduct;
+import kr.or.iei.product.model.vo.Product;
+import kr.or.iei.product.model.vo.ProductOption;
 import kr.or.iei.product.model.vo.ProductOptionListData;
 import kr.or.iei.seller.model.service.SellerService;
 import kr.or.iei.seller.model.vo.ProductListData;
@@ -110,8 +115,40 @@ public class SellerController {
 	}
 	//판매상품 등록2
 	@PostMapping(value="/addNewProduct")
-	public String addNewProduct() {
-		return null;
+	public String addNewProduct(Product p, String[] optionColor, String[] optionSize, @SessionAttribute(required = false) Seller s,MultipartFile upfile, Model model) {
+		//sysout으로 (상품명,판매가,카테고리,판매자번호,파일,요약,상셍)
+		//sysoutdmfh 옵션 사이즈1, 옵션 색상 1
+		//sysoutdmfh 옵션 사이즈1, 옵션 색상 1
+		//sysoutdmfh 옵션 사이즈1, 옵션 색상 1
+		//sysoutdmfh 옵션 사이즈1, 옵션 색상 1
+		System.out.println(p.getProductName());
+		System.out.println(p.getProductPrice());
+		System.out.println(p.getCategoryNo());//이거 해결
+		System.out.println(s.getSellerNo());
+		System.out.println(p.getProductImg());//이것도 해결
+		System.out.println(p.getProductContent());
+		System.out.println(p.getProductContentDetails());//이거 해결
+		
+		
+		for(String size : optionSize) {
+			System.out.println(size);
+		}
+		//서비스 	-> 1. product테이블에 insert
+		//		-> 2. product테이블에 방금 insert한 productNo 조회
+		//		-> 3. optionColor배열에서 1개꺼내고, optionSize배열에서 1개
+		
+		for(int i=0;i<optionColor.length;i++) {
+			ProductOption productOption = new ProductOption();
+			productOption.setOptionColor(optionColor[i]);
+			productOption.setOptionSize(optionSize[i]);
+			//productOption.setProductNo(2에서 조회한 번호);
+			//insert
+			
+		}
+		
+		//insert성공조건 옵션갯수+1개
+		
+		return "redirect:/";
 	}
 	
 	//로그인
@@ -172,8 +209,6 @@ public class SellerController {
 		String savepath = root+"seller/";
 		String filepath = fileUtil.getFilepath(savepath, file.getOriginalFilename());
 		File image = new File(savepath+filepath);
-		
-		
 	}
 	*/
 
