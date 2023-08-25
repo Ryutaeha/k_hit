@@ -151,6 +151,12 @@ public class SellerController {
 	public String myInfoPage() {
 		return "/seller/myInfo";
 	}
+	@PostMapping(value="/update")
+	public String updateSeller(String customerEmail2,MultipartFile imgFile, Seller s) {
+		System.out.println("이메일 뒷 : "+customerEmail2);
+		System.out.println("판매자 : "+s);
+		return "/index";
+	}
 	//판매상품 재고관리페이지에서 재고수정
 	@ResponseBody
 	@GetMapping(value="/changeOptionStock")

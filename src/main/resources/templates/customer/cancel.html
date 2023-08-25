@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CANCEL/REFUND</title>
+<link rel="stylesheet" href="/css/cancel.css">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="cancel-all-wrap">
+                <div class="cancel-wrap">
+                    <div class="cancel-title">
+                        <h2 class="title1">C A N C E L / R E F U N D</h2>
+                    </div>
+                    <div class="cancel-content">
+                        <h3>주문상품</h3>
+                        <hr>
+                        <!-- 상품이름,옵션,배송비,상품금액 -->
+                                <div class="content-info">
+                                    <div class="cancel info-top">
+                                        <div class="info1">
+                                            <span>No.</span>
+                                        </div>
+                                        <div class="info2">
+                                            <span>상품정보</span>
+                                        </div>
+                                        <div class="info3">
+                                            <span>수량</span>
+                                        </div>
+                                        <div class="info4">
+                                            <span>상품금액</span>
+                                        </div>
+                                        <div class="info5">
+                                            <span>배송비</span>
+                                        </div>
+                                        <div class="info6">
+                                            <span>주문일</span>
+                                        </div>
+                                    </div>
+                                    <div class="cancel info-main">
+                                        <div class="info1">
+                                            <span>12345678</span>
+                                        </div>
+                                        <div class="info2">
+                                            <div class="info-img">
+                                                <img src="img/icemallimage/ice1.png">
+                                            </div>
+                                            <div class="info-name">
+                                                <span>상품이름</span>
+                                                <div><span>1. 옵션</span> <span>2. 옵션</span> <span>3. 옵션</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="info3">
+                                            <span>000개</span>
+                                        </div>
+                                        <!-- 상품금액 -->
+                                        <div class="info4">
+                                            <span>3800원</span>
+                                        </div>
+                                        <div class="info5">
+                                        <!-- 배송비 -->
+                                            <span>0000원</span>
+                                        </div>
+                                        <!-- 주문일 -->
+                                        <div class="info6">
+                                            <span>2023-08-24</span>
+                                        </div>
+                                    </div>
+                            </div>
+                                </div>
+                <!-- 취소 / 환불 페이지 -->
+                <div class="cancel-way-wrap">
+                    <div class="cancel-way-content">
+                    <h3>취소 환불 사유</h3>
+                    <hr>
+                    <div class="cancel-way">
+                        <span><input type="checkbox">단순변심</span>
+                        <span><input type="checkbox">상품의 옵션을 잘못 선택함</span>
+                        <span><input type="checkbox">수량을 잘못 선택함</span>
+                        <span><input type="checkbox">상품 불량</span>
+                        <span><input type="checkbox">기타사유</span>
+                    </div>
+                    <div class="canceldescription">
+                        <textarea class="canceldescription" placeholder="상세 사유를 입력해주세요."></textarea>
+                    </div>
+                    <div class="total-cancel-btn">
+                        <button type="button">취소</button>
+                        <button type="button">신청</button>
+                    </div>
+                </div>
+            </div>  <!-- cancel-wrap -->
+        </div>
+    </div>
+	
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

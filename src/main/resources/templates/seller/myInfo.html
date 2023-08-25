@@ -20,7 +20,10 @@
 			</div>
 			<div class="content-main">
 				 <div class="info-wrap">
-					<form action="#" method="post" enctype="multipart/form-data">
+					<form action="/seller/update" method="post" enctype="multipart/form-data">
+						<input type="hidden" th:value="${session.s.sellerId}" name="sellerId">
+						<input type="hidden" th:value="${session.s.sellerImg}" name="sellerImg">						
+						<a href="#">회원탈퇴</a>
 	                        <table class="input-tbl"> 
 								<tr class="input-tr">
 									<th>대표이미지<span>*</span></th>
@@ -43,7 +46,7 @@
 								<tr class="input-tr">
 									<th>비밀번호<span>*</span></th>
 									<td>
-										<input type="text">
+										<input type="text" name="sellerPw">
 										<span>(영문 대소문자/숫자 포함 조합, 10자~16글자)</span>
 									</td>
 								</tr>
@@ -56,13 +59,13 @@
 								<tr class="input-tr">
 									<th>이름<span>*</span></th>
 									<td>
-										<input type="text" th:value="${session.s.sellerName}" placeholder>
+										<input type="text" th:value="${session.s.sellerName}" name="sellerName" placeholder>
 									</td>
 								</tr>
 								<tr class="input-tr">
 									<th>전화번호<span>*</span></th>
 									<td>
-										<input type="text" th:value="${session.s.sellerPhone}" placeholder>
+										<input type="text" th:value="${session.s.sellerPhone}" name="sellerPhone" placeholder>
 									</td>
 								</tr>
 								<tr class="input-tr">
@@ -84,13 +87,15 @@
 								<tr class="input-tr">
 									<th>자기소개<span>*</span></th>
 									<td>
-										<textarea class="input-form" th:value="${session.s.sellerIntroduce}" placeholder></textarea>
+										<textarea class="input-form" th:value="${session.s.sellerIntroduce}" name="sellerIntroduce" placeholder></textarea>
 									</td>
 								</tr>								
 							</table>
 							<div class="input-btn">
 								<input type="submit" value="회원정보수정">
-								<input type="button" value="취소">
+								<a href="/seller/selling">
+									<input type="button" value="취소">
+								</a>
 							</div>
 					</form>
 				 </div>
