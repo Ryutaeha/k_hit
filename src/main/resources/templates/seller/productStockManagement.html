@@ -51,6 +51,8 @@
 		</div>
 	
 	<th:block th:include="common/footer"></th:block>
+	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 	<script>
 		$(".changeStock").on("click",function(){
 			const optionStock = $(this).parent().prev().children().val();
@@ -62,10 +64,20 @@
 				type : "get",
 				data : {optionStock : optionStock, productOptionNo : productOptionNo},
 				success : function(data){
+					
+					Swal.fire({
+				        title : "재고 변경 완료",
+						text : "변경 후 재고 수량을 확인하세요.",
+						icon : "success",
+				        confirmButtonColor: '#61677A',
+				        confirmButtonText: '확인',
+				        
+				      });
 				}
 			});
 			//location.href = "/seller/changeOptionStock?productOptionNo="+productOptionNo+"&optionStock="+optionStock;
 		});
 	</script>
+
 </body>
 </html>

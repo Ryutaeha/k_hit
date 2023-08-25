@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: ns-r;
+    font-family: mon;
     color: #1e1e1e;
     list-style-type: none;
 }
@@ -9,6 +9,8 @@
 .title1{
     text-align: center;
     margin: 100px 0;
+    font-size: 30px;
+    letter-spacing: 10px;
 }
 
 .review-wrap{
@@ -39,6 +41,12 @@
     margin-bottom: 40px;
     width: 550px;
     float: left;
+    
+}
+.reviewWrite-id{
+    font-size: 22px;
+    font-family: ns-b;
+    margin-bottom: 40px;
 }
 .review-viewcount{
     float: left;
@@ -96,18 +104,12 @@
     font-size: 17px;
     resize: none;
     border-radius: 3px;
-    
+    box-sizing: border-box;
 }
 
 /* 사진 첨부 */
 #review-img{
     display: none;
-}
-
-.review-img-view{
-    width: 150px;
-    height: 150px;
-    border: 1px solid #0c0c0c;
 }
 
 .review-img-label{
@@ -157,6 +159,7 @@
 
 .review-view-content{
     padding: 30px 0;
+    font-size: 18px;
 }
 
 .review-view-image{
@@ -314,3 +317,88 @@
     margin-top: 26px;
     
 }
+.btn1{
+    width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    font-family: ns-b;
+    margin: 0 5px;
+    color: #272829;
+    background-color: #D8D9DA;
+}
+.reviewWrite-btn{
+	margin-top: 80px;
+    margin-bottom: 150px;
+    text-align: center;
+}
+.btn1:hover{
+    background-color: #61677A;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.list-btn{
+	margin-top: 80px;
+    margin-bottom: 150px;
+    text-align: center;	
+}
+.review-content{
+    overflow: hidden;
+    box-sizing: border-box;
+
+}
+.review-info2{
+    float: left;
+    width: calc(100% / 4);
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+}
+.review-list-content{
+    
+    height: 400px;
+    border: 1px solid #DEDEDE;
+    border-radius: 5px;
+}
+.review-list-content>*{
+    width: 90%;
+    margin: 0 auto;
+}
+.review-list-image{
+    height: 130px;
+    box-sizing: border-box;
+    margin-top: 15px;
+    border: 1px solid #DEDEDE; 
+    border-radius: 5px;
+}
+
+.review-list-productName{
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    max-height: 45px;
+    overflow: hidden;
+}
+.review-list-mid>span{
+    font-size: 17px;
+    line-height: 16px;
+    margin: 12px 0;
+}
+.review-list-mid>span:last-child{
+    padding-left: 7px;
+    font-size: 15px;
+}
+.review-list-detail{
+    height: 170px;
+    font-size: 13px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    border-radius: 3px;
+    padding: 7px;
+    box-sizing: border-box;
+}
+
+

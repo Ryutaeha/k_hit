@@ -10,6 +10,7 @@
     	<script src="/summernote/summernote-lite.js"></script>
 		<script src="/summernote/lang/summernote-ko-KR.js"></script>
 		<link rel="stylesheet" href="/summernote/summernote-lite.css">
+		<link rel="stylesheet" href="/css/myinfo.css">
 
     <div class="page-content">
         <th:block th:include="seller/sellerHeader"></th:block>
@@ -23,58 +24,58 @@
                	</div>
                 <div class="content-main">
                 	<form action="/seller/addNewProduct" method="post" enctype="multipart/form-data">
-                	<table class="tbl-newProduct">
-                		<tr>
+                	<table class="input-tbl">
+                		<tr class="input-tr">
                 			<th>상품명</th>
                 			<td colspan="3">
                 				<input type="text" name="productName" placeholder="내용을 입력해주세요">
                 			</td>
                 		</tr>
-                		<tr>
+                		<tr class="input-tr">
                 			<th>판매가</th>
                 			<td colspan="3">
                 				<input type="text" name="productPrice" placeholder="예) 100000">
                 			</td>
                 		</tr>
-                		<tr>
+                		<tr class="input-tr">
                 			<th>옵션설정</th>
                 			<td colspan="3">
                 				<input type="text" name="productOption">
                 			</td>
                 		</tr>
-                		<tr>
+                		<tr class="input-tr">
                 			<th>상품 카테고리 선택</th>
                 			<td colspan="3">
                 				<input type="text" name="productCategory">
                 			</td>
                 		</tr>
-                		<tr>
+                		<tr class="input-tr">
                 			<th>대표 이미지 업로드</th>
                 			<td colspan="3">
                 				<input type="file" name="productImg" id="productImg" accept=".jpg,.png,.jpeg">
                 			</td>
                 		</tr>
+                		<tr class="input-tr">
                 			<th>대표 이미지 미리보기</th>
                 			<td colspan="3">
                 				<div class="productImgView">
                 					<img id="productImgView" width="300px">
                 				</div>
                 			</td>
-                		<tr>
                 		</tr>
-                		<tr>
+                		<tr class="input-tr">
                 			<th>상품 요약 설명</th>
                 			<td colspan="3">
                 				<input type="text" name="productContent" placeholder="내용을 입력해주세요">
                 			</td>
                 		</tr>
-                		<tr>
+                		<tr class="input-tr">
                 			<th>상품 상세 설명</th>
                 			<td colspan="3" style="text-align: left;">
                 				<textarea name="productContentDetail" id="productContentDetail"></textarea>
                 			</td>
                 		</tr>
-						<tr class="tr-1">
+						<tr class="input-btn">
 							<td colspan="4">
 								<button type="submit">검수 요청</button>
 							</td>

@@ -9,4 +9,8 @@ public class HomeController {
 	public String main() {
 		return "index";
 	}
+	@GetMapping(value="/ref")
+	public String ref() {
+		return "ref";
+	}
 }
