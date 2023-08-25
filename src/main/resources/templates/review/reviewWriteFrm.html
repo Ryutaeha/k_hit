@@ -15,17 +15,18 @@
                 <h2 class="title1">REVIEW</h2>
             </div>
             <div class="review-content">
-                    <hr>
+                <hr>
                 <div class="review-info">
                     <form action="/review/write" method="post">
-                        <div class="review-id">아이디(데이터가져오기)</div>
+                        <div class="reviewWrite-id" th:text="${session.c.customerId}"></div>
                         <div class="review-product">
                             <div class="review-product-img">
                                 <img src="">
                             </div>
                             <div class="review-product-info">
-                                <div class="review-product-name">상품이름(데이터가져오기)</div>
+                                <div class="review-product-name" th:text="">상품이름(데이터가져오기)</div>
                                 <div class="review-product-option">옵션(데이터가져오기)</div>
+                                <input type="hidden" name="orderNo"><!--th:value= 주문번호 값 받아서 넣어주기 -->
                             </div>
                         </div>
                         <div class="review-info-title">별점</div>

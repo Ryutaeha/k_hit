@@ -93,7 +93,7 @@ public class SellerService {
 		if(pageNo != 1) {
 			pageNavi += "<li>";
 			pageNavi += "<a class='page-item' href='/seller/addNewProductList?reqPage="+(pageNo-1)+"'>";
-			pageNavi += "<span class='material-icons'>chevron_left</span>";
+			pageNavi += "<span class='material-icons'>keyboard_double_arrow_left</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";
 		}
@@ -119,7 +119,7 @@ public class SellerService {
 		if(pageNo <= totalPage) {
 			pageNavi += "<li>";
 			pageNavi += "<a class='page-item' href='/seller/addNewProductList?reqPage="+(pageNo)+"'>";
-			pageNavi += "<span class='material-icons'>chevron_right</span>";
+			pageNavi += "<span class='material-icons'>keyboard_double_arrow_right</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";
 		}
@@ -178,6 +178,12 @@ public class SellerService {
 		
 		ProductOptionListData pold = new ProductOptionListData(productOptionList, pageNavi);
 		return pold;
+	}
+
+	@Transactional
+	public int changeOptionStock(int optionStock, int productOptionNo) {
+		int result = sellerDao.changeOptionStock(optionStock, productOptionNo);
+		return result;
 	}
 
 }

@@ -13,6 +13,4 @@ public class ProductOption {
 	private String optionSize;
 	private String optionColor;
 	private int optionStock;
-	//판매상품 재고관리를 위해 추가한 부분
-	private String productName;
 }

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>cart</title>
+<link rel="stylesheet" href="/css/review.css">
+<link rel="stylesheet" href="/css/font.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="js/jquery-3.6.0.js"></script>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="review-all-wrap">
+        <div class="review-wrap">
+            <div class="review-title">
+                <h2 class="title1">R E V I E W</h2>
+            </div>
+            <div class="review-content">
+                <hr>
+                <div class="review-info">
+                    <div class="review-info-top">
+                        <div class="review-id">아이디(데이터가져오기)</div>
+                        <div class="review-viewcount">view : <span>0</span></div>
+                    </div>
+                    <div class="review-product">
+                        <div class="review-product-img">
+                            <img src="">
+                        </div>
+                        <div class="review-product-info">
+                            <div class="review-product-name">상품이름(데이터가져오기)</div>
+                            <div class="review-product-option">옵션(데이터가져오기)</div>
+                        </div>
+                    </div>
+                    <div class="review-info-title"></div>
+                    <div class="star-wrap star-wrap2">
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                    </div>
+                    <div class="star-on">
+                        <div class="star-wrap star-on-wrap">
+                            <span class="material-icons">star</span>
+                            <span class="material-icons">star</span>
+                            <span class="material-icons">star</span>
+                            <span class="material-icons">star</span>                                
+                            <span class="material-icons">star</span>
+                        </div>
+                    </div>
+                    <div class="review-view-content">데이터로 내용가져오기</div>
+                    <div class="reviewPhoto review-view-image"></div>
+                    <div class="review-like">
+                        <span class="material-icons review-like-icon">thumb_up_off_alt</span>
+                        <div><span class="review-likecount">0</span> 명에게 도움 되었습니다.</div>
+                    </div>
+                    <div class="review-comment-wrap">
+                        <div class="review-comment-top"><span>댓글 </span><span>개</span></div>
+                    </div>
+                    <!-- 댓글 등록 -->
+                    <div class="inputCommentBox" th:if="${session.c != null}">
+                        <form action="/review/insertComment" method="post">
+                            <ul>
+                                <li>
+                                    <input type="hidden" name="reviewCommentWriter" th:value="${session.c.customerId}">
+                                    <input type="hidden" name="reviewRef" th:value="${r.reviewNo}">
+                                    <textarea name="reviewCommentContent" class="comment-input-form" placeholder="댓글을 입력해 주세요."></textarea>
+                                </li>
+                                <li>
+                                    <button type="submit" class="btn2">댓글등록</button>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="commentBox">
+                        <th:block th:each="rc : ${commentList}">
+                        <!-- 댓글 -->
+                            <ul class="posting-comment comment-first">
+                                <li class="comment-view">
+                                    <p class="comment-info">
+                                        <span th:text="${rc.reviewCommentWriter}">작성자</span>
+                                        <span>|</span>                                           
+                                        <span th:text="${rc.noticeCommentDate}">날짜</span>
+                                    </p>
+                                    <div class="review-comment-content" th:text="${rc.reviewCommentContent}">댓글내용내용내용</div>
+                                    <p class="comment-link">
+                                    <th:block th:if="${session.c != null}">
+                                        <a href="javascript:void(0)" class="recShow">답글달기</a>
+                                        <th:block th:if="${session.c.customerId == rc.reviewCommentWriter}">
+                                            <a href="javascript:void(0);" th:onclick="modifyComment(this,[[${rc.reviewCommentNo}]],[[${r.reviewNo}]]);">수정</a>
+                                            <a href="javascript:void(0);" th:onclick="deleteComment(this,[[${rc.reviewCommentNo}]],[[${r.reviewNo}]]);">삭제</a>
+                                        </th:block>
+                                    </th:block>                                        
+                                    </p>
+                                </li>
+                            </ul>
+                            <!-- 대댓글 -->
+                            <th:block th:each="ncc : ${reCommentList}">
+                                <ul class="posting-comment reply" th:if="${rc.reviewCommentNo == rcc.reviewCommentRef}">
+                                    <li class="comment-view recomment-view">
+                                        <div class="recomment-area recomment-icon">
+                                            <span class="material-icons">subdirectory_arrow_right</span>
+                                        </div>
+                                        <div class="recomment-area recomment-content">
+                                            <p class="comment-info">
+                                                <span th:text="${rcc.reviewCommentWriter}">작성자</span>
+                                                <span>|</span>
+                                                <span th:text="${rcc.reviewCommentDate}">날짜</span>
+                                            </p>
+                                            <p class="comment-content" th:text="${rcc.reviewCommentContent}"></p>
+                                        <div class="review-comment-content" th:text="${rcc.reviewCommentContent}">후기댓글내용</div>
+                                            <p class="comment-link">
+                                                <th:block th:if="${session.c != null}">
+                                                    <th:block th:if="${session.c.customerId == ncc.reviewCommentWriter}">
+                                                        <a href="javascript:void(0);" th:onclick="modifyComment(this,[[${rcc.reviewCommentNo}]],[[${r.reviewNo}]]);">수정</a>
+                                                        <a href="javascript:void(0);" th:onclick="deleteComment(this,[[${rcc.reviewCommentNo}]],[[${r.reviewNo}]]);">삭제</a>
+                                                    </th:block>
+                                                </th:block>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="inputCommentBox inputRecommentBox" th:if="${session.c != null}">
+                                    <form action="/review/insertComment" method="post">
+                                        <ul>
+                                            <li>
+                                                <input type="hidden" name="reviewCommentWriter" th:value="${session.c.customerId}">
+                                                <input type="hidden" name="reviewRef" th:value="${r.reviewNo}">
+                                                <input type="hidden" name="reviewCommentRef" th:value="${rc.reviewCommentNo}">
+                                                <textarea name="reviewCommentContent" class="review-recomment-input"></textarea>
+                                            </li>
+                                            <li>
+                                                <button type="submit" class="btn2 btn3">등록</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </th:block> 
+                        </th:block>
+                        <div><button class="btn1" onclick="href='#'">목록으로</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<th:block th:include="common/footer"></th:block>
+    <script src="js/review.js"></script>
+</body>
+</html>

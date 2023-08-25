@@ -4,32 +4,42 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/seller.css">
+<script src="/js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
 	
-	<div>
+	<div class="page-content">
 		<th:block th:include="seller/sellerHeader"></th:block>
-		<div class="seller-wrap">
-            <th:block th:include="seller/sellerMenu"></th:block> 
-			<div class="seller-content">
-				<div class="content-title">PRODUCT STOCK MANAGEMENT</div>
+        <th:block th:include="seller/sellerMenu"></th:block> 
+			<div class="content-wrap">
+				<div class="content-title">
+					<span>PRODUCT STOCK MANAGEMENT</span>
+				</div>
 				<div class="content-main">
-					<table>
-						<tr>
-							<th style="width:10%">상품번호</th>
-							<th style="width:30%">상품명</th>
-							<th style="width:30%">옵션명</th>
+					<table class="tbl">
+						<tr class="tbl-menu">
+							<th style="width:15%">상품번호</th>
+							<th style="width:15%">상품명</th>
+							<th style="width:10%">옵션번호</th>
+							<th style="width:25%">옵션명</th>
+							<!-- <th style="width:10%">현재 재고</th> -->
 							<th style="width:10%">재고</th>
-							<th style="width:20%">재고변경</th>
+							<th style="width:15%">재고변경</th>
 						</tr>
-						<tr th:each="productOption : ${prductOptionList}">
+						<tr class="tbl-row" th:each="productOption : ${prductOptionList}">
 							<td th:text="${productOption.productNo}"></td>
 							<td th:text="${productOption.productName}"></td>
+							<td th:text="${productOption.productOptionNo}"></td>
 							<td>
 								사이즈 : <span th:text="${productOption.optionSize}"></span> / 색상 : <span th:text="${productOption.optionColor}"></span>
 							</td>
+							<!-- 
 							<td th:text="${productOption.optionStock}"></td>
+							 -->
+							<td>
+								<input type="text" name="optionStockChange" class="input-form" th:value="${productOption.optionStock}">
+							</td>
 							<td>
 								<button class="changeStock">재고변경</button>
 							</td>
@@ -39,15 +49,35 @@
 				</div>       
             </div>                   
 		</div>
-	</div>
 	
 	<th:block th:include="common/footer"></th:block>
+	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 	<script>
 		$(".changeStock").on("click",function(){
-			const optionStock = $(this).parent().prev().val();
+			const optionStock = $(this).parent().prev().children().val();
 			//재고값
-			const option
+			const productOptionNo = $(this).parent().parent().children().eq(2).text();
+			//console.log(optionStock, productOptionNo);
+			$.ajax({
+				url : "/seller/changeOptionStock",
+				type : "get",
+				data : {optionStock : optionStock, productOptionNo : productOptionNo},
+				success : function(data){
+					
+					Swal.fire({
+				        title : "재고 변경 완료",
+						text : "변경 후 재고 수량을 확인하세요.",
+						icon : "success",
+				        confirmButtonColor: '#61677A',
+				        confirmButtonText: '확인',
+				        
+				      });
+				}
+			});
+			//location.href = "/seller/changeOptionStock?productOptionNo="+productOptionNo+"&optionStock="+optionStock;
 		});
 	</script>
+
 </body>
 </html>
