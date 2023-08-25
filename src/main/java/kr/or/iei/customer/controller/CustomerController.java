@@ -38,22 +38,16 @@ public class CustomerController {
 		return "customer/join";
 	}
 	
-	//장바구니 페이지
+	//장바구니 페이지 이동
 	@GetMapping(value="/cart")
-	public String Cart(int cartNo,String customerSignId, String customerSignPw, HttpSession session,Model model) {
-		Customer c = customerService.selectOneCustomer(customerSignId,customerSignPw);
-		Cart cart = customerService.selectMyCart(cartNo);
-		if(c == null) {
-			model.addAttribute("title","접근 실패");
-			model.addAttribute("msg", "로그인 후 접근 가능합니다.");
-			model.addAttribute("icon", "error");
-			model.addAttribute("loc", "/common/login");
-		}else {
-			session.setAttribute("c", c);
-			
-			return "customer/cart";
-		}
-		return "common/msg";
+	public String Cart() {
+		return "customer/cart";
+	}
+	
+	//고객 취소/환불 목록 페이지
+	@GetMapping(value="/refundlist")
+	public String refundList() {
+		return "customer/refundlist";
 	}
 
 	//결제하기
