@@ -17,68 +17,50 @@
         <!-- 장바구니 내용 -->
         <form action="" method="post">
             <div class="cart-content">
-                    <hr>
                 <div class="content-info">
-                    <div class="cart info-top">
-                        <div class="info1">
-                            <span>선택</span>
-                        </div>  
-                        <div class="info2">
-                            <span>상품정보</span>
-                        </div>
-                        <div class="info3">
-                            <span>수량</span>
-                        </div>
-                        <div class="info4">
-                            <span>상품금액</span>
-                        </div>
-                        <div class="info5">
-                            <span>배송비</span>
-                        </div>
-                        <div class="info6"></div>
-                    </div> <!-- cart info-top -->
-                <div class="cart info-main">
-                    <!-- 상품선택 버튼 -->
-                    <div class="info1">
-                        <input type="checkbox" id="useCheck" class="check">
-                    </div>
-                    <div class="info2">
-                        <div class="info-img">
-                            <img src="img/icemallimage/ice1.png">
-                        </div>
-                        <div class="info-name">
-                            <span>상품이름</span>
-                            <div><span >1. 옵션</span> <span>2. 옵션</span></div>
-                        </div>
-                    </div>
-                    <div class="info3">
-                        <button type="button">-</button>
-                        <input type="text" name="pop-out" value="1" readonly="readonly">
-                        <button type="button">+</button> 
-                    </div>
-                    <!-- 상품금액 -->
-                    <div class="info4">
-                        <span>3800원</span>
-                    </div>
-                    <div class="info5">
-                    <!-- 배송비 -->
-                        <span>0000원</span>
-                    </div>
-                    <!-- 항목 삭제 버튼 -->
-                    <div class="info6">
-                        <button type="button" class="delBasket">
-                            <span class="material-icons">close</span>
-                        </button>
-                    </div>
-                </div> <!-- cart info-main -->
-                <!-- 장바구니 전체 선택 및 버튼 -->
+                    <table class="tbl info-top">
+                        <tr class="tbl-top">
+                                <th class="info1">선택</th>
+                                <th class="info2">상품정보</th>
+                                <th class="info3">수량</th>
+                                <th class="info4">상품금액</th>
+                                <th class="info5">배송비</th>
+                                <th class="info6"></th>
+						</tr>
+                        <tr class="tbl info-main">
+                                <th class="info1">
+                                    <input type="checkbox" id="useCheck" class="check">
+                                </th>
+                                <th class="info2">
+                                    <!-- <div class="info-img">
+                                        <img src="img/icemallimage/ice1.png">
+                                    </div> 보류-->
+                                    <div class="info-name">
+                                        <span>상품이름</span>
+                                        <div><span>1. 옵션</span> <span>2. 옵션</span></div>
+                                    </div>
+                                </th>
+                                <th class="info3">
+                                    <button type="button">-</button>
+                                    <input type="text" name="pop-out" value="1" readonly="readonly">
+                                    <button type="button">+</button>
+                                </th>
+                                <th class="info4"><span>3800원</span></th>
+                                <th class="info5"><span>0000원</span></th>
+                                <th class="info6">
+                                    <span class="material-icons">close</span>
+                                </th>
+						</tr>
+                    </table>
+                </div>
+            </div>
+                    <!-- 장바구니 전체 선택 및 버튼 -->
                 <div class="info-bottom">
                     <div>
                         <input type="checkbox" class="allCheck" id="allCheck">
                     </div>
                     <label for="check-all">전체선택<span>(0/0)</span></label>
                     <button type="button" id="delBtn">선택상품 삭제</button>
-                </div>
                 </div>
                     <!-- 결제 금액 확인 -->
                     <div class="content-amount">
@@ -107,10 +89,9 @@
                             <button type="button" class="keepShopping">계속 쇼핑하기</button>
                             <button type="button">구매하기</button>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
 	  <th:block th:include="common/footer"></th:block>
 	  <script src="/js/cart.js"></script>
 </body>
