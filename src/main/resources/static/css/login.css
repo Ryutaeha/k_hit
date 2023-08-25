@@ -3,7 +3,7 @@
     padding: 0;
     outline: none;
     list-style-type: none;
-    font-family: ns-r;
+    font-family: mon;
 }
 
 .login-wrapper{
@@ -30,7 +30,7 @@
     color: #0c0c0c;
 }
 .login-top>h2{
-    font-family: ns-eb;
+    font-family: mon;
 
 }
 

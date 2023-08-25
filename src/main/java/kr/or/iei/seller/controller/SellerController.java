@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -103,9 +104,9 @@ public class SellerController {
 		return null;
 	}
 	//판매상품 등록폼
-	@GetMapping(value="/addNewProductFrm")
-	public String addNewProductFrm() {
-		return "seller/addNewProductFrm";
+	@GetMapping(value="/addNewProductFrmEditor")
+	public String addNewProductFrmEditor() {
+		return "seller/addNewProductFrmEditor";
 	}
 	//판매상품 등록2
 	@PostMapping(value="/addNewProduct")
@@ -150,4 +151,29 @@ public class SellerController {
 	public String myInfoPage() {
 		return "/seller/myInfo";
 	}
-}
+	@PostMapping(value="/update")
+	public String updateSeller(String customerEmail2,MultipartFile imgFile, Seller s) {
+		System.out.println("이메일 뒷 : "+customerEmail2);
+		System.out.println("판매자 : "+s);
+		return "/index";
+	}
+	//판매상품 재고관리페이지에서 재고수정
+	@ResponseBody
+	@GetMapping(value="/changeOptionStock")
+	public int changeOptionStock(int optionStock, int productOptionNo, Model model) {
+		int result = sellerService.changeOptionStock(optionStock, productOptionNo);
+		return result;
+	}
+}	
+	/*
+	@ResponseBody
+	@PostMapping(value="/editor",produces = "plain/text;charset=utf-8")
+	public String editorUpload(MultipartFile file) {
+		String savepath = root+"seller/";
+		String filepath = fileUtil.getFilepath(savepath, file.getOriginalFilename());
+		File image = new File(savepath+filepath);
+		
+		
+	}
+	*/
+

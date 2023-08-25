@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="js/jquery-3.7.0.js"></script>
 <link rel="stylesheet" href="/css/seller.css">
+<script src="/js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -23,8 +23,8 @@
 							<th style="width:15%">상품명</th>
 							<th style="width:10%">옵션번호</th>
 							<th style="width:25%">옵션명</th>
-							<th style="width:10%">현재 재고</th>
-							<th style="width:10%">수정 후 재고</th>
+							<!-- <th style="width:10%">현재 재고</th> -->
+							<th style="width:10%">재고</th>
 							<th style="width:15%">재고변경</th>
 						</tr>
 						<tr class="tbl-row" th:each="productOption : ${prductOptionList}">
@@ -34,11 +34,11 @@
 							<td>
 								사이즈 : <span th:text="${productOption.optionSize}"></span> / 색상 : <span th:text="${productOption.optionColor}"></span>
 							</td>
+							<!-- 
 							<td th:text="${productOption.optionStock}"></td>
+							 -->
 							<td>
-								<form action="/seller/update" method="post">
-									<input type="text" name="optionStockChange" class="input-form" th:value="${productOption.optionStock}">
-								</form>
+								<input type="text" name="optionStockChange" class="input-form" th:value="${productOption.optionStock}">
 							</td>
 							<td>
 								<button class="changeStock">재고변경</button>
@@ -51,12 +51,33 @@
 		</div>
 	
 	<th:block th:include="common/footer"></th:block>
+	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 	<script>
 		$(".changeStock").on("click",function(){
-			const optionStock = $(this).parent().prev().val();
+			const optionStock = $(this).parent().prev().children().val();
 			//재고값
-			const productOptionNo = $()
+			const productOptionNo = $(this).parent().parent().children().eq(2).text();
+			//console.log(optionStock, productOptionNo);
+			$.ajax({
+				url : "/seller/changeOptionStock",
+				type : "get",
+				data : {optionStock : optionStock, productOptionNo : productOptionNo},
+				success : function(data){
+					
+					Swal.fire({
+				        title : "재고 변경 완료",
+						text : "변경 후 재고 수량을 확인하세요.",
+						icon : "success",
+				        confirmButtonColor: '#61677A',
+				        confirmButtonText: '확인',
+				        
+				      });
+				}
+			});
+			//location.href = "/seller/changeOptionStock?productOptionNo="+productOptionNo+"&optionStock="+optionStock;
 		});
 	</script>
+
 </body>
 </html>

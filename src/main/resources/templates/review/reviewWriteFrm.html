@@ -15,10 +15,11 @@
                 <h2 class="title1">REVIEW</h2>
             </div>
             <div class="review-content">
-                    <hr>
+                <hr>
                 <div class="review-info">
                     <form action="/review/write" method="post">
-                        <div class="review-id">아이디(데이터가져오기)</div>
+                        <div class="reviewWrite-id" th:text="${session.c.customerId}"></div>
+                        <input type="hidden" th:value="${session.c.customerId}">
                         <div class="review-product">
                             <div class="review-product-img">
                                 <img src="">
@@ -26,6 +27,7 @@
                             <div class="review-product-info">
                                 <div class="review-product-name">상품이름(데이터가져오기)</div>
                                 <div class="review-product-option">옵션(데이터가져오기)</div>
+                                <input type="hidden" name="orderNo"><!--th:value= 주문번호 값 받아서 넣어주기 -->
                             </div>
                         </div>
                         <div class="review-info-title">별점</div>
@@ -46,9 +48,9 @@
                             	<div class="review-img-btn">사진 첨부하기</div>
                             </label>
                             <input type="file" name="imageFile" id="review-img" accept=".jpg,.png,.jpeg">
-                            <div class="review-img-viewer">
-                                <img id="review-img-view" width="500px">
-                            </div>
+                        </div>
+                        <div class="review-img-viewer">
+                            <img id="review-img-view" style="display: none; margin-top: 20px; margin-right: 300px; width:300px; height:300px;">
                         </div>
                         <div class="reviewWrite-btn">
                             <button type="button" class="btn1 reviewCancel-btn" onclick="location.href='/'">취소</button>
@@ -62,5 +64,19 @@
 	<th:block th:include="common/footer"></th:block>
 
     <script src="/js/review.js"></script>
+    <script>
+		$("[name=imageFile]").on("change",function(){
+			if(this.files.length != 0 && this.files[0] != 0){
+				const reader = new FileReader();
+				reader.readAsDataURL(this.files[0]);
+				reader.onload = function(e){
+					$("#review-img-view").attr("src",e.target.result);
+					$("#review-img-view").show();
+				}
+			}else{
+				$("#review-img-view").attr("src","");
+			}
+		});
+	</script>
 </body>
 </html>
