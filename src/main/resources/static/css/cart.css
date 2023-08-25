@@ -20,12 +20,9 @@
 }
 
 /* 테이블 간 넓이 */
-.tbl{
+.cartTbl{
 	width: 100%;
-	border-spacing: 0px;
 	border-collapse: collapse;
-	margin: 20px;
-	font-size: 1.2em;
 }
 
 .info1,.info6{

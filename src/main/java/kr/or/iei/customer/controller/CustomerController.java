@@ -50,6 +50,12 @@ public class CustomerController {
 	public String refundList() {
 		return "customer/refundlist";
 	}
+	
+	//취소 신청 페이지
+	@GetMapping(value="/cancel")
+	public String cancel() {
+		return "customer/cancel";
+	}
 
 	//결제하기
 	@GetMapping(value="/payment")

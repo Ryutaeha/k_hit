@@ -16,3 +16,8 @@ $(".check").on("click",function(){
         allCheck.prop("checked",true);
     }
 });
+
+//쇼핑계속하기
+$(".keepShopping).on("click",function(){
+	history.back();
+})
