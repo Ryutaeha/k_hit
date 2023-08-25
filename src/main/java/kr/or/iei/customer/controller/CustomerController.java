@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.iei.customer.model.service.CustomerService;
 import kr.or.iei.customer.model.vo.Cart;
@@ -113,6 +114,38 @@ public class CustomerController {
 	@GetMapping(value = "/mypage")
 	public String customerMypage() {
 		return "customer/mypage";
+	}
+	
+	//마이페이지 회원정보관리페이지
+	@GetMapping(value="/myInfo")
+	public String customerMyInfo(@SessionAttribute(required = false) Customer c, Model model) {
+		/*
+		String customerEmail = c.getCustomerEmail().substring(0,c.getCustomerEmail().lastIndexOf("@"));
+		String customerEmail2 = c.getCustomerEmail().substring(c.getCustomerEmail().lastIndexOf("@")+1);
+		model.addAttribute("customerEmail", customerEmail);
+		model.addAttribute("customerEmail2", customerEmail2);
+		*/
+		//월요일 강사님께
+		return "customer/myInfo";
+	}
+	
+	//고객 정보수정
+	@PostMapping(value="/update")
+	public String updateCustomer(String customerEmail2,Customer customer,Model model,@SessionAttribute(required = false) Customer c) {
+		int result = customerService.updateCustomer(customerEmail2,customer);
+		if(result>0){
+			c.setCustomerEmail(customer.getCustomerEmail());
+			c.setCustomerName(customer.getCustomerName());
+			c.setCustomerPhone(customer.getCustomerPhone());
+			c.setCustomerPw(customer.getCustomerPw());
+			return "customer/updateSuccess";
+		}else {
+			model.addAttribute("title", "회원 정보 수정 실패");
+			model.addAttribute("msg", "정보 수정에 실패하셨습니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/");
+			return "common/msg";
+		}
 	}
 }
 

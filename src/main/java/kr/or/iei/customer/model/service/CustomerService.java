@@ -34,5 +34,10 @@ public class CustomerService {
 		Cart cart = customerDao.selectMyCart(cartNo);
 		return cart;
 	}
+	@Transactional
+	public int updateCustomer(String customerEmail2, Customer c) {
+		int result = customerDao.updateCustomer(customerEmail2,c);
+		return result;
+	}
 
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>판매자 회원정보 수정 완료</title>
+</head>
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/complete.css">
+<link rel="stylesheet" href="/css/seller.css">
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+		<div class="complete">
+	        <div class="seller-header">
+			<span class="move">회원정보수정</span>
+		</div>
+	        <div class="complete-content">
+	            [<span th:text="${session.c.customerName}"></span>] 님의 정보수정이 완료되었습니다.
+	        </div>
+	        <div class="complete-btn">
+	            <button type="button" class="btn2 complete-button" onclick="location.href='/customer/myInfo'">내 정보 확인</button>
+	        </div>
+	    </div>
+    </div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

@@ -46,6 +46,14 @@ public class CustomerDao {
 		String query = "";
 		return null;
 	}
+	
+	//고객정보수정
+	public int updateCustomer(String customerEmail2, Customer c) {
+		String query = "update customer_tbl set customer_pw=?,customer_name=?,customer_phone=?,customer_email=? where customer_id=?";
+		Object[] params = {c.getCustomerPw(),c.getCustomerName(),c.getCustomerPhone(),c.getCustomerEmail()+"@"+customerEmail2,c.getCustomerId()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
 
 
 }
