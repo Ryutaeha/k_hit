@@ -180,4 +180,10 @@ public class SellerService {
 		return pold;
 	}
 
+	@Transactional
+	public int changeOptionStock(int optionStock, int productOptionNo) {
+		int result = sellerDao.changeOptionStock(optionStock, productOptionNo);
+		return result;
+	}
+
 }

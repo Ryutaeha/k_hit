@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -103,9 +104,9 @@ public class SellerController {
 		return null;
 	}
 	//판매상품 등록폼
-	@GetMapping(value="/addNewProductFrm")
-	public String addNewProductFrm() {
-		return "seller/addNewProductFrm";
+	@GetMapping(value="/addNewProductFrmEditor")
+	public String addNewProductFrmEditor() {
+		return "seller/addNewProductFrmEditor";
 	}
 	//판매상품 등록2
 	@PostMapping(value="/addNewProduct")
@@ -150,4 +151,30 @@ public class SellerController {
 	public String myInfoPage() {
 		return "/seller/myInfo";
 	}
+	//판매상품 재고관리페이지에서 재고수정
+	@ResponseBody
+	@GetMapping(value="/changeOptionStock")
+	public String changeOptionStock(int optionStock, int productOptionNo, Model model) {
+		int result = sellerService.changeOptionStock(optionStock, productOptionNo);
+		if(result>0) {
+			return "redirect:/seller/productStockManagement?reqPage=1";
+		}else {
+			model.addAttribute("title", "재고 변경 실패");
+			model.addAttribute("msg", "재고 수량 변경에 실패했습니다. 결과를 확인해 주세요.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/seller/productStockManagement?reqPage=1");
+			return "common/msg";
+		}
+	}
+	/*
+	@ResponseBody
+	@PostMapping(value="/editor",produces = "plain/text;charset=utf-8")
+	public String editorUpload(MultipartFile file) {
+		String savepath = root+"seller/";
+		String filepath = fileUtil.getFilepath(savepath, file.getOriginalFilename());
+		File image = new File(savepath+filepath);
+		
+		
+	}
+	*/
 }

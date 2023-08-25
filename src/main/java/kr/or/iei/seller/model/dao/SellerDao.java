@@ -74,4 +74,11 @@ public class SellerDao {
 		int totalCount = jdbc.queryForObject(query, Integer.class,sellerNo);
 		return totalCount;
 	}
+
+	public int changeOptionStock(int optionStock, int productOptionNo) {
+		String query = "UPDATE PRODUCT_OPTION_TBL SET option_stock=? WHERE product_option_no=?";
+		Object[] params = {optionStock, productOptionNo};
+		int result = jdbc.update(query,params);
+		return result;
+	}
 }
