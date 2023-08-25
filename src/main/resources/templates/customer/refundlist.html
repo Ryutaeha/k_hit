@@ -7,8 +7,9 @@
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-	<th:block th:include="common/customerHeader"></th:block>
-		<div class="refund-content">
+	<div class="refund-content">
+		<th:block th:include="customer/customerHeader"></th:block>
+		<th:block th:include="customer/customerMenu"></th:block>
         <div class="refund-wrap">
             <div class="refund-head-title">
                 <h2>REFUND LIST</h2>
@@ -68,7 +69,7 @@
             </div>
     </div>
 	
-	<th:block th:include="common/customerMenu"></th:block>
+
 	<th:bolck th:include="common/footer"></th:bolck>
 
 </body>
