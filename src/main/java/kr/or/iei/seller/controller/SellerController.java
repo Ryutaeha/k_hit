@@ -122,6 +122,7 @@ public class SellerController {
 			//로그인한 판매자 회원 정보 저장
 			session.setAttribute("s", s);
 			
+			
 			model.addAttribute("title","로그인 성공");
 			model.addAttribute("msg", "환영합니다.");
 			model.addAttribute("icon", "success");
@@ -151,11 +152,33 @@ public class SellerController {
 	public String myInfoPage() {
 		return "/seller/myInfo";
 	}
+	//판매자 정보수정
 	@PostMapping(value="/update")
-	public String updateSeller(String customerEmail2,MultipartFile imgFile, Seller s) {
+	public String updateSeller(String customerEmail2,MultipartFile imgFile, Seller s,Model model) {
 		System.out.println("이메일 뒷 : "+customerEmail2);
 		System.out.println("판매자 : "+s);
-		return "/index";
+		System.out.println("변경 할 대표이미지 : "+imgFile);
+		
+			String savepath = root+"seller/";
+			String filepath = fileUtil.getFilepath(savepath, imgFile.getOriginalFilename());
+			s.setSellerImg(filepath);
+			File upFile = new File(savepath+filepath);
+			try {
+				imgFile.transferTo(upFile);
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+			int result = sellerService.updateSeller(customerEmail2,s);
+			if(result>0){
+				return "/seller/updateSuccess";
+			}else {				
+				model.addAttribute("title", "회원 정보 수정 실패");
+				model.addAttribute("msg", "정보 수정에 실패하셨습니다.");
+				model.addAttribute("icon", "error");
+				model.addAttribute("loc", "/");
+				return "common/msg";
+			}
 	}
 	//판매상품 재고관리페이지에서 재고수정
 	@ResponseBody

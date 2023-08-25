@@ -81,4 +81,12 @@ public class SellerDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
+
+	public int updateSeller(String customerEmail2, Seller s) {
+		//비밀번호,이름,이미지,전화번호,이메일,자기소개
+		String query = "update seller_tbl set seller_pw=?,seller_name=?,seller_img=?,seller_phone=?,seller_email=?,seller_introduce=? where seller_id=?";
+		Object[] params = {s.getSellerPw(),s.getSellerName(),s.getSellerImg(),s.getSellerPhone(),(s.getSellerEmail()+"@"+customerEmail2),s.getSellerIntroduce(),s.getSellerId()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
 }
