@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: ns-r;
+    font-family: mon;
     color: #1e1e1e;
     list-style-type: none;
 }
@@ -39,6 +39,12 @@
     margin-bottom: 40px;
     width: 550px;
     float: left;
+    
+}
+.reviewWrite-id{
+    font-size: 22px;
+    font-family: ns-b;
+    margin-bottom: 40px;
 }
 .review-viewcount{
     float: left;
@@ -157,6 +163,7 @@
 
 .review-view-content{
     padding: 30px 0;
+    font-size: 18px;
 }
 
 .review-view-image{
