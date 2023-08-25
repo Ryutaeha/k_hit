@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>판매자 취소환불페이지</title>
+<link rel="stylesheet" href="/css/seller.css">
 </head>
 
 <body>
@@ -12,13 +13,48 @@
 		<th:block th:include="seller/sellerMenu"></th:block>
 		<div class="content-wrap">
 			<div class="content-title">
-				<span>
-					CANCEL / REFUND
+				<span class="moveTwo">
+					CANCEL
 				</span>
 			</div>
 			<div class="content-main">
-				컨텐츠 div 
-
+				<form action="#">
+					<!--취소 주문이 1개라도 없을 때 나오는 div-->
+					<div class="none-div">
+						<h3>취소 주문이 없습니다.</h3>
+					</div>
+					<br>
+					<!--주문이 있을 시 나오는 div-->
+					<table border="1">
+						<tr>
+							<th>주문번호</th>
+							<th>상품정보</th>
+							<th>처리상태</th>
+							<th>처리버튼</th>
+						</tr>
+						<tr>
+							<td>no.156431</th>
+							<td>
+								<img src="" alt="">
+								<th:text="상품정보"></th:text>
+							</td>
+							<td>
+								<span>취소요청대기중</span>
+							</td>
+							<td>
+								<input type="button" value="취소">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div class="content-title">
+				<span class="move">
+					REFUND
+				</span>
+			</div>
+			<div class="content-main">
+				REFUND 컨텐츠 div 
 			</div>
 		</div>
 	</div>	

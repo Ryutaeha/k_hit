@@ -185,5 +185,10 @@ public class SellerService {
 		int result = sellerDao.changeOptionStock(optionStock, productOptionNo);
 		return result;
 	}
+	@Transactional
+	public int updateSeller(String customerEmail2, Seller s) {
+		int result = sellerDao.updateSeller(customerEmail2,s);
+		return result;
+	}
 
 }
