@@ -2,18 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>cart</title>
+<title>review view</title>
 <link rel="stylesheet" href="/css/review.css">
 <link rel="stylesheet" href="/css/font.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script src="js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
 	<div class="review-all-wrap">
         <div class="review-wrap">
             <div class="review-title">
-                <h2 class="title1">R E V I E W</h2>
+                <h2 class="title1">REVIEW</h2>
             </div>
             <div class="review-content">
                 <hr>
@@ -137,13 +136,14 @@
                                 </div>
                             </th:block> 
                         </th:block>
-                        <div><button class="btn1" onclick="href='#'">목록으로</button></div>
+                        <div class="list-btn">
+                        	<button class="btn1" onclick="href='#'">목록으로</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 	<th:block th:include="common/footer"></th:block>
-    <script src="js/review.js"></script>
 </body>
 </html>
