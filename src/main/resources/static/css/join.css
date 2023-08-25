@@ -1,6 +1,16 @@
+*{
+	margin: 0;
+    padding: 0;
+    outline: none;
+    list-style-type: none;
+    font-family: ns-r;
+}
+
 .signup{
     width: 650px;
     margin: 0 auto;
+    
+
 }
 .title1{
     text-align: center;
@@ -47,16 +57,17 @@
     height: 40px;
     border: none;
     border-radius: 3px;
-    background-color: #f3f3f3;
-    color: #0c0c0c;
     font-size: 16px;
     font-family: ns-b;
     margin: 0 5px;
+    color: #272829;
+    background-color: #D8D9DA;
 }
 .btn1:hover{
-    background-color: #5E5E5E;
-    color: #f3f3f3;
+    background-color: #61677A;
+    color: #fff;
     cursor: pointer;
+    font-weight: 900;
 }
 .join-input{
     margin-bottom: 15px;
@@ -84,14 +95,16 @@
     height: 40px;
     font-size: 15px;
     font-family: ns-b;
-    color: #0c0c0c;
-    background-color: #f3f3f3;
+    color: #272829;
+    background-color: #D8D9DA;
     border: none;
+    border-radius: 3px;
 }
 .dup-btn:hover{
-    background-color:#5E5E5E;
-    color: #f3f3f3;
+    background-color: #61677A;
+    color: #fff;
     cursor: pointer;
+    font-weight: 900;
 }
 .mail-center{
     padding: 0 10px;
@@ -112,3 +125,65 @@
 .signinfo-content{
     display: none;
 }
+
+.join-textarea{
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.textarea-title{  
+    display: block;
+    float: left;  
+    width: 150px;
+    height: 300px;
+    line-height: 300px;
+}
+.textarea-title>label{
+    color: #0c0c0c;
+    font-size: 16px;
+    font-family: ns-b;
+    
+}
+textarea.input-form {
+    resize: none;
+    min-height: 300px;
+    min-width: 480px;
+    box-sizing: border-box;    
+    padding-left: 15px;
+    font-size: 15px;
+    font-family: ns-r;
+    color: #0c0c0c;
+  }
+  .join-input{
+    overflow: hidden;
+  }
+  #sup{
+    color: red;
+  }
+.img-title{
+    display: block;
+    float: left;
+    width: 150px;
+    height: 200px;
+    line-height: 200px;
+}
+.img-title>label{
+    color: #0c0c0c;
+    font-size: 16px;
+    font-family: ns-b;
+}
+.img-div{
+    display: block;
+    float: left;
+    border: 1px solid #0c0c0c;
+    min-height: 300px;
+    min-width: 480px;
+    box-sizing: border-box;
+}
+
+
+ 
+ .joinCheck{
+ 	padding-top: 5px;
+ 	padding-left: 150px;
+ }
+

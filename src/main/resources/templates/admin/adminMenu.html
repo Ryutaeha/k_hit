@@ -5,7 +5,7 @@
     <script src="/js/jquery-3.6.0.js"></script>
     <div class="admin-menu">
         <div>
-            <span class="logo">K-hit</span>
+            <a href="/admin/adminIndex" class="logo">K-hit</a>
         </div>
         <div>
             <ul>
@@ -18,9 +18,9 @@
                     </div>
                     <div class="sub-choice">
                         <ul>
-                            <li><a href="#">소비자</a></li>
-                            <li><a href="#">판매자</a></li>
-                            <li><a href="#">메인 배너</a></li>
+                            <li><a href="/admin/member?memberCode=1&input=">소비자</a></li>
+                            <li><a href="/admin/member?memberCode=2&input=">판매자</a></li>
+                            <li><a href="/admin/banner">메인 배너</a></li>
                         </ul>
                     </div>
                 </li>
@@ -33,10 +33,10 @@
                     </div>
                     <div class="sub-choice">
                         <ul>
-                            <li><a href="#">판매 상품</a></li>
-                            <li><a href="#">검수 필요</a></li>
-                            <li><a href="#">반려 상품</a></li>
-                            <li><a href="#">판매 중지 상품</a></li>
+                            <li><a href="/admin/product?categoryNo=0&input=&productCheck=1">판매 상품</a></li>
+                            <li><a href="/admin/product?categoryNo=0&input=&productCheck=2">검수 필요</a></li>
+                            <li><a href="/admin/product?categoryNo=0&input=&productCheck=3">반려 상품</a></li>
+                            <li><a href="/admin/product?categoryNo=0&input=&productCheck=4">판매 중지 상품</a></li>
                         </ul>
                     </div>
                 </li>
@@ -49,9 +49,9 @@
                     </div>
                     <div class="sub-choice">
                         <ul>
-                            <li><a href="#">총 매출</a></li>
-                            <li><a href="#">판매자 수익</a></li>
-                            <li><a href="#">소비자 매출</a></li>
+                            <li><a href="/admin/sales">총 매출</a></li>
+                            <li><a href="/admin/income">판매자 수익</a></li>
+                            <li><a href="/admin/consumption">소비자 매출</a></li>
                         </ul>
                     </div>
                 </li>
@@ -64,8 +64,8 @@
                     </div>
                     <div class="sub-choice">
                         <ul>
-                            <li><a href="#">작성</a></li>
-                            <li><a href="#">수정/삭제</a></li>
+                            <li><a href="/admin/noticeFrm">작성</a></li>
+                            <li><a href="/admin/notice">수정/삭제</a></li>
                         </ul>
                     </div>
                 </li>
@@ -78,16 +78,16 @@
                     </div>
                     <div class="sub-choice">
                         <ul>
-                            <li><a href="#">전체 문의 사항</a></li>
-                            <li><a href="#">미답변 문의 사항</a></li>
-                            <li><a href="#">답변한 문의 사항</a></li>
+                            <li><a href="/admin/question">전체 문의 사항</a></li>
+                            <li><a href="/admin/question">미답변 문의 사항</a></li>
+                            <li><a href="/admin/question">답변한 문의 사항</a></li>
                         </ul>
                     </div>
                 </li>
             </ul>
         </div>
         <div class="modify">
-            <a href="#">정보수정</a>
+            <a href="/admin/modify">정보수정</a>
             <a href="#">로그아웃</a>
         </div>
     </div>

@@ -17,4 +17,14 @@ public class QnaController {
 	public String qnaView() {
 		return "/qna/qnaView";
 	}
+	
+	@GetMapping(value="/qnaDetail")
+	public String qnaDetail() {
+		return "/qna/qnaDetail";
+	}
+	
+	@GetMapping(value="/qnaFrmEditor")
+	public String qnaFrmEditor() {
+		return "/qna/qnaFrmEditor";
+	}
 }

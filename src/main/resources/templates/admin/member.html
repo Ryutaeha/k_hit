@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="admin-wrap">
+        <th:block th:include="/admin/adminMenu"></th:block>
+        <div class="admin-content">
+            <div class="content-logo">
+                <span>회원 관리<span th:if="${code}==1"> (소비자)</span><span th:if="${code}==2"> (판매자)</span></span>
+            </div>
+            <div class="content-view">
+                <div class="member-box box">
+                    <form action="/admin/member" class="search-box">
+                        <input type="hidden" th:value="${code}" id="memberCode" name="memberCode">
+                        <input type="text" id="member" name="input" placeholder="아이디로 회원 검색">
+                        <button class="add-btn">검색</button>
+                    </form>
+                    <table style="width:90%;" class="tbl">
+                        <tr class="test">   
+                            <th style="width:20%">번호</th>
+                            <th style="width:25%">아이디</th>
+                            <th style="width:25%">이름</th>
+                            <th style="width:30%">가입일</th>
+                        </tr>
+                        <tr th:if="${code}==1" th:each="list : ${list}" >
+                            <td th:text="${list.customerNo}"></td>
+                            <td th:text="${list.customerId}"></td>
+                            <td th:text="${list.customerName}"></td>
+                            <td th:text="${list.customerEnrolldate}"></td>
+                        </tr>
+                        <tr th:if="${code}==2" th:each="list : ${list}">
+                            <td th:text="${list.sellerNo}"></td>
+                            <td th:text="${list.sellerId}"></td>
+                            <td th:text="${list.sellerName}"></td>
+                            <td th:text="${list.sellerEnrollDate}"></td>
+                        </tr>
+                        <!-- 
+                        -->
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -40,3 +40,59 @@ emailSelect.on("change",function(){
     const email2 = $("[name=customerEmail2]");
     email2.val(selectValue);
 });
+
+// 로그인창에서 되묻기 컬럼
+$("#sel-re").on("click",function(){
+    confirm("[판매자]회원가입이 맞으신가요?")    
+    if(confirm){
+        console.log(typeof(con));
+        location.href="/seller/join";
+    }else if(!confirm){
+        console.log(typeof(con));
+        return false;
+    }
+});
+$("#cus-re").on("click",function(){
+    confirm("[고객]회원가입이 맞으신가요?")    
+});
+
+// 판매자 회원가입 이미지 미리보기 ajax
+$("[name=imgFile]").on("change",function(){
+    if(this.files.length != 0 && this.files[0] !=0){
+        const reader = new FileReader();//파일정보를 얻어올 수 있는 객체
+        //선택한 파일 정보를 읽어옴(비동기요청)
+        reader.readAsDataURL(this.files[0]);
+        //파일리더가 정보를 다 읽어오면 동작할 함수
+        reader.onload = function(e){
+            $("#img-view").attr("src",e.target.result);
+        }
+    }else{
+        $("#img-view").attr("src","");
+    }
+});
+
+$(".dup-btn").on("click",function(){
+    const customerId = $("#cutomerId").val();
+    const idReg = /^[a-zA-Z0-9]{4,15}$/;
+    if(idReg.test(customerId)){
+        $.ajax({
+					url:"/customer/checkId",
+					type : "get",
+					data : {customerId : customerId},
+					success : function(data){
+						if(data == "0"){
+							$(".checkId").text("* 중복체크 완료.")
+							$(".checkId").css("color","#146C94");
+						}else{
+							$(".checkId").text("* 아이디를 다시 입력해 주세요.")
+							$(".checkId").css("color","red");
+						}
+					}
+				});
+    }else{
+    	$(".checkId").text("영어/숫자로 4~15글자를 입력해 주세요.")
+    	$(".checkId").css("color","red");
+    }
+});
+
+

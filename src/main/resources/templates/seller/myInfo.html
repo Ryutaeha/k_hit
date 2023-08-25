@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>판매자 정보수정</title>
+</head>
+<link rel="stylesheet" href="/css/myinfo.css">
+<link rel="stylesheet" href="/css/seller.css">
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+		<th:block th:include="seller/sellerHeader"></th:block>
+		<th:block th:include="seller/sellerMenu"></th:block>
+		
+		<div class="content-wrap">
+			<div class="content-title">
+				<span>
+					MY INFO
+				</span>
+			</div>
+			<div class="content-main">
+				 <div class="info-wrap">
+					<form action="#" method="post" enctype="multipart/form-data">
+	                        <table class="input-tbl"> 
+								<tr class="input-tr">
+									<th>대표이미지<span>*</span></th>
+									<td>
+										<div class="img-div">
+											<img id="img-view" width="50px" th:src="'/seller/' + ${session.s.sellerImg}">
+										</div>
+										<div id="img-input">
+											<input type="file"  name="imgFile" accept="png,jpg,jpeg" >
+										</div>
+									</td>
+								</tr>
+								<tr class="input-tr">
+									<th>아이디</th>
+									<td>
+										<input type="text" th:value="${session.s.sellerId}" disabled>
+										<span>(영문소문자/숫자,4~20자)</span>
+									</td>
+								</tr>
+								<tr class="input-tr">
+									<th>비밀번호<span>*</span></th>
+									<td>
+										<input type="text">
+										<span>(영문 대소문자/숫자 포함 조합, 10자~16글자)</span>
+									</td>
+								</tr>
+								<tr class="input-tr">
+									<th>비밀번호 확인<span>*</span></th>
+									<td>
+										<input type="text">
+									</td>
+								</tr>
+								<tr class="input-tr">
+									<th>이름<span>*</span></th>
+									<td>
+										<input type="text" th:value="${session.s.sellerName}" placeholder>
+									</td>
+								</tr>
+								<tr class="input-tr">
+									<th>전화번호<span>*</span></th>
+									<td>
+										<input type="text" th:value="${session.s.sellerPhone}" placeholder>
+									</td>
+								</tr>
+								<tr class="input-tr">
+									<th>이메일<span>*</span></th>
+									<td>
+										<input type="text"  name="sellerEmail" >
+										<span class="mail-center">@</span>
+										<input type="text"  name="customerEmail2" id="customerEmail2">
+										<select class="email-choice">
+											<option value="">직접입력</option>
+											<option value="naver.com">naver.com</option>
+											<option value="gmail.com">gmail.com</option>
+											<option value="kakao.com">kakao.com</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="nate.com">nate.com</option>
+										</select>
+									</td>
+								</tr>
+								<tr class="input-tr">
+									<th>자기소개<span>*</span></th>
+									<td>
+										<textarea class="input-form" th:value="${session.s.sellerIntroduce}" placeholder></textarea>
+									</td>
+								</tr>								
+							</table>
+							<div class="input-btn">
+								<input type="submit" value="회원정보수정">
+								<input type="button" value="취소">
+							</div>
+					</form>
+				 </div>
+
+			</div>
+		</div>
+	</div>
+	<th:block th:include="common/footer"></th:block>
+	<script src="/js/join.js"></script>
+</body>
+</html>

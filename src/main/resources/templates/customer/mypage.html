@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+	<th:block th:include="customer/customerHeader"></th:block>
+	<th:block th:include="customer/customerMenu"></th:block>
+		<!-- 클래스 content-wrap 부터 안의 요소들은 마이페이지 생성 시 똑같이 적용시켜야함-->
+		<div class="content-wrap">
+			<div class="content-title">
+				<span>
+					해당페이지title
+				</span>
+			</div>
+			<div class="content-main">
+				컨텐츠 div 
+
+			</div>
+		</div>
+		<!--------------------------------------------------------- -->
+	</div>
+	
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

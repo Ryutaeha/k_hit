@@ -7,6 +7,12 @@
 <link rel="stylesheet" href="/css/font.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="/css/seller.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<link rel="stylesheet" href="/css/joinmodal.css">
+
 <script src="/js/jquery-3.6.0.js"></script>
 <body>
 	<div class="header-wrap">
@@ -16,10 +22,42 @@
 				<a href="/">K-hIT</a>
 			</div>
 			<div class="header-category">
-				<a href="/common/login">LOGIN</a>
-				<a href="/customer/join">JOIN</a>
-				<a href="#">ORDER</a>
-				<a href="#">MY PAGE</a>
+				<th:block th:if="${session.c == null && session.s == null}">
+					<a href="/common/login" class="a">LOGIN</a>
+					<button type="button" class="a join">JOIN</button>
+					<div id="join-modalWrap">
+				        <div id="join-modalBody">
+				            <div class="modal-content">
+				                <div class="modal-close">
+				                    <span class="material-icons">close</span>
+				                </div>
+				                <div class="modal-top">
+				                    <h2>회 원 가 입</h2>
+				                    <h4>어느 회원가입으로 하시겠습니까?</h4>
+				                </div>
+				                <div>
+				                    <button type="button" id="customer-btn">고객</button>
+				                </div>
+				                <div>
+				                    <button type="button" id="seller-btn">판매자</button>
+				                </div>
+				            </div>
+				        </div>
+				   	 </div>
+					<a href="/common/login" class="a">MY PAGE</a>
+				</th:block>
+				<!-- 고객 로그인 -->
+				<th:block th:if="${session.c != null}">
+					<a href="/customer/logout" class="a">LOGOUT</a>
+					<a href="/customer/mypage" class="a">MY PAGE</a>
+				</th:block>
+ 				<!-- 판매자 로그인 -->
+				<th:block th:if="${session.s != null}">
+					<a href="/seller/logout" class="a">LOGOUT</a>
+					<a href="/seller/selling" class="a">MY PAGE</a>
+				</th:block>
+
+
 			</div>
 		</div>
 		<div class="header-menu">

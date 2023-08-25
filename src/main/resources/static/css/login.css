@@ -1,9 +1,18 @@
+*{
+	margin: 0;
+    padding: 0;
+    outline: none;
+    list-style-type: none;
+    font-family: ns-r;
+}
 
 .login-wrapper{
     overflow: hidden;
     width: 900px;
     margin: 0 auto;
     padding-top: 150px; 
+    
+
 }
 .login{
     width: 350px;
@@ -61,12 +70,12 @@
     font-size: 16px;
     font-family: ns-eb;
     border-radius: 3px;
-    color: #0c0c0c;
-    background-color: #f3f3f3;
+    color: #272829;
+    background-color: #D8D9DA;
 }
 .login-button>button:hover{
-    background-color: #5E5E5E;
-    color: #f3f3f3;
+    background-color: #61677A;
+    color: #fff;
     cursor: pointer;
     font-weight: 900;
 }
