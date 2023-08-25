@@ -8,15 +8,15 @@
 	<th:block th:include="common/header"></th:block>
 	<div class="page-content">
 		<div class="seller-header">
-			<span>SEARCH</span>
+			<span class="move">SEARCH</span>
 		</div>
 		<div class="search-input">
 			<div class="search1">                
-				<form action="/page/search">
+				<form action="/page/productSearch">
 					<fieldset class="search2">
 						<span>검색</span>
-						<input type="text" name="productName">
-						<button>GO</button>						
+						<input type="text" name="productName" id="search-input">
+						<input type="submit" value="GO" id="search-btn">					
 					</fieldset>
 				</form>                
 			</div>
