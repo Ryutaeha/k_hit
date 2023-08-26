@@ -234,11 +234,15 @@ body{
 	background-color: white;
 	padding: 30px;
 	border-radius: 10px;
-	height: 800px;
+	height: 90vh;
+    overflow: auto;
 }
 .modal-inpo>button{
 	float: right;
 }
 .modal-tbl{
 	width: 100%;
+}
+.modal-tbl>tbody>tr>td{
+    border: 1px solid black;
 }
