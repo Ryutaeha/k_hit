@@ -5,6 +5,7 @@
 <title>review List</title>
 <link rel="stylesheet" href="/css/review.css">
 <link rel="stylesheet" href="/css/font.css">
+<script src="/js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -14,27 +15,111 @@
                 <h2 class="title1">REVIEW</h2>
             </div>
             <div class="review-content">
-                <div class="review-info2">
-                    <div class="review-list-content">
-                        <div class="review-list-image"></div>
-                        <div class="review-list-productName">상품이름</div>
-                        <div class="review-list-mid">
-                            <span class="material-icons">star</span>
-                            <span class="material-icons">star</span>
-                            <span class="material-icons">star</span>
-                            <span class="material-icons">star</span>
-                            <span class="material-icons">star</span>
-                            <span class="review-list-customerId">구매자아이디</span>
-                        </div>
-                        <div class="review-list-detail">후기후기후기후기후기</div>
-                    </div>
-                </div>
+                
             </div>
             <div class="list-btn">
-                <button class="btn1 addBtn">더보기</button>
+                <button class="btn1 addBtn" id="more-btn" th:totalCount=${totalCount} currentCount="0" value="1">더보기</button>
             </div>
         </div>
     </div>
 	<th:block th:include="common/footer"></th:block>
+	 
+	<script>
+		$("#more-btn").on("click",function(){
+			const start = $(this).val();
+			const amount = 4;
+			const end = Number(start)+amount-1;
+			$.ajax({
+				url : "/review/more",
+				type : "post",
+				data : {start:start,end:end},
+				success : function(data){
+					for(let i=0;i<data.length;i++){
+						const review = data[i];
+						const div = $("<div>");
+						div.addClass("review-info2");
+						//<div class="review-info2"></div>
+						
+						const ContentDiv = $("<div>");
+						contentDiv.addClass("review-list-content");
+						//<div class="review-list-content"></div>
+						
+						const imgDiv = $("<div>");
+						const img = $("<img>");
+						img.addClass("review-list-image")
+						img.attr("src","/review/"+review.filepath);
+						imgDiv.append(img);
+						/*
+						<div class="posting-img">
+							<img src="파일경로">
+						</div>
+						*/
+						
+						const productNameDiv = $("<div>");
+						cproductNameDiv.addClass("review-list-productName");
+						//<div class="review-list-productName"></div>
+						productNameDiv.text(review.productName); 
+						/*
+						<div class="review-list-productName">
+							상품이름
+						</div>
+						*/
+						
+						const listMidDiv = $("<div>");
+						listMidDiv.addClass("review-list-mid");
+						const starSpan1 = $("<span>");
+						starSpan1.addClass("material-icons");
+						starSpan1.addClass("star1");
+						starSpan1.text("star");
+						const starSpan2 = $("<span>");
+						starSpan2.addClass("material-icons");
+						starSpan2.addClass("star2");
+						starSpan2.text("star");
+						const starSpan3 = $("<span>");
+						starSpan3.addClass("material-icons");
+						starSpan3.addClass("star3");
+						starSpan3.text("star");
+						const starSpan4 = $("<span>");
+						starSpan4.addClass("material-icons");
+						starSpan4.addClass("star4");
+						starSpan4.text("star");
+						const starSpan5 = $("<span>");
+						starSpan5.addClass("material-icons");
+						starSpan5.addClass("star5");
+						starSpan5.text("star");
+						const customerIdSpan = $("<span>");
+						customerIdSpan.addClass("review-list-customerId");
+						customerIdSpan.text(review.reviewWriter)
+						listMidDiv.append(starSpan1).append(starSpan2).append(starSpan3).append(starSpan4).append(starSpan5).append(customerIdSpan);
+						
+						const reviewDetailDiv = $("<div>");
+						reviewDetailDiv.addClass("review-list-detail");
+						reviewDetailDiv.text(review.reviewContent);
+						
+						contentDiv.append(imgDiv).append(productNameDiv).append(listMidDiv).append(reviewDetailDiv);
+						
+						div.append(contentDiv);
+					
+						$(".reviewContent").append(div);
+					}
+
+					const currentVal = Number($("#more-btn").val());
+					$("#more-btn").val(currentVal+amount);
+
+					const currentCount = Number($("#more-btn").attr("currentCount"));
+					const changeCount = currentCount+data.length;
+					$("#more-btn").attr("currentCount",changeCount);
+					
+					const totalCount = Number($("#more-btn").attr("totalCount"));
+					if(totalCount == changeCount){
+						$("#more-btn").remove();
+					}
+				}
+			});
+		});
+		
+		$("#more-btn").click();
+	</script>
+	 
 </body>
 </html>
