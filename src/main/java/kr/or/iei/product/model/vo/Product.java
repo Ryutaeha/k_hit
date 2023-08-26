@@ -18,4 +18,6 @@ public class Product {
 	private String productRegDate;
 	private int productCheck;
 	private int categoryNo;
+	
+	
 }
