@@ -34,9 +34,16 @@ public class CustomerService {
 		Cart cart = customerDao.selectMyCart(cartNo);
 		return cart;
 	}
+	//회원정보수정
 	@Transactional
 	public int updateCustomer(String customerEmail2, Customer c) {
 		int result = customerDao.updateCustomer(customerEmail2,c);
+		return result;
+	}
+	//회원탈퇴
+	@Transactional
+	public int deleteCustomer(int customerNo) {
+		int result = customerDao.deleteCustomer(customerNo);
 		return result;
 	}
 

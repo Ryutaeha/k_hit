@@ -153,6 +153,35 @@ public class CustomerController {
 			return "common/msg";
 		}
 	}
+	//회원탈퇴 여부 확인
+	@GetMapping(value="/unregister")
+	public String unregisterCustomer(@SessionAttribute(required = false)Customer c,Model model) {
+		model.addAttribute("title","회원탈퇴");
+		model.addAttribute("msg", "[ "+c.getCustomerId()+" 님 ] 정말 탈퇴하시겠습니까?");
+		model.addAttribute("icon", "question");
+		model.addAttribute("loc", "/customer/delete");
+		model.addAttribute("cancelLoc", "/customer/mypage");
+		return "common/confirmMsg";
+	}
+	
+	//회원 탈퇴
+	@GetMapping(value="/delete")
+	public String deleteCustomer(@SessionAttribute(required = false)Customer c, Model model) {
+		int result = customerService.deleteCustomer(c.getCustomerNo());
+		if(result>0) {
+			model.addAttribute("title", "탈퇴완료");
+			model.addAttribute("msg", "그동안 이용해 주셔서 감사합니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/customer/logout");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "회원탈퇴");
+			model.addAttribute("msg", "회원탈퇴를 실패했습니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/cusotmer/mypage");
+			return "common/msg";
+		}
+	}
 }
 
 

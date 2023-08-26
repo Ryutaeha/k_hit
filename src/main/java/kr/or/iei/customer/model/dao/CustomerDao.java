@@ -54,6 +54,13 @@ public class CustomerDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
+	//회원탈퇴
+	public int deleteCustomer(int customerNo) {
+		String query = "delete from customer_tbl where customer_no=?";
+		Object[] params = {customerNo};
+		int result = jdbc.update(query,params);
+		return result;
+	}
 
 
 }
