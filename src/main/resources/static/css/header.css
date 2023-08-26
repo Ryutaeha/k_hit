@@ -14,11 +14,13 @@
     
 }
 
-  .page-content{
-	min-height:80vh;
+    .page-content{
+	min-height: 65vh;
     min-width: 1600px;
     overflow: hidden;
-  }
+    
+}
+
 .header-wrap{
     width: 100%;
     
@@ -26,7 +28,7 @@
 }
 .header-title{
     width: 100%;
-    height: calc(156px / 2);
+    height: 90px;
     box-sizing: border-box;
     border-bottom: 1px solid #ececec;
     overflow: hidden;
@@ -44,7 +46,7 @@
     height: 100%;
     display: block;
     float: left;
-    line-height: 75px;
+    line-height:90px;
 }
 .header-logo>a{
     font-family: lob;
@@ -128,7 +130,7 @@
     z-index:1;
     background-color: #FFF;
     border: 1px solid #ececec;
-    box-shadow: 0px 0px 6px #ececec;
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.1);
     z-index : 100;
   }
   
@@ -175,7 +177,7 @@
     color: #ececec;
     height: 200px;
     border-bottom: 1px solid #ececec;
-    box-shadow: 0 10px 10px -5px;
+    box-shadow: 0 15px 15px 1px rgba(0, 0, 0, 0.1);
     background-color: #FFF;
     padding-top: 160px;
     position: absolute;
@@ -260,6 +262,45 @@
     font-family: ns-b;
 
 }
+.search-list-wrap{
+    padding-top: 40px;
+    margin: 0 150px 0 150px;
+    
+    overflow: hidden;
+}
+.prdlist{
+}
+.prdbox{
+    box-sizing: border-box;
+    background-color: #ccc;
+    width: calc(100% / 5 - 20px);
+    display: block;
+    float: left;
+    margin: 30px 10px 60px 10px;
+}
+.prdbox:hover{
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.1);
+}
+.inner{
+    box-sizing: border-box;
+    padding: 15px;
+}
+.item_list_box{
+    width: 100%;
+    background-color: bisque;
+}
+.tumbnail>a>img{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -270,12 +311,12 @@
     min-width: 1600px;
     
 }
-.footer-company{    
-    height: 250px;
+
+.footer-company{  
     width: 60%;
     display: block;
     padding-left: 400px;
-    padding-top: 25px;
+    padding-top: 45px;
     padding-bottom: 25px;
     box-sizing: border-box;
     border-top: 1px solid #ececec;
@@ -303,7 +344,7 @@
     width: 40%;
     display: block;
     padding-right: 400px;
-    padding-top: 25px;
+    padding-top: 45px;
     padding-bottom: 25px;
     box-sizing: border-box;
     border-top: 1px solid #ececec;
@@ -320,7 +361,7 @@
     z-index:1;
 }
 .swiper img{
-    width: 100%;
+    width: 80%;
     height: 100%;
 }
 .swpier-wrapper {
