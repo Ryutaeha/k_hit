@@ -52,21 +52,21 @@ public class CustomerController {
 		}else if(c != null){
 			session.setAttribute("c", c);
 	
-			return "customer/cart";
+			return "/customer/cart";
 		}
 		return "common/msg";
 	}
 	
 	//고객 취소/환불 목록 페이지
-	@GetMapping(value="/refundList")
+	@GetMapping(value="/cancelRefundList")
 	public String refundList() {
-		return "customer/refundList";
+		return "/customer/cancelRefundList";
 	}
 	
 	//취소 신청 페이지
 	@GetMapping(value="/cancel")
 	public String cancel() {
-		return "customer/cancel";
+		return "/customer/cancel";
 	}
 
 	//결제하기
@@ -79,6 +79,11 @@ public class CustomerController {
 	@GetMapping(value="/wishList") 
 	public String wishList(){
 		return "/customer/wishList";
+	}
+	
+	@GetMapping(value="/orderList")
+	public String orderList() {
+		return "/customer/orderList";
 	}
 	
 	//회원가입
