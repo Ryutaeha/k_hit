@@ -8,20 +8,25 @@
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-		    <div class="order-content">
 		    <th:block th:include="customer/customerHeader"></th:block>
         		<th:block th:include="customer/customermenu"></th:block>
-        <div class="order-wrap">
-            <div class="order-head-title">
-                <h2>ORDER</h2>
-            </div>
-            <div class="content-date">
+        <!-- 클래스 content-wrap 부터 안의 요소들은 마이페이지 생성 시 똑같이 적용시켜야함-->
+		<div class="content-wrap">
+			<div class="content-title">
+				<span>
+					ORDER
+				</span>
+			</div>
+			<!--  <div class="content-date">
                 <span>yyyy/mm/dd</span>
             </div>
-                <div class="content-info">
+			-->
+			
+			<div class="content-main">
+				                <div class="content-info">
                     <table class="orderListTbl info-top">
                         <tr class="tbl-top">
-                                <th class="info1">선택</th>
+                                <th class="info1">No.</th>
                                 <th class="info2">상품정보</th>
                                 <th class="info3">수량</th>
                                 <th class="info4">상품금액</th>
@@ -51,10 +56,10 @@
                         <button type="button">더보기</button>
                     </div>
                 </div>
+			</div>
+		</div>
+		<!--------------------------------------------------------- -->
                 
-            </div>
-    </div>
-	
 	<th:block th:include="common/footer"></th:block>
 
 </body>
