@@ -92,7 +92,8 @@ public class AdminController {
 	}	
 	@ResponseBody
 	@PostMapping(value="/pContent")
-	public int pContent(){
-		return 0;
+	public List pContent(int pNo){
+		List<ProductDetail> product = adminService.product(pNo);
+		return product;
 	}
 }

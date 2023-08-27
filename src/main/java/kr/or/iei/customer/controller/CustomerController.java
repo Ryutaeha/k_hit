@@ -52,28 +52,43 @@ public class CustomerController {
 		}else if(c != null){
 			session.setAttribute("c", c);
 	
-			return "customer/cart";
+			return "/customer/cart";
 		}
 		return "common/msg";
 	}
 	
-	//고객 취소/환불 목록 페이지
-	@GetMapping(value="/refundlist")
-	public String refundList() {
-		return "customer/refundlist";
-	}
-	
-	//취소 신청 페이지
-	@GetMapping(value="/cancel")
-	public String cancel() {
-		return "customer/cancel";
-	}
-
 	//결제하기
 	@GetMapping(value="/payment")
 	public String customerPayment() {
 		return "/customer/payment";
 	}
+	
+	//마이페이지 주문 내역 목록 확인
+	@GetMapping(value="/orderList")
+	public String orderList() {
+		return "/customer/orderList";
+	}
+	
+	//고객 취소/환불 목록 페이지
+	@GetMapping(value="/cancelRefundList")
+	public String refundList() {
+		return "/customer/cancelRefundList";
+	}
+	
+	//취소 신청 페이지
+	@GetMapping(value="/cancel")
+	public String cancel() {
+		return "/customer/cancel";
+	}
+
+	
+	//찜목록
+	@GetMapping(value="/wishList") 
+	public String wishList(){
+		return "/customer/wishList";
+	}
+
+	
 	//회원가입
 	@PostMapping(value="/joinComplete")
 
@@ -94,7 +109,7 @@ public class CustomerController {
 		Customer c = customerService.selectCustomerId(customerId);
 		if(c == null) {
 			return "0";
-		}else {
+		}else { 
 			return "1";
 		}
 	}

@@ -41,7 +41,7 @@
     display: block;
     float: left;
     box-sizing: border-box;
-    background-color: #f8f8f8;
+    background-color: #fdfae8;
     padding-left: 50px;
     padding-top: 50px;
 }
@@ -52,7 +52,7 @@
     float: left;
     box-sizing: border-box;
     line-height: 120px;
-    background-color: #f8f8f8;
+    background-color: #fdfae8;
 }
 .seller-header-id>a{
     font-weight: 600;  

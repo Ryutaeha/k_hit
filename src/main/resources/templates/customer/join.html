@@ -262,39 +262,41 @@
 	                <div class="signinfo-content">
 	                    <div class="join-input-wrap"> 
 	                        <div class="join-input"> 
+	                        	<input type="hidden" name="checkId">
 	                            <label for="customerId">아이디</label>
-	                            <input type="text" name="customerId" id="customerId" placeholder="아이디">
+	                            <input type="text" name="customerId" id="customerId" placeholder="아이디" required>
 	                            <button type="button" class="dup-btn">중복체크</button>
 	                            <div class="joinCheck checkId"></div>
 	                        </div>
 	
 	                        <div class="join-input"> 
 	                            <label for="customerPw">비밀번호</label>
-	                            <input type="password" name="customerPw" id="customerPw" placeholder="영문,특수문자와 숫자를 포함하여 최소 8자 이상">
-	                            
+	                            <input type="password" name="customerPw" id="customerPw" placeholder="영어 대소문자,특수문자와 숫자를 포함하여 최소 8자 이상" required>
+	                             <div class="joinCheck checkPw"></div>
 	                        </div>
 	
 	                        <div class="join-input">
 	                            <label for="customerPwRe">비밀번호 확인</label>
-	                            <input type="password" id="customerPwRe" placeholder="비밀번호 확인">
+	                            <input type="password" id="customerPwRe" placeholder="비밀번호 확인" required>
 	                            <div class="joinCheck checkPwRe"></div>
 	                        </div>
 	
 	                        <div class="join-input"> 
 	                            <label for="customerName">이름</label>
-	                            <input type="text" name="customerName" id="customerName" placeholder="이름">
+	                            <input type="text" name="customerName" id="customerName" placeholder="이름" required>
+	                            <div class="joinCheck checkName"></div>
 	                        </div>
 	
 	                        <div class="join-input"> 
 	                            <label for="customerPhone">전화번호</label>
-	                            <input type="text" name="customerPhone" id="customerPhone" placeholder="전화번호( - 를 제외한 번호만 입력해주세요)">
+	                            <input type="text" name="customerPhone" id="customerPhone" placeholder="전화번호( - 를 제외한 번호만 입력해주세요)" required>
 	                            <div class="joinCheck checkPhone"></div>
 	                        </div>	
 	                        <div class="join-input">
 	                            <label for="customerEmail">이메일</label>
-	                            <input type="text" class="short-input" name="customerEmail" id="customerEmail" placeholder="이메일">
+	                            <input type="text" class="short-input" name="customerEmail" id="customerEmail" placeholder="이메일" required>
 	                            <span class="mail-center">@</span>
-	                            <input type="text" class="short-input" name="customerEmail2" id="customerEmail2">
+	                            <input type="text" class="short-input" name="customerEmail2" id="customerEmail2" required>
 	                            <select class="email-choice">
 	                                <option value="">직접입력</option>
 	                                <option value="naver.com">naver.com</option>
@@ -308,7 +310,7 @@
 	
 	                    <div class="signup-btn">
 	                        <button type="button" class="btn1 cancel-btn" onclick="location.href='/'">취소</button>
-	                        <button type="submit" class="btn1 signup-btn">회원가입</button>
+	                        <button type="submit" class="btn1 signupBtn">회원가입</button>
 	                    </div>
 	                </div>
 	            </form>
@@ -316,7 +318,8 @@
 	    </div>
 	    <th:block th:include="common/footer"></th:block>
 	</div>
-	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 	<script src="/js/join.js"></script>
 </body>
 </body>
