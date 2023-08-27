@@ -19,7 +19,7 @@ public class PageService {
 		//String searchCount = pageDao.searchProductCount(searchWord);
 		int searchCount = productList.size();
 		PageSearchDate psd = new PageSearchDate(productList,searchCount);
-		//System.out.println("검색 갯수 : "+psd.getSearchList().size());
+		System.out.println("검색 갯수 : "+psd.getSearchList().size());
 		
 		return psd;
 	}

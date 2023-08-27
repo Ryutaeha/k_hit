@@ -21,13 +21,16 @@ public class PageController {
 	@GetMapping(value="/search")
 	public String productSearch(String searchWord,Model model) {
 		model.addAttribute("searchWord",searchWord);		
+		if(searchWord.equals("")) {
+			 searchWord = "뷐";
+		}	
 		//하고자 하는 행위 : 검색창에 input 하면 productName에 1글자라도 겹치면 count세서 
 		//총 갯수,검색된 모든 product 목록화
 		PageSearchDate psd = pageService.searchProduct(searchWord);
 		model.addAttribute("searchCount", psd.getSearchCount());
 		model.addAttribute("searchList", psd.getSearchList());
 		//리뷰카운트 조회
-		//System.out.println("검색한 단어 조회 : "+psd);
+		System.out.println("검색한 단어 조회 : "+psd);
 		return "/page/search";
 		
 	}
