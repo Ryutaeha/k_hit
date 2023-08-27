@@ -49,4 +49,56 @@ public class PageController {
 	public String allPage() {
 		return "/page/all";
 	}
+	//귀걸이 페이지
+	@GetMapping(value="/earring")
+	public String earringPage() {
+		return "/page/earring";
+	}
+	//목걸이 페이지
+	@GetMapping(value="/necklace")
+	public String necklacePage() {
+		return "/page/necklace";
+	}
+	//반지 페이지
+	@GetMapping(value="/ring")
+	public String ringPage() {
+		return "/page/ring";
+	}
+	//팔찌 페이지
+	@GetMapping(value="/bracelet")
+	public String braceletPage() {
+		return "/page/bracelet";
+	}
+	//시계 페이지
+	@GetMapping(value="/watch")
+	public String watchPage() {
+		return "/page/watch";
+	}
+	//헤어용품 페이지
+	@GetMapping(value="/hair")
+	public String hairPage() {
+		return "/page/hair";
+	}
+	//기타 페이지
+	@GetMapping(value="/other")
+	public String otherPage() {
+		return "/page/other";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
