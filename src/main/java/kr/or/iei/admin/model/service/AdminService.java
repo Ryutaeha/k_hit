@@ -40,5 +40,10 @@ public class AdminService {
 		}
 		return product;
 	}
+	public List<ProductDetail> product(int pNo) {
+		List product;
+			product = adminDao.product(pNo);
+		return product;
+	}
 	
 }
