@@ -74,7 +74,7 @@
                 			<th>상품 카테고리 선택</th>
                 			<td colspan="3">
                 				<!-- <input type="text" name="productCategory" required> -->
-                				<select class="input-form">
+                				<select name="categoryNo" class="input-form">
                 					<option value="1">EARRING</option>
                 					<option value="2">NECKLACE</option>
                 					<option value="3">RING</option>
@@ -108,7 +108,7 @@
                 		<tr class="input-tr">
                 			<th>상품 상세 설명</th>
                 			<td colspan="3" style="text-align: left;">
-                				<textarea class="input-form" name="productContentDetail" id="productContentDetail"></textarea>
+                				<textarea class="input-form" name="productContentDetails" id="productContentDetails" placeholder="내용을 입력해주세요"></textarea>
                 			</td>
                 		</tr>
                 	</table>                		
@@ -166,9 +166,10 @@
 	    
 	    
     	//썸머노트
-	    $("#productContentDetail").summernote({
+	    $("#productContentDetails").summernote({
 			height: 400,
 			lang : "ko-KR",
+			placeholder: '상세 설명을 작성해주세요.',
 			callbacks : {
 				onImageUpload : function(files){
 					uploadImage(files[0],this);
@@ -187,7 +188,7 @@
 	    		processData : false,
 	    		contentType : false,
 	    		success : function(data){
-	    			console.log(data);
+	    			//console.log(data);
 	    			$(editor).summernote("insertImage",data);
 	    		}
 	    	});
