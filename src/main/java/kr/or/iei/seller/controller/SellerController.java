@@ -236,13 +236,20 @@ public class SellerController {
 			return "common/msg";
 		}
 	}
-	/*
+	
 	@ResponseBody
 	@PostMapping(value="/editor",produces = "plain/text;charset=utf-8")
 	public String editorUpload(MultipartFile file) {
-		String savepath = root+"seller/";
+		String savepath = root+"editor/";
 		String filepath = fileUtil.getFilepath(savepath, file.getOriginalFilename());
 		File image = new File(savepath+filepath);
+		try {
+			file.transferTo(image);
+			System.out.println(image);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		return "/editor/"+filepath;
 	}
-	*/
+	
 }
