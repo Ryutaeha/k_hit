@@ -57,6 +57,18 @@ public class CustomerController {
 		return "common/msg";
 	}
 	
+	//결제하기
+	@GetMapping(value="/payment")
+	public String customerPayment() {
+		return "/customer/payment";
+	}
+	
+	//마이페이지 주문 내역 목록 확인
+	@GetMapping(value="/orderList")
+	public String orderList() {
+		return "/customer/orderList";
+	}
+	
 	//고객 취소/환불 목록 페이지
 	@GetMapping(value="/cancelRefundList")
 	public String refundList() {
@@ -69,22 +81,13 @@ public class CustomerController {
 		return "/customer/cancel";
 	}
 
-	//결제하기
-	@GetMapping(value="/payment")
-	public String customerPayment() {
-		return "/customer/payment";
-	}
 	
 	//찜목록
 	@GetMapping(value="/wishList") 
 	public String wishList(){
 		return "/customer/wishList";
 	}
-	
-	@GetMapping(value="/orderList")
-	public String orderList() {
-		return "/customer/orderList";
-	}
+
 	
 	//회원가입
 	@PostMapping(value="/joinComplete")
