@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Wish List</title>
+<link rel="stylesheet" href="/css/wishList.css">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+        <div class="wishlist-content">
+        <th:block th:include="customer/customerHeader"></th:block>
+        <th:block th:include="customer/customerMenu"></th:block>
+        <div class="content-wrap">
+            <div class="content-title">
+                <span>
+					WISH LIST
+				</span>
+            </div>
+        <div class="content-main">
+				<div class="wishlist-info-list">
+                    <ul>
+                        <li class="product">
+                            <a href="#">
+                                <div class="wishlist-img">
+                                    <img src="img/천둥이.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="wishlist-name">상품이름</div>
+                                    <div class="wishlist-price"><span>상품가격</span></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="product">
+                            <a href="#">
+                                <div class="wishlist-img">
+                                    <img src="img/천둥이.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="wishlist-name">상품이름</div>
+                                    <div class="wishlist-price"><span>상품가격</span></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="product">
+                            <a href="#">
+                                <div class="wishlist-img">
+                                    <img src="img/천둥이.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="wishlist-name">상품이름</div>
+                                    <div class="wishlist-price"><span>상품가격</span></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="product">
+                            <a href="#">
+                                <div class="wishlist-img">
+                                    <img src="img/천둥이.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="wishlist-name">상품이름</div>
+                                    <div class="wishlist-price"><span>상품가격</span></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div> 
+
+			</div>
+        </div>
+        </div>
+  
+	
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>
