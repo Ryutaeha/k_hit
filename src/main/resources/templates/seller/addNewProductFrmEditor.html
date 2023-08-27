@@ -172,14 +172,14 @@
 			placeholder: '상세 설명을 작성해주세요.',
 			callbacks : {
 				onImageUpload : function(files){
-					uploadImage(files[0],this);
+					uploadImage2(files[0],this);
 				} 
 			}
 		});
     
     	
     	//이미지 업로드 - 이미지를 ajax로 업로드하고 그 경로를 받아옴
-	    function uploadImage(file,editor){
+	    function uploadImage1(file,editor){
 	    	const form = new FormData();
 	    	form.append("file",file);
 	    	$.ajax({
@@ -197,7 +197,7 @@
     	
 	    
     	//이미지 업로드 - 이미지를 ajax로 업로드하고 그 경로를 받아옴
-	    function uploadImage(file,editor){
+	    function uploadImage2(file,editor){
 	    	const form = new FormData();
 	    	form.append("file",file);
 	    	$.ajax({

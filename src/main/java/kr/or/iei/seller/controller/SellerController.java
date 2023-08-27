@@ -126,7 +126,7 @@ public class SellerController {
 		//String productImg = new productImg(upfile);
 		
 		
-		String savepath = root+"seller/";
+		String savepath = root+"product/";
 		String filepath = fileUtil.getFilepath(savepath, upfile.getOriginalFilename());
 		p.setProductImg(filepath);
 		

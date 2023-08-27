@@ -33,7 +33,7 @@ public class ProductController {
 	@ResponseBody
 	@PostMapping(value="/editor",produces = "plain/text;charset=utf-8")
 	public String editorUpload(MultipartFile file) {
-		String savepath = root+"product/";
+		String savepath = root+"editor/";
 		String filepath = fileUtil.getFilepath(savepath, file.getOriginalFilename());
 		File image = new File(savepath+filepath);
 		try {
