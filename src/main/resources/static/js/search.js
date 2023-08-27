@@ -36,3 +36,8 @@ customerBtn.on("click", function(){
 sellerBtn.on("click", function(){
     location.href = "/seller/join";
 });
+
+$(".favorite_border").click(function(){
+    $(this).css("display","none")
+
+});

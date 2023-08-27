@@ -34,5 +34,71 @@ public class PageController {
 		return "/page/search";
 		
 	}
-	
+	//베스트 페이지
+	@GetMapping(value="/best")
+	public String bestPage() {
+		return "/page/best";
+	}
+	//신상품 페이지
+	@GetMapping(value="/new")
+	public String newPage() {
+		return "/page/new";
+	}
+	//모든 상품페이지
+	@GetMapping(value="/all")
+	public String allPage() {
+		return "/page/all";
+	}
+	//귀걸이 페이지
+	@GetMapping(value="/earring")
+	public String earringPage() {
+		return "/page/earring";
+	}
+	//목걸이 페이지
+	@GetMapping(value="/necklace")
+	public String necklacePage() {
+		return "/page/necklace";
+	}
+	//반지 페이지
+	@GetMapping(value="/ring")
+	public String ringPage() {
+		return "/page/ring";
+	}
+	//팔찌 페이지
+	@GetMapping(value="/bracelet")
+	public String braceletPage() {
+		return "/page/bracelet";
+	}
+	//시계 페이지
+	@GetMapping(value="/watch")
+	public String watchPage() {
+		return "/page/watch";
+	}
+	//헤어용품 페이지
+	@GetMapping(value="/hair")
+	public String hairPage() {
+		return "/page/hair";
+	}
+	//기타 페이지
+	@GetMapping(value="/other")
+	public String otherPage() {
+		return "/page/other";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

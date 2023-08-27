@@ -1,5 +1,7 @@
 package kr.or.iei.qna.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +15,11 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 	
-	@GetMapping(value="/qnaView")
+	//QnA전제출력페이지
+	@GetMapping(value="/qnaList")
 	public String qnaView() {
-		return "/qna/qnaView";
+		List qnaList = qnaService.searchAllQna();
+		return "/qna/qnaList";
 	}
 	
 	@GetMapping(value="/qnaDetail")

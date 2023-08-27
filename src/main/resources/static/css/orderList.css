@@ -9,27 +9,20 @@
     font-family: ns-r;
     color: #1e1e1e;
 }
-.order-head-title{
-    padding: 20px 0px 20px 0px;
-}
-.title1{
-    text-align: center;
-    margin: 100px 0;
-}
-.order-wrap{
-    border-radius: 10px;
-    background-color: white;
-    width: 1000px;
-    margin: 0 auto;
+.content-title>span {
+    font-family: ns-eb;
+    letter-spacing: 3px;
 }
 
+/*
 .content-date{
-    padding: 0px 0px 20px 0px;
+    padding: 20px 20px 20px 0px;
 }
 .content-date>span{
     color: #272829;
     font-weight: bold;
 }
+*/
 
 /* 테이블 간 넓이 */
 .orderListTbl{
