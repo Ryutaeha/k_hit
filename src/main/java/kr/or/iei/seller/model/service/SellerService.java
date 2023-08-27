@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import kr.or.iei.product.model.vo.Product;
 import kr.or.iei.product.model.vo.ProductOptionListData;
 import kr.or.iei.seller.model.dao.SellerDao;
 import kr.or.iei.seller.model.vo.Seller;
@@ -188,6 +190,12 @@ public class SellerService {
 	@Transactional
 	public int updateSeller(String customerEmail2, Seller s) {
 		int result = sellerDao.updateSeller(customerEmail2,s);
+		return result;
+	}
+
+	@Transactional
+	public int addNewProduct(Product p, int sellerNo, MultipartFile upfile) {
+		int result = sellerDao.addNewProduct(p, sellerNo, upfile);
 		return result;
 	}
 

@@ -176,6 +176,7 @@
 				} 
 			}
 		});
+    
     	
     	//이미지 업로드 - 이미지를 ajax로 업로드하고 그 경로를 받아옴
 	    function uploadImage(file,editor){
@@ -193,7 +194,24 @@
 	    		}
 	    	});
 	    }
+    	
 	    
+    	//이미지 업로드 - 이미지를 ajax로 업로드하고 그 경로를 받아옴
+	    function uploadImage(file,editor){
+	    	const form = new FormData();
+	    	form.append("file",file);
+	    	$.ajax({
+	    		url : "/product/editor",
+	    		type : "post",
+	    		data : form,
+	    		processData : false,
+	    		contentType : false,
+	    		success : function(data){
+	    			//console.log(data);
+	    			$(editor).summernote("insertImage",data);
+	    		}
+	    	});
+	    }
     	
 	    //파일 업로드
 	    $("[name=upfile]").on("change",function(){
