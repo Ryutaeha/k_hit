@@ -108,7 +108,7 @@
                 		<tr class="input-tr">
                 			<th>상품 상세 설명</th>
                 			<td colspan="3" style="text-align: left;">
-                				<textarea name="productContentDetail" id="productContentDetail">해당 문구를 지운 뒤 상품 상세 설명을 입력해주세요.</textarea>
+                				<textarea class="input-form" name="productContentDetail" id="productContentDetail"></textarea>
                 			</td>
                 		</tr>
                 	</table>                		
@@ -124,6 +124,7 @@
     <th:block th:include="common/footer"></th:block>
     <script>
     	
+    	//옵션 추가 버튼
 	    $("#optionAddBtn").on("click",function(){
 	    	const tr = $("<tr>");
 	    	const td1 = $("<td>");
@@ -163,7 +164,8 @@
 	    	})
 	    });
 	    
-    	
+	    
+    	//썸머노트
 	    $("#productContentDetail").summernote({
 			height: 400,
 			lang : "ko-KR",
@@ -173,8 +175,10 @@
 				} 
 			}
 		});
+    	
+    	//이미지 업로드 - 이미지를 ajax로 업로드하고 그 경로를 받아옴
 	    function uploadImage(file,editor){
-	    	const form = new FromData();
+	    	const form = new FormData();
 	    	form.append("file",file);
 	    	$.ajax({
 	    		url : "/seller/editor",
@@ -183,11 +187,14 @@
 	    		processData : false,
 	    		contentType : false,
 	    		success : function(data){
+	    			console.log(data);
 	    			$(editor).summernote("insertImage",data);
 	    		}
 	    	});
 	    }
 	    
+    	
+	    //파일 업로드
 	    $("[name=upfile]").on("change",function(){
 	        if(this.files.length != 0 && this.files[0] !=0){
 	            const reader = new FileReader();
@@ -199,6 +206,7 @@
 	            $("#productImgView").attr("src","");
 	        }
 	    });
+    	
     </script>
 </body>
 </html>
