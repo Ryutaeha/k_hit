@@ -20,6 +20,7 @@ public class ReviewListRowMapper implements RowMapper<ReviewListProduct>{
 		rlp.setReviewNo(rs.getInt("review_no"));
 		rlp.setReviewWriter(rs.getString("review_writer"));
 		rlp.setStarCount(rs.getInt("star_count"));
+		rlp.setProductNo(rs.getInt("product_no"));
 		return rlp;
 	}
 	
