@@ -58,9 +58,9 @@ public class CustomerController {
 	}
 	
 	//고객 취소/환불 목록 페이지
-	@GetMapping(value="/refundlist")
+	@GetMapping(value="/refundList")
 	public String refundList() {
-		return "customer/refundlist";
+		return "customer/refundList";
 	}
 	
 	//취소 신청 페이지
@@ -74,6 +74,13 @@ public class CustomerController {
 	public String customerPayment() {
 		return "/customer/payment";
 	}
+	
+	//찜목록
+	@GetMapping(value="/wishList") 
+	public String wishList(){
+		return "/customer/wishList";
+	}
+	
 	//회원가입
 	@PostMapping(value="/joinComplete")
 
@@ -94,7 +101,7 @@ public class CustomerController {
 		Customer c = customerService.selectCustomerId(customerId);
 		if(c == null) {
 			return "0";
-		}else {
+		}else { 
 			return "1";
 		}
 	}

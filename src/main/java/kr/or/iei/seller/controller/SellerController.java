@@ -117,13 +117,23 @@ public class SellerController {
 	@PostMapping(value="/addNewProduct")
 	public String addNewProduct(Product p, String[] optionColor, String[] optionSize, @SessionAttribute(required = false) Seller s,MultipartFile upfile, Model model) {
 		//sysout으로 (상품명,판매가,카테고리,판매자번호,파일,요약,상셍)
-		//sysoutdmfh 옵션 사이즈1, 옵션 색상 1
-		//sysoutdmfh 옵션 사이즈1, 옵션 색상 1
-		//sysoutdmfh 옵션 사이즈1, 옵션 색상 1
-		//sysoutdmfh 옵션 사이즈1, 옵션 색상 1
+		//sysout으로 옵션 사이즈1, 옵션 색상 1
+		//sysout으로 옵션 사이즈1, 옵션 색상 1
+		//sysout으로 옵션 사이즈1, 옵션 색상 1
+		//sysout으로 옵션 사이즈1, 옵션 색상 1
+		
+		//p.setProductImg(upfile);
+		//String productImg = new productImg(upfile);
+		
+		
+		String savepath = root+"seller/";
+		String filepath = fileUtil.getFilepath(savepath, upfile.getOriginalFilename());
+		p.setProductImg(filepath);
+		
+		
 		System.out.println(p.getProductName());
 		System.out.println(p.getProductPrice());
-		System.out.println(p.getCategoryNo());//이거 해결
+		System.out.println(p.getCategoryNo());
 		System.out.println(s.getSellerNo());
 		System.out.println(p.getProductImg());//이것도 해결
 		System.out.println(p.getProductContent());
@@ -245,7 +255,7 @@ public class SellerController {
 		File image = new File(savepath+filepath);
 		try {
 			file.transferTo(image);
-			System.out.println(image);
+			//System.out.println(image);
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}

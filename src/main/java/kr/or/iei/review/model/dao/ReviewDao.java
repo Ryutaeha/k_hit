@@ -47,10 +47,8 @@ public class ReviewDao {
 	}
 	//리뷰리스트
 	public List selectReviewList(int start, int end) {
-		String query = "from (select rownum as rnum, r.* from (select review_no,order_no,review_writer,star_count,review_content,filepath,product_name,product_img from review_tbl join order_tbl using(order_no) join product_option_tbl using(product_option_no) join product_tbl using(product_no)order by 1 desc)r) where rnum between ? and ?";
-		//쿼리 오류가 나는데 못찾음..
+		String query = "select * from (select rownum as rnum, r.* from (select review_no,order_no,product_no,review_writer,star_count,review_content,filepath,product_name,product_img from review_tbl join order_tbl using(order_no) join product_option_tbl using(product_option_no) join product_tbl using(product_no)order by 1 desc)r) where rnum between ? and ?";
 		List reviewList = jdbc.query(query, reviewListRowMapper, start, end);
-		System.out.println(reviewList);
 		return reviewList;
 	}
 
