@@ -17,4 +17,6 @@ public class Review {
 	private String filepath;
 	private String reviewDate;
 	private int readCount;
+	private int isLike;
+	private int likeCount;
 }

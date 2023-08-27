@@ -92,11 +92,14 @@
 .star-wrap{
     overflow: hidden;
 }
+.star-wrap1>span{
+	cursor: pointer;
+}
 .star-wrap>span{
     float: left;
     color: lightgray;
     font-size: 30px;
-    cursor: pointer;
+    
     
 }
 
@@ -149,6 +152,7 @@
 }
 
 .star-wrap2{
+	overflow: hidden;
     position: relative;
 }
 .star-on{
@@ -158,7 +162,7 @@
 }
 .star-on-wrap{
     width: 150px;
-    cursor: pointer;
+    
 }
 .star-on-wrap>span{ 
     color: gold;
@@ -185,7 +189,7 @@
 .review-like>span{
     float: left;
 }
-.review-like>div{
+.review-like>span:last-child{
     font-size: 17px;
     padding-left: 10px;
     float: left;
