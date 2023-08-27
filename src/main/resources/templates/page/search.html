@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
 	<th:block th:include="common/header"></th:block>
 	<div class="page-content">
@@ -12,20 +13,285 @@
 		</div>
 		<div class="search-input">
 			<div class="search1">                
-				<form action="/page/productSearch">
+				<form action="/page/search">
 					<fieldset class="search2">
 						<span>검색</span>
-						<input type="text" name="productName" id="search-input">
+						<input type="text" name="searchWord" id="search-input" th:value="${searchWord}">
 						<input type="submit" value="GO" id="search-btn">					
 					</fieldset>
 				</form>                
 			</div>
 		</div>
 		<div class="search-sentence">
-			<p>총 * 개의 상품이 검색되었습니다.</p>
+			<p>총 <span th:text="${searchCount}"></span> 개의 상품이 검색되었습니다.</p>			
 		</div>
 		<div class="search-list-wrap">
-			검색리스트가 나오는 div
+
+
+			<ul class="prdList">
+
+
+				<li class="prdbox">
+					<div class="item_list_box">
+						<div class="tumbnail">
+							<a href="#">
+								<img src="/img/others/profile.png">
+							</a>
+							
+								<span class="material-icons favorite_border">
+									favorite_border
+									</span>
+							
+						</div>
+					</div>
+					<div class="prd_info">
+						<div class="inner">
+							<strong>
+								<a href="#">제품명</a>
+							</strong>
+							
+							<ul class="spec">
+								<li class="summary">
+									제품상세내용
+								</li>
+								<li class="price_all">
+									<span>1,000 원</span>
+								</li>
+								<li class="review">
+									<a href="#">
+										<span class="material-icons star">star</span>
+										<span class="material-icons star">star</span>
+										<span class="material-icons star">star</span>
+										<span class="material-icons star">star</span>
+										<span class="material-icons star">star</span>
+									</a>
+									<a href="#">
+										<span class="review_content">
+											리뷰내용리뷰내용리뷰내용
+										</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+
+				<li class="prdbox">
+					<div class="item_list_box">
+						<div class="tumbnail">
+							<a href="#">
+								<img src="/img/others/profile.png">
+							</a>
+						</div>
+					</div>
+					<div class="prd_info">
+						<div class="inner">
+							<strong>
+								<a href="#">제품명</a>
+							</strong>
+							<ul class="spec">
+								<li class="summary">
+									제품상세내용
+								</li>
+								<li class="price_all">
+									<span>00,000원</span>
+								</li>
+								<li class="review">
+									<a href="#">
+										별별별별
+									</a>
+									<a href="#">
+										<span class="review_content">
+											리뷰내용리뷰내용리뷰내용
+										</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+
+				<li class="prdbox">
+					<div class="item_list_box">
+						<div class="tumbnail">
+							<a href="#">
+								<img src="/img/others/profile.png">
+							</a>
+						</div>
+					</div>
+					<div class="prd_info">
+						<div class="inner">
+							<strong>
+								<a href="#">제품명</a>
+							</strong>
+							<ul class="spec">
+								<li class="summary">
+									제품상세내용
+								</li>
+								<li class="price_all">
+									<span>00,000원</span>
+								</li>
+								<li class="review">
+									<a href="#">
+										별별별별
+									</a>
+									<a href="#">
+										<span class="review_content">
+											리뷰내용리뷰내용리뷰내용
+										</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+
+				<li class="prdbox">
+					<div class="item_list_box">
+						<div class="tumbnail">
+							<a href="#">
+								<img src="/img/others/profile.png">
+							</a>
+						</div>
+					</div>
+					<div class="prd_info">
+						<div class="inner">
+							<strong>
+								<a href="#">제품명</a>
+							</strong>
+							<ul class="spec">
+								<li class="summary">
+									제품상세내용
+								</li>
+								<li class="price_all">
+									<span>00,000원</span>
+								</li>
+								<li class="review">
+									<a href="#">
+										별별별별
+									</a>
+									<a href="#">
+										<span class="review_content">
+											리뷰내용리뷰내용리뷰내용
+										</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+
+				<li class="prdbox">
+					<div class="item_list_box">
+						<div class="tumbnail">
+							<a href="#">
+								<img src="/img/others/profile.png">
+							</a>
+						</div>
+					</div>
+					<div class="prd_info">
+						<div class="inner">
+							<strong>
+								<a href="#">제품명</a>
+							</strong>
+							<ul class="spec">
+								<li class="summary">
+									제품상세내용
+								</li>
+								<li class="price_all">
+									<span>00,000원</span>
+								</li>
+								<li class="review">
+									<a href="#">
+										별별별별
+									</a>
+									<a href="#">
+										<span class="review_content">
+											리뷰내용리뷰내용리뷰내용
+										</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+
+				<li class="prdbox">
+					<div class="item_list_box">
+						<div class="tumbnail">
+							<a href="#">
+								<img src="/img/others/profile.png">
+							</a>
+						</div>
+					</div>
+					<div class="prd_info">
+						<div class="inner">
+							<strong>
+								<a href="#">제품명</a>
+							</strong>
+							<ul class="spec">
+								<li class="summary">
+									제품상세내용
+								</li>
+								<li class="price_all">
+									<span>00,000원</span>
+								</li>
+								<li class="review">
+									<a href="#">
+										별별별별
+									</a>
+									<a href="#">
+										<span class="review_content">
+											리뷰내용리뷰내용리뷰내용
+										</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+
+				<li class="prdbox">
+					<div class="item_list_box">
+						<div class="tumbnail">
+							<a href="#">
+								<img src="#">
+							</a>
+						</div>
+					</div>
+					<div class="prd_info">
+						<div class="inner">
+							<strong>
+								<a href="#">제품명</a>
+							</strong>
+							<ul class="spec">
+								<li class="summary">
+									제품상세내용
+								</li>
+								<li class="price_all">
+									<span>00,000원</span>
+								</li>
+								<li class="review">
+									<a href="#">
+										별별별별
+									</a>
+									<a href="#">
+										<span class="review_content">
+											리뷰내용리뷰내용리뷰내용
+										</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+
+
+			</ul>
+
+
+			
+
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>

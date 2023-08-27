@@ -5,15 +5,19 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/font.css">
 <link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/seller.css">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
 	<div class="page-content">
+		<div class="seller-header">
+			<span class="move">LOGIN</span>
+		</div>	
 		<div class="login-wrapper">
 	        <div class="login">
 	            <div class="login-top">
-	                <h2>고객</h2>
-	                <h2>LOGIN</h2>
+	                <h2>CUSTOMER</h2>
+	                <h5>고객</h5>
 	            </div>
 	            <form action="/customer/signin" method="post">
 	                <div class="login-content">
@@ -37,8 +41,8 @@
 	        </div>
 	        <div class="login">
 	            <div class="login-top">
-	                <h2 class="">판매자</h2>
-	                <h2 class="">LOGIN</h2>
+	                <h2 class="">SELLER</h2>
+	                <h5>판매자</h5>
 	            </div>
 	            <form action="/seller/signin" method="post">
 	                <div class="login-content">

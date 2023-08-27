@@ -8,33 +8,27 @@
   href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
 />
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
 <body>
+	
 	<th:block th:include="common/header"></th:block>
 	
 	<div class="page-content">
 		
 			
-				<div class="swiper">
-					 
-					<div class="swiper-wrapper">
-						
-							<div class="swiper-slide"><a href="#"><img src="/img/others/gbri.png"></a></div>
-							<div class="swiper-slide"><a href="#"><img src="/img/bracelet/bracelet1.jpg"></a></div>
-							<div class="swiper-slide"><a href="#"><img src="/img/bracelet/bracelet2.jpg"></a></div>
-							<div class="swiper-slide"><a href="#"><img src="/img/bracelet/bracelet1.jpg"></a></div>
-						
-						
-					</div>
-					 
-					<div class="swiper-pagination"></div>
-				
-					
-					<div class="swiper-button-prev"></div>
+				<div class="swiper mySwiper">					 
+					<div class="swiper-wrapper">						
+							<div class="swiper-slide"><img src="/img/others/gbri.png"></div>
+							<div class="swiper-slide"><img src="/img/bracelet/bracelet1.jpg"></div>
+							<div class="swiper-slide"><img src="/img/bracelet/bracelet2.jpg"></div>
+							<div class="swiper-slide"><img src="/img/bracelet/bracelet1.jpg"></div>	
+												
+					</div>					 
 					<div class="swiper-button-next"></div>
-				
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-pagination"></div>		
 					
-					<div class="swiper-scrollbar"></div>
+					
 			</div>
 
 			
@@ -42,5 +36,6 @@
 	</div>	
 	<th:block th:include="common/footer"></th:block>
 	<script src="/js/slide.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </body>
 </html>

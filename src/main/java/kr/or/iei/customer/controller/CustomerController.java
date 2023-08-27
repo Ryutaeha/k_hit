@@ -101,7 +101,7 @@ public class CustomerController {
 		Customer c = customerService.selectCustomerId(customerId);
 		if(c == null) {
 			return "0";
-		}else {
+		}else { 
 			return "1";
 		}
 	}

@@ -5,6 +5,7 @@
 <title>review List</title>
 <link rel="stylesheet" href="/css/review.css">
 <link rel="stylesheet" href="/css/font.css">
+<script src="/js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -14,27 +15,147 @@
                 <h2 class="title1">REVIEW</h2>
             </div>
             <div class="review-content">
-                <div class="review-info2">
-                    <div class="review-list-content">
-                        <div class="review-list-image"></div>
-                        <div class="review-list-productName">상품이름</div>
-                        <div class="review-list-mid">
-                            <span class="material-icons">star</span>
-                            <span class="material-icons">star</span>
-                            <span class="material-icons">star</span>
-                            <span class="material-icons">star</span>
-                            <span class="material-icons">star</span>
-                            <span class="review-list-customerId">구매자아이디</span>
-                        </div>
-                        <div class="review-list-detail">후기후기후기후기후기</div>
-                    </div>
-                </div>
+                
             </div>
             <div class="list-btn">
-                <button class="btn1 addBtn">더보기</button>
+                <button class="btn1 addBtn" id="more-btn" th:totalCount=${totalCount} currentCount="0" value="1">더보기</button>
             </div>
         </div>
     </div>
 	<th:block th:include="common/footer"></th:block>
+	 
+	<script>
+		$("#more-btn").on("click",function(){
+			const start = $(this).val();
+			const amount = 8;
+			const end = Number(start)+amount-1;
+			$.ajax({
+				url : "/review/more",
+				type : "post",
+				data : {start:start,end:end},
+				success : function(data){
+					for(let i=0;i<data.length;i++){
+						const review = data[i];
+						const div = $("<div>");
+						div.addClass("review-info2");
+						
+						const contentDiv = $("<div>");
+						contentDiv.addClass("review-list-content");
+						
+						const imgDiv = $("<div>");
+						imgDiv.addClass("review-list-image")
+						const img = $("<img>");
+						img.attr("src","/review/"+review.filepath);
+						imgDiv.append(img);
+						
+						const productNameDiv = $("<div>");
+						productNameDiv.addClass("review-list-productName");
+						productNameDiv.text(review.productName); 
+						
+						
+						const listMidDiv = $("<div>");
+						listMidDiv.addClass("review-list-mid");
+						
+						const starDiv = $("<div>");
+						starDiv.addClass("star-wrap3");
+						const starSpan1 = $("<span>");
+						starSpan1.addClass("material-icons");
+						starSpan1.text("star");
+						const starSpan2 = $("<span>");
+						starSpan2.addClass("material-icons");
+						starSpan2.text("star");
+						const starSpan3 = $("<span>");
+						starSpan3.addClass("material-icons");
+						starSpan3.text("star");
+						const starSpan4 = $("<span>");
+						starSpan4.addClass("material-icons");
+						starSpan4.text("star");
+						const starSpan5 = $("<span>");
+						starSpan5.addClass("material-icons");
+						starSpan5.text("star");
+						const starOnDiv = $("<div>");
+						starOnDiv.addClass("star-on2");
+						const starDiv2 = $("<div>");
+						starDiv2.addClass("star-wrap3");
+						starDiv2.addClass("star-on-wrap2");
+						const starSpan6 = $("<span>");
+						starSpan6.addClass("material-icons");
+						starSpan6.text("star");
+						const starSpan7 = $("<span>");
+						starSpan7.addClass("material-icons");
+						starSpan7.text("star");
+						const starSpan8 = $("<span>");
+						starSpan8.addClass("material-icons");
+						starSpan8.text("star");
+						const starSpan9 = $("<span>");
+						starSpan9.addClass("material-icons");
+						starSpan9.text("star");
+						const starSpan10 = $("<span>");
+						starSpan10.addClass("material-icons");
+						starSpan10.text("star");
+						starDiv2.append(starSpan6).append(starSpan7).append(starSpan8).append(starSpan9).append(starSpan10);
+						starOnDiv.append(starDiv2);
+						starDiv.append(starSpan1).append(starSpan2).append(starSpan3).append(starSpan4).append(starSpan5).append(starOnDiv);
+						
+						
+						const midDiv = $("<div>");
+						const midSpan = $("<span>");
+						midSpan.addClass("midSpan");
+						midSpan.text(" | ");
+						midDiv.append(midSpan);
+						
+						const customerIdDiv = $("<div>");
+						const customerId = $("<p>");
+						customerId.addClass("review-list-customerId");
+						customerId.text(review.reviewWriter);
+						customerIdDiv.append(customerId);
+						
+						listMidDiv.append(starDiv).append(midDiv).append(customerIdDiv);
+						
+						const reviewDetailDiv = $("<div>");
+						reviewDetailDiv.addClass("review-list-detail");
+						const reviewDetail = $("<p>");
+						reviewDetail.text(review.reviewContent);
+						reviewDetailDiv.append(reviewDetail);
+						
+						const reviewViewDiv = $("<div>");
+						reviewViewDiv.addClass("viewA");
+						const reviewView = $("<a>");
+						reviewView.attr("href","/review/reviewView?reviewNo="+review.reviewNo+"&orderNo="+review.orderNo+"&productNo"+review.productNo);
+						reviewView.text("후기 상세보기 > ");
+						reviewViewDiv.append(reviewView);
+						
+						
+						contentDiv.append(imgDiv).append(productNameDiv).append(listMidDiv).append(reviewDetailDiv).append(reviewViewDiv);
+						
+						div.append(contentDiv);
+					
+						$(".review-content").append(div);
+						
+						window.onload = function(){
+							 $(".star-on2").css("width",review.starCount*17+"px");
+							 //???????????????????????
+						}
+						
+					}
+
+					const currentVal = Number($("#more-btn").val());
+					$("#more-btn").val(currentVal+amount);
+
+					const currentCount = Number($("#more-btn").attr("currentCount"));
+					const changeCount = currentCount+data.length;
+					$("#more-btn").attr("currentCount",changeCount);
+					
+					const totalCount = Number($("#more-btn").attr("totalCount"));
+					if(totalCount == changeCount){
+						$("#more-btn").remove();
+					}
+				}
+			});
+		});
+		
+		$("#more-btn").click();
+	</script>
+	 
 </body>
 </html>
