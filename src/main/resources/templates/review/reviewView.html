@@ -18,16 +18,16 @@
                 <hr>
                 <div class="review-info">
                     <div class="review-info-top">
-                        <div class="review-id">아이디(데이터가져오기)</div>
-                        <div class="review-viewcount">view : <span>0</span></div>
+                        <div class="review-id" th:text="${r.reviewWriter}"></div>
+                        <div class="review-viewcount">view : <span th:text="${r.readCount}"></span></div>
                     </div>
                     <div class="review-product">
                         <div>
-                            <img class="review-product-img" src="/img/common/deleteimg.jpg">
+                            <img class="review-product-img" th:src="'/product/'+${rp.productImg}">
                         </div>
                         <div class="review-product-info">
-                            <div class="review-product-name">상품이름(데이터가져오기)</div>
-                            <div class="review-product-option">옵션(데이터가져오기)</div>
+                            <div class="review-product-name"th:text="${rp.productName}"></div>
+                            <div class="review-product-option" th:text="${rp.optionSize}+' / '+${rp.optionColor}"></div>
                         </div>
                     </div>
                     <div class="review-info-title"></div>
@@ -37,21 +37,28 @@
                         <span class="material-icons">star</span>
                         <span class="material-icons">star</span>
                         <span class="material-icons">star</span>
+	                    <div class="star-on">
+	                        <div class="star-wrap star-on-wrap">
+	                            <span class="material-icons">star</span>
+	                            <span class="material-icons">star</span>
+	                            <span class="material-icons">star</span>
+	                            <span class="material-icons">star</span>                                
+	                            <span class="material-icons">star</span>
+	                        </div>
+	                    </div>
                     </div>
-                    <div class="star-on">
-                        <div class="star-wrap star-on-wrap">
-                            <span class="material-icons">star</span>
-                            <span class="material-icons">star</span>
-                            <span class="material-icons">star</span>
-                            <span class="material-icons">star</span>                                
-                            <span class="material-icons">star</span>
-                        </div>
-                    </div>
-                    <div class="review-view-content">데이터로 내용가져오기</div>
-                    <img class="reviewPhoto review-view-image" src="/img/common/deleteimg.jpg">
+                    <div class="review-view-content" th:text="${r.reviewContent}"></div>
+                    <img class="reviewPhoto review-view-image" th:src="'/review/'+${r.filepath}">
                     <div class="review-like">
-                        <span class="material-icons review-like-icon">thumb_up_off_alt</span>
-                        <div><span class="review-likecount">0</span> 명에게 도움 되었습니다.</div>
+                    	<span class="like-box">
+							<span class="material-icons" th:if="${session.c == null}" onclick="loginMsg();">thumb_up_off_alt</span>
+							<span class="material-icons" th:if="${session.c != null && r.isLike == 1}" th:onclick="removeLike(this,[[${r.reviewNo}]],[[${session.c.customerNo}]]);">thumb_up_alt</span>
+							<span class="material-icons" th:if="${session.c != null && r.isLike == 0}" th:onclick="addLike(this,[[${r.reviewNo}]],[[${session.c.customerNo}]]);">thumb_up_off_alt</span>
+			                <span>
+			                	<span class="review-likecount" th:text="${r.likeCount}"></span> 
+			                	<span>명에게 도움 되었습니다.</span>
+			                </span>
+						</span>
                     </div>
                     <div class="review-comment-wrap">
                         <div class="review-comment-top"><span>댓글 </span><span>개</span></div>
@@ -145,5 +152,44 @@
         </div>
     </div>
 	<th:block th:include="common/footer"></th:block>
+	
+	<script>
+		//별점
+		window.onload = function(){
+			var starCount =[[${r.starCount}]];
+			 $(".star-on").css("width",starCount*30+"px");
+		}
+		
+		//좋아요 로그인 후 이용
+		function loginMsg(){
+			alert("로그인 후 이용해 주세요.") //sweetalert로 바꾸기
+		}
+		function addLike(obj,reviewNo,customerNo){
+			const likeBtn = $(obj);
+			$.ajax({
+				url : "/review/addLike",
+				type : "post",
+				data : {reviewNo:reviewNo, customerNo:customerNo},
+				success : function(data){
+					likeBtn.text("thumb_up_alt");
+					likeBtn.attr("onclick","removeLike(this,"+reviewNo+","+customerNo+")");
+					likeBtn.next().children().eq(0).text(data);
+				}
+			});
+		}
+		function removeLike(obj,reviewNo,customerNo){
+			const likeBtn = $(obj);
+			$.ajax({
+				url : "/review/removeLike",
+				type : "post",
+				data : {reviewNo:reviewNo, customerNo:customerNo},
+				success : function(data){
+					likeBtn.text("thumb_up_off_alt");
+					likeBtn.attr("onclick","addLike(this,"+reviewNo+","+customerNo+")");
+					likeBtn.next().children().eq(0).text(data);
+				}
+			});
+		}
+	</script>
 </body>
 </html>

@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.FileUtil;
+import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.Order;
 import kr.or.iei.product.model.vo.Product;
 import kr.or.iei.product.model.vo.ReviewProduct;
@@ -69,14 +71,19 @@ public class ReviewController {
 	
 	//리뷰 상세 보기
 	@GetMapping("/reviewView")
-	public String reviewVeiw() {
-		
-		return "review/reviewView";//경로 나중에 수정하기
+	public String reviewVeiw(int orderNo, int reviewNo, @SessionAttribute(required = false)Customer c, Model model) {
+		int customerNo = (c == null) ? 0 : c.getCustomerNo();
+		ReviewProduct rp = reviewService.selectReviewProduct(orderNo);
+		Review r = reviewService.selectOneReview(reviewNo,customerNo);
+		model.addAttribute("rp",rp);
+		model.addAttribute("r",r);
+		return "review/reviewView";
 	}
 	
 	//리뷰게시판
 	@GetMapping("/reviewList")
 	public String reviewList(Model model) {
+		
 		int totalCount = reviewService.reviewTotalCount();
 		model.addAttribute("totalCount", totalCount);
 		return "review/reviewList";
@@ -88,5 +95,19 @@ public class ReviewController {
 	public List more(int start, int end) {
 		List reviewList = reviewService.selectReviewList(start,end);
 		return reviewList;
+	}
+	//리뷰 좋아요 
+	@ResponseBody
+	@PostMapping(value="/addLike")
+	public int addLike(int reviewNo, int customerNo) {
+		int likeCount = reviewService.insertReviewLike(reviewNo,customerNo);
+		return likeCount;
+	}
+	//리뷰 좋아요 삭제
+	@ResponseBody
+	@PostMapping(value="/removeLike")
+	public int removeLike(int reviewNo, int customerNo) {
+		int likeCount = reviewService.removeReviewLike(reviewNo,customerNo);
+		return likeCount;
 	}
 }
