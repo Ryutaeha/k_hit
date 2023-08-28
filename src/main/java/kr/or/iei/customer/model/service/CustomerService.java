@@ -1,12 +1,16 @@
 package kr.or.iei.customer.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import kr.or.iei.customer.model.dao.CustomerDao;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
+import kr.or.iei.customer.model.vo.WishListData;
 
 @Service
 public class CustomerService {
@@ -45,6 +49,15 @@ public class CustomerService {
 	public int deleteCustomer(int customerNo) {
 		int result = customerDao.deleteCustomer(customerNo);
 		return result;
+	}
+	public WishListData selectWishList(int customerNo, int reqPage) {
+		int numPerPage = 5;
+		int end = reqPage * numPerPage;
+		int start = end - numPerPage + 1;
+		
+		List wishList = customerDao.selectWishList(customerNo,start,end);
+//		int totalCount = customerDao.selectProductTotalCount(customerNo);
+		return null;
 	}
 
 }

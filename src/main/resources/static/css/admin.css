@@ -236,6 +236,7 @@ body{
 	border-radius: 10px;
 	height: 90vh;
     overflow: auto;
+    display: none;
 }
 .modal-inpo>button{
 	float: right;
@@ -246,3 +247,4 @@ body{
 .modal-tbl>tbody>tr>td{
     border: 1px solid black;
 }
+

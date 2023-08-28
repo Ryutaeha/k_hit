@@ -2,6 +2,7 @@ package kr.or.iei.customer.model.dao;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
+import kr.or.iei.customer.model.vo.WishListRowMapper;
 
 @Repository
 public class CustomerDao {
@@ -16,6 +18,7 @@ public class CustomerDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private CustomerRowMapper customerRowMapper;
+	@Autowired WishListRowMapper wishListRowMapper;
 	
 	public int insertCustomer(Customer customer, String customerEmail2) {
 		String query = "insert into customer_tbl values(customer_seq.nextval,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),default)";
@@ -60,6 +63,12 @@ public class CustomerDao {
 		Object[] params = {customerNo};
 		int result = jdbc.update(query,params);
 		return result;
+	}
+
+	public List selectWishList(int customerNo, int start, int end) {
+		String query = "select * from (select rownum as rnum, n.* from (select * from product_like where customer_no=? order by 1 desc)n) where rnum between ? and ?";
+		List list = jdbc.query(query, wishListRowMapper, customerNo, start, end);
+		return list;
 	}
 
 
