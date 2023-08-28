@@ -237,7 +237,7 @@ $(".signupBtn").on("click",function(event){
 	const emailValue1 = $("#customerEmail").val();
 	const emailValue2 = $("#customerEmail2").val();
 	
-	if(pwResult && phoneResult && nameResult && emailValue1!="" && customerEmail2!=""){
+	if(pwResult && phoneResult && nameResult && emailValue1!="" && emailValue2!=""){
 		if(!idResult){
 			Swal.fire({
 						title : "회원가입",
