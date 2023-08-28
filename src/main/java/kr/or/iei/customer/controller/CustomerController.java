@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import kr.or.iei.customer.model.service.CustomerService;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
+import kr.or.iei.customer.model.vo.WishListData;
 
 @Controller
 @RequestMapping("/customer")
@@ -51,8 +52,9 @@ public class CustomerController {
 
 		}else if(c != null){
 			session.setAttribute("c", c);
+			
+			return "customer/cart";
 	
-			return "/customer/cart";
 		}
 		return "common/msg";
 	}
@@ -84,8 +86,9 @@ public class CustomerController {
 	
 	//찜목록
 	@GetMapping(value="/wishList") 
-	public String wishList(){
-		return "/customer/wishList";
+	public String wishList(Customer c, Model model, int reqPage){
+		WishListData wld = customerService.selectWishList(c.getCustomerNo(),reqPage);
+		return "customer/wishList";
 	}
 
 	
