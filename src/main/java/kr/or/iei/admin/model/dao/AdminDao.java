@@ -60,4 +60,10 @@ public class AdminDao {
 		list = jdbc.query(query, productDetailRowMapper,"%"+input+"%",productCheck);
 		return list;
 	}
+	public List product(int pNo) {
+		List list;
+		String query = "SELECT s.SELLER_ID,pc.* FROM SELLER_TBL s,(SELECT p.*,c.CATEGORY_NAME FROM PRODUCT_TBL p,(SELECT * FROM PRODUCT_CATEGORY_TBL) c WHERE p.CATEGORY_NO=c.CATEGORY_NO) pc WHERE pc.SELLER_NO=s.SELLER_NO and pc.product_no = ?";
+		list = jdbc.query(query, productDetailRowMapper,pNo);
+		return list;
+	}
 }

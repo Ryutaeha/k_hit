@@ -1,5 +1,7 @@
 package kr.or.iei.qna.model.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,4 +14,10 @@ public class QnaDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private QnaRowMapper qnaRowMapper;
+	
+	
+	public List searchAllQna() {
+		String query="";
+		return null;
+	}
 }

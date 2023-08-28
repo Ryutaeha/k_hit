@@ -20,6 +20,8 @@ public class ReviewRowMapper  implements RowMapper<Review>{
 		r.setReviewNo(rs.getInt("review_no"));
 		r.setStarCount(rs.getInt("star_count"));
 		r.setReviewWriter(rs.getNString("review_writer"));
+		r.setIsLike(rs.getInt("is_like"));
+		r.setLikeCount(rs.getInt("like_count"));
 		return r;
 	}
 

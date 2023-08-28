@@ -125,20 +125,26 @@ public class SellerController {
 		//p.setProductImg(upfile);
 		//String productImg = new productImg(upfile);
 		
-		
-		String savepath = root+"seller/";
+		//1. product테이블에 insert
+		String savepath = root+"product/";
 		String filepath = fileUtil.getFilepath(savepath, upfile.getOriginalFilename());
 		p.setProductImg(filepath);
 		
+		File uploadFile = new File(savepath+filepath);
+		try {
+			upfile.transferTo(uploadFile);
+		} catch (IllegalStateException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println(p.getProductName());
 		System.out.println(p.getProductPrice());
 		System.out.println(p.getCategoryNo());
 		System.out.println(s.getSellerNo());
-		System.out.println(p.getProductImg());//이것도 해결
+		System.out.println(p.getProductImg());
 		System.out.println(p.getProductContent());
-		System.out.println(p.getProductContentDetails());//이거 해결
-		
+		System.out.println(p.getProductContentDetails());		
 		
 		for(String size : optionSize) {
 			System.out.println(size);
@@ -150,18 +156,43 @@ public class SellerController {
 		//		-> 2. product테이블에 방금 insert한 productNo 조회
 		//		-> 3. optionColor배열에서 1개꺼내고, optionSize배열에서 1개
 		
+		int result = sellerService.addNewProduct(p, s.getSellerNo(), optionSize, optionColor);
+		if(result>0) {
+			model.addAttribute("title", "상품 등록 성공");
+			model.addAttribute("msg", "등록한 상품이 검수중입니다.");
+			model.addAttribute("icon", "success");
+			
+			
+			//2. product테이블에 방금 insert한 productNo 조회
+			int productNo = p.getProductNo();
+			System.out.println(p.getProductNo());
+			System.out.println(result);
+			
+			
+			
+		}else {
+			model.addAttribute("title", "상품 등록 실패");
+			model.addAttribute("msg", "잠시 후 다시 시도하세요.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc", "/seller/addNewProductList?reqPage=1");
+		return "common/msg";
+		
+		
+		
+		/*
 		for(int i=0;i<optionColor.length;i++) {
 			ProductOption productOption = new ProductOption();
 			productOption.setOptionColor(optionColor[i]);
 			productOption.setOptionSize(optionSize[i]);
 			//productOption.setProductNo(2에서 조회한 번호);
 			//insert
-			
 		}
+		*/
 		
 		//insert성공조건 옵션갯수+1개
 		
-		return "redirect:/";
+		//return "redirect:/";
 	}
 	
 	//로그인
@@ -247,6 +278,7 @@ public class SellerController {
 		}
 	}
 	
+	/*
 	@ResponseBody
 	@PostMapping(value="/editor",produces = "plain/text;charset=utf-8")
 	public String editorUpload(MultipartFile file) {
@@ -261,5 +293,6 @@ public class SellerController {
 		}
 		return "/editor/"+filepath;
 	}
+	*/
 	
 }

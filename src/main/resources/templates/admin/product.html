@@ -16,7 +16,7 @@
                 <div class="box">
                     <form action="/admin/product" class="select-box">
                     	<input type="hidden" th:value="${productCheck}" name="productCheck" id="productCheck">
-                        <select name="categoryNo" id="categoryNo">
+                        <select name="categoryNo" id="categoryNo" class="cNo">
                             <option value="0">전체</option>
                              <option th:each="category : ${category}" th:value="${category.categoryNo}" th:text="${category.categoryName}"></option>
                         </select>
@@ -54,24 +54,38 @@
     		<button style="height: 50px; width: 50px" class="delModal">X</button>
     		<table class="tbl modal-tbl">
 				<tr>
-					<td rowspan="3" style="height: 300px; width: 300px;"><img style="height: 100%; width: 100%;" src="스크린샷 2023-07-19 210802.png" alt=""></td>
-					<td colspan="2"><h2>상품 이름이름</h2></td>
+					<td rowspan="3" style="height: 300px; width: 300px;" class="mImg">
+						<img style="height: 100%; width: 100%;" src="스크린샷 2023-07-19 210802.png" alt="">
+					</td>
+					<td colspan="2" class="mName">
+						<h2>상품 이름이름</h2>
+					</td>
 				</tr>
 				<tr>
-					<td><h3>판매자</h3></td>
-					<td><h3>등록일</h3></td>
+					<td class="mSellerId">
+						<h3>판매자</h3>
+					</td>
+					<td class="mRegDate">
+						<h3>등록일</h3>
+					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><h2>상품 가격</h2></td>
+					<td colspan="2" class="mPrice">
+						<h2>상품 가격</h2>
+					</td>
 				</tr>
 				<tr>
-					<td colspan="3" style="height: 100px"><h3>상품 한줄 소개</h3></td>
+					<td colspan="3" style="height: 100px" class="mContent">
+						<h3>상품 한줄 소개</h3>
+					</td>
 				</tr>
 				<tr>
-					<td colspan="3" style="height: 150px"><h3>상품 상세소개</h3></td>
+					<td colspan="3" style="height: 150px" class="mContentDetail">
+						<h3>상품 상세소개</h3>
+					</td>
 				</tr>
 				<tr>
-					<td colspan="3" style="height: 150px">상품 옵션</td>
+					<td colspan="3" style="height: 150px" class="mOption">상품 옵션</td>
 				</tr>
 			</table>
     	</div>

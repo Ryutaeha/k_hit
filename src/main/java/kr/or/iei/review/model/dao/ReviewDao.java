@@ -52,4 +52,39 @@ public class ReviewDao {
 		return reviewList;
 	}
 
+	public Review selectOneReview(int reviewNo, int customerNo) {
+		String query = "select r.*, (select count(*) from review_like where review_no=r.review_no and customer_no=?) as is_like, (select count(*) from review_like where review_no=r.review_no) as like_count from (select * from review_tbl where review_no=?)r";
+		List list = jdbc.query(query, reviewRowMapper,customerNo, reviewNo);
+		if(list.isEmpty()) {
+			return null;
+		}
+		return (Review)list.get(0);
+	}
+
+	public int updateReadCount(int reviewNo) {
+		String query = "update review_tbl set read_count = read_count+1 where review_no=?";
+		int result = jdbc.update(query,reviewNo);
+		return result;
+	}
+
+	public int insertReviewLike(int reviewNo, int customerNo) {
+		String query = "insert into review_like values(?,?)";
+		Object[] params = {reviewNo,customerNo};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+	public int likeCount(int reviewNo) {
+		String query = "select count(*) from review_like where review_no=?";
+		int likeCount = jdbc.queryForObject(query, Integer.class, reviewNo);
+		return likeCount;
+	}
+
+	public int removeReviewLike(int reviewNo, int customerNo) {
+		String query = "delete from review_like where review_no=? and customer_no=?";
+		Object[] params = {reviewNo,customerNo};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
 }

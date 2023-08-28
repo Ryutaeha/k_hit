@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.product.model.vo.ProductOptionRowMapperSecond;
+import kr.or.iei.product.model.vo.Product;
+import kr.or.iei.product.model.vo.ProductOption;
 import kr.or.iei.product.model.vo.ProductOptionRowMapper;
 import kr.or.iei.product.model.vo.ProductRowMapper;
 import kr.or.iei.seller.model.vo.Seller;
@@ -86,6 +89,26 @@ public class SellerDao {
 		//비밀번호,이름,이미지,전화번호,이메일,자기소개
 		String query = "update seller_tbl set seller_pw=?,seller_name=?,seller_img=?,seller_phone=?,seller_email=?,seller_introduce=? where seller_id=?";
 		Object[] params = {s.getSellerPw(),s.getSellerName(),s.getSellerImg(),s.getSellerPhone(),(s.getSellerEmail()+"@"+customerEmail2),s.getSellerIntroduce(),s.getSellerId()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+	public int addNewProduct(Product p, int sellerNo) {
+		String query = "INSERT INTO PRODUCT_TBL VALUES(PRODUCT_SEQ.NEXTVAL,?,?,?,?,?,?,TO_CHAR(SYSDATE,'YYYY-MM-DD'),DEFAULT,?)";
+		Object[] params = {sellerNo,p.getProductName(),p.getProductImg(),p.getProductPrice(),p.getProductContent(),p.getProductContentDetails(),p.getCategoryNo()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+	public int getProductNo() {
+		String query = "select max(product_no) from product_tbl";
+		int productNo = jdbc.queryForObject(query, Integer.class);
+		return productNo;
+	}
+
+	public int addNewProductOption(ProductOption productOption) {
+		String query = "insert into PRODUCT_OPTION_TBL values(PRODUCT_OPTION_SEQ.nextval,?,?,?,default)";
+		Object[] params = {productOption.getProductNo(),productOption.getOptionSize(),productOption.getOptionColor()};
 		int result = jdbc.update(query,params);
 		return result;
 	}
