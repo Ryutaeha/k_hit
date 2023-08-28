@@ -310,3 +310,26 @@ border-top-left-radius: 10px;
 	width:120px;
 	font-size: 16px;
 }
+
+/*판매상품 관리 수정,삭제 버튼*/
+.btn-up{
+    width: 40px;
+    height: 27px;
+    border: 1px solid #D8D9DA;
+    background-color: #D8D9DA;
+    display: inline-block;
+    padding: 10px;
+    text-align: 35px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+.btn-del{
+    background-color: #D8D9DA;
+    width: 40px;
+    height: 27px;
+    border: 1px solid #D8D9DA;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: content-box;
+    font-size: 18px;
+}
