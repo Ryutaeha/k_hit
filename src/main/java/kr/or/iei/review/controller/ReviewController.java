@@ -135,7 +135,24 @@ public class ReviewController {
 			model.addAttribute("msg", "댓글이 등록에 실패했습니다.");
 			model.addAttribute("icon", "error");
 		}
-		model.addAttribute("loc", "redirect:/review/reviewList");
+		model.addAttribute("loc", "/review/reviewList");
 		return "common/msg";
 	}
+	//리뷰댓글삭제
+	@GetMapping(value="/deleteComment")
+	public String deleteComment(int reviewCommentNo, int reviewNo, Model model) {
+		int result = reviewService.deleteComment(reviewCommentNo);
+		if(result>0) {
+			model.addAttribute("title", "삭제성공");
+			model.addAttribute("msg", "댓글이 삭제되었습니다.");
+			model.addAttribute("icon", "success");
+		}else {
+			model.addAttribute("title", "삭제실패");
+			model.addAttribute("msg", "댓글 삭제에 실패했습니다.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc","/review/reviewList"); //경로 바꿔주기
+		return "common/msg";
+	}
+	
 }

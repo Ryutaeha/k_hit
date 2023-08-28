@@ -81,5 +81,10 @@ public class ReviewService {
 		return result;
 	}
 
+	@Transactional
+	public int deleteComment(int reviewCommentNo) {
+		return reviewDao.deleteComment(reviewCommentNo);
+	}
+
 
 }
