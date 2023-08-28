@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.product.model.vo.Product;
+import kr.or.iei.product.model.vo.ProductOption;
 import kr.or.iei.product.model.vo.ProductOptionListData;
 import kr.or.iei.seller.model.dao.SellerDao;
 import kr.or.iei.seller.model.vo.Seller;
@@ -194,9 +195,18 @@ public class SellerService {
 	}
 
 	@Transactional
-	public int addNewProduct(Product p, int sellerNo, MultipartFile upfile) {
-		int result = sellerDao.addNewProduct(p, sellerNo, upfile);
+	public int addNewProduct(Product p, int sellerNo, String[] optionSize, String[] optionColor) {
+		int result = sellerDao.addNewProduct(p, sellerNo);
+		int productNo = sellerDao.getProductNo();
+		
+		for(int i=0;i<optionColor.length;i++) {
+			ProductOption productOption = new ProductOption();
+			productOption.setOptionSize(optionSize[i]);
+			productOption.setOptionColor(optionColor[i]);
+			productOption.setProductNo(productNo);
+			result += sellerDao.addNewProductOption(productOption);
+			
+		}
 		return result;
 	}
-
 }
