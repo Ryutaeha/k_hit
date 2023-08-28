@@ -2,16 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>QnA전체리스트</title>
-	<link rel="stylesheet" href="/css/qna.css">
+<title>공지사항전체리스트</title>
+<link rel="stylesheet" href="/css/qna.css">
 	<link rel="stylesheet" href="/css/seller.css">
-	
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
 		<div class="page-content">
 				<div class="seller-header">
-					<span class="move">Q & A</span>
+					<span class="move">NOTICE</span>
 				</div>
 			<div class="qna-wrap">
 				<table class="qna">
@@ -22,15 +21,12 @@
 						<th style="width:20%">작성일</th>
 						<th style="width:10%">조회수</th>
 					</tr>
-					<tr th:each="list : ${list}">
-						<td th:text="${list.questionNo}"></td>
-						<td >
-							<a href="#" th:text="${list.questionTitle}"></a>
-						</td>
-						<td  th:if="${list.questionCusWriter == null}" th:text="${list.questionSellWriter}"></td>
-						<td  th:if="${list.questionSellWriter == null}" th:text="${list.questionCusWriter}"></td>
-						<td th:text="${list.questionDate}"></td>
-						<td th:text=${list.questionReadCount}></td> 
+					<tr >
+						<td>1</td>
+						<td>제목제목</td>
+						<td>관리자</td>
+						<td>2023-11-01</td>
+						<td>0</td> 
 					</tr>
 				</table>
 			</div>
