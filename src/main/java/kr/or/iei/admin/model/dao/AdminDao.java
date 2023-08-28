@@ -7,10 +7,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.iei.admin.model.vo.AdminRowMapper;
+import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
 import kr.or.iei.product.model.vo.CategoryRowMapper;
 import kr.or.iei.product.model.vo.ProductDetailRowMapper;
 import kr.or.iei.product.model.vo.ProductRowMapper;
+import kr.or.iei.seller.model.vo.Seller;
 import kr.or.iei.seller.model.vo.SellerRowMapper;
 
 @Repository
@@ -65,5 +67,17 @@ public class AdminDao {
 		String query = "SELECT s.SELLER_ID,pc.* FROM SELLER_TBL s,(SELECT p.*,c.CATEGORY_NAME FROM PRODUCT_TBL p,(SELECT * FROM PRODUCT_CATEGORY_TBL) c WHERE p.CATEGORY_NO=c.CATEGORY_NO) pc WHERE pc.SELLER_NO=s.SELLER_NO and pc.product_no = ?";
 		list = jdbc.query(query, productDetailRowMapper,pNo);
 		return list;
+	}
+
+	public Seller selectSeller(String sId) {
+		String query = "SELECT * FROM SELLER_TBL WHERE SELLER_ID = ?";
+		List list = jdbc.query(query, sellerRowMapper, sId);
+		return (Seller)list.get(0);
+	}
+
+	public Customer selectCustomer(String cId) {
+		String query = "SELECT * FROM CUSTOMER_TBL WHERE CUSTOMER_ID = ?";
+		List list = jdbc.query(query, customerRowMapper, cId);
+		return (Customer)list.get(0);
 	}
 }

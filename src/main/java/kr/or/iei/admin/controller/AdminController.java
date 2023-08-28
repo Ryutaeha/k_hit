@@ -47,12 +47,11 @@ public class AdminController {
 			if(memberCode == 1) {
 				List<Customer> list = adminService.customerList(input);	
 				model.addAttribute("list", list);
-				model.addAttribute("code",memberCode);
 			}else if(memberCode == 2){
 				List<Seller> list = adminService.sellerList(input);
 				model.addAttribute("list", list);
-				model.addAttribute("code",memberCode);
 			}
+			model.addAttribute("code",memberCode);
 		return "/admin/member";
 	}
 	
@@ -95,5 +94,15 @@ public class AdminController {
 	public List pContent(int pNo){
 		List<ProductDetail> product = adminService.product(pNo);
 		return product;
+	}
+	@ResponseBody
+	@PostMapping(value="/sContent")
+	public Seller sContent(String sId){
+		return adminService.selectSeller(sId);
+	}
+	@ResponseBody
+	@PostMapping(value="/cContent")
+	public Customer cContent(String cId){
+		return adminService.selectCustomer(cId);
 	}
 }

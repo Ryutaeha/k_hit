@@ -28,13 +28,13 @@
                         </tr>
                     </table>
                     <table style="width:90%;" class="tbl product-tbl">
-                        <tr th:if="${code}==1" th:each="list : ${list}" class="product-select">
+                        <tr th:if="${code}==1" th:each="list : ${list}" class="product-select cMenuSel">
                             <td th:text="${list.customerNo}" style="width:20%"></td>
                             <td th:text="${list.customerId}" style="width:25%"></td>
                             <td th:text="${list.customerName}" style="width:25%"></td>
                             <td th:text="${list.customerEnrolldate}" style="width:30%"></td>
                         </tr>
-                        <tr th:if="${code}==2" th:each="list : ${list}" class="product-select">
+                        <tr th:if="${code}==2" th:each="list : ${list}" class="product-select sMenuSel">
                             <td th:text="${list.sellerNo}" style="width:20%"></td>
                             <td th:text="${list.sellerId}" style="width:25%"></td>
                             <td th:text="${list.sellerName}" style="width:25%"></td>
@@ -47,6 +47,7 @@
             </div>
         </div>
     </div>
+    <th:block th:include="/admin/modal"></th:block>
     <script src="/js/admin.js"></script>
 </body>
 </html>
