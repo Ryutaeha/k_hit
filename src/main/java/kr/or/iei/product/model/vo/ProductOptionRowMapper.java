@@ -7,11 +7,11 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductOptionRowMapper implements RowMapper<ProductOptionSecond>{
+public class ProductOptionRowMapper implements RowMapper<ProductOption>{
 
 	@Override
-	public ProductOptionSecond mapRow(ResultSet rs, int rowNum) throws SQLException {
-		ProductOptionSecond po = new ProductOptionSecond();
+	public ProductOption mapRow(ResultSet rs, int rowNum) throws SQLException {
+		ProductOption po = new ProductOption();
 		po.setOptionColor(rs.getString("option_color"));
 		po.setOptionSize(rs.getString("option_size"));
 		po.setOptionStock(rs.getInt("option_stock"));

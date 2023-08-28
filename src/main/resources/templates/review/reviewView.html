@@ -93,7 +93,7 @@
                     </div>
                     <div class="commentBox">
                         <th:block th:each="rc : ${comment}">
-                        <!-- 댓글 -->
+                        	<!-- 댓글 -->
                             <ul class="posting-comment comment-first">
                                 <li class="comment-view">
                                     <p class="comment-info">
@@ -103,12 +103,12 @@
                                     </p>
                                     <div class="review-comment-content" th:text="${rc.reviewCommentContent}"></div>
                                     <p class="comment-link">
-                                    <a href="javascript:void(0)" class="recShow" onclick="loginMsg();" th:if="${session.c == null}">답글달기</a>
+                                    	<a href="javascript:void(0)" class="recShow" onclick="loginMsg();" th:if="${session.c == null}">답글달기</a>
                                     <th:block th:if="${session.c != null}">
-                                    	<a href="javascript:void(0)" class="recShow">답글달기</a>
+                                    	<a href="javascript:void(0)" class="recShow recShow2">답글달기</a>
                                         <th:block th:if="${session.c.customerId == rc.reviewCommentWriter}">
-                                            <a href="javascript:void(0);" th:onclick="modifyComment(this,[[${rc.reviewCommentNo}]],[[${r.reviewNo}]]);">수정</a>
-                                            <a href="javascript:void(0);" th:onclick="deleteComment(this,[[${rc.reviewCommentNo}]],[[${r.reviewNo}]]);">삭제</a>
+                                        <a href="javascript:void(0);" th:onclick="modifyComment(this,[[${rc.reviewCommentNo}]],[[${r.reviewNo}]]);">수정</a>
+                                        <a href="javascript:void(0);" th:onclick="deleteComment(this,[[${rc.reviewCommentNo}]],[[${r.reviewNo}]]);">삭제</a>
                                         </th:block>
                                     </th:block>                                        
                                     </p>
@@ -139,26 +139,28 @@
                                         </div>
                                     </li>
                                 </ul>
-                                <div class="inputCommentBox inputRecommentBox" th:if="${session.c != null}">
-                                    <form action="/review/insertComment" method="post">
-                                        <ul>
-                                            <li>
-                                                <input type="hidden" name="reviewCommentWriter" th:value="${session.c.customerId}">
-                                                <input type="hidden" name="reviewRef" th:value="${r.reviewNo}">
-                                                <input type="hidden" name="reviewCommentRef" th:value="${rc.reviewCommentNo}">
-                                                <textarea name="reviewCommentContent" class="review-recomment-input"></textarea>
-                                            </li>
-                                            <li>
-                                                <button type="submit" class="btn2 btn3">등록</button>
-                                            </li>
-                                        </ul>
-                                    </form>
-                                </div>
-                            </th:block> 
+							</th:block>
+							
+							<div class="inputCommentBox inputRecommentBox" th:if="${session.c != null}">
+                                <form action="/review/insertComment" method="post">
+                                    <ul>
+                                        <li>
+                                            <input type="hidden" name="reviewCommentWriter" th:value="${session.c.customerId}">
+                                            <input type="hidden" name="reviewRef" th:value="${r.reviewNo}">
+                                            <input type="hidden" name="reviewCommentRef" th:value="${rc.reviewCommentNo}">
+                                            <textarea name="reviewCommentContent" class="review-recomment-input"></textarea>
+                                        </li>
+                                        <li>
+                                            <button type="submit" class="btn2 btn3">등록</button>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
                         </th:block>
-                        <div class="list-btn">
-                        	<button class="btn1" onclick="location.href='/review/reviewList'">목록으로</button>
-                        </div>
+                         
+                    </div>
+                    <div class="list-btn">
+                        <button class="btn1" onclick="location.href='/review/reviewList'">목록으로</button>
                     </div>
                 </div>
             </div>
@@ -171,7 +173,7 @@
 		//별점
 		window.onload = function(){
 			var starCount =[[${r.starCount}]];
-			 $(".star-on").css("width",starCount*30+"px");
+			$(".star-on").css("width",starCount*30+"px");
 		}
 		
 		//로그인 후 이용
@@ -214,7 +216,7 @@
 		}
 		
 		//답글달기 취소버튼
-		$(".recShow").on("click",function(){
+		$(".recShow2").on("click",function(){
 			const index = $(".recShow").index(this);
 			if($(this).text()=="답글달기"){
 				$(this).text("취소");
@@ -224,6 +226,25 @@
 			$(".inputRecommentBox").eq(index).toggle();
 			$(".inputRecommentBox").eq(index).find("textarea").focus();
 		});
+
+        function deleteComment(obj,reviewCommentNo,reviewNo){
+        	Swal.fire({
+				title : "댓글 삭제",
+				text : "댓글을 삭제하시겠습니까?",
+				icon : "question",
+				showCancelButton: true,
+		        confirmButtonColor: '#61677A',
+		        cancelButtonColor: '#D8D9DA',
+		        confirmButtonText: '확인',
+		        cancelButtonText: '취소',
+		        reverseButtons: true,
+		        
+	        	}).then(result => {
+		    	    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+		    	    	location.href = "/review/deleteComment?reviewCommentNo="+reviewCommentNo+"&reviewNo="+reviewNo;
+		    	    }
+		    	});
+        }
 	</script>
 </body>
 </html>

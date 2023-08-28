@@ -6,7 +6,12 @@
 </head>
 <body>
     <th:block th:include="common/header"></th:block>
-
+		<script src="/summernote/summernote-lite.js"></script>
+		<script src="/summernote/lang/summernote-ko-KR.js"></script>
+		<link rel="stylesheet" href="/summernote/summernote-lite.css">
+		<link rel="stylesheet" href="/css/myinfo.css">
+		<link rel="stylesheet" href="/css/addNewProductFrmEditor.css">    
+    
     <div class="page-content">
         <th:block th:include="seller/sellerHeader"></th:block>
         <th:block th:include="seller/sellerMenu"></th:block>
@@ -15,11 +20,256 @@
                 	<span>UPDATE PRODUCT</span>
                 </div>
                 <div class="content-main">
-                	내용
+                	<form action="/seller/addNewProduct" method="post" enctype="multipart/form-data">
+                		<table class="input-tbl">
+                			<tr class="input-tr">
+                				<th>상품명</th>
+                				<td colspan="3">
+                					<input type="text" name="productTitle" th:value="${p.productName}" required>
+                					<input type="hidden" name="productNo" th:value="${p.productNo}"> 
+                				</td>
+                			</tr>
+                			<tr class="input-tr">
+                				<th>판매가(단위 : 원)</th>
+                				<td>
+                					<input type="text" name="productPrice" th:value="${p.productPrice}" required>
+                				</td>
+                			</tr>                			
+                			<tr class="input-tr">
+                				<th>옵션설정</th>
+                				<td colspan="3">
+                					<table class="option-tbl">
+                					<tbody>
+                					<tr class="option-tbl-head">
+	                					<th>사이즈</th>
+	                					<th>색상</th>
+	                					<th>
+	                						<button type='button' id="optionAddBtn" class="optionAddBtn">옵션 추가</button>
+	                					</th>
+	                				</tr>
+	                				<tr th:each="productOption : ${p.productOptionList}">
+                						<td>
+                							<input type="text" id="optionSize" name="optionSize" th:value="${productOption.optionSize}">
+                						</td>
+                						<td>
+                							<input type="text" id="optionColor" name="optionColor" th:value="${productOption.optionColor}">
+                						</td>	                					
+                					</tr>
+                					</tbody>
+
+                					</table>
+                				</td>
+                			</tr>
+                			<tr class="input-tr">
+                				<th>상품 카테고리 선택</th>
+                				<td th:switch="${p.categoryNo}">
+                					<select th:case="1">
+                						<option value="1" selected>EARRING</option>
+                						<option value="2">NECKLACE</option>
+                						<option value="3">RING</option>
+                						<option value="4">BRACELET</option>
+                						<option value="5">WATCH</option>
+                						<option value="6">HAIR-PRO</option>
+                						<option value="7">OTHERS</option>
+                					</select>
+                					<select th:case="2">
+                						<option value="1">EARRING</option>
+                						<option value="2" selected>NECKLACE</option>
+                						<option value="3">RING</option>
+                						<option value="4">BRACELET</option>
+                						<option value="5">WATCH</option>
+                						<option value="6">HAIR-PRO</option>
+                						<option value="7">OTHERS</option>
+                					</select>
+                					<select th:case="3">
+                						<option value="1">EARRING</option>
+                						<option value="2">NECKLACE</option>
+                						<option value="3" selected>RING</option>
+                						<option value="4">BRACELET</option>
+                						<option value="5">WATCH</option>
+                						<option value="6">HAIR-PRO</option>
+                						<option value="7">OTHERS</option>
+                					</select>
+                					<select th:case="4">
+                						<option value="1">EARRING</option>
+                						<option value="2">NECKLACE</option>
+                						<option value="3">RING</option>
+                						<option value="4" selected>BRACELET</option>
+                						<option value="5">WATCH</option>
+                						<option value="6">HAIR-PRO</option>
+                						<option value="7">OTHERS</option>
+                					</select>
+                					<select th:case="5">
+                						<option value="1">EARRING</option>
+                						<option value="2">NECKLACE</option>
+                						<option value="3">RING</option>
+                						<option value="4">BRACELET</option>
+                						<option value="5" selected>WATCH</option>
+                						<option value="6">HAIR-PRO</option>
+                						<option value="7">OTHERS</option>
+                					</select>
+                					<select th:case="6">
+                						<option value="1">EARRING</option>
+                						<option value="2">NECKLACE</option>
+                						<option value="3">RING</option>
+                						<option value="4">BRACELET</option>
+                						<option value="5">WATCH</option>
+                						<option value="6" selected>HAIR-PRO</option>
+                						<option value="7">OTHERS</option>
+                					</select>
+                					<select th:case="7">
+                						<option value="1">EARRING</option>
+                						<option value="2">NECKLACE</option>
+                						<option value="3">RING</option>
+                						<option value="4">BRACELET</option>
+                						<option value="5">WATCH</option>
+                						<option value="6">HAIR-PRO</option>
+                						<option value="7" selected>OTHERS</option>
+                					</select>
+                					<!-- <input type="text" name="categoryNo" th:value="${p.categoryNo}"> -->
+                				</td>
+                			</tr>
+							<tr class="input-tr">
+                				<th>기존 대표 이미지</th>
+                				<td>
+                					<span th:text="${p.productImg}"></span>
+                					<span class="material-icons" style="cursor:pointer;margin-left:5px;font-size:18px;color:#ff2e63;" th:onclick="deleteFile(this,[[${p.productImg}]])">remove_circle</span>
+                				</td>
+                			</tr>                			
+                			<tr class="input-tr">
+                				<th>신규 이미지 업로드</th>
+                				<td>
+                					<input type="file" name="productImg" th:value="${p.productImg}">
+                				</td>
+                			</tr>
+	                		<tr class="input-tr">
+	                			<th>대표 이미지 미리보기</th>
+	                			<td colspan="3">
+	                				<div class="productImgView">
+	                					<img id="productImgView" width="300px">
+	                				</div>
+	                			</td>
+	                		</tr>
+                			<tr class="input-tr">
+                				<th>상품 요약 설명</th>
+                				<td>
+                					<input type="text" name="productContent" th:value="${p.productContent}">
+                				</td>
+                			</tr>
+							<tr class="input-tr">
+								<th>상품 상세 설명</th>
+								<td>
+									<textarea class="input-form" id="productContentDetails" name="productContentDetails" th:text="${p.productContentDetails}"></textarea>
+								</td>
+							</tr>
+							</table>                			                   			                 			                			                    			
+								<div class="input-btn">
+									<input type="submit" value="검수 요청"></input>
+								</div>  
+                	</form>
                 </div>
             </div>
         </div>
 
     <th:block th:include="common/footer"></th:block>
+    <script>
+    
+	function deleteFile(obj,fileNo){
+		if(confirm("파일을 삭제하시겠습니까?")){
+			const input = $("<input>");
+			input.attr("name","delFileNo");
+			input.attr("type","hidden");
+			input.val(fileNo);
+			//<input name="delFileNo" type="hidden" value= 이걸 적은거다.
+			$(".noticeUpdateFrm").append(input);
+			$(obj).parent().remove();
+		}
+	}
+    	
+    	//옵션 추가 버튼
+	    $("#optionAddBtn").on("click",function(){
+	    	const tr = $("<tr>");
+	    	const td1 = $("<td>");
+	    	const input = $("<input>");
+	    	input.attr("type","text");
+	    	input.attr("name","optionSize");
+	    	input.attr("placeholder","옵션 사이즈");
+	    	input.prop("required",true);
+	    	
+	    	const td2 = $("<td>");
+	    	const input2 = $("<input>");
+	    	input2.attr("type","text");
+	    	input2.attr("name","optionColor");
+	    	input2.attr("placeholder","옵션 색상");
+	    	input2.prop("required",true);
+	    	
+	    	const td3 = $("<td>");
+	    	const button = $("<button>");
+	    	button.attr("type","button");
+	    	button.addClass("optionRemoveBtn");
+	    	button.text("-");
+	    	
+	    	td1.append(input);
+	    	
+	    	td2.append(input2);
+	    	
+	    	td3.append(button);
+	    	
+	    	tr.append(td1);
+	    	tr.append(td2);
+	    	tr.append(td3);
+	 
+	    	$(".option-tbl>tbody").append(tr);
+	    	
+	    	button.on("click",function(){
+	    		tr.remove();
+	    	})
+	    });
+	    
+	    
+    	//썸머노트
+	    $("#productContentDetails").summernote({
+			height: 400,
+			lang : "ko-KR",
+			placeholder: '상세 설명을 작성해주세요.',
+			callbacks : {
+				onImageUpload : function(files){
+					uploadImage(files[0],this);
+				} 
+			}
+		});
+
+    	
+    	//이미지 업로드 - 이미지를 ajax로 업로드하고 그 경로를 받아옴
+	    function uploadImage(file,editor){
+	    	const form = new FormData();
+	    	form.append("file",file);
+	    	$.ajax({
+	    		url : "/product/editor",
+	    		type : "post",
+	    		data : form,
+	    		processData : false,
+	    		contentType : false,
+	    		success : function(data){
+	    			//console.log(data);
+	    			$(editor).summernote("insertImage",data);
+	    		}
+	    	});
+	    }
+    	
+	    //파일 업로드
+	    $("[name=upfile]").on("change",function(){
+	        if(this.files.length != 0 && this.files[0] !=0){
+	            const reader = new FileReader();
+	            reader.readAsDataURL(this.files[0]);
+	            reader.onload = function(e){
+	                $("#productImgView").attr("src",e.target.result);
+	            }
+	        }else{
+	            $("#productImgView").attr("src","");
+	        }
+	    });
+    	
+    </script>
 </body>
 </html>

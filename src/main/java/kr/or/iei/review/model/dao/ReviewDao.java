@@ -117,4 +117,10 @@ public class ReviewDao {
 		return reviewCount;
 	}
 
+	public int deleteComment(int reviewCommentNo) {
+		String query = "delete from review_comment where review_comment_no=?";
+		int result = jdbc.update(query,reviewCommentNo);
+		return result;
+	}
+
 }

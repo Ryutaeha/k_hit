@@ -1,5 +1,7 @@
 package kr.or.iei.product.model.vo;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +23,5 @@ public class Product {
 	//좋아요
 	//private int isLike;
 	
-	
+	private List productOptionList;
 }
