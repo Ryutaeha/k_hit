@@ -33,6 +33,14 @@ public class AdminController {
 	@Autowired
 	private FileUtil fileUtil;
 	
+	@GetMapping(value = "/adminLogin")
+	public String adminLogin() {
+		return "/admin/adminLogin";
+	}
+	@GetMapping(value = "/login")
+	public String login() {
+		return "/admin/adminLogin";
+	}
 	@GetMapping(value = "/adminIndex")
 	public String adminIndex() {
 		return "/admin/adminIndex";
@@ -133,9 +141,9 @@ public class AdminController {
 		return "/admin/"+filepath;
 	}
 	@PostMapping(value = "/write")
-	public String noticeWrite(String noticeTitle,String noticeContent,Model model) {
-		System.out.println(noticeTitle+noticeContent);
+	public String noticeWrite(Notice n ,Model model) {
+		System.out.println(n);
 //		int result = adminService.insertNotice(n);
-		return null;
+		return "/admin/noticeFrm";
 	}
 }
