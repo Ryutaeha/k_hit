@@ -22,6 +22,8 @@ import kr.or.iei.product.model.vo.Product;
 import kr.or.iei.product.model.vo.ReviewProduct;
 import kr.or.iei.review.model.service.ReviewService;
 import kr.or.iei.review.model.vo.Review;
+import kr.or.iei.review.model.vo.ReviewComment;
+import kr.or.iei.review.model.vo.ReviewViewData;
 
 @Controller
 @RequestMapping("/review")
@@ -73,11 +75,21 @@ public class ReviewController {
 	@GetMapping("/reviewView")
 	public String reviewVeiw(int orderNo, int reviewNo, @SessionAttribute(required = false)Customer c, Model model) {
 		int customerNo = (c == null) ? 0 : c.getCustomerNo();
-		ReviewProduct rp = reviewService.selectReviewProduct(orderNo);
-		Review r = reviewService.selectOneReview(reviewNo,customerNo);
-		model.addAttribute("rp",rp);
-		model.addAttribute("r",r);
-		return "review/reviewView";
+		ReviewViewData rvd = reviewService.selectOneReview(reviewNo,customerNo,orderNo);
+		if(rvd != null) {
+			model.addAttribute("r", rvd.getR());
+			model.addAttribute("rp", rvd.getRp());
+			model.addAttribute("comment", rvd.getCommentList());
+			model.addAttribute("reComment", rvd.getReCommentList());
+			model.addAttribute("reviewCount",rvd.getReviewCount());
+			return "review/reviewView";
+		}else {
+			model.addAttribute("title", "후기 조회 실패");
+			model.addAttribute("msg", "이미 삭제된 게시물입니다.");
+			model.addAttribute("icon", "info");
+			model.addAttribute("loc", "/review/reviewList");
+			return "common/msg";
+		}
 	}
 	
 	//리뷰게시판
@@ -110,4 +122,37 @@ public class ReviewController {
 		int likeCount = reviewService.removeReviewLike(reviewNo,customerNo);
 		return likeCount;
 	}
+	//리뷰 등록
+	@PostMapping(value="/insertComment")
+	public String insertComment(ReviewComment rc, Model model) {
+		int result = reviewService.insertComment(rc);
+		if(result>0) {
+			model.addAttribute("title", "등록완료");
+			model.addAttribute("msg", "댓글이 등록되었습니다.");
+			model.addAttribute("icon", "success");
+		}else {
+			model.addAttribute("title", "등록실패");
+			model.addAttribute("msg", "댓글이 등록에 실패했습니다.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc", "/review/reviewList");
+		return "common/msg";
+	}
+	//리뷰댓글삭제
+	@GetMapping(value="/deleteComment")
+	public String deleteComment(int reviewCommentNo, int reviewNo, Model model) {
+		int result = reviewService.deleteComment(reviewCommentNo);
+		if(result>0) {
+			model.addAttribute("title", "삭제성공");
+			model.addAttribute("msg", "댓글이 삭제되었습니다.");
+			model.addAttribute("icon", "success");
+		}else {
+			model.addAttribute("title", "삭제실패");
+			model.addAttribute("msg", "댓글 삭제에 실패했습니다.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc","/review/reviewList"); //경로 바꿔주기
+		return "common/msg";
+	}
+	
 }

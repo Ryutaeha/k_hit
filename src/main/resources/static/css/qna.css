@@ -2,8 +2,35 @@
 
 .qna-wrap{
     width: 70%;
-    height: 100px;
     margin : 0 auto;
-    background-color: aqua;
-    border-top: 1px solid #ececec;
+    padding-bottom: 100px;
+   
+}
+.qna{
+    width: 100%;
+    border: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+    border-collapse: collapse;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    
+}
+.qna-tr{
+    border-collapse: collapse;
+    
+    border-bottom: 1px solid #ededed;
+}
+th{
+    font-family: ns-b;
+    
+    background-color:#ededed;
+    
+}
+td{
+    border-bottom: 1px solid #ededed;
+    border-collapse: collapse;
+}
+td, th{
+    padding: 1em .5em;
+    text-align: center;
 }

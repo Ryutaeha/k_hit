@@ -18,31 +18,41 @@
 				</span>
 			</div>
 			<div class="content-main">
-				<form action="#">
-					<!--취소 주문이 1개라도 없을 때 나오는 div-->
-					<div class="none-div">
-						<h3>취소 주문이 없습니다.</h3>
-					</div>
-					<br>
+				<form action="/seller/cancelOrder">
+					
 					<!--주문이 있을 시 나오는 div-->
-					<table border="1">
-						<tr>
+					<table class="tbl">
+						<tr class="tbl-menu">
 							<th>주문번호</th>
 							<th>상품정보</th>
+							<th>고객이름</th>
 							<th>처리상태</th>
 							<th>처리버튼</th>
 						</tr>
 						<tr>
-							<td>no.156431</th>
+							<td>1</th>
 							<td>
-								<img src="" alt="">
-								<th:text="상품정보"></th:text>
+								<div class="table-prd">
+									<div class="img-prd">
+										<img src="/img/others/profile.png">
+									</div>
+									<div class="prd-info">
+										<ul>
+											<li>상품이름</li>
+											<li>옵션:M</li>
+										</ul>
+									</div>
+								</div>								
 							</td>
 							<td>
-								<span>취소요청대기중</span>
+								<span>고객이름</span>
 							</td>
 							<td>
-								<input type="button" value="취소">
+								<span>취소요청</span>
+							</td>
+							<td>
+								<input type="submit" value="취소확인"></button>
+								<a href="#">취소불가</a>
 							</td>
 						</tr>
 					</table>
@@ -53,9 +63,11 @@
 					REFUND
 				</span>
 			</div>
-			<div class="content-main">
-				REFUND 컨텐츠 div 
-			</div>
+			<form action="#">
+				<div class="content-main">
+					REFUND 컨텐츠 div 
+				</div>			
+			</form>
 		</div>
 	</div>	
 	<th:block th:include="common/footer"></th:block>
