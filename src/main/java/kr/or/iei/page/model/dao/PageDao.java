@@ -61,7 +61,7 @@ public class PageDao {
 		return list;
 	}
 	public List searchBracelet() {
-		String query = "select * from product_tbl where category_no = 4";
+		String query = "select * from product_tbl where category_no =4";
 		List list = jdbc.query(query, productRowMapper);
 		return list;
 	}

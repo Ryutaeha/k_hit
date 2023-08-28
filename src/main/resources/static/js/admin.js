@@ -6,6 +6,11 @@ $.urlParam = function(name) {
         return results[1] || 0;
     }
 }
+
+
+
+
+
 $(function(){
 	$("#categoryNo").val($.urlParam('categoryNo'));
 	
@@ -22,6 +27,8 @@ $(function(){
 	}else if(urlCheck=='question'){
 		$(".sub-choice").eq(4).css('display','block');
 	}
+	
+	
 })
 
 

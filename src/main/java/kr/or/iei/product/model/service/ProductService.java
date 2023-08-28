@@ -27,4 +27,30 @@ public class ProductService {
 		p.setProductOptionList(productOptionList);
 		return p;
 	}
+
+	public int updateProduct(Product p, String[] optionSize, String[] optionColor) {
+		//, int delFileNo 매개변수 지워둠. 확인필요
+		int result = productDao.updateProduct(p);
+		
+		for(int i=0;i<optionColor.length;i++) {
+			ProductOption productOption = new ProductOption();
+			productOption.setOptionSize(optionSize[i]);
+			productOption.setOptionColor(optionColor[i]);
+			productOption.setProductNo(p.getProductNo());
+			result += productDao.updateProduct(productOption);
+		}
+		/*
+		if(result > 0) {
+			if(delFileNo > 0) {
+				//삭제파일이 있는 경우에만 진행.(삭제파일 조회 -> 삭제파일 삭제)
+				//삭제파일 없는데 for문 돌리면 에러남.
+
+					Filepath noticeFile = noticeDao.selectOneFile(fileNo);
+					delFileList.add(noticeFile);
+					//db에서 파일 삭제
+					result += productDao.deleteFile(filepath);
+		}
+		*/
+		return result;
+	}
 }
