@@ -340,6 +340,10 @@
     padding: 5px 0;
     border-top: 1px solid #ececec;
     color: #aaa;
+    height: 32px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 32px;
 }
 .price_all{
     padding: 5px 0;
@@ -362,6 +366,10 @@
     color: #ffc500;
     font-size: 15px;
     letter-spacing: -5px;
+}
+.star-b{
+    color: #aaa;
+    
 }
 .review_content{
     color: #aaa;
