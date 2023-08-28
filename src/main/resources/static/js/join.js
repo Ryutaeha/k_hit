@@ -243,12 +243,13 @@ inputPhone.on("change",function(){
 	}
 });
 
-회원가입
-$(".signupBtn").on("click",function(){
+//회원가입
+$(".signupBtn").on("click",function(event){
 	const emailValue1 = $("#customerEmail").val();
 	const emailValue2 = $("#customerEmail2").val();
+	
 	if(pwResult && phoneResult && nameResult && emailValue1!="" && customerEmail2!=""){
-		if(idReSult == false){
+		if(!idResult){
 			Swal.fire({
 						title : "회원가입",
 						text : "아이디 중복을 확인해 주세요.",
@@ -259,6 +260,7 @@ $(".signupBtn").on("click",function(){
 			event.preventDefault();	
 		}
 	}else{
+	
 		Swal.fire({
 						title : "회원가입",
 						text : "입력값을 확인해 주세요.",
@@ -266,7 +268,6 @@ $(".signupBtn").on("click",function(){
 						confirmButtonColor: '#61677A',
 						confirmButtonText: '확인',
 				    });
-		event.preventDefault();
-			
+		event.preventDefault();		
 	}
 });

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import kr.or.iei.product.model.vo.ReviewProduct;
 import kr.or.iei.product.model.vo.ReviewProductRowMapper;
 import kr.or.iei.review.model.vo.Review;
+import kr.or.iei.review.model.vo.ReviewComment;
+import kr.or.iei.review.model.vo.ReviewCommentRowMapper;
 import kr.or.iei.review.model.vo.ReviewListRowMapper;
 import kr.or.iei.review.model.vo.ReviewRowMapper;
 
@@ -22,6 +24,8 @@ public class ReviewDao {
 	private ReviewProductRowMapper reviewProductRowMapper;
 	@Autowired
 	private ReviewListRowMapper reviewListRowMapper;
+	@Autowired
+	private ReviewCommentRowMapper reviewCommentRowMapper;
 	
 	public int insertReview(Review review) {
 		String query = "insert into review_tbl values(review_seq.nextval,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),default)";
@@ -85,6 +89,32 @@ public class ReviewDao {
 		Object[] params = {reviewNo,customerNo};
 		int result = jdbc.update(query,params);
 		return result;
+	}
+
+	public int insertComment(ReviewComment rc) {
+		String query = "insert into review_comment values(review_comment_seq.nextval,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?)";
+		String reviewCommentRef = rc.getReviewCommentRef()==0?null:String.valueOf(rc.getReviewCommentRef());
+		Object[] params = {rc.getReviewCommentWriter(),rc.getReviewCommentContent(),rc.getReviewRef(),reviewCommentRef};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+	public List selectCommentList(int reviewNo) {
+		String query = "select * from review_comment where review_ref=? and review_comment_ref is null order by 1";
+		List list = jdbc.query(query, reviewCommentRowMapper, reviewNo);
+		return list;
+	}
+
+	public List selectReCommentList(int reviewNo) {
+		String query = "select * from review_comment where review_ref=? and review_comment_ref is not null order by 1";
+		List list = jdbc.query(query, reviewCommentRowMapper, reviewNo);
+		return list;
+	}
+
+	public int selectReviewCount(int reviewNo) {
+		String query = "select count(*) from review_comment where review_ref=?";
+		int reviewCount = jdbc.queryForObject(query, Integer.class, reviewNo);
+		return reviewCount;
 	}
 
 }
