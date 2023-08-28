@@ -54,27 +54,35 @@ public class CustomerController {
 			session.setAttribute("c", c);
 			
 			return "customer/cart";
+	
 		}
 		return "common/msg";
 	}
 	
-	//고객 취소/환불 목록 페이지
-	@GetMapping(value="/refundList")
-	public String refundList() {
-		return "customer/refundList";
-	}
-	
-	//취소 신청 페이지
-	@GetMapping(value="/cancel")
-	public String cancel() {
-		return "customer/cancel";
-	}
-
 	//결제하기
 	@GetMapping(value="/payment")
 	public String customerPayment() {
 		return "/customer/payment";
 	}
+	
+	//마이페이지 주문 내역 목록 확인
+	@GetMapping(value="/orderList")
+	public String orderList() {
+		return "/customer/orderList";
+	}
+	
+	//고객 취소/환불 목록 페이지
+	@GetMapping(value="/cancelRefundList")
+	public String refundList() {
+		return "/customer/cancelRefundList";
+	}
+	
+	//취소 신청 페이지
+	@GetMapping(value="/cancel")
+	public String cancel() {
+		return "/customer/cancel";
+	}
+
 	
 	//찜목록
 	@GetMapping(value="/wishList") 
@@ -82,6 +90,7 @@ public class CustomerController {
 		WishListData wld = customerService.selectWishList(c.getCustomerNo(),reqPage);
 		return "customer/wishList";
 	}
+
 	
 	//회원가입
 	@PostMapping(value="/joinComplete")

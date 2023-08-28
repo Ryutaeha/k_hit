@@ -9,12 +9,12 @@
     font-family: ns-r;
     color: #1e1e1e;
 }
-.refund-head-title{
-    padding: 20px 0px 20px 0px;
+.content-title>span {
+    font-family: ns-eb;
+    letter-spacing: 3px;
 }
-.title1{
-    font-weight: bold;
-}
+
+
 .refund-wrap{
     border-radius: 10px;
     background-color: white;

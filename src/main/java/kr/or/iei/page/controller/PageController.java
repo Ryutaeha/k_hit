@@ -34,5 +34,19 @@ public class PageController {
 		return "/page/search";
 		
 	}
-	
+	//베스트 페이지
+	@GetMapping(value="/best")
+	public String bestPage() {
+		return "/page/best";
+	}
+	//신상품 페이지
+	@GetMapping(value="/new")
+	public String newPage() {
+		return "/page/new";
+	}
+	//모든 상품페이지
+	@GetMapping(value="/all")
+	public String allPage() {
+		return "/page/all";
+	}
 }
