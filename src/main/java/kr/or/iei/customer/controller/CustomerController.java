@@ -155,13 +155,10 @@ public class CustomerController {
 	//마이페이지 회원정보관리페이지
 	@GetMapping(value="/myInfo")
 	public String customerMyInfo(@SessionAttribute(required = false) Customer c, Model model) {
-		/*
 		String customerEmail = c.getCustomerEmail().substring(0,c.getCustomerEmail().lastIndexOf("@"));
 		String customerEmail2 = c.getCustomerEmail().substring(c.getCustomerEmail().lastIndexOf("@")+1);
 		model.addAttribute("customerEmail", customerEmail);
 		model.addAttribute("customerEmail2", customerEmail2);
-		*/
-		//월요일 강사님께
 		return "customer/myInfo";
 	}
 	
@@ -170,7 +167,7 @@ public class CustomerController {
 	public String updateCustomer(String customerEmail2,Customer customer,Model model,@SessionAttribute(required = false) Customer c) {
 		int result = customerService.updateCustomer(customerEmail2,customer);
 		if(result>0){
-			c.setCustomerEmail(customer.getCustomerEmail());
+			c.setCustomerEmail(customer.getCustomerEmail()+"@"+customerEmail2);
 			c.setCustomerName(customer.getCustomerName());
 			c.setCustomerPhone(customer.getCustomerPhone());
 			c.setCustomerPw(customer.getCustomerPw());

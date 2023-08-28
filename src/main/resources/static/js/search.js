@@ -1,11 +1,3 @@
-/*
-$(".main-menu").children().children().hover(function(){
-    $(".sub-menu").css("display","block")
-});
-*/
-
-
-
 //검색창
 $(".search").click(function() {
     $(".search-box").slideToggle();
@@ -41,3 +33,5 @@ $(".favorite_border").click(function(){
     $(this).css("display","none")
 
 });
+const price_span = $("#price_span").text();
+$("#price_span").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
