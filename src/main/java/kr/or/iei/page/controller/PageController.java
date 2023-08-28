@@ -27,9 +27,13 @@ public class PageController {
 		//하고자 하는 행위 : 검색창에 input 하면 productName에 1글자라도 겹치면 count세서 
 		//총 갯수,검색된 모든 product 목록화
 		PageSearchDate psd = pageService.searchProduct(searchWord);
+		//리뷰카운트 조회
+		
+		
+		
 		model.addAttribute("searchCount", psd.getSearchCount());
 		model.addAttribute("searchList", psd.getSearchList());
-		//리뷰카운트 조회
+		
 		System.out.println("검색한 단어 조회 : "+psd);
 		return "/page/search";
 		
@@ -41,47 +45,66 @@ public class PageController {
 	}
 	//신상품 페이지
 	@GetMapping(value="/new")
-	public String newPage() {
+	public String newPage(Model model) {
+		List newPrd = pageService.searchNewList();
+		System.out.println("신상품 : "+newPrd);
+		model.addAttribute("newPrd", newPrd);
 		return "/page/new";
 	}
 	//모든 상품페이지
 	@GetMapping(value="/all")
-	public String allPage() {
+	public String allPage(Model model) {
+		List allPrd = pageService.searchAll();
+		model.addAttribute("allPrd", allPrd);
 		return "/page/all";
 	}
 	//귀걸이 페이지
 	@GetMapping(value="/earring")
-	public String earringPage() {
+	public String earringPage(Model model) {
+		List list = pageService.searchEarring();
+		model.addAttribute("list", list);
 		return "/page/earring";
 	}
 	//목걸이 페이지
 	@GetMapping(value="/necklace")
-	public String necklacePage() {
+	public String necklacePage(Model model) {
+		List list = pageService.searchNecklace();
+		model.addAttribute("list", list);
 		return "/page/necklace";
 	}
 	//반지 페이지
 	@GetMapping(value="/ring")
-	public String ringPage() {
+	public String ringPage(Model model) {
+		List list = pageService.searchRing();
+		model.addAttribute("list", list);
 		return "/page/ring";
 	}
 	//팔찌 페이지
 	@GetMapping(value="/bracelet")
-	public String braceletPage() {
+	public String braceletPage(Model model) {
+		List list = pageService.searchBracelet();
+		model.addAttribute("list", list);
 		return "/page/bracelet";
 	}
 	//시계 페이지
 	@GetMapping(value="/watch")
-	public String watchPage() {
+	public String watchPage(Model model) {
+		List list = pageService.searchWatch();
+		model.addAttribute("list", list);
 		return "/page/watch";
 	}
 	//헤어용품 페이지
 	@GetMapping(value="/hair")
-	public String hairPage() {
+	public String hairPage(Model model) {
+		List list = pageService.searchHair();
+		model.addAttribute("list", list);
 		return "/page/hair";
 	}
 	//기타 페이지
 	@GetMapping(value="/other")
-	public String otherPage() {
+	public String otherPage(Model model) {
+		List list = pageService.searchOther();
+		model.addAttribute("list", list);
 		return "/page/other";
 	}
 }
