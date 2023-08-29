@@ -240,7 +240,7 @@
     
 }
 .inputCommentBox{
-    margin-bottom: 60px;
+  height: 100px;
 }
 .inputCommentBox>ul{
     overflow: hidden;
