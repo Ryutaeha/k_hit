@@ -336,4 +336,21 @@ public class SellerController {
 		}
 	}
 	
+	//고객 아이디/비번 찾기 확인
+		@GetMapping(value = "/searchConfirm")
+		public String searchConfirm(Model model) {
+			model.addAttribute("title","아이디/비밀번호 찾기");
+			model.addAttribute("msg", "[판매자] 아이디/비밀번호찾기 맞나요?");
+			model.addAttribute("icon", "question");
+			model.addAttribute("loc", "/seller/searchIdPwFrm");
+			model.addAttribute("cancelLoc", "/common/login");
+			
+			return "common/confirmMsg";
+		}
+		
+		@GetMapping(value = "/searchIdPwFrm")
+		public String searchIdPwFrm(){
+			return "seller/searchIdPwFrm";
+		}
+	
 }
