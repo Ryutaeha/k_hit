@@ -19,5 +19,12 @@ $(".check").on("click",function(){
 
 //쇼핑계속하기
 $(".keepShopping).on("click",function(){
+	console.log("dddd");
+	history.go(-1);
+});
+
+//계속구매하기
+$(.payment).on("click",function(){
+	console.log("ddd");
 	history.back();
-})
+});
