@@ -296,8 +296,11 @@
     font-size: 16px;
     font-family: ns-b;
 }
-.recomment-veiw{
+.recomment-view{
     overflow: hidden;
+    border-bottom: 2.5px solid #D8D9DA;
+    padding: 15px 25px;
+    min-height: 77px;
 }
 .recomment-area{
     float: left;
@@ -312,7 +315,7 @@
 }
 
 .recomment-icon>.material-icons{
-    margin: 18px 15px;
+    margin: 18px 0;
     font-size: 40px;
     color: #D8D9DA;
 }
