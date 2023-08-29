@@ -107,3 +107,13 @@ select{
     margin-left: 10px;
     background-color: #585858;
 }
+.option-tbl{
+    font-size: 18px;
+}
+.optionRemoveBtn{
+    background-color: aquamarine;
+    width: 30px;
+}
+.input-tbl tr>th{
+    width: 250px;
+}

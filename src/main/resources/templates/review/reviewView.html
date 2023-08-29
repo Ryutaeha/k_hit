@@ -5,20 +5,22 @@
 <title>review view</title>
 <link rel="stylesheet" href="/css/review.css">
 <link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/seller.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
+	<div class="seller-header">
+					<span class="move">REVIEW</span>
+				</div>
+	<div class="page-content">
 	<div class="review-all-wrap">
         <div class="review-wrap">
-            <div class="review-title">
-                <h2 class="title1">REVIEW</h2>
-            </div>
+            
             <div class="review-content">
-                <hr>
                 <div class="review-info">
                     <div class="review-info-top">
-                        <div class="review-id" th:text="${r.reviewWriter}"></div>
+                        <div class="review-id" th:text="${r.reviewWriter}+님"></div>
                         <div class="review-viewcount">view : <span th:text="${r.readCount}"></span></div>
                     </div>
                     <div class="review-product">
@@ -30,7 +32,8 @@
                             <div class="review-product-option" th:text="${rp.optionSize}+' / '+${rp.optionColor}"></div>
                         </div>
                     </div>
-                    <div class="review-info-title"></div>
+                   	<div id="starr">
+                   
                     <div class="star-wrap star-wrap2">
                         <span class="material-icons">star</span>
                         <span class="material-icons">star</span>
@@ -47,6 +50,7 @@
 	                        </div>
 	                    </div>
                     </div>
+                   	</div>
                     <div class="review-view-content" th:text="${r.reviewContent}"></div>
                     <img class="reviewPhoto review-view-image" th:src="'/review/'+${r.filepath}">
                     <div class="review-like">
@@ -102,6 +106,7 @@
                                         <span th:text="${rc.reviewCommentDate}"></span>
                                     </p>
                                     <div class="review-comment-content" th:text="${rc.reviewCommentContent}"></div>
+                                    <textarea name="reviewCommentContent" class="review-recomment-input" style="min-height:60px; width:620px; display:none;" th:text="${rc.reviewCommentContent}"></textarea>
                                     <p class="comment-link">
                                     	<a href="javascript:void(0)" class="recShow" onclick="loginMsg();" th:if="${session.c == null}">답글달기</a>
                                     <th:block th:if="${session.c != null}">
@@ -117,7 +122,7 @@
                             <!-- 대댓글 -->
                             <th:block th:each="rcc : ${reComment}">
                                 <ul class="posting-comment reply" th:if="${rc.reviewCommentNo == rcc.reviewCommentRef}">
-                                    <li class="comment-view recomment-view">
+                                    <li class="recomment-view">
                                         <div class="recomment-area recomment-icon">
                                             <span class="material-icons">subdirectory_arrow_right</span>
                                         </div>
@@ -128,6 +133,7 @@
                                                 <span th:text="${rcc.reviewCommentDate}"></span>
                                             </p>
                                         	<div class="review-comment-content" th:text="${rcc.reviewCommentContent}"></div>
+                                            <textarea name="reviewCommentContent" class="review-recomment-input" style="min-height:60px; width:545px; display:none;" th:text="${rcc.reviewCommentContent}"></textarea>
                                             <p class="comment-link">
                                                 <th:block th:if="${session.c != null}">
                                                     <th:block th:if="${session.c.customerId == rcc.reviewCommentWriter}">
@@ -165,6 +171,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 	<th:block th:include="common/footer"></th:block>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -245,6 +252,33 @@
 		    	    }
 		    	});
         }
+        
+        //답글 수정
+        function modifyComment(obj,reviewCommentNo,reviewNo){
+			$(obj).parent().prev().prev().hide();
+			$(obj).parent().prev().show();
+			
+			$(obj).text("수정완료");
+			$(obj).attr("onclick","modifyComplete(this,"+reviewCommentNo+","+reviewNo+")");
+			
+			$(obj).next().text("수정취소");
+			$(obj).next().attr("onclick","modifyCancel(this,"+reviewCommentNo+","+reviewNo+")")
+			
+			$(obj).prev().hide();
+		}
+		function modifyCancel(obj,reviewCommentNo,reviewNo){
+			$(obj).parent().prev().prev().show();
+			
+			$(obj).parent().prev().hide();
+
+			$(obj).prev().text("수정");
+			$(obj).prev().attr("onclick","modifyComment(this,"+reviewCommentNo+","+reviewNo+")");
+			
+			$(obj).text("삭제");
+			$(obj).attr("onclick","deleteComment(this,"+reviewCommentNo+","+reviewNo+")");
+			
+			$(obj).prev().prev().show();
+		}
 	</script>
 </body>
 </html>

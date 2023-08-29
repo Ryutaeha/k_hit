@@ -27,7 +27,7 @@
                 				<td colspan="3">
                 					<input type="text" name="productName" th:value="${p.productName}" required>
                 					<input type="hidden" name="productNo" th:value="${p.productNo}"> 
-                					<input type="hidden" name="productCheck" th:value="${p.productCheck}">
+                					<!-- <input type="hidden" name="productCheck" th:value="${p.productCheck}"> -->
                 				</td>
                 			</tr>
                 			<tr class="input-tr">
@@ -39,11 +39,12 @@
                 			<tr class="input-tr">
                 				<th>옵션설정</th>
                 				<td colspan="3">
-                					<table class="option-tbl">
+                					<table class="option-tbl" style="border: 1px solid #D8D9DA;">
                 					<tbody>
                 					<tr class="option-tbl-head">
 	                					<th>사이즈</th>
 	                					<th>색상</th>
+	                					<th>옵션 활성 여부</th>
 	                					<th>
 	                						<button type='button' id="optionAddBtn" class="optionAddBtn">옵션 추가</button>
 	                					</th>
@@ -54,7 +55,13 @@
                 						</td>
                 						<td>
                 							<input type="text" id="optionColor" name="optionColor" th:value="${productOption.optionColor}">
-                						</td>	                					
+                						</td>
+                						
+                						<td>
+											<button type="button">활성화</button>
+											<button type="button">비활성화</button>                							
+                						</td>	
+                						           							                					
                 					</tr>
                 					</tbody>
 
@@ -131,6 +138,7 @@
                 				</td>
                 			</tr>
                 			
+                			<!-- 
 							<tr class="input-tr">
                 				<th>기존 대표 이미지</th>
                 				<td>
@@ -138,11 +146,13 @@
                 					<span class="material-icons" style="cursor:pointer;margin-left:5px;font-size:18px;color:#ff2e63;" th:onclick="deleteFile(this,[[${p.productImg}]])">remove_circle</span>
                 				</td>
                 			</tr>
-                			             			
+                			  -->            			
                 			<tr class="input-tr">
                 				<th>신규 이미지 업로드</th>
                 				<td>
-                					<input type="file" name="upfile" accept=".jpg,.png,.jpeg" required>
+                					<input type="file" name="upfile" accept=".jpg,.png,.jpeg">
+                					<!-- <input name="productImg" type="hidden" th:text="${p.productImg}" ></span> -->
+                					<input type="hidden" name="productImg" th:value="${p.productImg}">
                 				</td>
                 			</tr>
 	                		<tr class="input-tr">
@@ -193,7 +203,7 @@
     });
     */
     
-    
+    /*
 	function deleteFile(obj,fileNo){
 		if(confirm("파일을 삭제하시겠습니까?")){
 			const input = $("<input>");
@@ -205,6 +215,7 @@
 			$(obj).parent().remove();
 		}
 	}
+    */
     	
     	//옵션 추가 버튼
 	    $("#optionAddBtn").on("click",function(){
