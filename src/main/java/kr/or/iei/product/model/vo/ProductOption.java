@@ -15,5 +15,5 @@ public class ProductOption {
 	private String optionSize;
 	private String optionColor;
 	private int optionStock;
-
+	private int outOfStock;
 }

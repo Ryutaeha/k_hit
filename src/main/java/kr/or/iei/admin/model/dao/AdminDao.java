@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.iei.admin.model.vo.Admin;
 import kr.or.iei.admin.model.vo.AdminRowMapper;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
+import kr.or.iei.notice.vo.Notice;
+import kr.or.iei.notice.vo.NoticeRowMapper;
 import kr.or.iei.product.model.vo.CategoryRowMapper;
 import kr.or.iei.product.model.vo.ProductDetailRowMapper;
 import kr.or.iei.product.model.vo.ProductRowMapper;
@@ -31,6 +34,8 @@ public class AdminDao {
 	private ProductRowMapper productRowMapper;
 	@Autowired
 	private ProductDetailRowMapper productDetailRowMapper;
+	@Autowired
+	private NoticeRowMapper noticeRowMapper;
 	
 	public List customerList(String input) {
 		System.out.println(input);
@@ -79,5 +84,34 @@ public class AdminDao {
 		String query = "SELECT * FROM CUSTOMER_TBL WHERE CUSTOMER_ID = ?";
 		List list = jdbc.query(query, customerRowMapper, cId);
 		return (Customer)list.get(0);
+	}
+
+	public Admin adminLogin(String adminSignId, String adminSignPw) {
+		String query = "SELECT * FROM ADMIN_TBL WHERE ADMIN_ID=? and ADMIN_PW=?";
+		List list = jdbc.query(query, adminRowMapper, adminSignId, adminSignPw);
+		return (Admin)list.get(0);
+	}
+
+	public int insertNotice(Notice n) {
+		String query = "INSERT INTO NOTICE_TBL VALUES(NOTICE_SEQ.NEXTVAL,?,?,TO_CHAR(SYSDATE,'YYYY-MM-DD'),?,0,0)";
+		return jdbc.update(query, n.getNoticeTitle(),n.getNoticeContent(),n.getNoticeWriter());		
+	}
+
+	public List<Notice> noticeList(int noticeFix, String input) {
+		String query  ="SELECT * FROM NOTICE_TBL WHERE NOTICE_FIX = ? and notice_title Like ?";
+		List list = jdbc.query(query, noticeRowMapper, noticeFix,"%"+input+"%");
+		return list;
+	}
+
+	public List<Notice> noticeList(String input) {
+		String query  ="SELECT * FROM NOTICE_TBL where notice_title Like ?";
+		List list = jdbc.query(query, noticeRowMapper,"%"+input+"%");
+		return list;
+	}
+
+	public Notice noticeView(int nNo) {
+		String query = "SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = ?";
+		List list = jdbc.query(query, noticeRowMapper, nNo);
+		return (Notice)list.get(0);
 	}
 }

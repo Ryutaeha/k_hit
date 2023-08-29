@@ -5,7 +5,6 @@
 <title>CART</title>
 <link rel="stylesheet" href="/css/cart.css">
 <link rel="stylesheet" href="/css/seller.css">
-<script src="js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	  <th:block th:include="common/header"></th:block>
@@ -17,7 +16,7 @@
         <!-- 페이지 제목 -->
         
         <!-- 장바구니 내용 -->
-        <form action="" method="post">
+        <!--  <form action="" method="post"> --> 
             <div class="cart-content">
                 <div class="content-info">
                     <table class="cartTbl info-top">
@@ -88,9 +87,9 @@
                         <!--  계속 쇼핑하기, 구매하기 버튼 -->
                         <div class="content-bottom">
                             <button type="button" class="keepShopping">계속 쇼핑하기</button>
-                            <button type="button">구매하기</button>
+                            <button type="button" class="payment">구매하기</button>
                         </div>
-                    </form>
+                     <!-- </form> -->
                 </div>
             </div>
 	  <th:block th:include="common/footer"></th:block>

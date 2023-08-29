@@ -60,11 +60,23 @@ public class SellerController {
 		model.addAttribute("pageNavi", pld.getPageNavi());		
 		return "/seller/addNewProductList";
 	}
-	//판매자 회원가입창으로 넘어가기
-	@GetMapping(value="/join")
-	public String joinPage() {
-		return "/seller/join";
+	//판매자 회원가입 Confirm
+	@GetMapping(value="/joinConfirm")
+	public String joinPage(Model model) {
+		model.addAttribute("title","회원가입");
+		model.addAttribute("msg", "[판매자] 회원가입이 맞으신가요?");
+		model.addAttribute("icon", "question");
+		model.addAttribute("loc", "/seller/join");
+		model.addAttribute("cancelLoc", "/common/login");
+		return "common/confirmMsg";
 	}
+	
+	//회원가입 페이지 이동
+	@GetMapping(value="/join")
+	public String sellerJoin() {
+		return "seller/join";
+	}
+	
 	//회원가입 완료했을시 넘어가기
 	@PostMapping(value="/joinComplete")
 	public String joinComplete(Seller s,String customerEmail2,MultipartFile imgFile) {
@@ -286,13 +298,9 @@ public class SellerController {
 	public String changeOptionStock(int optionStock, int productOptionNo, Model model) {
 		int result = sellerService.changeOptionStock(optionStock, productOptionNo);
 		if(result>0) {
-			return "redirect:/seller/productStockManagement?reqPage=1";
+			return "0";
 		}else {
-			model.addAttribute("title", "재고 변경 실패");
-			model.addAttribute("msg", "재고 수량 변경에 실패했습니다. 결과를 확인해 주세요.");
-			model.addAttribute("icon", "error");
-			model.addAttribute("loc", "/seller/productStockManagement?reqPage=1");
-			return "common/msg";
+			return "1";
 		}
 	}
 	
@@ -312,6 +320,7 @@ public class SellerController {
 		return "/editor/"+filepath;
 	}
 	*/
+
 	//리뷰페이지이동
 	@GetMapping(value="/review")
 	public String reviewPage() {
@@ -319,4 +328,37 @@ public class SellerController {
 		
 		return "/seller/review";
 	}
+
+	
+	//판매자 리뷰 확인 
+	@GetMapping(value="/review")
+	public String sellerReview(@SessionAttribute(required = false) Seller s,Model model) {
+		int sellerNo = s.getSellerNo();
+		int totalCount = sellerService.reviewTotalCount(sellerNo);
+		model.addAttribute("totalCount",totalCount);
+		return "seller/sellerReview";
+	}
+	
+	//판매자리뷰 더보기
+	@ResponseBody
+	@PostMapping(value="more")
+	public List more(@SessionAttribute(required = false)Seller s, int start, int end) {
+		int sellerNo = s.getSellerNo();
+		List reviewList = sellerService.sellerReviewList(sellerNo,start,end);
+		return reviewList;
+	}
+	
+	//판매자 회원가입 로그인 중복확인
+	@ResponseBody
+	@GetMapping(value="/checkId")
+	public String checkId(String sellerId) {
+		Seller s = sellerService.selectSellerId(sellerId);
+		if(s == null) {
+			return "0";
+		}else {
+			return "1";
+		}
+	}
+	
+
 }

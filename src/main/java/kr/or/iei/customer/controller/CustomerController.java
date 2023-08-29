@@ -1,5 +1,7 @@
 package kr.or.iei.customer.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,55 +42,45 @@ public class CustomerController {
 		return "customer/join";
 	}
 	
-	//장바구니 페이지 이동 (로그인 x > 로그인 페이지로 이동)
+	//장바구니 페이지 이동
 	@GetMapping(value="/cart")
-	public String Cart(String customerSignId, String customerSignPw, HttpSession session,Model model) {
-//		Customer c = customerService.selectOneCustomer(customerSignId,customerSignPw);
-//		if(c == null) {
-//			model.addAttribute("title","접근 실패");
-//			model.addAttribute("msg", "로그인 후 이용해 주세요.");
-//			model.addAttribute("icon", "error");
-//			model.addAttribute("loc", "/common/login");
-//
-//		}else if(c != null){
-//			session.setAttribute("c", c);
-//			
-//			return "customer/cart";
-//	
-//		}
-//		return "common/msg";
+	public String Cart() {
+		
 		return "customer/cart";
 	}
 	
 	//결제하기
 	@GetMapping(value="/payment")
 	public String customerPayment() {
-		return "/customer/payment";
+		return "customer/payment";
 	}
 	
 	//마이페이지 주문 내역 목록 확인
 	@GetMapping(value="/orderList")
 	public String orderList() {
-		return "/customer/orderList";
+		return "customer/orderList";
 	}
 	
 	//고객 취소/환불 목록 페이지
 	@GetMapping(value="/cancelRefundList")
 	public String refundList() {
-		return "/customer/cancelRefundList";
+		return "customer/cancelRefundList";
 	}
 	
 	//취소 신청 페이지
 	@GetMapping(value="/cancel")
 	public String cancel() {
-		return "/customer/cancel";
+		return "customer/cancel";
 	}
 
 	
 	//찜목록
 	@GetMapping(value="/wishList") 
-	public String wishList(Customer c, Model model, int reqPage){
+	public String wishList(@SessionAttribute(required = false) Customer c, Model model, int reqPage){
 		WishListData wld = customerService.selectWishList(c.getCustomerNo(),reqPage);
+		model.addAttribute("wishList",wld.getWishList());
+		model.addAttribute("pageNavi",wld.getPageNavi());
+		
 		return "customer/wishList";
 	}
 
@@ -102,7 +94,7 @@ public class CustomerController {
 		if(result>0) {
 			return "customer/joinComplete";			
 		}else {
-			return "redirect:/"; //메인페이지 (모달)
+			return "redirect:/";
 		}
 	}
 	
@@ -210,6 +202,24 @@ public class CustomerController {
 			return "common/msg";
 		}
 	}
+	//고객리뷰
+	@GetMapping(value="/reviewCheck")
+	public String customerReview(@SessionAttribute(required = false) Customer c, Model model) {
+		String reviewWriter = c.getCustomerId();
+		int totalCount = customerService.reviewTotalCount(reviewWriter);
+		model.addAttribute("totalCount", totalCount);
+		return "customer/customerReview";
+	}
+	
+	//고객리뷰 더보기
+	@ResponseBody
+	@PostMapping(value="/more")
+	public List more(@SessionAttribute(required = false)Customer c, int start, int end) {
+		String reviewWriter = c.getCustomerId();
+		List reviewList = customerService.customerReviewList(reviewWriter,start,end);
+		return reviewList;
+	}
+	
 }
 
 

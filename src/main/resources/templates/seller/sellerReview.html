@@ -2,24 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>customer my review</title>
-<link rel="stylesheet" href="/css/review.css">
-<script src="/js/jquery-3.6.0.js"></script>
+<title>seller my review</title>
 </head>
+<link rel="stylesheet" href="/css/review.css">
+<link rel="stylesheet" href="/css/seller.css">
 <body>
 	<th:block th:include="common/header"></th:block>
 	<div class="page-content">
-	<th:block th:include="customer/customerHeader"></th:block>
-	<th:block th:include="customer/customerMenu"></th:block>
-		<!-- 클래스 content-wrap 부터 안의 요소들은 마이페이지 생성 시 똑같이 적용시켜야함-->
+		<th:block th:include="seller/sellerHeader"></th:block>
+		<th:block th:include="seller/sellerMenu"></th:block>
+		
 		<div class="content-wrap">
 			<div class="content-title">
 				<span>
-					MY REVIEW
+					MY PRODUCT REVIEW
 				</span>
 			</div>
 			<div class="content-main">
-				<div class="review-wrap">
+				 <div class="review-wrap">
 		            <div class="review-content1">
 		                
 		            </div>
@@ -36,9 +36,7 @@
 		        </div>
 			</div>
 		</div>
-		<!--------------------------------------------------------- -->
 	</div>
-	
 	<th:block th:include="common/footer"></th:block>
 	
 	<script>
@@ -47,7 +45,7 @@
 			const amount = 8;
 			const end = Number(start)+amount-1;
 			$.ajax({
-				url : "/customer/more",
+				url : "/seller/more",
 				type : "post",
 				data : {start:start,end:end},
 				success : function(data){

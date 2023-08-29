@@ -92,5 +92,11 @@ public class ReviewService {
 		return orderNo;
 	}
 
+	@Transactional
+	public int updateComment(ReviewComment rc) {
+		int result = reviewDao.updateComment(rc);
+		return result;
+	}
+
 
 }

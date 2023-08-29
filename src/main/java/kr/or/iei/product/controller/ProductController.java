@@ -70,7 +70,7 @@ public class ProductController {
 	@GetMapping(value="/updateFrm")
 	public String updateFrm(int productNo, Model model) {
 		Product p = productService.getProduct(productNo);
-		System.out.println(p);
+		//System.out.println(p); 수정버튼 클릭시 정보 확인용
 		model.addAttribute("p", p);
 		
 		return "seller/updateProductFrm";
@@ -82,6 +82,10 @@ public class ProductController {
 		String savepath = root+"product/";
 		System.out.println(upfile);
 		if(upfile.getSize() != 0) {
+			
+			File delFile = new File(savepath+p.getProductImg());
+			delFile.delete();			
+			
 			String filepath = fileUtil.getFilepath(savepath, upfile.getOriginalFilename());
 			//File uploadFile = new File(filepath);
 			p.setProductImg(filepath);
@@ -94,22 +98,26 @@ public class ProductController {
 				e.printStackTrace();
 			}
 		}
-		
-		System.out.println("상품명"+p.getProductName());//null
-		System.out.println("가격"+p.getProductPrice());
-		System.out.println("카테고리번호"+p.getCategoryNo());
-		System.out.println("판매자번호"+s.getSellerNo());
-		System.out.println("이미지"+p.getProductImg());//null
-		System.out.println("요약정보"+p.getProductContent());
-		System.out.println("세부정보"+p.getProductContentDetails());		
+		/*
+		System.out.println("상품명 : "+p.getProductName());//null
+		System.out.println("가격 : "+p.getProductPrice());
+		System.out.println("카테고리번호 : "+p.getCategoryNo());
+		System.out.println("판매자번호 : "+s.getSellerNo());
+		System.out.println(s.getSellerNo());
+		System.out.println("이미지 : "+p.getProductImg());//null
+		System.out.println("요약정보 : "+p.getProductContent());
+		System.out.println("세부정보 : "+p.getProductContentDetails());		
 		System.out.println(p);
 		
-		for(String size : optionSize) {
-			System.out.println(size);
+		if(optionSize != null) {
+			for(String size : optionSize) {
+				System.out.println(size);
+			}
+			for(String color : optionColor) {
+				System.out.println(color);
+			}
 		}
-		for(String color : optionColor) {
-			System.out.println(color);
-		}
+		*/
 		
 		int result = productService.updateProduct(p, optionSize, optionColor);
 		//delFileNo, 매개변수 지워둠
@@ -117,11 +125,11 @@ public class ProductController {
 			model.addAttribute("title", "상품 수정 성공");
 			model.addAttribute("msg", "상품 수정이 완료되었습니다.");
 			model.addAttribute("icon", "success");
-			
-			//2. product테이블에 방금 insert한 productNo 조회
+			/*
 			int productNo = p.getProductNo();
 			System.out.println(p.getProductNo());
 			System.out.println(result);
+			*/
 			/*
 			File delFile = new File(savepath+filepath);
 			delFile.delete();
@@ -133,8 +141,17 @@ public class ProductController {
 		}
 		model.addAttribute("loc", "/seller/productManagement?reqPage=1");
 		return "common/msg";
-		
-		
-		
+	}
+	
+	//상품 수정에서 옵션 활성상태 변경
+	@ResponseBody
+	@GetMapping(value="/changeStockStatus")
+	public String changeStockStatus(int StockStatus, int productOptionNo, Model model,Product p) {
+		int result = productService.changeStockStatus(StockStatus, productOptionNo);
+		if(result > 0) {
+			return "0";
+		}else {
+			return "1";
+		}
 	}
 }

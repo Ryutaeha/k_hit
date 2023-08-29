@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.iei.admin.model.dao.AdminDao;
+import kr.or.iei.admin.model.vo.Admin;
 import kr.or.iei.customer.model.vo.Customer;
+import kr.or.iei.notice.vo.Notice;
 import kr.or.iei.product.model.vo.Category;
 import kr.or.iei.product.model.vo.ProductDetail;
 import kr.or.iei.seller.model.vo.Seller;
@@ -53,5 +56,31 @@ public class AdminService {
 	public Customer selectCustomer(String cId) {
 		return adminDao.selectCustomer(cId);
 	}
+
+	public Admin AdminLogin(String adminSignId, String adminSignPw) {
+		return adminDao.adminLogin(adminSignId,adminSignPw);
+	}
+	@Transactional
+	public int insertNotice(Notice n) {
+		return adminDao.insertNotice(n);
+	}
+
+	public List<Notice> noticeList(int noticeFix, String input) {
+		if(input.equals("")) {
+			input = "%";
+		}
+		if(noticeFix==1 ||noticeFix ==0) {
+			return adminDao.noticeList(noticeFix,input);			
+		}else {
+			return adminDao.noticeList(input);			
+
+		}
+		
+	}
+
+	public Notice noticeView(int nNo) {
+		return adminDao.noticeView(nNo);
+	}
+
 	
 }

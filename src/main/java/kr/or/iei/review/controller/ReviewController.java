@@ -156,4 +156,22 @@ public class ReviewController {
 		return "common/msg";
 	}
 	
+	//리뷰 수정
+	@PostMapping(value="/updateComment")
+	public String updateComment(ReviewComment rc, Model model) {
+		int result = reviewService.updateComment(rc);
+		System.out.println(rc);
+		if(result>0) {
+			model.addAttribute("title", "수정완료");
+			model.addAttribute("msg", "댓글이 수정되었습니다.");
+			model.addAttribute("icon", "success");
+		}else {
+			model.addAttribute("title", "수정실패");
+			model.addAttribute("msg", "댓글 수정에 실패했습니다.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc", "/review/reviewView?reviewNo="+rc.getReviewRef());
+		return "common/msg";
+	}
+	
 }

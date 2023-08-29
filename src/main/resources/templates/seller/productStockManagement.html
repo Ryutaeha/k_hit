@@ -73,10 +73,19 @@
 				        confirmButtonText: '확인',
 				        
 				      });
+				},error : function(data){
+					Swal.fire({
+				        title : "재고 변경 실패",
+						text : "변경 후 재고 수량을 확인하세요.",
+						icon : "error",
+				        confirmButtonColor: '#61677A',
+				        confirmButtonText: '확인',
+				        
+				      });
 				}
 			});
-			//location.href = "/seller/changeOptionStock?productOptionNo="+productOptionNo+"&optionStock="+optionStock;
 		});
+			//location.href = "/seller/changeOptionStock?productOptionNo="+productOptionNo+"&optionStock="+optionStock;
 	</script>
 
 </body>

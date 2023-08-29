@@ -11,6 +11,7 @@ import kr.or.iei.customer.model.dao.CustomerDao;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.WishListData;
+import kr.or.iei.seller.model.vo.ProductListData;
 
 @Service
 public class CustomerService {
@@ -56,8 +57,59 @@ public class CustomerService {
 		int start = end - numPerPage + 1;
 		
 		List wishList = customerDao.selectWishList(customerNo,start,end);
-//		int totalCount = customerDao.selectProductTotalCount(customerNo);
-		return null;
+		int totalCount = customerDao.selectWisiListTotalCount(customerNo);
+		int totalPage = (int)(Math.ceil(totalCount)/(double)numPerPage);
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
+		
+		String pageNavi = "<ul class='pagination circle-style'>";
+		if(pageNo != 1) {
+			pageNavi += "<li>";
+			pageNavi += "<a class='page-item' href='/customer/wishList?reqPage="+(pageNo-1)+"'>";
+			pageNavi += "<span class='material-icons'>chevron_left</span>";
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+		for(int i=0;i<pageNaviSize;i++) {
+			if(pageNo == reqPage) {
+				pageNavi += "<li>";
+				pageNavi += "<a class='page-item active-page' href='/customer/wishList?reqPage="+(pageNo)+"'>";
+				pageNavi += pageNo;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			}else {
+				pageNavi += "<li>";
+				pageNavi += "<a class='page-item' href='/customer/wishList?reqPage="+(pageNo)+"'>";
+				pageNavi += pageNo;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			}
+			pageNo++;
+			if(pageNo>totalPage) {
+				break;
+			}
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<li>";
+			pageNavi += "<a class='page-item' href='/customer/wishList?reqPage="+(pageNo)+"'>";
+			pageNavi += "<span class='material-icons'>chevron_right</span>";
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+		pageNavi += "</ul>";
+		
+		WishListData wld = new WishListData(wishList, pageNavi);
+		return wld;
 	}
 
+
+	public int reviewTotalCount(String reviewWriter) {
+		int totalCount = customerDao.reviewTotalCount(reviewWriter);
+		return totalCount;
+	}
+	public List customerReviewList(String reviewWriter, int start, int end) {
+		List reviewList = customerDao.customerReviewList(reviewWriter, start,end);
+		return reviewList;
+	}
 }
+

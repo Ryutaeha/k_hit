@@ -9,7 +9,7 @@
 		<script src="/summernote/summernote-lite.js"></script>
 		<script src="/summernote/lang/summernote-ko-KR.js"></script>
 		<link rel="stylesheet" href="/summernote/summernote-lite.css">
-		<link rel="stylesheet" href="/css/myinfo.css">
+		<link rel="stylesheet" href="/css/updateFrm.css">
 		<link rel="stylesheet" href="/css/addNewProductFrmEditor.css">    
     
     <div class="page-content">
@@ -42,19 +42,60 @@
                 					<table class="option-tbl">
                 					<tbody>
                 					<tr class="option-tbl-head">
+                						<div class="notice-content">* NOTICE : 판매중인 상품의 특정 옵션만 판매 중지하고 싶으신 경우 비활성화 혹은 재고관리에서 재고를 0으로 변경 부탁드립니다.</div>
 	                					<th>사이즈</th>
 	                					<th>색상</th>
 	                					<th>
-	                						<button type='button' id="optionAddBtn" class="optionAddBtn">옵션 추가</button>
+	                						<button type="button" id="optionAddBtn" class="optionAddBtn">옵션 추가</button>
 	                					</th>
+	                					<th class="stock-active">활성화 여부</th>
 	                				</tr>
 	                				<tr th:each="productOption : ${p.productOptionList}">
                 						<td>
-                							<input type="text" id="optionSize" name="optionSize" th:value="${productOption.optionSize}">
+                							<input type="text" id="optionSize" class="options" th:value="${productOption.optionSize}">
                 						</td>
                 						<td>
-                							<input type="text" id="optionColor" name="optionColor" th:value="${productOption.optionColor}">
-                						</td>	                					
+                							<input type="text" id="optionColor" class="options" th:value="${productOption.optionColor}">
+                						</td>
+
+                						<td>
+                						</td>
+                						
+										<td class="stock-active" th:switch="${productOption.outOfStock}">
+											<select th:case="0" class="stock-active">
+												<option value="0" selected>판매중(활성화)</option>
+												<option value="1">판매중지(비활성화)</option>
+											</select>
+											<select th:case="1" class="stock-active">
+												<option value="0">판매중(활성화)</option>
+												<option value="1" selected>판매중지(비활성화)</option>
+											</select>
+											              
+                						<td>
+                							<input type="hidden" name="productOptionNo" th:value="${productOption.productOptionNo}"> 
+											<button type="button" class="changeStockStatus">활성상태 변경</button>
+										</td>
+											
+										<!-- 							
+                						<td class="stock-active">
+                							<input type="text" th:value="${productOption.outOfStock}">
+
+                						<a href="javascript:void(0);" th:onclick="modifyOutOfStock(this,[[${productOption.outOfStock}]],[[${productOption.productOptionNo}]])">비활성화</a>
+                						 <a href="javascript:void(0);" th:onclick="modifyOutOfStock(this,[[${productOption.outOfStock}]],[[${productOption.productOptionNo}]])">활성화</a>
+                						  -->
+                						<!-- 
+											<button type="button">비활성화</button>
+											<button type="button">활성화</button>
+										-->         							
+                						</td>
+                						
+										<!-- 
+                						<td>
+											<button type="button">활성화</button>
+											<button type="button">비활성화</button>                							
+                						</td>	
+                						--> 							                					
+
                 					</tr>
                 					</tbody>
 
@@ -170,7 +211,7 @@
 							</tr>
 							</table>                			                   			                 			                			                    			
 								<div class="input-btn">
-									<input type="submit" value="검수 요청"></input>
+									<input type="submit" value="수정 완료"></input>
 								</div>  
                 	</form>
                 </div>
@@ -178,6 +219,8 @@
         </div>
 
     <th:block th:include="common/footer"></th:block>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
     <script>
     
     //카테고리
@@ -196,7 +239,7 @@
     });
     */
     
-    
+    /*
 	function deleteFile(obj,fileNo){
 		if(confirm("파일을 삭제하시겠습니까?")){
 			const input = $("<input>");
@@ -208,6 +251,7 @@
 			$(obj).parent().remove();
 		}
 	}
+    */
     	
     	//옵션 추가 버튼
 	    $("#optionAddBtn").on("click",function(){
@@ -217,6 +261,7 @@
 	    	input.attr("type","text");
 	    	input.attr("name","optionSize");
 	    	input.attr("placeholder","옵션 사이즈");
+	    	input.attr("class","options");
 	    	input.prop("required",true);
 	    	
 	    	const td2 = $("<td>");
@@ -224,13 +269,14 @@
 	    	input2.attr("type","text");
 	    	input2.attr("name","optionColor");
 	    	input2.attr("placeholder","옵션 색상");
+	    	input2.attr("class","options");
 	    	input2.prop("required",true);
 	    	
 	    	const td3 = $("<td>");
 	    	const button = $("<button>");
 	    	button.attr("type","button");
 	    	button.addClass("optionRemoveBtn");
-	    	button.text("-");
+	    	button.text("옵션 삭제");
 	    	
 	    	td1.append(input);
 	    	
@@ -293,6 +339,34 @@
 	        }
 	    });
     	
+	    //활성상태 변경
+	    $(".changeStockStatus").on("click",function(){
+			const StockStatus = $(this).parent().prev().children().val();
+			//재고상태
+			const productOptionNo = $(this).prev().val();
+			//const productNo = $(this).
+			console.log(StockStatus, productOptionNo);
+			
+			$.ajax({
+				url : "/product/changeStockStatus",
+				type : "get",
+				data : {StockStatus : StockStatus, productOptionNo : productOptionNo},
+				success : function(data){
+					
+					Swal.fire({
+				        title : "상태 변경 완료",
+						text : "변경 후 활성화 상태를 확인하세요.",
+						icon : "success",
+				        confirmButtonColor: '#61677A',
+				        confirmButtonText: '확인',
+				        
+				      });
+				}
+			});
+		});	    
+			//location.href = "/seller/changeOptionStock?productOptionNo="+productOptionNo+"&optionStock="+optionStock;
+	    
+	    
     </script>
 </body>
 </html>
