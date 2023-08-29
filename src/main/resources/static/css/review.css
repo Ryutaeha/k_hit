@@ -27,6 +27,7 @@
 }
 
 .review-info{
+    height: 100%;
     width: 700px;
     margin: 0 auto;
 }
@@ -86,6 +87,10 @@
     margin-bottom: 15px;
     font-family: ns-b;
     font-size: 18px;
+}
+#starr{
+    margin-top: 20px;
+    overflow: hidden;
 }
 
 /* 별점 */
@@ -169,18 +174,20 @@
 }
 
 .review-view-content{
-    padding: 30px 0;
+    padding: 10px;
     font-size: 18px;
     white-space: pre-line;
     overflow-wrap: break-word;
-    
+    border: 1px solid #ededed;
+    margin: 20px 0;
 }
 
 .review-view-image{
     width: 500px;
     height: 300px;
     border-radius: 3px;
-    margin-left: 100px;
+    margin: 0 auto;
+    display: block;
 }
 .review-like{
     margin-top: 30px;
@@ -233,7 +240,7 @@
     
 }
 .inputCommentBox{
-    margin-bottom: 120px;
+    margin-bottom: 60px;
 }
 .inputCommentBox>ul{
     overflow: hidden;
@@ -280,10 +287,10 @@
 }
 
 .comment-view{
-    border-bottom: 2.5px solid #D8D9DA;
+    border: 1px solid #ededed;
     padding: 15px 25px;
     min-height: 77px;
-
+    margin-top: 10px;
 }
 .comment-info>span{
     padding-right: 7px;
@@ -298,7 +305,6 @@
 }
 .recomment-view{
     overflow: hidden;
-    border-bottom: 2.5px solid #D8D9DA;
     padding: 15px 25px;
     min-height: 77px;
 }
@@ -307,11 +313,12 @@
 }
 
 .recomment-icon{
-    width: 70px;
+    width: 50px;
 }
-
 .recomment-content{
     width: 580px;
+    border: 1px solid #ededed;
+    padding: 5px;
 }
 
 .recomment-icon>.material-icons{
@@ -320,7 +327,7 @@
     color: #D8D9DA;
 }
 .comment-first:first-child>.comment-view{
-    border-top: 2.5px solid #D8D9DA;
+    border: 1px solid #ededed;
 }
 
 .inputRecommentBox{
@@ -374,25 +381,29 @@
 
 .list-btn{
 	margin-top: 80px;
-    margin-bottom: 150px;
+    margin-bottom: 80px;
     text-align: center;	
 }
 .review-content{
     overflow: hidden;
     box-sizing: border-box;
-
+    border: 1px solid #ededed;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    padding-top: 20px;
+    margin-bottom: 100px;
 }
 .review-info2{
     float: left;
     width: calc(100% / 4);
-    padding: 10px;
+    padding: 20px;
     box-sizing: border-box;
     margin-bottom: 50px;
 }
 .review-list-content{
     
     height: 490px;
-    border: 2px solid #DEDEDE;
+    border: 2px solid #ededed;
     border-radius: 5px;
 }
 .review-list-content>*{
