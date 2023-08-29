@@ -47,8 +47,15 @@ public class ProductDao {
 	}
 
 	public int updateProduct(ProductOption productOption) {
-		String query = "update product_option_tbl set option_size=?,option_color=? where product_no=?";
-		Object[] params = {productOption.getOptionSize(),productOption.getOptionColor(),productOption.getProductNo()};
+		String query = "insert into PRODUCT_OPTION_TBL values(PRODUCT_OPTION_SEQ.nextval,?,?,?,default,0)";
+		Object[] params = {productOption.getProductNo(),productOption.getOptionSize(),productOption.getOptionColor()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+	public int changeStockStatus(int StockStatus, int productOptionNo) {
+		String query = "update product_option_tbl set out_of_stock=? where product_option_no=?";
+		Object[] params = {StockStatus, productOptionNo};
 		int result = jdbc.update(query,params);
 		return result;
 	}

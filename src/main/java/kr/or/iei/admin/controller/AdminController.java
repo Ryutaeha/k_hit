@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.FileUtil;
 import kr.or.iei.admin.model.service.AdminService;
+import kr.or.iei.admin.model.vo.Admin;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.notice.vo.Notice;
 import kr.or.iei.product.model.vo.Category;
@@ -37,9 +40,22 @@ public class AdminController {
 	public String adminLogin() {
 		return "/admin/adminLogin";
 	}
-	@GetMapping(value = "/login")
-	public String login() {
-		return "/admin/adminLogin";
+	@PostMapping(value = "/login")
+	public String login(String adminSignId, String adminSignPw, Model model,HttpSession session) {
+		Admin a = adminService.AdminLogin(adminSignId,adminSignPw);
+		if(a!= null) {
+			session.setAttribute("a", a);
+			model.addAttribute("title","로그인 성공");
+			model.addAttribute("msg", "환영합니다.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/adminIndex");		
+		}else {
+			model.addAttribute("title","로그인 실패");
+			model.addAttribute("msg", "아이디/비밀번호를 확인해 주세요.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/adminLogin");
+		}
+		return "common/msg";
 	}
 	@GetMapping(value = "/adminIndex")
 	public String adminIndex() {
@@ -115,9 +131,15 @@ public class AdminController {
 	public Customer cContent(String cId){
 		return adminService.selectCustomer(cId);
 	}
-	
-	@GetMapping(value="/notice")
-	public String notice(){
+	@ResponseBody
+	@PostMapping(value="/nContent")
+	public Notice nContent(int nNo){
+		return adminService.noticeView(nNo);
+	}
+	@GetMapping(value="/noticeList")
+	public String notice(Model model, int noticeFix,String input){
+		List<Notice> list = adminService.noticeList(noticeFix,input);			
+		model.addAttribute("list", list);
 		return "/admin/notice";
 	}
 
@@ -127,9 +149,9 @@ public class AdminController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value = "/notice",produces = "plain/text;charset=utf-8")
+	@PostMapping(value = "/noticeFile",produces = "plain/text;charset=utf-8")
 	public String editorUpload(MultipartFile file) {
-		String savepath = root+"admin/";
+		String savepath = root+"notice/";
 		String filepath = fileUtil.getFilepath(savepath, file.getOriginalFilename());
 		File image = new File(savepath+filepath);
 		try {
@@ -142,8 +164,7 @@ public class AdminController {
 	}
 	@PostMapping(value = "/write")
 	public String noticeWrite(Notice n ,Model model) {
-		System.out.println(n);
-//		int result = adminService.insertNotice(n);
+		int result = adminService.insertNotice(n);
 		return "/admin/noticeFrm";
 	}
 }

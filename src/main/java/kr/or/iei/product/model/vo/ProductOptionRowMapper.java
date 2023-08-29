@@ -17,6 +17,7 @@ public class ProductOptionRowMapper implements RowMapper<ProductOption>{
 		po.setOptionStock(rs.getInt("option_stock"));
 		po.setProductNo(rs.getInt("product_no"));
 		po.setProductOptionNo(rs.getInt("product_option_no"));
+		po.setOutOfStock(rs.getInt("out_of_stock"));
 		return po;
 	}
 

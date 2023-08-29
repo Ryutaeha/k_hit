@@ -19,9 +19,13 @@ public class CustomerDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private CustomerRowMapper customerRowMapper;
-	@Autowired WishListRowMapper wishListRowMapper;
+
 	@Autowired
-	ReviewListRowMapper reviewListRowMapper;
+	private ReviewListRowMapper reviewListRowMapper;
+
+	@Autowired 
+	private WishListRowMapper wishListRowMapper;
+
 	
 	public int insertCustomer(Customer customer, String customerEmail2) {
 		String query = "insert into customer_tbl values(customer_seq.nextval,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),default)";
@@ -84,6 +88,12 @@ public class CustomerDao {
 		String query = "select * from (select rownum as rnum, r.* from (select review_no,order_no,product_no,review_writer,star_count,review_content,filepath,product_name,product_img from review_tbl join order_tbl using(order_no) join product_option_tbl using(product_option_no) join product_tbl using(product_no)where review_writer=? order by 1 desc)r) where rnum between ? and ?";
 		List reviewList = jdbc.query(query, reviewListRowMapper,reviewWriter,start,end);
 		return reviewList;
+	}
+
+	public int selectWisiListTotalCount(int customerNo) {
+		String query = "select count(*) as cnt from product_like where customer_no=?";
+		int totalCount = jdbc.queryForObject(query, Integer.class,customerNo);
+		return totalCount;
 	}
 
 
