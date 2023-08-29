@@ -54,7 +54,13 @@
                 						</td>
                 						<td>
                 							<input type="text" id="optionColor" name="optionColor" th:value="${productOption.optionColor}">
-                						</td>	                					
+                						</td>
+                						<!-- 
+                						<td>
+											<button type="button">수정</button>
+											<button type="button">삭제</button>                							
+                						</td>	
+                						 -->                							                					
                 					</tr>
                 					</tbody>
 
@@ -196,7 +202,7 @@
     });
     */
     
-    
+    /*
 	function deleteFile(obj,fileNo){
 		if(confirm("파일을 삭제하시겠습니까?")){
 			const input = $("<input>");
@@ -208,6 +214,7 @@
 			$(obj).parent().remove();
 		}
 	}
+    */
     	
     	//옵션 추가 버튼
 	    $("#optionAddBtn").on("click",function(){

@@ -107,7 +107,7 @@ public class SellerDao {
 	}
 
 	public int addNewProductOption(ProductOption productOption) {
-		String query = "insert into PRODUCT_OPTION_TBL values(PRODUCT_OPTION_SEQ.nextval,?,?,?,default)";
+		String query = "insert into PRODUCT_OPTION_TBL values(PRODUCT_OPTION_SEQ.nextval,?,?,?,default,0)";
 		Object[] params = {productOption.getProductNo(),productOption.getOptionSize(),productOption.getOptionColor()};
 		int result = jdbc.update(query,params);
 		return result;
