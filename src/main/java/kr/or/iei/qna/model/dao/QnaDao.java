@@ -16,9 +16,16 @@ public class QnaDao {
 	private QnaRowMapper qnaRowMapper;
 	
 	
-	public List searchAllQna() {
-		String query="SELECT * FROM QUESTION_TBL order by 1 desc";
-		List list = jdbc.query(query, qnaRowMapper);
-		return list;
+	public List searchAllQna(int start,int end) {
+		String query="select * from(select rownum as rnum,n.* from(SELECT * FROM QUESTION_TBL order by 1 desc)n)where rnum between ? and ?";
+		List qnaList = jdbc.query(query, qnaRowMapper,start,end);
+		return qnaList;
+	}
+
+
+	public int searchQnaTotalCount() {
+		String query = "select count(*) from question_tbl";
+		int totalCount = jdbc.queryForObject(query, Integer.class);
+		return totalCount;
 	}
 }
