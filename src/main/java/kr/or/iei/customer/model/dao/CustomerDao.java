@@ -64,7 +64,7 @@ public class CustomerDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
-
+	//찜목록
 	public List selectWishList(int customerNo, int start, int end) {
 		String query = "select * from (select rownum as rnum, n.* from (select * from product_like where customer_no=? order by 1 desc)n) where rnum between ? and ?";
 		List list = jdbc.query(query, wishListRowMapper, customerNo, start, end);
