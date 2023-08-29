@@ -60,7 +60,7 @@ $("[name=imgFile]").on("change",function(){
 });
 
 
-//고객회원가입 유효성 검사
+//판매자회원가입 유효성 검사
 let idResult = false;
 let pwResult = false;
 let phoneResult = false;
@@ -68,18 +68,18 @@ let nameResult = false;
 
 //아이디중복검사
 $(".dup-btn").on("click",function(){
-	const customerId = $("#customerId").val();
+	const sellerId = $("#sellerId").val();
 	const idReg = /^[a-z0-9]{4,12}$/;
-	if(idReg.test(customerId)){
+	if(idReg.test(sellerId)){
 		$.ajax({
-			url:"/customer/checkId",
+			url:"/seller/checkId",
 			type : "get",
-			data : {customerId : customerId},
+			data : {sellerId : sellerId},
 			success : function(data){
 				if(data == "0"){						
 					Swal.fire({
 						title : "아이디 중복체크",
-						text : "[ "+customerId+" ]는 사용 가능한 아이디입니다.",
+						text : "[ "+sellerId+" ]는 사용 가능한 아이디입니다.",
 						icon : "success",
 				        confirmButtonColor: '#61677A',
 				        confirmButtonText: '확인',
@@ -91,7 +91,7 @@ $(".dup-btn").on("click",function(){
 				}else{
 					Swal.fire({
 						title : "아이디 중복체크",
-						text : "[ "+customerId+" ]는 이미 사용중인 아이디입니다.",
+						text : "[ "+sellerId+" ]는 이미 사용중인 아이디입니다.",
 						icon : "error",
 						confirmButtonColor: '#61677A',
 						confirmButtonText: '확인',
@@ -118,8 +118,8 @@ $(".dup-btn").on("click",function(){
 });
 
 //비밀번호, 비밀번호 확인
-const inputPw = $("#customerPw");
-const inputPwRe = $("#customerPwRe");
+const inputPw = $("#sellerPw");
+const inputPwRe = $("#sellerPwRe");
 inputPw.on("change",function(){
     const pwValue = inputPw.val();
     const pwReValue = inputPwRe.val();
@@ -200,7 +200,7 @@ function pwBlank(){
 };
 
 //이름
-const inputName = $("#customerName");
+const inputName = $("#sellerName");
 inputName.on("change",function(){
 	const nameValue = inputName.val();
 	const nameReg = /^[가-힣]{1,}$/;
@@ -215,8 +215,8 @@ inputName.on("change",function(){
 	}
 });
 
-//고객전화번호
-const inputPhone = $("#customerPhone");
+//판매자전화번호
+const inputPhone = $("#sellerPhone");
 inputPhone.on("change",function(){
 	const phoneValue = inputPhone.val();
 	const phoneReg = /^[0-9]{11}$/;
@@ -231,13 +231,15 @@ inputPhone.on("change",function(){
 	}
 });
 
-//고객회원가입
+//판매자회원가입
 
 $(".signupBtn").on("click",function(event){
-	const emailValue1 = $("#customerEmail").val();
-	const emailValue2 = $("#customerEmail2").val();
+	const emailValue1 = $("#sellerEmail").val();
+	const emailValue2 = $("#sellerEmail2").val();
+	const introValue = $("#sellerIntroduce").val();
+	const imgValue=$("#imgFile").val();
 	
-	if(pwResult && phoneResult && nameResult && emailValue1!="" && emailValue2!=""){
+	if(pwResult && phoneResult && nameResult && emailValue1!="" && emailValue2!="" && introValue!="" && imgValue!=""){
 		if(!idResult){
 			Swal.fire({
 						title : "회원가입",
@@ -260,4 +262,3 @@ $(".signupBtn").on("click",function(event){
 		event.preventDefault();		
 	}
 });
-
