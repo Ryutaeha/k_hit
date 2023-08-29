@@ -1,4 +1,6 @@
-
+<script src="/summernote/summernote-lite.js"></script>
+	<script src="/summernote/lang/summernote-ko-KR.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <div class="modal-wrap ">
 	<div class="modal-inpo pModal">
 		<button style="height: 50px; width: 50px" class="delModal">X</button>
@@ -119,15 +121,15 @@
 			</tr>
 			<tr>
 				<td class="mContentN" colspan="2">
-					<div>내용</div>
+					<textarea class="input-form" name="noticeContent" id="noticeContent" style="width: 100%"></textarea>
 				</td>
 			</tr>
 		</table>
-		<div>
+		<div class="modifyNoticeFrm">
 			<button>수정하기</button>
-			<button>닫기</button>
+			
 		</div>
-		<div>
+		<div class="modifyNotice" style="display: none;">
 			<button>수정</button>
 			<button>취소</button>
 		</div>

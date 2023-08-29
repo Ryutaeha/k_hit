@@ -86,6 +86,10 @@ public class AdminService {
 	public int productCheckChange(int productCheck, int productNo) {
 		return adminDao.productCheckChange(productCheck, productNo);
 	}
+	@Transactional
+	public int fix(int fix, int nNo) {
+		return adminDao.fix(fix,nNo);
+	}
 
 	
 }

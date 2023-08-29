@@ -116,7 +116,12 @@ public class AdminDao {
 	}
 
 	public int productCheckChange(int productCheck, int productNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		String qurey = "UPDATE product_tbl SET product_check = ?  WHERE product_no = ?";
+		return jdbc.update(qurey,productCheck,productNo);
+	}
+
+	public int fix(int fix, int nNo) {
+		String qurey = "UPDATE notice_tbl SET notice_fix = ?  WHERE notice_no=?";
+		return jdbc.update(qurey, fix,nNo);
 	}
 }

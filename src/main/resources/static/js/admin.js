@@ -90,11 +90,6 @@ function pModal(pNo){
 	
 }
 
-$(document).on('click',".pCheckChange",function(){
-	console.log($("#pCheck").val());
-	console.log($(".pNo").val());
-})
-
 
 $(".sMenu").on('click',function(){
 	sModal($(this).text());
@@ -156,8 +151,26 @@ $(".nSelect").on('click',function(){
 	nModal($(this).children().eq(0).text());
 })
 
+$(document).on('click',".fix",function(){
+	const fix = $(this).val();
+	const nNo = $(".mNoN").val()
+	$.ajax({
+		url : "/admin/fix",
+		type : "post",
+		data : {fix : fix, nNo : nNo},
+		dataType : "json",
+		success: function(data){
+			alert("수정 성공");
+			 nModal(nNo);
+		}
+	})
+	/*
+	*/
+})
+
 function nModal(nNo){
-	$(".nModal>table").children().children().children().empty();
+	$(".nModal>table").children().children().children().not('.mContentN').empty();
+	$(".fix").remove()
 	$.ajax({
 		url : "/admin/nContent",
 		type : "post",
@@ -166,11 +179,26 @@ function nModal(nNo){
 		success: function(data){
 			console.log(data)
 			$(".mTitleN").append($("<h2>").append(data.noticeTitle));
+			$(".mTitleN").append($("<input type = text style=display:none>").append(data.noticeTitle));
 			$(".mDateN").append($("<h3>").append(data.noticeDate));
-			$(".mContentN").append($("<div>").append(data.noticeContent));
+			$(".mDateN").append($("<input type=hidden value ="+data.noticeNo+" class=mNoN>"));
+			$("#noticeContent").append(data.noticeContent);
+			$("#noticeContent").append("dsd");
+			if(data.noticeFix==0){
+				$(".modifyNoticeFrm").append($("<button value=1 class = fix>").append("고정"));
+			}else{
+				$(".modifyNoticeFrm").append($("<button value=0 class = fix>").append("고정해제"));
+			}
 		}
 	})
 	$(".modal-inpo").css("display","none");
     $(".nModal").css("display","block");
 	$(".modal-wrap").css("display","flex");
 }
+
+$(".modifyNoticeFrm>button:first-child").on('click',function(){
+	$(".modifyNoticeFrm").css('display','none');	
+	$(".modifyNotice").css('display','block');
+	
+})
+

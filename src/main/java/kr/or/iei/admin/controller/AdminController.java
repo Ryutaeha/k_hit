@@ -184,4 +184,9 @@ public class AdminController {
 		}
 		return "common/msg";
 	}
+	@ResponseBody
+	@PostMapping(value = "/fix")
+	public int fix(int fix, int nNo) {
+		return adminService.fix(fix,nNo);
+	}
 }
