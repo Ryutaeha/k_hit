@@ -58,11 +58,23 @@ public class SellerController {
 		model.addAttribute("pageNavi", pld.getPageNavi());		
 		return "/seller/addNewProductList";
 	}
-	//판매자 회원가입창으로 넘어가기
-	@GetMapping(value="/join")
-	public String joinPage() {
-		return "/seller/join";
+	//판매자 회원가입 Confirm
+	@GetMapping(value="/joinConfirm")
+	public String joinPage(Model model) {
+		model.addAttribute("title","회원가입");
+		model.addAttribute("msg", "[판매자] 회원가입이 맞으신가요?");
+		model.addAttribute("icon", "question");
+		model.addAttribute("loc", "/seller/join");
+		model.addAttribute("cancelLoc", "/common/login");
+		return "common/confirmMsg";
 	}
+	
+	//회원가입 페이지 이동
+	@GetMapping(value="/join")
+	public String sellerJoin() {
+		return "seller/join";
+	}
+	
 	//회원가입 완료했을시 넘어가기
 	@PostMapping(value="/joinComplete")
 	public String joinComplete(Seller s,String customerEmail2,MultipartFile imgFile) {
