@@ -20,7 +20,7 @@
             <div class="review-content">
                 <div class="review-info">
                     <div class="review-info-top">
-                        <div class="review-id" th:text="${r.reviewWriter}"></div>
+                        <div class="review-id" th:text="${r.reviewWriter}+님"></div>
                         <div class="review-viewcount">view : <span th:text="${r.readCount}"></span></div>
                     </div>
                     <div class="review-product">
@@ -32,7 +32,8 @@
                             <div class="review-product-option" th:text="${rp.optionSize}+' / '+${rp.optionColor}"></div>
                         </div>
                     </div>
-                    <div class="review-info-title"></div>
+                   	<div id="starr">
+                   
                     <div class="star-wrap star-wrap2">
                         <span class="material-icons">star</span>
                         <span class="material-icons">star</span>
@@ -49,6 +50,7 @@
 	                        </div>
 	                    </div>
                     </div>
+                   	</div>
                     <div class="review-view-content" th:text="${r.reviewContent}"></div>
                     <img class="reviewPhoto review-view-image" th:src="'/review/'+${r.filepath}">
                     <div class="review-like">

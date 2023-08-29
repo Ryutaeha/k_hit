@@ -27,6 +27,7 @@
 }
 
 .review-info{
+    height: 100%;
     width: 700px;
     margin: 0 auto;
 }
@@ -86,6 +87,10 @@
     margin-bottom: 15px;
     font-family: ns-b;
     font-size: 18px;
+}
+#starr{
+    margin-top: 20px;
+    overflow: hidden;
 }
 
 /* 별점 */
@@ -235,7 +240,7 @@
     
 }
 .inputCommentBox{
-    margin-bottom: 120px;
+    margin-bottom: 60px;
 }
 .inputCommentBox>ul{
     overflow: hidden;
@@ -282,10 +287,10 @@
 }
 
 .comment-view{
-    border-bottom: 2.5px solid #D8D9DA;
+    border: 1px solid #ededed;
     padding: 15px 25px;
     min-height: 77px;
-
+    margin-top: 10px;
 }
 .comment-info>span{
     padding-right: 7px;
@@ -300,7 +305,6 @@
 }
 .recomment-view{
     overflow: hidden;
-    border-bottom: 2.5px solid #D8D9DA;
     padding: 15px 25px;
     min-height: 77px;
 }
@@ -309,11 +313,12 @@
 }
 
 .recomment-icon{
-    width: 70px;
+    width: 50px;
 }
-
 .recomment-content{
     width: 580px;
+    border: 1px solid #ededed;
+    padding: 5px;
 }
 
 .recomment-icon>.material-icons{
@@ -322,7 +327,7 @@
     color: #D8D9DA;
 }
 .comment-first:first-child>.comment-view{
-    border-top: 2.5px solid #D8D9DA;
+    border: 1px solid #ededed;
 }
 
 .inputRecommentBox{
@@ -376,7 +381,7 @@
 
 .list-btn{
 	margin-top: 80px;
-    margin-bottom: 150px;
+    margin-bottom: 80px;
     text-align: center;	
 }
 .review-content{
