@@ -45,5 +45,13 @@ public class AdminService {
 			product = adminDao.product(pNo);
 		return product;
 	}
+
+	public Seller selectSeller(String sId) {
+		return adminDao.selectSeller(sId);
+	}
+
+	public Customer selectCustomer(String cId) {
+		return adminDao.selectCustomer(cId);
+	}
 	
 }

@@ -44,6 +44,9 @@
     background-color: #fdfae8;
     padding-left: 50px;
     padding-top: 50px;
+    border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+    
 }
 .seller-header-id{
     height: 100%;
@@ -53,6 +56,8 @@
     box-sizing: border-box;
     line-height: 120px;
     background-color: #fdfae8;
+    border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
 }
 .seller-header-id>a{
     font-weight: 600;  
@@ -178,7 +183,7 @@
     border-left: 1px solid #ececec;
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
+    
     padding: 35px 40px;
 }
 
@@ -257,21 +262,24 @@
 .tbl{
 	width: 100%;
 	border-spacing: 0px;
-	border-collapse: collapse;
+	margin: 0;
 	margin: 20px;
 	font-size: 1.2em;
+    
+    
 }
 .tbl th,
 .tbl td {
   padding: 1rem;
   text-align: center;
-  border-bottom: 1px solid #D8D9DA;
+  border-bottom: 1px solid #ededed;
 }
 
 .tbl-menu>th{
   padding: 1rem;
   text-align: center;
-  background-color: #D8D9DA;
+  background-color: #ededed;
+
 }
 .tbl-menu>th:first-child{
 border-top-left-radius: 10px;
@@ -305,4 +313,27 @@ border-top-left-radius: 10px;
 .input-form{
 	width:120px;
 	font-size: 16px;
+}
+
+/*판매상품 관리 수정,삭제 버튼*/
+.btn-up{
+    width: 40px;
+    height: 27px;
+    border: 1px solid #D8D9DA;
+    background-color: #D8D9DA;
+    display: inline-block;
+    padding: 10px;
+    text-align: 35px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+.btn-del{
+    background-color: #D8D9DA;
+    width: 80px;
+    height: 27px;
+    border: 1px solid #D8D9DA;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: content-box;
+    font-size: 18px;
 }

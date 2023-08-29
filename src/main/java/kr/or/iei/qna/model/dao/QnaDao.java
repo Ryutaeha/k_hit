@@ -17,7 +17,8 @@ public class QnaDao {
 	
 	
 	public List searchAllQna() {
-		String query="";
-		return null;
+		String query="SELECT * FROM QUESTION_TBL order by 1 desc";
+		List list = jdbc.query(query, qnaRowMapper);
+		return list;
 	}
 }

@@ -184,34 +184,39 @@
     margin-top: 30px;
     margin-bottom: 50px;
     overflow: hidden;
+    display: flex;
+}
+.like-box{
+	display: flex;
+	align-item: center;
 }
 
-.review-like>span{
+.like-box>span{
     float: left;
+    padding-right: 10px;
+   	color: #61677A;
 }
-.review-like>span:last-child{
-    font-size: 17px;
-    padding-left: 10px;
-    float: left;
-    line-height: 24px;
+.like-box>span:first-child:hover{
+	cursor: pointer;
 }
+
 
 .review-likecount{
-    font-family: ns-b;
+    font-family: ns-eb;
+    font-size: 17px;
 }
 
 .review-comment-top>span:first-child{
-    font-size: 18px;
+    font-size: 17px;
     font-family: ns-b;
 }
 
 .review-comment-top>span:last-child{
-    font-size: 17px;
     padding-left: 7px;
 }
 
 .review-comment-top{
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 .comment-input-form{
     width: 600px;
@@ -252,7 +257,6 @@
 
 .comment-link{
     text-align: right;
-    margin: 20px;
 }
 .comment-link a{
     text-decoration: none;
@@ -266,18 +270,22 @@
 
 .review-comment-content{
     min-height: 20px;
-    margin: 15px;
+    margin: 10px 30px;
+    font-size: 17px;
 }
 
 .comment-view{
-    border-bottom: 1.5px solid #61677A;
-    padding: 15px 10px;
-    height: 90px;
+    border-bottom: 2.5px solid #D8D9DA;
+    padding: 15px 25px;
+    height: 77px;
 }
 .comment-info>span{
     padding-right: 7px;
 }
-
+.comment-info>span:nth-child(2){
+	font-family: ns-eb;
+	color: #ccc;
+}
 .comment-info>span:first-child{
     font-size: 16px;
     font-family: ns-b;
@@ -294,15 +302,16 @@
 }
 
 .recomment-content{
-    width: 610px;
+    width: 580px;
 }
 
 .recomment-icon>.material-icons{
-    margin: 25px 10px;
+    margin: 18px 15px;
     font-size: 40px;
+    color: #ccc;
 }
 .comment-first:first-child>.comment-view{
-    border-top: 1.5px solid #61677A;
+    border-top: 2.5px solid #D8D9DA;
 }
 
 .inputRecommentBox{
@@ -311,6 +320,7 @@
     height: 90px;
     margin:20px 50px;
     border-radius: 3px;
+    display: none;
 }
 
 .review-recomment-input{
@@ -431,13 +441,16 @@
     height: 190px;
     font-size: 13px;
     overflow: hidden;
-    background-color: #FFF6E0;
+    border: 1.5px solid #ededed;
     border-radius: 3px;
     padding: 10px;
     box-sizing: border-box;
-    white-space: pre-wrap;
-    text-overflow: ellipsis;
 }
+.review-list-detail>p{
+	overflow-text:ellipsis;
+	white-space: pre-wrap;
+}
+
 .viewA{
 	
 	padding-top: 7px;

@@ -42,19 +42,7 @@ emailSelect.on("change",function(){
 });
 
 // 로그인창에서 되묻기 컬럼
-$("#sel-re").on("click",function(){
-    confirm("[판매자]회원가입이 맞으신가요?")    
-    if(confirm){
-        console.log(typeof(con));
-        location.href="/seller/join";
-    }else if(!confirm){
-        console.log(typeof(con));
-        return false;
-    }
-});
-$("#cus-re").on("click",function(){
-    confirm("[고객]회원가입이 맞으신가요?")    
-});
+
 
 // 판매자 회원가입 이미지 미리보기 ajax
 $("[name=imgFile]").on("change",function(){
@@ -243,12 +231,14 @@ inputPhone.on("change",function(){
 	}
 });
 
-회원가입
-$(".signupBtn").on("click",function(){
+//회원가입
+
+$(".signupBtn").on("click",function(event){
 	const emailValue1 = $("#customerEmail").val();
 	const emailValue2 = $("#customerEmail2").val();
-	if(pwResult && phoneResult && nameResult && emailValue1!="" && customerEmail2!=""){
-		if(idReSult == false){
+	
+	if(pwResult && phoneResult && nameResult && emailValue1!="" && emailValue2!=""){
+		if(!idResult){
 			Swal.fire({
 						title : "회원가입",
 						text : "아이디 중복을 확인해 주세요.",
@@ -259,6 +249,7 @@ $(".signupBtn").on("click",function(){
 			event.preventDefault();	
 		}
 	}else{
+	
 		Swal.fire({
 						title : "회원가입",
 						text : "입력값을 확인해 주세요.",
@@ -266,7 +257,6 @@ $(".signupBtn").on("click",function(){
 						confirmButtonColor: '#61677A',
 						confirmButtonText: '확인',
 				    });
-		event.preventDefault();
-			
+		event.preventDefault();		
 	}
 });

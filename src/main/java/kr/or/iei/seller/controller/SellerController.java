@@ -144,7 +144,8 @@ public class SellerController {
 		System.out.println(s.getSellerNo());
 		System.out.println(p.getProductImg());
 		System.out.println(p.getProductContent());
-		System.out.println(p.getProductContentDetails());		
+		System.out.println(p.getProductContentDetails());
+		System.out.println(p.getProductCheck());
 		
 		for(String size : optionSize) {
 			System.out.println(size);
@@ -157,6 +158,7 @@ public class SellerController {
 		//		-> 3. optionColor배열에서 1개꺼내고, optionSize배열에서 1개
 		
 		int result = sellerService.addNewProduct(p, s.getSellerNo(), optionSize, optionColor);
+		
 		if(result>0) {
 			model.addAttribute("title", "상품 등록 성공");
 			model.addAttribute("msg", "등록한 상품이 검수중입니다.");
