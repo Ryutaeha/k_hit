@@ -39,11 +39,12 @@
                 			<tr class="input-tr">
                 				<th>옵션설정</th>
                 				<td colspan="3">
-                					<table class="option-tbl">
+                					<table class="option-tbl" style="border: 1px solid #D8D9DA;">
                 					<tbody>
                 					<tr class="option-tbl-head">
 	                					<th>사이즈</th>
 	                					<th>색상</th>
+	                					<th>옵션 활성 여부</th>
 	                					<th>
 	                						<button type='button' id="optionAddBtn" class="optionAddBtn">옵션 추가</button>
 	                					</th>
@@ -55,12 +56,12 @@
                 						<td>
                 							<input type="text" id="optionColor" name="optionColor" th:value="${productOption.optionColor}">
                 						</td>
-                						<!-- 
+                						
                 						<td>
-											<button type="button">수정</button>
-											<button type="button">삭제</button>                							
+											<button type="button">활성화</button>
+											<button type="button">비활성화</button>                							
                 						</td>	
-                						 -->                							                					
+                						           							                					
                 					</tr>
                 					</tbody>
 
