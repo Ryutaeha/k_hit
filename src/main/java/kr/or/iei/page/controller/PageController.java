@@ -33,7 +33,7 @@ public class PageController {
 		
 		model.addAttribute("searchCount", psd.getSearchCount());
 		model.addAttribute("searchList", psd.getSearchList());
-		
+		model.addAttribute("reviewContent", psd.getReviewContent());
 		System.out.println("검색한 단어 조회 : "+psd);
 		return "/page/search";
 		
@@ -41,6 +41,7 @@ public class PageController {
 	//베스트 페이지
 	@GetMapping(value="/best")
 	public String bestPage() {
+		List bestList = pageService.searchBest();
 		return "/page/best";
 	}
 	//신상품 페이지

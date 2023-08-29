@@ -14,6 +14,9 @@
 					<span class="move">Q & A</span>
 				</div>
 			<div class="qna-wrap">
+			<div id="write-btn">
+				<a th:if="${session.s != null || session.c != null}" href="/qna/qnaFrmEditor">글 작성하기</a>
+			</div>
 				<table class="qna">
 					<tr class="qna-tr">
 						<th style="width:10%">번호</th>
@@ -25,7 +28,7 @@
 					<tr th:each="list : ${list}">
 						<td th:text="${list.questionNo}"></td>
 						<td >
-							<a href="#" th:text="${list.questionTitle}"></a>
+							<a th:href="@{/qna/qnaView(questionNo=${list.questionNo})}" th:text="${list.questionTitle}"></a>
 						</td>
 						<td  th:if="${list.questionCusWriter == null}" th:text="${list.questionSellWriter}"></td>
 						<td  th:if="${list.questionSellWriter == null}" th:text="${list.questionCusWriter}"></td>

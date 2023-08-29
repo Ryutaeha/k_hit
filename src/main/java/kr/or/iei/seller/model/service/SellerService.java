@@ -12,6 +12,7 @@ import kr.or.iei.product.model.vo.ProductOption;
 import kr.or.iei.product.model.vo.ProductOptionListData;
 import kr.or.iei.seller.model.dao.SellerDao;
 import kr.or.iei.seller.model.vo.Seller;
+import kr.or.iei.seller.model.vo.CancelRefundData;
 import kr.or.iei.seller.model.vo.ProductListData;
 
 @Service
@@ -209,6 +210,19 @@ public class SellerService {
 		}
 		return result;
 	}
+
+
+	public CancelRefundData cancelList(Seller s) {
+		
+		List cancelList = sellerDao.cancelList(s);		
+		List refundList = sellerDao.refundList(s);
+		
+		CancelRefundData crd = new CancelRefundData(cancelList,refundList);
+		
+		return crd;
+	}
+
+
 	//판매자 리뷰 전체 수
 	public int reviewTotalCount(int sellerNo) {
 		int totalCount = sellerDao.reviewTotalCount(sellerNo);
@@ -224,4 +238,5 @@ public class SellerService {
 		Seller s = sellerDao.selectSellerId(sellerId);
 		return s;
 	}
+
 }

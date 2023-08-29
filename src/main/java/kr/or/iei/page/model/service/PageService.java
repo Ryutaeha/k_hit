@@ -20,10 +20,9 @@ public class PageService {
 		//String searchCount = pageDao.searchProductCount(searchWord);
 		//검색갯수
 		int searchCount = productList.size();
-		//검색된 항목하나하나의 리뷰내용
-		//List reviewContent = pageDao.reveiwContent(searchWord);
-		String reviewContent = null;
 		
+		//검색된 항목하나하나의 리뷰내용
+		List reviewContent = pageDao.reveiwContent(searchWord);		
 		PageSearchDate psd = new PageSearchDate(productList,searchCount,reviewContent);
 		System.out.println("검색 갯수 : "+psd.getSearchList().size());
 		
@@ -72,6 +71,11 @@ public class PageService {
 
 	public List searchOther() {
 		List list = pageDao.searchOther();
+		return list;
+	}
+
+	public List searchBest() {
+		List list = pageDao.searchBest();
 		return list;
 	}
 }
