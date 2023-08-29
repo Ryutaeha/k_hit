@@ -148,14 +148,10 @@ public class ProductController {
 	@GetMapping(value="/changeStockStatus")
 	public String changeStockStatus(int StockStatus, int productOptionNo, Model model,Product p) {
 		int result = productService.changeStockStatus(StockStatus, productOptionNo);
-		if(result>0) {
-			return "redirect:/product/updateFrm?productNo="+p.getProductNo();
+		if(result > 0) {
+			return "0";
 		}else {
-			model.addAttribute("title", "재고 변경 실패");
-			model.addAttribute("msg", "재고 수량 변경에 실패했습니다. 결과를 확인해 주세요.");
-			model.addAttribute("icon", "error");
-			model.addAttribute("loc", "/product/updateFrm?productNo="+p.getProductNo());
-			return "common/msg";
+			return "1";
 		}
 	}
 }

@@ -71,6 +71,10 @@
 												<option value="1" selected>판매중지(비활성화)</option>
 											</select>
 											              
+                						<td>
+                							<input type="hidden" name="productOptionNo" th:value="${productOption.productOptionNo}"> 
+											<button type="button" class="changeStockStatus">활성상태 변경</button>
+										</td>
 											
 										<!-- 							
                 						<td class="stock-active">
@@ -84,10 +88,6 @@
 											<button type="button">활성화</button>
 										-->         							
                 						</td>
-                						<td>
-                							<input type="hidden" name="productOptionNo" th:value="${productOption.productOptionNo}"> 
-											<button class="changeStockStatus">활성상태 변경</button>
-										</td>
                 						
 										<!-- 
                 						<td>
@@ -363,8 +363,8 @@
 				      });
 				}
 			});
-			//location.href = "/seller/changeOptionStock?productOptionNo="+productOptionNo+"&optionStock="+optionStock;
 		});	    
+			//location.href = "/seller/changeOptionStock?productOptionNo="+productOptionNo+"&optionStock="+optionStock;
 	    
 	    
     </script>
