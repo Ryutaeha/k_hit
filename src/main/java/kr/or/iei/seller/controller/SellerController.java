@@ -3,6 +3,7 @@ package kr.or.iei.seller.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,12 +19,14 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.FileUtil;
+
 import kr.or.iei.product.model.service.ProductService;
 import kr.or.iei.product.model.vo.AddNewProduct;
 import kr.or.iei.product.model.vo.Product;
 import kr.or.iei.product.model.vo.ProductOption;
 import kr.or.iei.product.model.vo.ProductOptionListData;
 import kr.or.iei.seller.model.service.SellerService;
+import kr.or.iei.seller.model.vo.CancelRefundData;
 import kr.or.iei.seller.model.vo.ProductListData;
 import kr.or.iei.seller.model.vo.Seller;
 
@@ -227,10 +230,23 @@ public class SellerController {
 	}
 	//취소환불내역 페이지이동
 	@GetMapping(value="/cancelRefund")
-	public String concelRefundPage() {
+	public String concelRefundPage(Model model,@SessionAttribute(required = false) Seller s ) {
+		
+		CancelRefundData crd = sellerService.cancelList(s);
+		//System.out.println("list : "+list);
+		System.out.println(crd.getCancelList());
+		System.out.println(crd.getRefundList());
+		model.addAttribute("cancelList", crd.getCancelList());
+		model.addAttribute("refundList", crd.getRefundList());
 		return "/seller/cancelRefund";
 	}
+	//환불내역페이지
 	
+	//취소확인
+	@GetMapping(value="/cancelOrder")
+	public String cancelOrder() {
+		return null;
+	}
 	//판매자 정보수정페이지이동
 	@GetMapping(value="/myInfo")
 	public String myInfoPage() {
@@ -296,5 +312,11 @@ public class SellerController {
 		return "/editor/"+filepath;
 	}
 	*/
-	
+	//리뷰페이지이동
+	@GetMapping(value="/review")
+	public String reviewPage() {
+		
+		
+		return "/seller/review";
+	}
 }

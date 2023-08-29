@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.iei.page.model.vo.ReviewContentStarRowMapper;
 import kr.or.iei.product.model.vo.ProductRowMapper;
 
 @Repository
@@ -14,6 +15,8 @@ public class PageDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private ProductRowMapper productRowMapper;
+	@Autowired
+	private ReviewContentStarRowMapper reviewContentStarRowMapper;
 	
 	public List searchProduct(String searchWord) {
 		//가져와야되는 정보: productNo,sellerNo,productName,productImg,productPrice,categoryNo
@@ -32,8 +35,9 @@ public class PageDao {
 	*/
 	//검색된 product_name으로 달린리뷰내용 가져오기
 	public List reveiwContent(String searchWord) {
-		String query="select";
-		return null;
+		String query="select review_content,star_count from review_tbl where order_no in (select product_option_no from product_option_tbl where product_no in(select product_no from product_tbl where product_name like ?))";
+		List reviewContent = jdbc.query(query,reviewContentStarRowMapper,"%"+searchWord+"%");
+		return reviewContent;
 	}
 	public List searchNewList() {
 		String query = "select * from product_tbl order by product_reg_date DESC";
@@ -79,5 +83,9 @@ public class PageDao {
 		String query = "select * from product_tbl where category_no = 7";
 		List list = jdbc.query(query, productRowMapper);
 		return list;
+	}
+	public List searchBest() {
+		String query = "select * from";
+		return null;
 	}
 }

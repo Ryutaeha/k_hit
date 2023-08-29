@@ -54,15 +54,16 @@
 									<li class="price_all">
 										<span id="price_span"th:text="${prd.productPrice}+원"> </span>
 									</li>
-									<li class="review">
-										<a href="#" th:if="${reviewContent} == null">
+									
+									<li class="review" th:each="rs : ${reviewContent}">
+										<a href="#" th:if="${rs.reviewContent} == null">
 											<span class="material-icons star star-b">star</span>
 											<span class="material-icons star star-b">star</span>
 											<span class="material-icons star star-b">star</span>
 											<span class="material-icons star star-b">star</span>
 											<span class="material-icons star star-b">star</span>
 										</a>
-										<a href="#" th:if="${reviewContent} != null">
+										<a href="#" th:if="${rs.reviewContent} != null">
 											<span class="material-icons star">star</span>
 											<span class="material-icons star">star</span>
 											<span class="material-icons star">star</span>
