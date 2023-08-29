@@ -42,15 +42,15 @@ public class CustomerController {
 	
 	//장바구니 페이지 이동
 	@GetMapping(value="/cart")
-	public String Cart(String customerSignId, String customerSignPw, HttpSession session,Model model) {
+	public String Cart() {
 		
-		return "/customer/cart";
+		return "customer/cart";
 	}
 	
 	//결제하기
 	@GetMapping(value="/payment")
 	public String customerPayment() {
-		return "/customer/payment";
+		return "customer/payment";
 	}
 	
 	//마이페이지 주문 내역 목록 확인
@@ -68,7 +68,7 @@ public class CustomerController {
 	//취소 신청 페이지
 	@GetMapping(value="/cancel")
 	public String cancel() {
-		return "/customer/cancel";
+		return "customer/cancel";
 	}
 
 	
@@ -79,7 +79,7 @@ public class CustomerController {
 		model.addAttribute("wishList",wld.getWishList());
 		model.addAttribute("pageNavi",wld.getPageNavi());
 		
-		return "/customer/wishList";
+		return "customer/wishList";
 	}
 
 	
