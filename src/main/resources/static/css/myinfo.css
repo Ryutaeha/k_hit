@@ -115,6 +115,9 @@ select{
     border: 1px solid black;
     width: 30px;
 }
+.input-tbl tr>th{
+    width: 250px;
+}
 .note-editor.note-frame, .note-editor.note-airframe{
     width: 800px;
 }
