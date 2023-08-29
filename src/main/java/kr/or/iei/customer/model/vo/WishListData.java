@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class WishListData {
-	private List wishListData;
-	private int pageNavi;
+	private List wishList;
+	private String pageNavi;
+
 }
