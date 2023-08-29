@@ -191,7 +191,9 @@
     float: left;
     width: 1000px;
 }
-
+#pageNavi{
+    margin-top: 60px;
+}
 .pagination {
   list-style-type: none;
   display: flex;
