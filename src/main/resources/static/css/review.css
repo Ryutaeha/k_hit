@@ -56,7 +56,7 @@
 }
 .review-product{
     overflow: hidden;
-    background-color: #f1f3f5;
+    background-color: #f9f9f9;
     border-radius: 5px;
     height: 102px;
     padding: 12px 20px;
@@ -109,7 +109,7 @@
     height: 250px;
     font-size: 17px;
     resize: none;
-    border: 2px solid #ccc;
+    border: 2px solid #D8D9DA;
     border-radius: 3px;
     box-sizing: border-box;
 }
@@ -171,12 +171,14 @@
 .review-view-content{
     padding: 30px 0;
     font-size: 18px;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    
 }
 
 .review-view-image{
     width: 500px;
     height: 300px;
-    border: 1px solid #ccc; /*사진 들어가면 삭제하기*/
     border-radius: 3px;
     margin-left: 100px;
 }
@@ -225,7 +227,7 @@
     padding: 12px 20px;
     box-sizing: border-box;
     margin-right: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #D8D9DA;
     border-radius: 3px;
     overflow: hidden;
     
@@ -272,19 +274,23 @@
     min-height: 20px;
     margin: 10px 30px;
     font-size: 17px;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    
 }
 
 .comment-view{
     border-bottom: 2.5px solid #D8D9DA;
     padding: 15px 25px;
-    height: 77px;
+    min-height: 77px;
+
 }
 .comment-info>span{
     padding-right: 7px;
 }
 .comment-info>span:nth-child(2){
 	font-family: ns-eb;
-	color: #ccc;
+	color: #D8D9DA;
 }
 .comment-info>span:first-child{
     font-size: 16px;
@@ -308,14 +314,14 @@
 .recomment-icon>.material-icons{
     margin: 18px 15px;
     font-size: 40px;
-    color: #ccc;
+    color: #D8D9DA;
 }
 .comment-first:first-child>.comment-view{
     border-top: 2.5px solid #D8D9DA;
 }
 
 .inputRecommentBox{
-    background-color: #f3f3f3;
+    background-color: #f9f9f9;
     width: 600px;
     height: 90px;
     margin:20px 50px;
@@ -332,6 +338,8 @@
     overflow: hidden;
     padding: 12px 20px;
     box-sizing: border-box;
+    border: 1px solid #D8D9DA;
+    border-radius: 3px;
 }
 .btn3{
     width: 50px;
@@ -439,20 +447,25 @@
 }
 .review-list-detail{
     height: 190px;
-    font-size: 13px;
-    overflow: hidden;
+    font-size: 15px;
+    height: 190px;
     border: 1.5px solid #ededed;
     border-radius: 3px;
     padding: 10px;
     box-sizing: border-box;
 }
 .review-list-detail>p{
-	overflow-text:ellipsis;
-	white-space: pre-wrap;
+	text-overflow: ellipsis;
+	white-space: pre-line;
+	overflow-wrap: break-word;	
+	overflow: hidden;
+	height: 100%;
+	display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 9;
 }
 
 .viewA{
-	
 	padding-top: 7px;
 	text-align: right;
 	cursor: pointer;
