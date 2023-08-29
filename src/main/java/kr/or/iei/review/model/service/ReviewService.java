@@ -87,4 +87,10 @@ public class ReviewService {
 	}
 
 
+	public int selectReviewOrderNO(int reviewNo) {
+		int orderNo = reviewDao.selectReviewOrderNo(reviewNo);
+		return orderNo;
+	}
+
+
 }

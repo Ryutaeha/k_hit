@@ -38,7 +38,7 @@ public class ReviewController {
 	//리뷰 작성/수정 페이지 이동
 	@GetMapping("/reviewWriteFrm")
 	public String reviewWrtieFrm(Model model) { //개별상품번호 받은 후 넣기!!
-		int orderNo = 3;
+		int orderNo = 25;
 		ReviewProduct rp = reviewService.selectReviewProduct(orderNo);
 		model.addAttribute("rp",rp);
 		return "review/reviewWriteFrm";
@@ -61,7 +61,7 @@ public class ReviewController {
 			model.addAttribute("title","REVIEW");
 			model.addAttribute("msg", "후기 등록 완료");
 			model.addAttribute("icon", "success");
-			model.addAttribute("loc", "/review/reviewView");
+			model.addAttribute("loc", "/review/reviewList");
 		}else {
 			model.addAttribute("title","REVIEW");
 			model.addAttribute("msg", "후기 등록 실패");
@@ -73,8 +73,9 @@ public class ReviewController {
 	
 	//리뷰 상세 보기
 	@GetMapping("/reviewView")
-	public String reviewVeiw(int orderNo, int reviewNo, @SessionAttribute(required = false)Customer c, Model model) {
+	public String reviewVeiw(int reviewNo, @SessionAttribute(required = false)Customer c, Model model) {
 		int customerNo = (c == null) ? 0 : c.getCustomerNo();
+		int orderNo = reviewService.selectReviewOrderNO(reviewNo);
 		ReviewViewData rvd = reviewService.selectOneReview(reviewNo,customerNo,orderNo);
 		if(rvd != null) {
 			model.addAttribute("r", rvd.getR());
@@ -135,7 +136,7 @@ public class ReviewController {
 			model.addAttribute("msg", "댓글이 등록에 실패했습니다.");
 			model.addAttribute("icon", "error");
 		}
-		model.addAttribute("loc", "/review/reviewList");
+		model.addAttribute("loc", "/review/reviewView?reviewNo="+rc.getReviewRef());
 		return "common/msg";
 	}
 	//리뷰댓글삭제
@@ -151,7 +152,7 @@ public class ReviewController {
 			model.addAttribute("msg", "댓글 삭제에 실패했습니다.");
 			model.addAttribute("icon", "error");
 		}
-		model.addAttribute("loc","/review/reviewList"); //경로 바꿔주기
+		model.addAttribute("loc","/review/reviewView?reviewNo="+reviewNo); //경로 바꿔주기
 		return "common/msg";
 	}
 	

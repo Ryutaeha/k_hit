@@ -123,4 +123,10 @@ public class ReviewDao {
 		return result;
 	}
 
+	public int selectReviewOrderNo(int reviewNo) {
+		String query = "select order_no from review_tbl where review_no=?";
+	    int orderNo = jdbc.queryForObject(query, Integer.class,reviewNo);
+		return orderNo;
+	}
+
 }

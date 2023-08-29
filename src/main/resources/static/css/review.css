@@ -196,6 +196,9 @@
     padding-right: 10px;
    	color: #61677A;
 }
+.like-box>span:first-child:hover{
+	cursor: pointer;
+}
 
 
 .review-likecount{
@@ -442,9 +445,12 @@
     border-radius: 3px;
     padding: 10px;
     box-sizing: border-box;
-    white-space: pre-wrap;
-    text-overflow: ellipsis;
 }
+.review-list-detail>p{
+	overflow-text:ellipsis;
+	white-space: pre-wrap;
+}
+
 .viewA{
 	
 	padding-top: 7px;

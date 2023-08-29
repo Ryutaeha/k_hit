@@ -1,17 +1,24 @@
 package kr.or.iei.admin.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import kr.or.iei.FileUtil;
 import kr.or.iei.admin.model.service.AdminService;
 import kr.or.iei.customer.model.vo.Customer;
+import kr.or.iei.notice.vo.Notice;
 import kr.or.iei.product.model.vo.Category;
 import kr.or.iei.product.model.vo.ProductDetail;
 import kr.or.iei.seller.model.vo.Seller;
@@ -21,7 +28,19 @@ import kr.or.iei.seller.model.vo.Seller;
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
+	@Value("${file.root}")
+	private String root;
+	@Autowired
+	private FileUtil fileUtil;
 	
+	@GetMapping(value = "/adminLogin")
+	public String adminLogin() {
+		return "/admin/adminLogin";
+	}
+	@GetMapping(value = "/login")
+	public String login() {
+		return "/admin/adminLogin";
+	}
 	@GetMapping(value = "/adminIndex")
 	public String adminIndex() {
 		return "/admin/adminIndex";
@@ -32,15 +51,6 @@ public class AdminController {
 		return "/admin/question";
 	}
 
-	@GetMapping(value="/notice")
-	public String notice(){
-		return "/admin/notice";
-	}
-
-	@GetMapping(value="/noticeFrm")
-	public String noticeFrm(){
-		return "/admin/noticeFrm";
-	}
 
 	@GetMapping(value="/member")
 	public String member(int memberCode,String input, Model model){
@@ -104,5 +114,36 @@ public class AdminController {
 	@PostMapping(value="/cContent")
 	public Customer cContent(String cId){
 		return adminService.selectCustomer(cId);
+	}
+	
+	@GetMapping(value="/notice")
+	public String notice(){
+		return "/admin/notice";
+	}
+
+	@GetMapping(value="/noticeFrm")
+	public String noticeFrm(){
+		return "/admin/noticeFrm";
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/notice",produces = "plain/text;charset=utf-8")
+	public String editorUpload(MultipartFile file) {
+		String savepath = root+"admin/";
+		String filepath = fileUtil.getFilepath(savepath, file.getOriginalFilename());
+		File image = new File(savepath+filepath);
+		try {
+			file.transferTo(image);
+		} catch (IllegalStateException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "/admin/"+filepath;
+	}
+	@PostMapping(value = "/write")
+	public String noticeWrite(Notice n ,Model model) {
+		System.out.println(n);
+//		int result = adminService.insertNotice(n);
+		return "/admin/noticeFrm";
 	}
 }
