@@ -72,6 +72,7 @@ public class ProductController {
 		Product p = productService.getProduct(productNo);
 		System.out.println(p);
 		model.addAttribute("p", p);
+		
 		return "seller/updateProductFrm";
 	}
 	
@@ -80,16 +81,18 @@ public class ProductController {
 		//, int delFileNo 매개변수 지워둠
 		String savepath = root+"product/";
 		System.out.println(upfile);
-		String filepath = fileUtil.getFilepath(savepath, upfile.getOriginalFilename());
-		//File uploadFile = new File(filepath);
-		p.setProductImg(filepath);
-		
-		File uploadFile = new File(savepath+filepath);
-		try {
-			upfile.transferTo(uploadFile);
-		} catch (IllegalStateException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(upfile.getSize() != 0) {
+			String filepath = fileUtil.getFilepath(savepath, upfile.getOriginalFilename());
+			//File uploadFile = new File(filepath);
+			p.setProductImg(filepath);
+			
+			File uploadFile = new File(savepath+filepath);
+			try {
+				upfile.transferTo(uploadFile);
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		System.out.println("상품명"+p.getProductName());//null
