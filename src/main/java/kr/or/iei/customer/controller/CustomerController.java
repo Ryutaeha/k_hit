@@ -1,5 +1,7 @@
 package kr.or.iei.customer.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,7 +94,7 @@ public class CustomerController {
 		if(result>0) {
 			return "customer/joinComplete";			
 		}else {
-			return "redirect:/"; //메인페이지 (모달)
+			return "redirect:/";
 		}
 	}
 	
@@ -200,6 +202,24 @@ public class CustomerController {
 			return "common/msg";
 		}
 	}
+	//고객리뷰
+	@GetMapping(value="/reviewCheck")
+	public String customerReview(@SessionAttribute(required = false) Customer c, Model model) {
+		String reviewWriter = c.getCustomerId();
+		int totalCount = customerService.reviewTotalCount(reviewWriter);
+		model.addAttribute("totalCount", totalCount);
+		return "customer/customerReview";
+	}
+	
+	//고객리뷰 더보기
+	@ResponseBody
+	@PostMapping(value="/more")
+	public List more(@SessionAttribute(required = false)Customer c, int start, int end) {
+		String reviewWriter = c.getCustomerId();
+		List reviewList = customerService.customerReviewList(reviewWriter,start,end);
+		return reviewList;
+	}
+	
 }
 
 

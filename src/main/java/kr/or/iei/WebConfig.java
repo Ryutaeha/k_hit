@@ -22,7 +22,7 @@ public class WebConfig implements WebMvcConfigurer{
 		
 		registry.addResourceHandler("/review/**").addResourceLocations("file:///C:/khit/upload/review/");
 		
-		registry.addResourceHandler("/admin/**").addResourceLocations("file:///C:/khit/upload/admin/");
+		registry.addResourceHandler("/admin/**").addResourceLocations("file:///C:/khit/upload/notice/");
 	}
 	
 }

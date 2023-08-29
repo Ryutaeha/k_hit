@@ -84,6 +84,10 @@ function pModal(pNo){
 	$(".modal-wrap").css("display","flex");
 }
 
+$(document).on('click',".pCheckChange",function(){
+	console.log($("#pCheck").val());
+})
+
 
 $(".sMenu").on('click',function(){
 	sModal($(this).text());
@@ -141,6 +145,25 @@ function cModal(cId){
 	$(".modal-wrap").css("display","flex");
 }
 
-$(document).on('click',".pCheckChange",function(){
-	console.log($("#pCheck").val());
+$(".nSelect").on('click',function(){
+	nModal($(this).children().eq(0).text());
 })
+
+function nModal(nNo){
+	$(".nModal>table").children().children().children().empty();
+	$.ajax({
+		url : "/admin/nContent",
+		type : "post",
+		data : {nNo : nNo},
+		dataType : "json",
+		success: function(data){
+			console.log(data)
+			$(".mTitleN").append($("<h2>").append(data.noticeTitle));
+			$(".mDateN").append($("<h3>").append(data.noticeDate));
+			$(".mContentN").append($("<div>").append(data.noticeContent));
+		}
+	})
+	$(".modal-inpo").css("display","none");
+    $(".nModal").css("display","block");
+	$(".modal-wrap").css("display","flex");
+}

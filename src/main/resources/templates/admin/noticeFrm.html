@@ -9,7 +9,7 @@
 	<th:block th:include="/admin/adminMenu"></th:block>
 	<script src="/summernote/summernote-lite.js"></script>
 	<script src="/summernote/lang/summernote-ko-KR.js"></script>
-	<link rel="stylesheet" href="/summernote/summernote-lite.css">
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 	<div class="admin-wrap">
 		<div class="admin-content">
 			<div class="content-logo">
@@ -23,7 +23,10 @@
 							<tr class="tr-1">
 								<th class="td-3">제목</th>
 								<td colspan="3"><input type="text" name="noticeTitle"
-									class="input-form"></td>
+									class="input-form">
+								<input type="hidden" name="noticeWriter" th:value="${session.a.adminId}">
+								</td>
+								
 							</tr>
 							<tr class="tr-1">
 								<td colspan="4" style="text-align: left;">
@@ -59,7 +62,7 @@
 			form.append("file",file);
 			
 			$.ajax({
-				url : "/admin/notice",
+				url : "/admin/noticeFile",
 				type : "post",
 				data : form,
 				processData : false,
