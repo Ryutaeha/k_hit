@@ -27,7 +27,7 @@
                 				<td colspan="3">
                 					<input type="text" name="productName" th:value="${p.productName}" required>
                 					<input type="hidden" name="productNo" th:value="${p.productNo}"> 
-                					<input type="hidden" name="productCheck" th:value="${p.productCheck}">
+                					<!-- <input type="hidden" name="productCheck" th:value="${p.productCheck}"> -->
                 				</td>
                 			</tr>
                 			<tr class="input-tr">
@@ -131,6 +131,7 @@
                 				</td>
                 			</tr>
                 			
+                			<!-- 
 							<tr class="input-tr">
                 				<th>기존 대표 이미지</th>
                 				<td>
@@ -138,11 +139,13 @@
                 					<span class="material-icons" style="cursor:pointer;margin-left:5px;font-size:18px;color:#ff2e63;" th:onclick="deleteFile(this,[[${p.productImg}]])">remove_circle</span>
                 				</td>
                 			</tr>
-                			             			
+                			  -->            			
                 			<tr class="input-tr">
                 				<th>신규 이미지 업로드</th>
                 				<td>
-                					<input type="file" name="upfile" accept=".jpg,.png,.jpeg" required>
+                					<input type="file" name="upfile" accept=".jpg,.png,.jpeg">
+                					<!-- <input name="productImg" type="hidden" th:text="${p.productImg}" ></span> -->
+                					<input type="hidden" name="productImg" th:value="${p.productImg}">
                 				</td>
                 			</tr>
 	                		<tr class="input-tr">
