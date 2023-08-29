@@ -45,6 +45,11 @@
 								<button class="btn-del" th:onclick="productDelete([[${product.productNo}]])">판매중지</button>
 							</td>
 						</tr>
+						<tr th:if="${productList.isEmpty()}">
+							<td colspan="6">
+								등록된 상품이 없습니다.
+							</td>
+						</tr>
 					</table>
 					<div id="pageNavi" th:utext="${pageNavi}"></div>
 				</div>
