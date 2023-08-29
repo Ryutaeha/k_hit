@@ -98,7 +98,7 @@ public class ProductController {
 				e.printStackTrace();
 			}
 		}
-		
+		/*
 		System.out.println("상품명 : "+p.getProductName());//null
 		System.out.println("가격 : "+p.getProductPrice());
 		System.out.println("카테고리번호 : "+p.getCategoryNo());
@@ -109,12 +109,15 @@ public class ProductController {
 		System.out.println("세부정보 : "+p.getProductContentDetails());		
 		System.out.println(p);
 		
-		for(String size : optionSize) {
-			System.out.println(size);
+		if(optionSize != null) {
+			for(String size : optionSize) {
+				System.out.println(size);
+			}
+			for(String color : optionColor) {
+				System.out.println(color);
+			}
 		}
-		for(String color : optionColor) {
-			System.out.println(color);
-		}
+		*/
 		
 		int result = productService.updateProduct(p, optionSize, optionColor);
 		//delFileNo, 매개변수 지워둠
@@ -138,8 +141,21 @@ public class ProductController {
 		}
 		model.addAttribute("loc", "/seller/productManagement?reqPage=1");
 		return "common/msg";
-		
-		
-		
+	}
+	
+	//상품 수정에서 옵션 활성상태 변경
+	@ResponseBody
+	@GetMapping(value="/changeStockStatus")
+	public String changeStockStatus(int StockStatus, int productOptionNo, Model model,Product p) {
+		int result = productService.changeStockStatus(StockStatus, productOptionNo);
+		if(result>0) {
+			return "redirect:/product/updateFrm?productNo="+p.getProductNo();
+		}else {
+			model.addAttribute("title", "재고 변경 실패");
+			model.addAttribute("msg", "재고 수량 변경에 실패했습니다. 결과를 확인해 주세요.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/product/updateFrm?productNo="+p.getProductNo());
+			return "common/msg";
+		}
 	}
 }

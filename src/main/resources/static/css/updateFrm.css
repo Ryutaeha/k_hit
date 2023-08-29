@@ -1,4 +1,4 @@
-/*판매자 정보 수정 페이지*/
+/*상품 수정 페이지*/
 .input-tbl{    
     border: 1px solid #ededed;
     border-bottom: 1px solid #ededed;
@@ -7,6 +7,7 @@
    
 }
 .input-tr{    
+	width: 200px;
     border-top: 1px solid #dedede;    
     border-bottom-width: 0;
     text-align: left;
@@ -15,14 +16,14 @@
 .input-tr>th{
     color: #585858;    
     padding: 15px 35px 15px 25px;
-    width: 250px;
+    width: 350px;
     height: 50px;
 }
 .input-tr:last-child{
     border-bottom: 1px solid #dedede;
 }
 .input-tr>td{
-    width: 1400px;
+    width: 1000px;
     padding-left: 30px;
 }
 .input-tr>td>input{
@@ -111,10 +112,34 @@ select{
     font-size: 18px;
 }
 .optionRemoveBtn{
-    background-color: #dedede;
-    border: 1px solid black;
-    width: 30px;
+    width: 100px;
+    height: 30px;
+    color: #fff;
+    background-color: #888787;
+    border: none;
 }
 .note-editor.note-frame, .note-editor.note-airframe{
-    width: 800px;
+    width: 921px;
+}
+.notice-content{
+	margin : 10px;
+}
+.stock-active{
+    width: 200px;
+}
+.changeStockStatus{
+    border: none;
+    padding: 5px;
+    display: inline-block;
+    box-sizing: border-box;
+    transition-duration: 0.5s;
+    background-color: #D8D9DA;
+    border: 1px solid #D8D9DA;
+    border-radius: 10px;
+  }
+  .changeStockStatus:hover{
+      cursor: pointer;
+  }
+.options{
+    height: 25px;
 }
