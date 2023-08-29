@@ -167,4 +167,21 @@ public class AdminController {
 		int result = adminService.insertNotice(n);
 		return "/admin/noticeFrm";
 	}
+	@PostMapping(value="/productCheckChange")
+	public String productCheckChange(int productCheck,int productNo,Model model){
+		System.out.println(productCheck+"   "+productNo);
+		int result = adminService.productCheckChange(productCheck,productNo);
+		if(result == 1) {
+			model.addAttribute("title","수정 성공");
+			model.addAttribute("msg", "상품 수정에 성공하셨습니다");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/product?categoryNo=0&input=&productCheck="+productCheck);		
+		}else {
+			model.addAttribute("title","수정 실패");
+			model.addAttribute("msg", "메인 페이지로 돌아갑니다 잠시후 다시 시도해주세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/adminIndex");
+		}
+		return "common/msg";
+	}
 }

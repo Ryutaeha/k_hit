@@ -114,4 +114,9 @@ public class AdminDao {
 		List list = jdbc.query(query, noticeRowMapper, nNo);
 		return (Notice)list.get(0);
 	}
+
+	public int productCheckChange(int productCheck, int productNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

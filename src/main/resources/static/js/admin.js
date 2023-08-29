@@ -46,17 +46,19 @@ $(".delModal").on('click',function(){
 })
 $(".pSelect").on('click',function(){
 	pModal($(this).children().eq(0).text());
+
 })
 
 function pModal(pNo){
 	$(".pModal>table").children().children().children().empty();
-	$(".pModal").children('div').remove();
+	$(".pModal").children('form').remove();
 	$.ajax({
 		url : "/admin/pContent",
 		type : "post",
 		data : {pNo : pNo},
 		dataType : "json",
 		success: function(data){
+			console.log(data)
 			$(".mImgP").append($("<h2>").append(data[0].productImg));
 			$(".mNameP").append($("<h2>").append(data[0].productName));
 			$(".mSellerIdP").append($("<h3>").append(data[0].sellerId));
@@ -67,25 +69,30 @@ function pModal(pNo){
 	    	if(data[0].productCheck==4){
 	   			$(".pModal").append($("<div></div>").append($("<h2>").append("현재 판매가 중지 된 상품입니다")));
 	   		}else{
-	   			var checkP = $("<div>");
-	   			var select = $("<select></select>");
+	   			var checkP = $("<form action=/admin/productCheckChange method=post></form>");
+	   			var select = $("<select name=productCheck></select>");
 	   			select.attr("id","pCheck");
 	   			select.append($("<option value=1>승인</option>"));
 	   			select.append($("<option value=2>검수</option>"));
 	   			select.append($("<option value=3>반려</option>"));
 	   			checkP.append(select);
-	   			checkP.append("<input type=button value=변경 class = pCheckChange>");
+	   			checkP.append("<input type=submit value=변경 class = pCheckChange>");
+	   			checkP.append("<input type=hidden value="+data[0].productNo+" class = pNo name=productNo>");
 	   			$(".pModal").append(checkP);
+	   			$("#pCheck").val(data[0].productCheck);
+	   			
 	    	}
 	    }
     })
     $(".modal-inpo").css("display","none");
     $(".pModal").css("display","block");
 	$(".modal-wrap").css("display","flex");
+	
 }
 
 $(document).on('click',".pCheckChange",function(){
 	console.log($("#pCheck").val());
+	console.log($(".pNo").val());
 })
 
 

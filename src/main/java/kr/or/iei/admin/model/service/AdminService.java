@@ -81,6 +81,11 @@ public class AdminService {
 	public Notice noticeView(int nNo) {
 		return adminDao.noticeView(nNo);
 	}
+	
+	@Transactional
+	public int productCheckChange(int productCheck, int productNo) {
+		return adminDao.productCheckChange(productCheck, productNo);
+	}
 
 	
 }
