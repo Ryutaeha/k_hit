@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.iei.page.model.dao.PageDao;
+import kr.or.iei.page.model.vo.MainListData;
 import kr.or.iei.page.model.vo.PageSearch;
 import kr.or.iei.page.model.vo.PageSearchDate;
+import kr.or.iei.page.model.vo.ReviewContentStar;
 
 @Service
 public class PageService {
@@ -20,9 +22,11 @@ public class PageService {
 		//String searchCount = pageDao.searchProductCount(searchWord);
 		//검색갯수
 		int searchCount = productList.size();
-		
+		System.out.println(productList);
 		//검색된 항목하나하나의 리뷰내용
-		List reviewContent = pageDao.reveiwContent(searchWord);		
+		List reviewContent = pageDao.reveiwContent(searchWord);
+		System.out.println(reviewContent);
+		
 		PageSearchDate psd = new PageSearchDate(productList,searchCount,reviewContent);
 		System.out.println("검색 갯수 : "+psd.getSearchList().size());
 		
@@ -78,4 +82,14 @@ public class PageService {
 		List list = pageDao.searchBest();
 		return list;
 	}
+
+	public MainListData searchNewListFive() {
+		List newList = pageDao.searchNewListFive();
+		List bestList = pageDao.searchBestListFive();
+		MainListData mld = new MainListData(newList,bestList);
+		
+		return mld;
+	}
+
+	
 }

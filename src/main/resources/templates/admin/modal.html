@@ -1,12 +1,13 @@
-
+<script src="/summernote/summernote-lite.js"></script>
+	<script src="/summernote/lang/summernote-ko-KR.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <div class="modal-wrap ">
 	<div class="modal-inpo pModal">
 		<button style="height: 50px; width: 50px" class="delModal">X</button>
 		<table class="tbl modal-tbl">
 			<tr>
 				<td rowspan="3" style="height: 300px; width: 300px;" class="mImgP">
-					<img style="height: 100%; width: 100%;"
-					src="스크린샷 2023-07-19 210802.png" alt="">
+					
 				</td>
 				<td colspan="2" class="mNameP">
 					<h2>상품 이름이름</h2>
@@ -45,8 +46,7 @@
 		<table class="tbl modal-tbl">
 			<tr>
 				<td rowspan="2" style="height: 300px; width: 300px;" class="mImgS">
-					<img style="height: 100%; width: 100%;"
-					src="스크린샷 2023-07-19 210802.png" alt="">
+					
 				</td>
 				<td class="mIdS">
 					<h2>아이디</h2>
@@ -121,9 +121,17 @@
 			</tr>
 			<tr>
 				<td class="mContentN" colspan="2">
-					<div>내용</div>
+					<textarea class="input-form" name="noticeContent" id="noticeContent" style="width: 100%"></textarea>
 				</td>
 			</tr>
 		</table>
+		<div class="modifyNoticeFrm">
+			<button>수정하기</button>
+			
+		</div>
+		<div class="modifyNotice" style="display: none;">
+			<button>수정</button>
+			<button>취소</button>
+		</div>
 	</div>
 </div>

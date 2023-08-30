@@ -13,4 +13,5 @@ public class PageSearchDate {
 	private List searchList;
 	private int searchCount;
 	private List reviewContent;
+	
 }

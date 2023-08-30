@@ -40,10 +40,7 @@ public class SellerController {
 	@Value("${file.root}")
 	private String root;
 	
-	@GetMapping(value="/selling")
-	public String sellingPage() {
-		return "seller/selling";
-	}
+	
 	//판매상품관리
 	@GetMapping(value="/productManagement")
 	public String productManagement(@SessionAttribute(required = false) Seller s, Model model, int reqPage) {
@@ -303,6 +300,7 @@ public class SellerController {
 			return "1";
 		}
 	}
+
 	
 	/*
 	@ResponseBody
@@ -320,15 +318,6 @@ public class SellerController {
 		return "/editor/"+filepath;
 	}
 	*/
-
-	//리뷰페이지이동
-	@GetMapping(value="/review")
-	public String reviewPage() {
-		
-		
-		return "/seller/review";
-	}
-
 	
 	//판매자 리뷰 확인 
 	@GetMapping(value="/review")
@@ -362,21 +351,54 @@ public class SellerController {
 	
 
 	//고객 아이디/비번 찾기 확인
-		@GetMapping(value = "/searchConfirm")
-		public String searchConfirm(Model model) {
-			model.addAttribute("title","아이디/비밀번호 찾기");
-			model.addAttribute("msg", "[판매자] 아이디/비밀번호찾기 맞나요?");
-			model.addAttribute("icon", "question");
-			model.addAttribute("loc", "/seller/searchIdPwFrm");
-			model.addAttribute("cancelLoc", "/common/login");
+	@GetMapping(value = "/searchConfirm")
+	public String searchConfirm(Model model) {
+		model.addAttribute("title","아이디/비밀번호 찾기");
+		model.addAttribute("msg", "[판매자] 아이디/비밀번호찾기 맞나요?");
+		model.addAttribute("icon", "question");
+		model.addAttribute("loc", "/seller/searchIdPwFrm");
+		model.addAttribute("cancelLoc", "/common/login");
 			
-			return "common/confirmMsg";
-		}
+		return "common/confirmMsg";
+	}
 		
 		@GetMapping(value = "/searchIdPwFrm")
 		public String searchIdPwFrm(){
 			return "seller/searchIdPwFrm";
 		}
-	
+	@GetMapping(value = "/deleteSeller")
+	public String deleteSeller(@SessionAttribute(required = false)Seller s,Model model ) {
+		int result = sellerService.deleteSeller(s);
+		if(result>0) {
+			model.addAttribute("title", "탈퇴완료");
+			model.addAttribute("msg", "그동안 이용해 주셔서 감사합니다.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/seller/logout");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "회원탈퇴");
+			model.addAttribute("msg", "회원탈퇴를 실패했습니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/seller/myinfo");
+			return "common/msg";
+		}
+	}
 
+	//취소요청확인
+	@GetMapping(value = "/cancelPrd")
+	public String cancelPrd(int orderNo) {
+		int result = sellerService.cancelPrd(orderNo);
+		return "/";
+
+	}
+	@GetMapping(value="/selling")
+	public String selling(@SessionAttribute(required = false)Seller s,Model model) {
+		List selling = sellerService.selectSelling(s.getSellerNo());
+		model.addAttribute("sellingList", selling);
+		return "seller/selling";
+		
+
+	}
 }
+
+

@@ -224,6 +224,7 @@ public class SellerService {
 
 
 	//판매자 리뷰 전체 수
+	@Transactional
 	public int reviewTotalCount(int sellerNo) {
 		int totalCount = sellerDao.reviewTotalCount(sellerNo);
 		return totalCount;
@@ -238,5 +239,25 @@ public class SellerService {
 		Seller s = sellerDao.selectSellerId(sellerId);
 		return s;
 	}
+	@Transactional
+	public int deleteSeller(Seller s) {
+		int result = sellerDao.deleteSeller(s);
+		return result;
+	}
+	@Transactional
+	public int cancelPrd(int orderNo) {
+		int result = sellerDao.cancelPrd(orderNo);
+		return result;
+	}
+
+	public List selectSelling(int sellerNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	
+
 
 }

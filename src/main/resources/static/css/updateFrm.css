@@ -143,3 +143,6 @@ select{
 .options{
     height: 25px;
 }
+.notice-content{
+	white-space: pre-line;
+}

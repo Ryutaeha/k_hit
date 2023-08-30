@@ -32,7 +32,7 @@
 											<img id="img-view" width="50px" src="/img/others/profile.png">
 										</div>
 										<div id="img-input">
-											<input type="file"  name="imgFile" accept=".png,.jpg,.jpeg" >
+											<input type="file"  name="imgFile" accept=".png,.jpg,.jpeg" required>
 										</div>
 									</td>
 								</tr>
@@ -46,34 +46,34 @@
 								<tr class="input-tr">
 									<th>비밀번호<span>*</span></th>
 									<td>
-										<input type="text" name="sellerPw">
+										<input type="text" name="sellerPw" required>
 										<span>(영문 대소문자/숫자 포함 조합, 10자~16글자)</span>
 									</td>
 								</tr>
 								<tr class="input-tr">
 									<th>비밀번호 확인<span>*</span></th>
 									<td>
-										<input type="text">
+										<input type="text" required>
 									</td>
 								</tr>
 								<tr class="input-tr">
 									<th>이름<span>*</span></th>
 									<td>
-										<input type="text" th:value="${session.s.sellerName}" name="sellerName" placeholder>
+										<input type="text" th:value="${session.s.sellerName}" name="sellerName" placeholder required>
 									</td>
 								</tr>
 								<tr class="input-tr">
 									<th>전화번호<span>*</span></th>
 									<td>
-										<input type="text" th:value="${session.s.sellerPhone}" name="sellerPhone" placeholder>
+										<input type="text" th:value="${session.s.sellerPhone}" name="sellerPhone" placeholder required>
 									</td>
 								</tr>
 								<tr class="input-tr">
 									<th>이메일<span>*</span></th>
 									<td>
-										<input type="text"  name="sellerEmail" >
+										<input type="text"  name="sellerEmail" required>
 										<span class="mail-center">@</span>
-										<input type="text"  name="customerEmail2" id="customerEmail2">
+										<input type="text"  name="customerEmail2" id="customerEmail2" required>
 										<select class="email-choice">
 											<option value="">직접입력</option>
 											<option value="naver.com">naver.com</option>
@@ -87,14 +87,14 @@
 								<tr class="input-tr">
 									<th>자기소개<span>*</span></th>
 									<td>
-										<textarea class="input-form" th:value="${session.s.sellerIntroduce}" name="sellerIntroduce" placeholder></textarea>
+										<textarea class="input-form" th:value="${session.s.sellerIntroduce}" name="sellerIntroduce" placeholder required></textarea>
 									</td>
 								</tr>								
 							</table>
 							<div class="input-btn">
 								<input type="submit" value="회원정보수정">
-								<a href="/seller/selling">
-									<input type="button" value="취소">
+								<a href="/seller/deleteSeller">
+									<input type="button" value="회원탈퇴">
 								</a>
 							</div>
 					</form>

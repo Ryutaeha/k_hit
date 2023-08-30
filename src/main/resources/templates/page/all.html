@@ -24,10 +24,7 @@
 								<a href="#">
 									<img src="/img/others/profile.png">
 								</a>
-								
-									<span class="material-icons favorite_border">
-										favorite_border
-									</span>								
+														
 							</div>
 						</div>
 						<div class="prd_info">
@@ -41,7 +38,7 @@
 										
 									</li>
 									<li class="price_all">
-										<span id="price_span"th:text="${allPrd.productPrice}+원"> </span>
+										<span th:text="${#numbers.formatInteger(allPrd.productPrice,3,'COMMA')+'원'}"></span>
 									</li>
 									<li class="review">
 										<a href="#" th:if="${reviewContent} == null">

@@ -35,10 +35,7 @@
 								<a href="#">
 									<img src="/img/others/profile.png">
 								</a>
-								
-									<span class="material-icons favorite_border">
-										favorite_border
-									</span>								
+															
 							</div>
 						</div>
 						<div class="prd_info">
@@ -52,18 +49,22 @@
 										
 									</li>
 									<li class="price_all">
-										<span id="price_span"th:text="${prd.productPrice}+원"> </span>
+										<span th:text="${#numbers.formatInteger(prd.productPrice,3,'COMMA')+'원'}"></span>
 									</li>
-									
-									<li class="review" th:each="rs : ${reviewContent}">
-										<a href="#" th:if="${rs.reviewContent} == null">
+								
+									<li class="review">
+										<a href="#" th:if="${reviewContent}==null">
+										
 											<span class="material-icons star star-b">star</span>
 											<span class="material-icons star star-b">star</span>
 											<span class="material-icons star star-b">star</span>
 											<span class="material-icons star star-b">star</span>
 											<span class="material-icons star star-b">star</span>
 										</a>
-										<a href="#" th:if="${rs.reviewContent} != null">
+										<a href="#" th:if="${reviewContent}!=null">
+										<!-- 
+										 <th:block th:text="${reviewContent.starCount(#aggregates.sum(list.![rating])*1.0/#reviewContent.size(list),1,1)}">
+										 -->
 											<span class="material-icons star">star</span>
 											<span class="material-icons star">star</span>
 											<span class="material-icons star">star</span>
@@ -71,9 +72,12 @@
 											<span class="material-icons star">star</span>
 										</a>
 										
-										<a href="#" th:if="${reviewContent} != null">
-											<span class="review_content">
-												리뷰내용리뷰내용리뷰내용
+										<a href="#" th:if="${reviewContent} !=null">
+											<span class="review_content">												
+											</span>
+										</a>
+										<a href="#" th:if="${reviewContent} == null">
+											<span class="review_content" >												
 											</span>
 										</a>
 									</li>

@@ -15,4 +15,6 @@ public class CancelList {
 	private int orderCount;
 	private int orderState;
 	private String orderRequest;
+	private String productName;
+	private String productImg;
 }

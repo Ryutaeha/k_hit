@@ -113,7 +113,6 @@ public class CustomerService {
 		return reviewList;
 	}
 
-
 	public List selectCartList(int customerNo) {
 		List cartList = customerDao.selectCartList(customerNo);
 		return cartList;
@@ -123,7 +122,7 @@ public class CustomerService {
 		return old;
 
 	}
-	@Transactional
+
 	public int cartDelete(int cartNo) {
 		int result = customerDao.cartDelete(cartNo);
 		return result;
@@ -142,6 +141,11 @@ public class CustomerService {
 	public int insertDeliver(Address a) {
 		int result = customerDao.insertDeliver(a);
 		return result;
+	}
+
+	public int selectAddressNo(int customerNo) {
+		int addressNo = customerDao.selectAddressNo(customerNo);
+		return addressNo;
 	}
 
 }

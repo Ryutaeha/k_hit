@@ -14,27 +14,34 @@
             </div>
             <div class="content-view">
                 <div class="question-box box">
-                    <div class="search-box">
+                    <form class="search-box">
                         <input type="text" id="question" name="input" placeholder="문의 사항 검색">
                         <button class="add-btn">검색</button>
-                    </div>
-                    <div class="list Qlist">
-                        <div>
-                            <div>번호</div>
-                            <div>제목</div>
-                            <div>작성자</div>
-                            <div>작성일</div>
-                            <div>응답</div>
-                            <div>고정</div>
-                        </div>
-                    </div>
-                    <div class="question-list list">
-                        
-                    </div>
+                    </form>
+                    <table style="width: 90%" class="tbl menu-tbl">
+                    	<tr class="th-inpo">
+                    		<th style="width: 10%">번호</th>
+                    		<th style="width: 40%">제목</th>
+                    		<th style="width: 20%">작성자</th>
+                    		<th style="width: 20%">작성일</th>
+                    		<th style="width: 10%">조회수</th>
+                    	</tr>
+                    </table>
+                    <table style="width: 90%" class="tbl product-tbl">
+                    	<tr th:each="qna : ${qna}" class="product-select">
+                    		<td th:text="${qna.questionNo}" style="width: 10%"></td>
+                    		<td th:text="${qna.questionTitle}" style="width: 40%"></td>
+                    		<td th:if="${qna.questionCusWriter}!=null"  style="width: 20%"><a th:text="${qna.questionCusWriter}" href="javascript:void(0);" class="seller-menu cMenu"></a></td>
+                    		<td th:if="${qna.questionSellWriter}!=null" style="width: 20%"><a th:text="${qna.questionSellWriter}" href="javascript:void(0);" class="seller-menu sMenu"></a></td>
+                    		<td th:text="${qna.questionDate}" style="width: 20%"></td>
+                    		<td th:text="${qna.questionReadCount}" style="width: 10%"></td>
+                    	</tr>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+    <th:block th:include="/admin/modal"></th:block>
     <script src="/js/admin.js"></script>
 </body>
 </html>
