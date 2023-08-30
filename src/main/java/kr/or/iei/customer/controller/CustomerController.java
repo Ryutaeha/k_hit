@@ -44,8 +44,10 @@ public class CustomerController {
 	
 	//장바구니 페이지 이동
 	@GetMapping(value="/cart")
-	public String Cart() {
-		
+	public String Cart(@SessionAttribute(required = false)Customer c,Model model) {
+		int customerNo = c.getCustomerNo();
+		List cartList = customerService.selectCartList(customerNo);
+		model.addAttribute("cartList", cartList);
 		return "customer/cart";
 	}
 	
@@ -57,7 +59,9 @@ public class CustomerController {
 	
 	//마이페이지 주문 내역 목록 확인
 	@GetMapping(value="/orderList")
-	public String orderList() {
+	public String orderList(@SessionAttribute(required = false) Customer c, Model model) {
+		List ol = customerService.selectOrderList(c.getCustomerNo());
+		model.addAttribute("orderList", ol);
 		return "customer/orderList";
 	}
 	

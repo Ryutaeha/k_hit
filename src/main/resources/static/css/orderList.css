@@ -60,6 +60,7 @@
 }
 .info-top>.info1{
     text-align: center;
+   
 } 
 
 .info-top>div{
@@ -78,6 +79,7 @@
 
 .info-main{
     border-bottom: 3px solid #ccc;
+   
 }
 .info-main>.info1{
     text-align: center;
@@ -86,9 +88,10 @@
 }
 .info-main>.info2>.info-img{
     margin: 25px;
+    float: left;
 }
 .info-main>.info2 img{
-    width: 100px;
+     width: 100px;
     height: 100px;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -101,6 +104,7 @@
 
 .info-name{
     padding: 50px 0px 50px 0px;
+     text-align : left;
 }
 .info-name>span{
     font-family: ns_b;
