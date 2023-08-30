@@ -303,6 +303,7 @@ public class SellerController {
 			return "1";
 		}
 	}
+}
 	
 	/*
 	@ResponseBody
@@ -371,3 +372,4 @@ public class SellerController {
 	
 
 }
+*/
