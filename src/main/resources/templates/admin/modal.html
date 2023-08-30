@@ -2,6 +2,8 @@
 	<script src="/summernote/lang/summernote-ko-KR.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <div class="modal-wrap ">
+
+
 	<div class="modal-inpo pModal">
 		<button style="height: 50px; width: 50px" class="delModal">X</button>
 		<table class="tbl modal-tbl">
@@ -36,11 +38,24 @@
 					<h3>상품 상세소개</h3>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="3" style="height: 150px" class="mOptionP">상품 옵션</td>
-			</tr>
 		</table>
+		<table class="tbl modal-tbl">
+			<tr>
+				<th colspan="3"  style="height: 30px" >상품 옵션</th>
+			</tr>
+			<tr>
+				<th style="height: 30px; width: 35%" >옵션1</th>
+				<th style="height: 30px; width: 35%" >옵션2</th>
+				<th style="height: 30px; width: 15%" >재고</th>
+				<th style="height: 30px; width: 15%" >판매유무</th>
+			</tr>
+			<tr>
+				<td colspan="3" style="height: 150px; overflow: hidden;" class="mProductS" >판매중인 상품</td>
+			</tr>
+			</table>
 	</div>
+	
+	
 	<div class="modal-inpo sModal">
 		<button style="height: 50px; width: 50px" class="delModal">X</button>
 		<table class="tbl modal-tbl">
@@ -73,15 +88,25 @@
 					<h3>자기소개</h3>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="3" style="height: 150px" class="mProductS">판매중인 상품</td>
-			</tr>
 		</table>
+			<table class="tbl modal-tbl">
+			<tr>
+				<th colspan="3"  style="height: 30px" >판매중인 상품</th>
+			</tr>
+			<tr>
+				<th style="height: 30px; width: 10%" >번호</th>
+				<th style="height: 30px; width: 60%" >이름</th>
+				<th style="height: 30px; width: 30%" >가격</th>
+			</tr>
+			<tr>
+				<td colspan="3" style="height: 150px; overflow: hidden;" class="mProductS" >판매중인 상품</td>
+			</tr>
+			</table>
 	</div>
 	
-	
+	<div></div>
 	<div class="modal-inpo cModal">
-		<button style="height: 50px; width: 50px" class="delModal">X</button>
+		<button style="height: 50px; width: 50px; " class="delModal">X</button>
 		<table class="tbl modal-tbl">
 			<tr>
 				<td class="mIdC">
@@ -121,7 +146,7 @@
 			</tr>
 			<tr>
 				<td class="mContentN" colspan="2">
-					<textarea class="input-form" name="noticeContent" id="noticeContent" style="width: 100%"></textarea>
+				
 				</td>
 			</tr>
 		</table>

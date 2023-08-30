@@ -45,13 +45,18 @@ $(".delModal").on('click',function(){
 	$(".modal-wrap").css("display","none");
 })
 $(".pSelect").on('click',function(){
+	$(".pModal>table").children().children().children('td').empty();
+	$(".pModal").children('form').remove();
 	pModal($(this).children().eq(0).text());
+	pModalO($(this).children().eq(0).text());	
+    $(".modal-inpo").css("display","none");
+    $(".pModal").css("display","block");
+	$(".modal-wrap").css("display","flex");
 
 })
 
 function pModal(pNo){
-	$(".pModal>table").children().children().children().empty();
-	$(".pModal").children('form').remove();
+
 	$.ajax({
 		url : "/admin/pContent",
 		type : "post",
@@ -84,42 +89,82 @@ function pModal(pNo){
 	    	}
 	    }
     })
-    $(".modal-inpo").css("display","none");
-    $(".pModal").css("display","block");
-	$(".modal-wrap").css("display","flex");
-	
+
+}
+function pModalO(pNo){
+	$(".pModal>table").children().children().children('td').empty();
+	$(".pModal").children('form').remove();
+	$.ajax({
+		url : "/admin/pContentO",
+		type : "post",
+		data : {pNo : pNo},
+		dataType : "json",
+		success: function(data){
+			console.log(data)
+			if(data.length==0){
+				$(".mProductS").append($("<h2>").append("옵션이 없습니다"));
+			}else{
+				for(var i =0;i<data.length;i++){
+					const div = $("<div style= 'padding: 10px 0; border: 1px solid black'>");
+					div.append($("<span style='width: 10%; display: inline-block;'>").append(data[i].productNo));
+					div.append($("<span style='width: 60%; display: inline-block;'>").append(data[i].productName));
+					div.append($("<span style='width: 30%; display: inline-block;'>").append(data[i].productPrice));
+					$(".mProductS").append(div);
+				}
+	    }
+    })
+
 }
 
-
 $(".sMenu").on('click',function(){
+	$(".sModal>table").children().children().children('td').empty();
 	sModal($(this).text());
+	sModalP($(this).text());	
+	$(".modal-inpo").css("display","none");
+    $(".sModal").css("display","block");
+	$(".modal-wrap").css("display","flex");	
     event.stopPropagation();
 })
 
 $(".sMenuSel").on('click',function(){
+	$(".sModal>table").children().children().children('td').empty();
 	sModal($(this).children().eq(1).text());
+	sModalP($(this).children().eq(1).text());
+	$(".modal-inpo").css("display","none");
+    $(".sModal").css("display","block");
+	$(".modal-wrap").css("display","flex");	
 })
 
 function sModal(sId){
-	$(".sModal>table").children().children().children().empty();
 	$.ajax({
 		url : "/admin/sContent",
 		type : "post",
 		data : {sId : sId},
 		dataType : "json",
 		success: function(data){
-			$(".mImgS").append($("<h2>").append(data.sellerImg));
-			$(".mIdS").append($("<h2>").append(data.sellerId));
-			$(".mRegDateS").append($("<h3>").append(data.sellerEnrollDate));
-			$(".mEmailS").append($("<h4>").append(data.sellerEmail));
-			$(".mNameS").append($("<h2>").append(data.sellerName));
-			$(".mPhoneS").append($("<h3>").append(data.sellerPhone));
-			$(".mIntroduceS").append($("<h3>").append(data.sellerIntroduce));
+			$(".mImgS").append($("<span>").append(data.sellerImg));
+			$(".mIdS").append($("<span>").append(data.sellerId));
+			$(".mRegDateS").append($("<span>").append(data.sellerEnrollDate));
+			$(".mEmailS").append($("<span>").append(data.sellerEmail));
+			$(".mNameS").append($("<span>").append(data.sellerName));
+			$(".mPhoneS").append($("<span>").append(data.sellerPhone));
+			$(".mIntroduceS").append($("<span>").append(data.sellerIntroduce));
 		}
 	})
-	$(".modal-inpo").css("display","none");
-    $(".sModal").css("display","block");
-	$(".modal-wrap").css("display","flex");
+}
+
+function sModalP(sId){
+console.log(sId)
+		$.ajax({
+		url : "/admin/sContentP",
+		type : "post",
+		data : {sId : sId},
+		dataType : "json",
+		success: function(data){
+			
+			}
+		
+	})
 }
 
 $(".cMenu").on('click',function(){
@@ -175,7 +220,7 @@ $(document).on('click',".fix",function(){
 })
 
 function nModal(nNo){
-	$(".nModal>table").children().children().children().not('.mContentN').empty();
+	$(".nModal>table").children().children().children().empty();
 	$(".fix").remove()
 	$.ajax({
 		url : "/admin/nContent",
@@ -185,11 +230,8 @@ function nModal(nNo){
 		success: function(data){
 			console.log(data)
 			$(".mTitleN").append($("<h2>").append(data.noticeTitle));
-			$(".mTitleN").append($("<input type = text style=display:none>").append(data.noticeTitle));
 			$(".mDateN").append($("<h3>").append(data.noticeDate));
-			$(".mDateN").append($("<input type=hidden value ="+data.noticeNo+" class=mNoN>"));
-			$("#noticeContent").append(data.noticeContent);
-			$("#noticeContent").append("dsd");
+			$(".mContentN").append($("<h3>").append(data.noticeContent));
 			if(data.noticeFix==0){
 				$(".modifyNoticeFrm").append($("<button value=1 class = fix>").append("고정"));
 			}else{

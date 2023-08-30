@@ -119,10 +119,21 @@ public class AdminController {
 		return product;
 	}
 	@ResponseBody
+	@PostMapping(value="/pContentO")
+	public List pContentO(int pNo){
+		return adminService.productO(pNo);
+	}
+	@ResponseBody
 	@PostMapping(value="/sContent")
 	public Seller sContent(String sId){
 		return adminService.selectSeller(sId);
 	}
+	@ResponseBody
+	@PostMapping(value="/sContentP")
+	public List sContentP(String sId){
+		return adminService.selectSellerP(sId);
+	}
+	
 	@ResponseBody
 	@PostMapping(value="/cContent")
 	public Customer cContent(String cId){

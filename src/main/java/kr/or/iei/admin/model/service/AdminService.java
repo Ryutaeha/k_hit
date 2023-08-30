@@ -107,5 +107,13 @@ public class AdminService {
 		return adminDao.selectQna(qNo);
 	}
 
+	public List selectSellerP(String sId) {
+		return adminDao.selectSellerP(sId);
+	}
+
+	public List productO(int pNo) {
+		return adminDao.productO(pNo);
+	}
+
 	
 }

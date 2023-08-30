@@ -16,6 +16,7 @@ import kr.or.iei.notice.vo.Notice;
 import kr.or.iei.notice.vo.NoticeRowMapper;
 import kr.or.iei.product.model.vo.CategoryRowMapper;
 import kr.or.iei.product.model.vo.ProductDetailRowMapper;
+import kr.or.iei.product.model.vo.ProductOptionRowMapper;
 import kr.or.iei.product.model.vo.ProductRowMapper;
 import kr.or.iei.qna.model.vo.QnaRowMapper;
 import kr.or.iei.seller.model.vo.Seller;
@@ -44,6 +45,8 @@ public class AdminDao {
 	@Autowired
 	private MenuChartRowMapper menuChartRowMapper;
 	@Autowired
+	private ProductOptionRowMapper productOptionRowMapper;
+	
 	private QnaRowMapper qnaRowMapper;
 	public List customerList(String input) {
 		System.out.println(input);
@@ -152,5 +155,15 @@ public class AdminDao {
 	public List selectQna(String qNo) {
 		String query ="SELECT * FROM question_tbl WHERE question_no=?";
 		return jdbc.query(query, qnaRowMapper,qNo);
+	}
+
+	public List selectSellerP(String sId) {
+		String query = "SELECT p.* FROM seller_tbl s, (SELECT * FROM product_tbl ) p WHERE s.seller_no = p.seller_no and s.seller_id=?";
+		return jdbc.query(query, productRowMapper, sId);
+	}
+
+	public List productO(int pNo) {
+		String query ="SELECT * FROM product_option_tbl WHERE product_NO=?";
+		return jdbc.query(query, productOptionRowMapper,pNo);
 	}
 }
