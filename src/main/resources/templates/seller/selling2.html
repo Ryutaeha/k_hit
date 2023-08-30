@@ -2,10 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>판매자 취소환불페이지</title>
-<link rel="stylesheet" href="/css/seller.css">
+<title>판매자 판매내역</title>
 </head>
-
 <body>
 	<th:block th:include="common/header"></th:block>
 	<div class="page-content">
@@ -14,7 +12,7 @@
 		<div class="content-wrap">
 			<div class="content-title">
 				<span>
-					CANCEL / REFUND
+					SELLING
 				</span>
 			</div>
 			<div class="content-main">
@@ -25,50 +23,42 @@
 							<th>주문번호</th>
 							<th>상품이미지</th>
 							<th>상품이름</th>
-							<th>처리상태</th>
-							<th>처리버튼</th>
+							<th>수량</th>
+							<th>금액</th>
+							<th>주문처리상태</th>
 						</tr>
-						<tr th:if="${cancelList.isEmpty()}">
-							<td colspan="4">
-								취소/환불요청이 없습니다.
+						<tr>
+							<td colspan="6">
+								주문목록이 없습니다.
 							</td>
 						</tr>
-						<tr:block th:each="cl : ${cancelList}">
-							<td th:text="${cl.orderNo}"></td>
+						<tr>
+							<td>1</td>
 							<td>
 								<div class="table-prd">
 									<div class="img-prd">
-										<img th:src="'/product/' + ${cl.productImg}">
-									</div>
+										<img src="/img/others/profile.png">			
+		
 								</div>								
 							</td>
-							<td  th:text="${cl.productName}">	
+							<td>
+								상품이름
 							</td>
 							<td>
-								<span>취소/환불요청</span>
+								<span>3개</span>
 							</td>
 							<td>
-								<button type="button" class="btn-del" onclick="cancelPrd()">취소/환불확인</button>
-								<!-- <a href="#">취소불가</a> -->
+								00,000원
+							</td>
+							<td>
+								셀렉트 옵션
 							</td>
 						</tr>
-						
 					</table>
-				</form>
-				
+				</form>	
 			</div>
-			
-
-			
 		</div>
-	</div>	
+	</div>
 	<th:block th:include="common/footer"></th:block>
-	<script>
-		function cancelPrd(orderNo){
-			if(confirm("취소요청을 확인하시겠습니까?")){
-				location.href = "/seller/cancelPrd?orderNo="+orderNo;
-			}
-		}
-	</script>
 </body>
 </html>

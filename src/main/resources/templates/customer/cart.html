@@ -5,6 +5,7 @@
 <title>CART</title>
 <link rel="stylesheet" href="/css/cart.css">
 <link rel="stylesheet" href="/css/seller.css">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -104,30 +105,53 @@
 		    <!-- 배송지 정보 -->
 		     <div class="customer-info">
 		    	<div class="deliver-info-title infoTitle">배송 정보</div>
-		    	<div class="customer-info-content">
-		    		<div class="delilver-title">신규 입력</div>
+		    	<div class="customer-info-content"><!-- th:if="${addressNo == null}" -->
+		    		<div class="deliver-title">신규 입력</div>
 		    		<div class="new-deliver-info">
-		    			<form action="customer/InsertDeliver" method="post">
-			    			<table>
-			    				<tr>
+		    			<form action="/customer/InsertDeliver" method="post">
+			    			<table class="input-tbl">
+			    				<tr class="input-tr addrTr">
 			    					<th>수령인</th>
-			    					<td><input type="text" name="addressName" placeholder="이름을 입력해 주세요"></td>
+			    					<td><input type="text" name="addressName" class="deliverInput" placeholder="이름을 입력해 주세요"></td>
 			    				</tr>
-			    				<tr>
+			    				<tr class="input-tr1 addrTr">
 			    					<th>전화번호</th>
-			    					<td><input type="text" name="" placeholder="이름을 입력해 주세요"></td>
+			    					<td><input type="text" name="addressPhone" class="deliverInput" placeholder="이름을 입력해 주세요"></td>
 			    				</tr>
-			    				<tr>
+			    				<tr class="input-tr2 addrTr">
 			    					<th rowspan="3">주소</th>
-			    					<td><input type="text" name="" placeholder="우편번호">
+			    					<td>
+			    						<input type="text" name="addressPostalCode" class="deliverInput dShortInput" id="postcode" placeholder="우편번호">
+			    						<button type="button" class="searchBtn" onclick="searchAddress();">주소찾기</button>
+			    					</td>
 			    				</tr>
-			    				<tr>
-			    					<td><input type="text" name="" placeholder="주소">
+			    				<tr class="input-tr2">
+			    					<td><input type="text" name="addressSimple" class="deliverInput" id="address" placeholder="주소"></td>
 			    				</tr>
-			    				<tr>
-			    					<td><input type="text" name="" placeholder="상세주소를 입력해 주세요">
+			    				<tr class="input-tr2">
+			    					<td><input type="text" name="addressDetails" class="deliverInput" id="detail" placeholder="상세주소를 입력해 주세요"></td>
 			    				</tr>
 			    			</table>
+			    			<div class="submitBtn-wrap"><input type="submit" value="배송지 입력"></div>
+		    			</form>
+		    		</div>
+		    	</div>
+		    	<div class="customer-info-content" th:if="${addressNo != null}">
+		    		<div class="deliver-title">기본 배송지</div>
+		    		<div class="new-deliver-info">
+		    			<form action="/customer/UpdateDeliver" method="post">
+			    			<table class="input-tbl">
+			    				<tr class="addrTr1">
+			    					<th>수령인</th>
+			    				</tr>
+			    				<tr class="addrTr1">
+			    					<td>전화번호</td>
+			    				</tr>
+			    				<tr class="addrTr1">
+			    					<td>주소</td>
+			    				</tr>
+			    			</table>
+			    			<div class="submitBtn-wrap"><input type="submit" value="정보 수정"></div>
 		    			</form>
 		    		</div>
 		    	</div>

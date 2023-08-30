@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.iei.page.model.vo.BestListRowMapping;
 import kr.or.iei.page.model.vo.ReviewContentStarRowMapper;
 import kr.or.iei.product.model.vo.ProductRowMapper;
 
@@ -17,7 +18,8 @@ public class PageDao {
 	private ProductRowMapper productRowMapper;
 	@Autowired
 	private ReviewContentStarRowMapper reviewContentStarRowMapper;
-	
+	@Autowired
+	private BestListRowMapping bestListRowMapping;
 	
 	
 	public List searchProduct(String searchWord) {
@@ -47,8 +49,8 @@ public class PageDao {
 		return newPrd;
 	}
 	public List searchBest() {
-		String query = "SELECT p.PRODUCT_NO, p.PRODUCT_NAME,p.PRODUCT_CONTENT,p.PRODUCT_CONTENT_DETAILS,p.PRODUCT_IMG,p.PRODUCT_PRICE, sum(opo.ORDER_COUNT) FROM PRODUCT_TBL p,(SELECT po.PRODUCT_NO, o.ORDER_COUNT FROM ORDER_TBL o,(SELECT product_option_no,PRODUCT_NO FROM PRODUCT_OPTION_TBL) po WHERE po.product_option_no =o.PRODUCT_OPTION_NO) opo where opo.PRODUCT_NO = p.PRODUCT_NO GROUP BY p.PRODUCT_NO, p.PRODUCT_NAME,p.PRODUCT_CONTENT,p.PRODUCT_CONTENT_DETAILS,p.PRODUCT_IMG,p.PRODUCT_PRICE";
-		List bestPrd = jdbc.query(query,productRowMapper);
+		String query = "select * from (select rownum as bestList ,best.* from (SELECT p.PRODUCT_NO, p.PRODUCT_NAME,p.PRODUCT_CONTENT,p.PRODUCT_CONTENT_DETAILS,p.PRODUCT_IMG,p.PRODUCT_PRICE, sum(opo.ORDER_COUNT) FROM PRODUCT_TBL p,(SELECT po.PRODUCT_NO, o.ORDER_COUNT FROM ORDER_TBL o,(SELECT product_option_no,PRODUCT_NO FROM PRODUCT_OPTION_TBL) po WHERE po.product_option_no =o.PRODUCT_OPTION_NO) opo where opo.PRODUCT_NO = p.PRODUCT_NO GROUP BY p.PRODUCT_NO, p.PRODUCT_NAME,p.PRODUCT_CONTENT,p.PRODUCT_CONTENT_DETAILS,p.PRODUCT_IMG,p.PRODUCT_PRICE)best)";
+		List bestPrd = jdbc.query(query,bestListRowMapping);
 		return bestPrd;
 	}
 	public List searchAll() {
@@ -99,7 +101,8 @@ public class PageDao {
 		
 	}
 	public List searchBestListFive() {
-		String query = "select * from (select rownum as rnum ,best.* from (SELECT p.PRODUCT_NO, p.PRODUCT_NAME,p.PRODUCT_CONTENT,p.PRODUCT_CONTENT_DETAILS,p.PRODUCT_IMG,p.PRODUCT_PRICE, sum(opo.ORDER_COUNT) FROM PRODUCT_TBL p,(SELECT po.PRODUCT_NO, o.ORDER_COUNT FROM ORDER_TBL o,(SELECT product_option_no,PRODUCT_NO FROM PRODUCT_OPTION_TBL) po WHERE po.product_option_no =o.PRODUCT_OPTION_NO) opo where opo.PRODUCT_NO = p.PRODUCT_NO GROUP BY p.PRODUCT_NO, p.PRODUCT_NAME,p.PRODUCT_CONTENT,p.PRODUCT_CONTENT_DETAILS,p.PRODUCT_IMG,p.PRODUCT_PRICE)best) where rnum<6";
-		return null;
+		String query = "select * from (select rownum as bestlist ,best.* from (SELECT p.PRODUCT_NO, p.PRODUCT_NAME,p.PRODUCT_CONTENT,p.PRODUCT_CONTENT_DETAILS,p.PRODUCT_IMG,p.PRODUCT_PRICE, sum(opo.ORDER_COUNT) FROM PRODUCT_TBL p,(SELECT po.PRODUCT_NO, o.ORDER_COUNT FROM ORDER_TBL o,(SELECT product_option_no,PRODUCT_NO FROM PRODUCT_OPTION_TBL) po WHERE po.product_option_no =o.PRODUCT_OPTION_NO) opo where opo.PRODUCT_NO = p.PRODUCT_NO GROUP BY p.PRODUCT_NO, p.PRODUCT_NAME,p.PRODUCT_CONTENT,p.PRODUCT_CONTENT_DETAILS,p.PRODUCT_IMG,p.PRODUCT_PRICE)best) where bestlist<6";
+		List list = jdbc.query(query,bestListRowMapping );
+		return list;
 	}
 }
