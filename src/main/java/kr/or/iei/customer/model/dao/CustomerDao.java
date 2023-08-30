@@ -134,40 +134,6 @@ public class CustomerDao {
 
 	}
 
-	public int selectAddressNo(int customerNo) {
-		String query = "select address_no from address_tbl where customer_no=?";
-		int addressNo = jdbc.queryForObject(query, Integer.class,customerNo);
-		return addressNo;
-	}
-
-	
-	//장바구니 리스트
-	public List selectCartList(int customerNo) {
-		String query = "select cart_no,product_img,product_name,option_size,option_color,product_price,cart_count from cart_tbl join product_option_tbl using(product_option_no) join product_tbl using(product_no) where customer_no = ?";
-		List list = jdbc.query(query, cartListRowMapper, customerNo);
-		return list;
-	}
-
-	public List selectOrderList(int customerNo) {
-		String query ="select a.customer_no, ol.order_list_date, p.product_img, p.product_name, op.option_size, op.option_color, o.order_count,p.product_price,o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where customer_no=?";
-		List orderList = jdbc.query(query,orderDetailRowMapper,customerNo);
-		return orderList;
-	}
-
-
-	public int cartDelete(int cartNo) {
-		String query = "delete from cart_tbl where cart_no=?";
-		int result = jdbc.update(query,cartNo);
-		return result;
-	}
-
-	public List selectcanCelList(int customerNo) {
-		String query ="select a.customer_no, ol.order_list_date, p.product_img, p.product_name, op.option_size, op.option_color, o.order_count,p.product_price,o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where customer_no=? and(order_state=5 or order_state=6)";
-		List cancelRefundList = jdbc.query(query,cancelRefundRowMapper,customerNo);
-		return cancelRefundList;
-
-	}
-
 	public Address selectAddressNo(int customerNo) {
 		String query = "select * from address_tbl where customer_no=?";
 		List list = jdbc.query(query, addressRowMapper, customerNo);

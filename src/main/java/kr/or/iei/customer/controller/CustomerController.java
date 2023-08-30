@@ -51,7 +51,8 @@ public class CustomerController {
 		Address address = customerService.selectAddressNo(customerNo);
 		model.addAttribute("cartList", cartList);
 		model.addAttribute("a", address);
-	
+		return "/customer/cart";
+	}
 	//결제하기
 	@GetMapping(value="/payment")
 	public String customerPayment() {
@@ -259,7 +260,7 @@ public class CustomerController {
 		int result = customerService.insertDeliver(a);
 		return result;
 	}
-
+}
 
 
 

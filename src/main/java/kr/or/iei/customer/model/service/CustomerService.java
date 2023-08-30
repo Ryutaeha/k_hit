@@ -143,10 +143,5 @@ public class CustomerService {
 		return result;
 	}
 
-	public int selectAddressNo(int customerNo) {
-		int addressNo = customerDao.selectAddressNo(customerNo);
-		return addressNo;
-	}
-
 }
 
