@@ -145,7 +145,9 @@
     float: left;
     width: 1000px;
 }
-
+#pageNavi{
+    margin-top: 60px;
+}
 .pagination {
   list-style-type: none;
   display: flex;
@@ -197,23 +199,116 @@
   color: #fff;
   border: 1px solid lightgrey;
   border-radius: 10px;
+  font-family: ns-b;
+  margin-left: 20px;
 }
-
 .product-img>img{
 	width: 65px;
 	height: 65px;
 }
+/*판매자 정보수정*/
 
------------------------------------------------------
---판매자 판매내역 페이지
-*{
-    margin: 0;
-    padding: 0;
-    font-family: ns-r;
-    color: #1e1e1e;
+/*테이블 디자인*/
+.tbl{
+	width: 100%;
+	border-spacing: 0px;
+	margin: 0;
+	margin: 20px;
+	font-size: 1.2em;
+    
+    
 }
-
-
+.tbl th,
+.tbl td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #ededed;
+}
+.tbl-menu>th{
+    padding: 1rem;
+    text-align: center;
+    background-color: #ededed;
+  
+  }
+  .tbl-menu>th:first-child{
+  border-top-left-radius: 10px;
+  }
+  .tbl-menu>th:last-child{
+      border-top-right-radius: 10px;
+  }
+      
+  .changeStock{
+    border: none;
+    width: 70%;    
+    box-sizing: border-box;
+    transition-duration: 0.3s;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    height: 50px;
+    line-height: 50px;  
+  }
+  .changeStock:hover{
+      color: #fff;
+      background-color: #61677A;
+  }
+  .changeStock:hover{
+    cursor: pointer;
+  }
+  .tbl-row{
+	height:100px;
+  }
+  .tbl-row:hover{
+	background-color: rgba(216, 217, 218, 0.3);
+  }
+  .input-form{
+	width:120px;
+	font-size: 16px;
+  }
+  /*판매상품 관리 수정,삭제 버튼*/
+.btn-up{
+    width: 40px;
+    height: 27px;
+    border: 1px solid #D8D9DA;
+    background-color: #D8D9DA;
+    display: inline-block;
+    padding: 10px;
+    text-align: 35px;
+    border-radius: 10px;
+}
+.btn-del{
+    background-color: #D8D9DA;
+    
+    height: 25px;
+    border: 1px solid #D8D9DA;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: content-box;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    transition-duration: 0.3s;
+}
+.btn-del:hover{
+    color: #fff;
+    background-color: #61677A;
+}
+.btn-del>a:hover{
+    color: #fff;
+}
+.img-prd>img{
+    width: 100px;
+}
+.table-prd{
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ededed;
+    
+    margin: 0 auto;
+}
+#write-btn{
+    margin-bottom: 10px;
+}
 /*마이페이지헤더 글귀*/
 .seller-header{
     width: 100%;
@@ -319,29 +414,33 @@
 
 /*마이페이지 메뉴*/
 .left-menu{
-    width: 200px;    
+    width: 200px;
+    margin: 0;
+    margin-top: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: block;
+    margin-left: 160px;
+    margin-right: 10px;    
 }
-/* 사용 색상
-#272829 검정 font
-#61677A 네이비
-#D8D9DA 회색
-#FFF6E0 노랑 */
-
-
-.content-title>span {
-    font-family: ns-eb;
-    letter-spacing: 3px;
+.left-menu>ul>li{
+    height: 40px;
+    margin-bottom: 10px;
+    width: 200px;
+} 
+.left-menu>ul>li>a{
+    display: block;
+    height: 100%;
+    padding-left: 10px;
+    font-weight: 600;
+    box-sizing: border-box;
+    line-height: 40px;
 }
-
-/*
-.content-date{
-    padding: 20px 20px 20px 0px;
+.left-menu>ul>li>a:hover{
+    transition: 0.5;
+    transform: scale(1.1);
+    font-family: ns-b;
 }
-.content-date>span{
-    color: #272829;
-    font-weight: bold;
-}
-*/
 
 /* 테이블 간 넓이 */
 .sellingListTbl{

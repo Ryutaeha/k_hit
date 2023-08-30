@@ -10,18 +10,18 @@
 </head>
 <body>
 	<div class="seller-head-wrap">
-		<div class="seller-title">
-			<h2 class="title1">MY PAGE</h2>
+		<div class="seller-header">
+			<span class="move">MY PAGE</span>
 		</div>	
-		<div class="seller-info">
-			<div class="info">
-			<!-- <img th:src="'/seller/' + ${session.s.sellerImg}"> -->
-			
-			<img src="/img/common/person.png">
-			<button type="button" id="mypage-memberName" th:text="${session.s.sellerName}+님"></button>
+		<div class="seller-headers">
+			<div class="seller-header-blank"> </div>
+			<div class="seller-header-id">
+				<div class="id-wrap">
+					<span><img th:src="'/seller/' + ${session.s.sellerImg}"></span>
+					<a href="#" th:text="${session.s.sellerName}+님"></a>
+				</div>
 			</div>
 		</div>
-			</div>
 	<script src="/js/sell.js"></script>
 </body>
 </html>
