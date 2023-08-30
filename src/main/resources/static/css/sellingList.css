@@ -14,32 +14,23 @@
     letter-spacing: 3px;
 }
 
-
-.refund-wrap{
-    border-radius: 10px;
-    background-color: white;
-    width: 1000px;
-    margin: 0 auto;
-}
-.tbl-info>.refund{
-    width: 1000px;
-    overflow: hidden;
-}
+/*
 .content-date{
-    padding: 0px 0px 20px 0px;
+    padding: 20px 20px 20px 0px;
 }
 .content-date>span{
     color: #272829;
     font-weight: bold;
 }
+*/
 
 /* 테이블 간 넓이 */
-.refundListTbl{
+.sellingListTbl{
 	width: 100%;
 	border-collapse: collapse;
 }
 
-.info1{
+.info1,.info6{
     width: 12.5%;
     padding: 0.75rem;
     border-top: 1px solid #dee2e6;
@@ -56,49 +47,39 @@
 }
 
 
-.content-info>.refund{
+.content-info>.order{
     width: 1000px;
     overflow: hidden;
     margin: 0 auto;
 }
-/* .content-info>.refund>div{
+.content-info>.selling>div{
     float: left;
-} */
-.content-info>.refund:first-child>div{
+}
+.content-info>.selling:first-child>div{
     height: 40px;
 }
 .info-top>.info1{
     text-align: center;
+   
 } 
 
 .info-top>div{
     text-align: center;
     line-height: 40px;
 }
+.info-top{
+    border-bottom: 3px solid #ccc;
 
+}
 .info-top>div>span{
     font-size: 20px;
     font-family: ns_m;
     color: #0c0c0c;
 }
-.content-info>.refund>.info1{
-    width: 7.5%;
-}
-.content-info>.refund>.info2{
-    width: 40%;
-}
-.content-info>.refund>.info3{
-    width: 9%;
-}
-.content-info>.refund>.info4{
-    width: 18%;
-}
-.content-info>.refund>.info5 {
-    width: 18%;
-}
 
 .info-main{
     border-bottom: 3px solid #ccc;
+   
 }
 .info-main>.info1{
     text-align: center;
@@ -120,8 +101,10 @@
     overflow: none;
     height: 150px;
 }
+
 .info-name{
     padding: 50px 0px 50px 0px;
+     text-align : left;
 }
 .info-name>span{
     font-family: ns_b;
@@ -132,11 +115,13 @@
     font-family: ns_m;
     color: brown;
 }
+
 .info-main>.info3{
     overflow: hidden;
     padding : 60px 15px 60px 15px;
     box-sizing: border-box;
 }
+
 .info-main>.info3>span{
     width: 60px;
     height: 30px;
@@ -151,12 +136,10 @@
 }
 .info-main>.info5{
     text-align: center;
-    padding: 60px 12px 60px 2px;
     font-size: 18px;
     font-weight: bold;
     font-family: ns_r;
 }
-
 /* 상세보기 버튼 */
 .info-main>.info5>button{
     border:none;
@@ -172,12 +155,13 @@
     background-color: #61677A;
 }
 
+
 /* 더보기 버튼 */
-.refund-info-bottom{
+.selling-info-bottom{
     text-align: center;
     padding-top: 50px;
 }
-.refund-info-bottom > button{
+.selling-info-bottom > button{
     border:none;
     width: 200px;
     height: 50px;
@@ -186,13 +170,26 @@
     text-align: center;
     font-size: 20px;
 }
-.refund-info-bottom > button:hover{
+.selling-info-bottom > button:hover{
     border:none;
     cursor: pointer;
     border-radius: 3px;
     background-color: #61677A;
 }
-/* modal css
+
+.payment-bottom{
+    display: block;
+    text-align: right;
+    padding-top: 20px;
+    font-size: 25px;
+}
+
+.payment-bottom>span:last-child{
+    font-weight: bold;
+    font-size: 30px;
+    text-align: right;
+}
+/* modal css */
 body{
     margin: 0;
 }
@@ -257,4 +254,4 @@ body{
     cursor: pointer;
     border-radius: 5px;
     background-color: #61677A;
-} */
+}

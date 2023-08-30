@@ -49,6 +49,7 @@ public class CustomerController {
 		return "customer/cart";
 	}
 	
+	
 	//결제하기
 	@GetMapping(value="/payment")
 	public String customerPayment() {
@@ -65,7 +66,9 @@ public class CustomerController {
 	
 	//고객 취소/환불 목록 페이지
 	@GetMapping(value="/cancelRefundList")
-	public String refundList() {
+	public String refundList(@SessionAttribute(required = false) Customer c, Model model) {
+		List crl = customerService.selectCancelRefundList(c.getCustomerNo());
+		model.addAttribute("cancelRefundList",crl);
 		return "customer/cancelRefundList";
 	}
 	

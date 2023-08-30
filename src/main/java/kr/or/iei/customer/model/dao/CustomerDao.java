@@ -3,10 +3,12 @@ package kr.or.iei.customer.model.dao;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.iei.customer.model.vo.CancelRefundRowMapper;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
@@ -29,6 +31,8 @@ public class CustomerDao {
 	
 	@Autowired
 	private OrderDetailRowMapper orderDetailRowMapper;
+	@Autowired
+	private CancelRefundRowMapper cancelRefundRowMapper;
 
 	
 	public int insertCustomer(Customer customer, String customerEmail2) {
@@ -104,6 +108,12 @@ public class CustomerDao {
 		String query ="select a.customer_no, ol.order_list_date, p.product_img, p.product_name, op.option_size, op.option_color, o.order_count,p.product_price,o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where customer_no=?";
 		List orderList = jdbc.query(query,orderDetailRowMapper,customerNo);
 		return orderList;
+	}
+
+	public List selectcanCelList(int customerNo) {
+		String query ="select a.customer_no, ol.order_list_date, p.product_img, p.product_name, op.option_size, op.option_color, o.order_count,p.product_price,o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where customer_no=? and(order_state=5 or order_state=6)";
+		List cancelRefundList = jdbc.query(query,cancelRefundRowMapper,customerNo);
+		return cancelRefundList;
 	}
 
 

@@ -115,5 +115,9 @@ public class CustomerService {
 		List old = customerDao.selectOrderList(customerNo);
 		return old;
 	}
+	public List selectCancelRefundList(int customerNo) {
+		List crl = customerDao.selectcanCelList(customerNo);
+		return crl;
+	}
 }
 
