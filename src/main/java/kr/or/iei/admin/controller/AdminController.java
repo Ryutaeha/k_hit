@@ -61,9 +61,18 @@ public class AdminController {
 	public String adminIndex() {
 		return "/admin/adminIndex";
 	}
+	
+	@GetMapping(value = "/test")
+	public String test(Model model) {
+		List list = adminService.salesList();
+		model.addAttribute("list",list);
+		return "/admin/test";
+	}
 
 	@GetMapping(value = "/question")
-	public String question() {
+	public String question(Model model) {
+		List list = adminService.question();
+		model.addAttribute("qna",list);
 		return "/admin/question";
 	}
 
@@ -81,10 +90,6 @@ public class AdminController {
 		return "/admin/member";
 	}
 	
-	@GetMapping(value="/banner")
-	public String banner(){
-		return "/admin/banner";
-	}
 
 	@GetMapping(value="/product")
 	public String product(Model model, String input, int categoryNo, int productCheck){
@@ -97,18 +102,10 @@ public class AdminController {
 	}
 
 	@GetMapping(value="/sales")
-	public String sales(){
+	public String sales(Model model){
+		List list = adminService.salesList();
+		model.addAttribute("list",list);
 		return "/admin/sales";
-	}
-
-	@GetMapping(value="/income")
-	public String income(){
-		return "/admin/income";
-	}
-
-	@GetMapping(value="/consumption")
-	public String consumption(){
-		return "/admin/consumption";
 	}
 
 	@GetMapping(value="/modify")
@@ -166,5 +163,32 @@ public class AdminController {
 	public String noticeWrite(Notice n ,Model model) {
 		int result = adminService.insertNotice(n);
 		return "/admin/noticeFrm";
+	}
+	@PostMapping(value="/productCheckChange")
+	public String productCheckChange(int productCheck,int productNo,Model model){
+		System.out.println(productCheck+"   "+productNo);
+		int result = adminService.productCheckChange(productCheck,productNo);
+		if(result == 1) {
+			model.addAttribute("title","수정 성공");
+			model.addAttribute("msg", "상품 수정에 성공하셨습니다");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/product?categoryNo=0&input=&productCheck="+productCheck);		
+		}else {
+			model.addAttribute("title","수정 실패");
+			model.addAttribute("msg", "메인 페이지로 돌아갑니다 잠시후 다시 시도해주세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/adminIndex");
+		}
+		return "common/msg";
+	}
+	@ResponseBody
+	@PostMapping(value = "/fix")
+	public int fix(int fix, int nNo) {
+		return adminService.fix(fix,nNo);
+	}
+	@ResponseBody
+	@PostMapping(value = "/test1")
+	public List test() {
+		return adminService.salesListTest();
 	}
 }
