@@ -166,4 +166,10 @@ public class SellerDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
+
+	public List selectSelling(int sellerNo) {
+		String query ="";
+		
+		return null;
+	}
 }

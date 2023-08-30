@@ -244,4 +244,9 @@ public class SellerService {
 		return result;
 	}
 
+	public List selectSelling(int sellerNo) {
+		List selling = sellerDao.selectSelling(sellerNo);
+		return null;
+	}
+
 }

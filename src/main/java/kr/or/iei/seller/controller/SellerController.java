@@ -40,10 +40,11 @@ public class SellerController {
 	@Value("${file.root}")
 	private String root;
 	
-	@GetMapping(value="/selling")
-	public String sellingPage() {
-		return "seller/selling";
-	}
+//	@GetMapping(value="/selling")
+//	public String sellingPage() {
+//		return "seller/selling";
+//	}
+	
 	//판매상품관리
 	@GetMapping(value="/productManagement")
 	public String productManagement(@SessionAttribute(required = false) Seller s, Model model, int reqPage) {
@@ -390,6 +391,8 @@ public class SellerController {
 	@GetMapping(value="/selling")
 	public String selling(@SessionAttribute(required = false)Seller s,Model model) {
 		List selling = sellerService.selectSelling(s.getSellerNo());
+		model.addAttribute("sellingList", selling);
+		return "seller/selling";
 		
 	}
 }
