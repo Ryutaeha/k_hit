@@ -8,9 +8,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.iei.customer.model.vo.Cart;
+import kr.or.iei.customer.model.vo.CartListRowMapper;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
+import kr.or.iei.customer.model.vo.OrderDetailRowMapper;
 import kr.or.iei.customer.model.vo.WishListRowMapper;
+import kr.or.iei.review.model.vo.ReviewListRowMapper;
 
 @Repository
 public class CustomerDao {
@@ -18,8 +21,19 @@ public class CustomerDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private CustomerRowMapper customerRowMapper;
+
+	@Autowired
+	private ReviewListRowMapper reviewListRowMapper;
+
 	@Autowired 
-	WishListRowMapper wishListRowMapper;
+	private WishListRowMapper wishListRowMapper;
+	
+	@Autowired
+	private CartListRowMapper cartListRowMapper;
+	@Autowired
+	private OrderDetailRowMapper orderDetailRowMapper;
+
+
 	
 	public int insertCustomer(Customer customer, String customerEmail2) {
 		String query = "insert into customer_tbl values(customer_seq.nextval,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),default)";
@@ -71,11 +85,36 @@ public class CustomerDao {
 		List list = jdbc.query(query, wishListRowMapper, customerNo, start, end);
 		return list;
 	}
+	//고객리뷰 전체 수
+	public int reviewTotalCount(String reviewWriter) {
+		String query = "select count(*) from review_tbl where review_writer=?";
+		int totalCount = jdbc.queryForObject(query, Integer.class, reviewWriter);
+		return totalCount;
+	}
+	//고객리뷰리스트
+	public List customerReviewList(String reviewWriter, int start, int end) {
+		String query = "select * from (select rownum as rnum, r.* from (select review_no,order_no,product_no,review_writer,star_count,review_content,filepath,product_name,product_img from review_tbl join order_tbl using(order_no) join product_option_tbl using(product_option_no) join product_tbl using(product_no)where review_writer=? order by 1 desc)r) where rnum between ? and ?";
+		List reviewList = jdbc.query(query, reviewListRowMapper,reviewWriter,start,end);
+		return reviewList;
+	}
 
 	public int selectWisiListTotalCount(int customerNo) {
 		String query = "select count(*) as cnt from product_like where customer_no=?";
 		int totalCount = jdbc.queryForObject(query, Integer.class,customerNo);
 		return totalCount;
+	}
+	
+	//장바구니 리스트
+	public List selectCartList(int customerNo) {
+		String query = "select cart_no,product_img,product_name,option_size,option_color,product_price,cart_count from cart_tbl join product_option_tbl using(product_option_no) join product_tbl using(product_no) where customer_no = ?";
+		List list = jdbc.query(query, cartListRowMapper, customerNo);
+		return list;
+	}
+
+	public List selectOrderList(int customerNo) {
+		String query ="select a.customer_no, ol.order_list_date, p.product_img, p.product_name, op.option_size, op.option_color, o.order_count,p.product_price,o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where customer_no=?";
+		List orderList = jdbc.query(query,orderDetailRowMapper,customerNo);
+		return orderList;
 	}
 
 

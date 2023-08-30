@@ -129,4 +129,11 @@ public class ReviewDao {
 		return orderNo;
 	}
 
+	public int updateComment(ReviewComment rc) {
+		String query = "update review_comment set review_comment_content=? where review_comment_no=?";
+		Object[] params = {rc.getReviewCommentContent(), rc.getReviewCommentNo()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
 }

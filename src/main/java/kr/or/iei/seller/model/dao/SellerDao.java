@@ -13,6 +13,12 @@ import kr.or.iei.product.model.vo.Product;
 import kr.or.iei.product.model.vo.ProductOption;
 import kr.or.iei.product.model.vo.ProductOptionRowMapper;
 import kr.or.iei.product.model.vo.ProductRowMapper;
+
+import kr.or.iei.seller.model.vo.CancelList;
+import kr.or.iei.seller.model.vo.CancelListRowMapper;
+
+import kr.or.iei.review.model.vo.ReviewListRowMapper;
+
 import kr.or.iei.seller.model.vo.Seller;
 import kr.or.iei.seller.model.vo.SellerRowMapper;
 
@@ -31,6 +37,11 @@ public class SellerDao {
 	private ProductOptionRowMapperSecond productOptionRowMapper;
 	@Autowired
 	private ProductOptionRowMapperSecond productOptionRowMapperSecond;
+	@Autowired
+	private CancelListRowMapper cancelListRowMapper;
+	@Autowired
+	private ReviewListRowMapper reviewListRowMapper;
+
 	
 	public List selectProductList(int sellerNo, int start, int end) {
 		String query = "select * from (select rownum as rnum, n.* from (select * from PRODUCT_TBL where seller_no=? order by 1 desc)n) where rnum between ? and ?";
@@ -112,5 +123,40 @@ public class SellerDao {
 		Object[] params = {productOption.getProductNo(),productOption.getOptionSize(),productOption.getOptionColor()};
 		int result = jdbc.update(query,params);
 		return result;
+	}
+
+	//판매자 번호?의 취소요청를 한 리스트
+	public List cancelList(Seller s) {
+		String query="select * from order_tbl where product_option_no in(select product_option_no from product_option_tbl where product_no in (select product_no from product_tbl where seller_no=?))and order_state = 4";
+		List list = jdbc.query(query,cancelListRowMapper,s.getSellerNo());
+		return list;
+	}
+
+	public List refundList(Seller s) {
+		String query="select * from order_tbl where product_option_no in(select product_option_no from product_option_tbl where product_no in (select product_no from product_tbl where seller_no=?))and order_state = 5";
+		List list = jdbc.query(query,cancelListRowMapper,s.getSellerNo());
+		return list;
+	}
+	//판매자리뷰 전체 수
+	public int reviewTotalCount(int sellerNo) {
+		String query = "select count(*) from review_tbl join order_tbl using(order_no) join product_option_tbl using(product_option_no) join product_tbl using(product_no) where seller_no=? order by 1 desc";
+		int totalCount = jdbc.queryForObject(query, Integer.class, sellerNo);
+		return totalCount;
+	}
+	//판매자리뷰리스트
+	public List sellerReviewList(int sellerNo, int start, int end) {
+		String query = "select * from (select rownum as rnum, r.* from (select review_no,order_no,product_no,review_writer,star_count,review_content,filepath,product_name,product_img from review_tbl join order_tbl using(order_no) join product_option_tbl using(product_option_no) join product_tbl using(product_no)where seller_no=? order by 1 desc)r) where rnum between ? and ?";
+		List reviewList = jdbc.query(query, reviewListRowMapper,sellerNo,start,end);
+		return reviewList;
+	}
+
+	public Seller selectSellerId(String sellerId) {
+		String query = "select * from seller_tbl where seller_id=?";
+		List list = jdbc.query(query, sellerRowMapper, sellerId);
+		if(list.isEmpty()) {
+			return null;			
+		}
+		return (Seller)list.get(0);
+
 	}
 }

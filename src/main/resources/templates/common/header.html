@@ -90,10 +90,16 @@
 				<a href="#none"><span class="material-icons search">
 					search
 					</span></a>
-					
-				<a href="common/cart"><span class="material-icons">
+					<th:block th:if="${session.c != null}">
+				<a href="customer/cart"><span class="material-icons">
 					shopping_cart
 					</span></a>
+					</th:block>
+					<th:block th:if="${session.c == null}">
+						<a href="common/login"><span class="material-icons">
+					shopping_cart
+					</span></a>
+					</th:block>
 			</div>
 		</div>
         <div class="search-box">                

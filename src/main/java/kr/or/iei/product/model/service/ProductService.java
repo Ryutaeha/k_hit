@@ -31,13 +31,17 @@ public class ProductService {
 	public int updateProduct(Product p, String[] optionSize, String[] optionColor) {
 		//, int delFileNo 매개변수 지워둠. 확인필요
 		int result = productDao.updateProduct(p);
+		System.out.println(optionColor);
 		
-		for(int i=0;i<optionColor.length;i++) {
-			ProductOption productOption = new ProductOption();
-			productOption.setOptionSize(optionSize[i]);
-			productOption.setOptionColor(optionColor[i]);
-			productOption.setProductNo(p.getProductNo());
-			result += productDao.updateProduct(productOption);
+		if(optionSize != null) {
+			for(int i=0;i<optionColor.length;i++) {
+				ProductOption productOption = new ProductOption();
+				productOption.setOptionSize(optionSize[i]);
+				productOption.setOptionColor(optionColor[i]);
+				productOption.setProductNo(p.getProductNo());
+				result += productDao.updateProduct(productOption);
+			}
+			
 		}
 		/*
 		if(result > 0) {
@@ -51,6 +55,11 @@ public class ProductService {
 					result += productDao.deleteFile(filepath);
 		}
 		*/
+		return result;
+	}
+
+	public int changeStockStatus(int StockStatus, int productOptionNo) {
+		int result = productDao.changeStockStatus(StockStatus, productOptionNo);
 		return result;
 	}
 }

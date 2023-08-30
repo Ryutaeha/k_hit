@@ -20,17 +20,20 @@
 			<div class="content-main">
 				<form action="/seller/cancelOrder">
 					
-					<!--주문이 있을 시 나오는 div-->
 					<table class="tbl">
 						<tr class="tbl-menu">
 							<th>주문번호</th>
 							<th>상품정보</th>
-							<th>고객이름</th>
 							<th>처리상태</th>
 							<th>처리버튼</th>
 						</tr>
-						<tr>
-							<td>1</th>
+						<tr th:if="${cancelList.isEmpty()}">
+							<td colspan="4">
+								취소요청이 없습니다.
+							</td>
+						</tr>
+						<tr:block th:each="cl : ${cancelList}">
+							<td th:text="${cl.orderNo}"></td>
 							<td>
 								<div class="table-prd">
 									<div class="img-prd">
@@ -44,43 +47,16 @@
 									</div>
 								</div>								
 							</td>
-							<td>
-								<span>고객이름</span>
-							</td>
+							
 							<td>
 								<span>취소요청</span>
 							</td>
 							<td>
 								<input type="submit" value="취소확인"></button>
-								<a href="#">취소불가</a>
+								<!-- <a href="#">취소불가</a> -->
 							</td>
 						</tr>
-						<tr>
-							<td>1</th>
-							<td>
-								<div class="table-prd">
-									<div class="img-prd">
-										<img src="/img/others/profile.png">
-									</div>
-									<div class="prd-info">
-										<ul>
-											<li>상품이름</li>
-											
-										</ul>
-									</div>
-								</div>								
-							</td>
-							<td>
-								<span>고객이름</span>
-							</td>
-							<td>
-								<span>취소요청</span>
-							</td>
-							<td>
-								<input type="submit" value="취소확인"></button>
-								<a href="#">취소불가</a>
-							</td>
-						</tr>
+						
 					</table>
 				</form>
 				
@@ -91,16 +67,46 @@
 				</span>
 			</div>
 
-			<form action="#">
+			<form action="/seller/refund">
 				<div class="content-main">
 					<table class="tbl">
 						<tr class="tbl-menu">
 							<th>주문번호</th>
-							<th>상품정보</th>
-							<th>고객이름</th>
+							<th>상품정보</th>							
 							<th>처리상태</th>
 							<th>환불버튼</th>
 						</tr>
+						<tr th:if="${refundList.isEmpty()}">
+							<td colspan="4">
+								환불요청이 없습니다.
+							</td>
+						</tr>
+						<tr:block th:each="rl : ${refundList}">
+							<td th:text="${rl.orderNo}"></td>
+							<td>
+								<div class="table-prd">
+									<div class="img-prd">
+										<img src="/img/others/profile.png">
+									</div>
+									<div class="prd-info">
+										<ul>
+											<li>상품이름</li>
+											
+										</ul>
+									</div>
+								</div>								
+							</td>
+							
+							<td>
+								<span>환불요청</span>
+							</td>
+							<td>
+								<input type="submit" value="환불확인"></button>
+								<!-- <a href="#">취소불가</a> -->
+							</td>
+						</tr>
+						
+					</table>
 					</table>	
 				</div>			
 			</form>

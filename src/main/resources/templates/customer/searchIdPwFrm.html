@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>join</title>
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/seller.css">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+		<div class="seller-header">
+			<span class="move">FIND ID/PASSWORD</span>
+		</div>	
+		<div class="login-wrapper">
+	        <div class="login">
+	            <div class="login-top">
+	                <h2>ID</h2>
+	                <h5>아이디 찾기</h5>
+	            </div>
+				<form action="customer/findId" method="post">
+	                <div class="login-content">
+	                	<div class="login-inputbox">
+	                        <input type="text" name="customerName" id="customerName" class="input-form" placeholder="이름을 입력하세요">
+	                    </div>
+	                    <div class="login-inputbox idEmail">
+	                        <input type="text" name="customerEmail" id="customerEmail" class="input-form" placeholder="이메일을 입력하세요">
+	                    </div>
+	                </div>
+	                <div class="login-button" id="findIdBtn">
+	                    <button type="submit">아이디 찾기</button>
+	                </div>				
+				</form>	
+	        </div>
+	        
+	        <div class="login">
+	            <div class="login-top">
+	                <h2 class="">PASSWORD</h2>
+	                <h5>비밀번호 찾기</h5>
+	            </div>
+				<form action="customer/findPw" method="post">
+	                <div class="login-content">
+	                    <div class="login-inputbox">
+	                        <input type="text" name="customerId" id="customerId2" class="input-form" placeholder="아이디를 입력하세요">
+	                    </div>
+	                    <div class="login-inputbox">
+	                        <input type="text" name="customerEmail" id="customerEmail2" class="input-form" placeholder="이메일을 입력하세요">
+	                    </div>
+	                </div>
+	                <div class="login-button" id="findPwBtn">
+	                    <button type="submit">비밀번호 찾기</button>
+	                </div>
+				</form>
+	        </div>
+	    </div>
+	</div>
+	<th:block th:include="common/footer"></th:block>
+</body>
+</html>

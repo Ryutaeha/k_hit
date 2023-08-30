@@ -4,9 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.iei.qna.model.dao.QnaDao;
+import kr.or.iei.qna.model.vo.Qna;
 import kr.or.iei.qna.model.vo.QnaListData;
+import kr.or.iei.qna.model.vo.QnaViewData;
+import kr.or.iei.seller.model.vo.Seller;
 
 @Service
 public class QnaService {
@@ -69,4 +73,25 @@ public class QnaService {
 		
 		return qld;
 	}
+	@Transactional
+	public QnaViewData selectOneQna(int questionNo,int sellerNo,int customer) {
+		
+		int result = qnaDao.updateReadCount(questionNo);
+		if(result>0) {
+			Seller s = qnaDao.selectOneQna(sellerNo);
+			List fileList = qnaDao.selectSellerFile(sellerNo);
+		}
+		List fileList = qnaDao.selectQnaFile(questionNo);
+		return null;
+	}
 }
+
+
+
+
+
+
+
+
+
+

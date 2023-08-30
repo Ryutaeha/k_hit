@@ -3,12 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<link rel="stylesheet" href="/css/productDetail.css">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
 	
-	<div class="productDetaiil-wrap">
-	내용내용
+	<div class="page-content">
+		<div class="product-detail-wrap">
+			<div class="content">
+				<div class="content-main">
+					<div class="product-left">
+						<div class="productDetail-img">
+							<img src="/img/earring/earring1.png">
+						</div>
+					<div class="product-content">간단설명간단설명간단설명간단설명간단설명간단설명간단설명</div>					
+					</div>
+					<div class="product-preview">
+						<div class="product-name">
+							<h2>판매자아이디</h2>
+							<h2>상품명</h2>
+							<h2>상품가격</h2>
+						</div>
+						<div class="product_info">
+							<table>
+								<tr>
+									<th>별점</th>
+									<td>실제 별점</td>
+								</tr>
+								<tr>
+									<th>배송비</th>
+									<td>무료배송 이벤트 중!</td>
+								</tr>						
+							</table>
+							<div class="option-dropdown">
+								옵션 드롭다운 파트입니다.
+							</div>
+							<div class="total-price">
+								<p>총 제품금액
+								<p>0원
+							</div>
+							<div class="buy-button">
+								<button class="cart">장바구니</button>
+								<!-- <button class="purchase">구매하기</button> -->
+								<!-- 구매하기를 누르면 장바구니 스킵하고 바로 구매페이지로 -->
+							</div>					
+						</div>
+					</div>
+				</div>
+			
+			<div class="content-detail">
+				<div class="tab">
+					<ul>
+						<li>구매정보</li>
+						<li>상품리뷰</li>
+						<li>상품댓글</li>
+						<!-- <li>관련상품</li> -->
+					</ul>
+				</div>
+				<div class="tab-content">
+					<div class="product-detail">
+						<p>구매정보</p>
+					</div>
+					<div>
+						<p>상품리뷰</p>
+					</div>
+					<div>
+						<p>상품댓글</p>
+					</div>
+					<!-- 
+					<div>
+						<p>관련상품</p>
+					</div>
+					 -->
+				</div>
+			</div>
+		</div>
+	</div>
 	</div>
 	
 	<th:block th:include="common/footer"></th:block>

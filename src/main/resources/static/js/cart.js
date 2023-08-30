@@ -3,6 +3,7 @@ const use = $(".check");
 //전체 선택
 allCheck.on("change", function () {
     const status = allCheck.is(":checked");
+    console.log("dddd");
     use.prop("checked", status);
 });
 
@@ -15,16 +16,16 @@ $(".check").on("click",function(){
     } else{
         allCheck.prop("checked",true);
     }
+    
 });
 
+
 //쇼핑계속하기
-$(".keepShopping).on("click",function(){
-	console.log("dddd");
-	history.go(-1);
+$(".keepShopping").on("click",function() {
+	history.back();
 });
 
 //계속구매하기
-$(.payment).on("click",function(){
-	console.log("ddd");
-	history.back();
+$(".payment").on("click",function() {
+
 });

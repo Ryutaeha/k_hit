@@ -102,5 +102,24 @@ public class CustomerService {
 		return wld;
 	}
 
+
+	public int reviewTotalCount(String reviewWriter) {
+		int totalCount = customerDao.reviewTotalCount(reviewWriter);
+		return totalCount;
 	}
+	public List customerReviewList(String reviewWriter, int start, int end) {
+		List reviewList = customerDao.customerReviewList(reviewWriter, start,end);
+		return reviewList;
+	}
+
+	public List selectCartList(int customerNo) {
+		List cartList = customerDao.selectCartList(customerNo);
+		return cartList;
+	}
+	public List selectOrderList(int customerNo) {
+		List old = customerDao.selectOrderList(customerNo);
+		return old;
+
+	}
+}
 

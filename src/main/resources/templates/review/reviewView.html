@@ -33,7 +33,7 @@
                         </div>
                     </div>
                    	<div id="starr">
-                   
+
                     <div class="star-wrap star-wrap2">
                         <span class="material-icons">star</span>
                         <span class="material-icons">star</span>
@@ -132,7 +132,7 @@
                                                 <span>|</span>
                                                 <span th:text="${rcc.reviewCommentDate}"></span>
                                             </p>
-                                        	<div class="review-comment-content" th:text="${rcc.reviewCommentContent}"></div>
+                                            <div class="review-comment-content" th:text="${rcc.reviewCommentContent}"></div>
                                             <textarea name="reviewCommentContent" class="review-recomment-input" style="min-height:60px; width:545px; display:none;" th:text="${rcc.reviewCommentContent}"></textarea>
                                             <p class="comment-link">
                                                 <th:block th:if="${session.c != null}">
@@ -163,7 +163,7 @@
                                 </form>
                             </div>
                         </th:block>
-                         
+
                     </div>
                     <div class="list-btn">
                         <button class="btn1" onclick="location.href='/review/reviewList'">목록으로</button>
@@ -191,7 +191,7 @@
 				icon : "info",
 				confirmButtonColor: '#61677A',
 				confirmButtonText: '확인',
-		    });
+            });
 		}
 		//좋아요
 		function addLike(obj,reviewNo,customerNo){
@@ -278,6 +278,23 @@
 			$(obj).attr("onclick","deleteComment(this,"+reviewCommentNo+","+reviewNo+")");
 			
 			$(obj).prev().prev().show();
+		}
+		
+		function modifyComplete(obj,reviewCommentNo,reviewNo){
+			const form = $("<form style='display:none' action='/review/updateComment' method='post'>");
+			
+			const commentNoInput = $("<input type='text' name='reviewCommentNo'>");
+			commentNoInput.val(reviewCommentNo);
+			const reviewNoInput = $("<input type='text' name='reviewRef'>");
+			reviewNoInput.val(reviewNo);
+			
+			const textArea = $(obj).parent().prev().clone();
+			
+			form.append(commentNoInput).append(reviewNoInput).append(textArea);
+			
+			$(".review-info").append(form);
+			
+			form.submit();
 		}
 	</script>
 </body>
