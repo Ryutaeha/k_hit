@@ -28,4 +28,49 @@ $(".keepShopping").on("click",function() {
 //계속구매하기
 $(".payment").on("click",function() {
 
+
 });
+
+
+
+function cartDelete(obj, cartNo){
+	const deleteBtn = $(obj);
+	$.ajax({
+		url : "/customer/cartDelete",
+		type : "post",
+		data : {cartNo : cartNo},
+		success : function(data){
+		 	deleteBtn.parent().parent().hide();		
+		}
+	});
+}
+
+function searchAddress(){
+	
+	new daum.Postcode({
+		oncomplete: function(data){
+			$("#postalCode").val(data.zonecode);
+			$("#address").val(data.roadAddress);
+			$("#detail").focus();
+		}
+	}).open();
+}
+
+
+function inputDeliver(obj, customerNo){
+	const addressName = $("#name").val();
+	const addressPhone = $("#phone").val();
+	const addressPostalCode = $("#postalCode").val();
+	const addressSimple = $("#address").val();
+	const addressDetail = $("#detail").val();
+	console.log(addressName);
+	$.ajax({
+		url : "/customer/inputDeliver",
+		type : "post",
+		data : {customerNo : customerNo, addressName : addressName, addressPhone : addressPhone, addressPostalCode : addressPostalCode, addressSimple : addressSimple, addressDetail : addressDetail},
+		success : function(data){
+			
+		}
+	});
+}
+

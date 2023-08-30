@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import kr.or.iei.customer.model.dao.CustomerDao;
+import kr.or.iei.customer.model.vo.Address;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.WishListData;
@@ -111,5 +112,37 @@ public class CustomerService {
 		List reviewList = customerDao.customerReviewList(reviewWriter, start,end);
 		return reviewList;
 	}
+
+
+	public List selectCartList(int customerNo) {
+		List cartList = customerDao.selectCartList(customerNo);
+		return cartList;
+	}
+	public List selectOrderList(int customerNo) {
+		List old = customerDao.selectOrderList(customerNo);
+		return old;
+
+	}
+	@Transactional
+	public int cartDelete(int cartNo) {
+		int result = customerDao.cartDelete(cartNo);
+		return result;
+	}
+
+	public List selectCancelRefundList(int customerNo) {
+		List crl = customerDao.selectcanCelList(customerNo);
+		return crl;
+
+	}
+	public Address selectAddressNo(int customerNo) {
+		Address address = customerDao.selectAddressNo(customerNo);
+		return address;
+	}
+	@Transactional
+	public int insertDeliver(Address a) {
+		int result = customerDao.insertDeliver(a);
+		return result;
+	}
+
 }
 

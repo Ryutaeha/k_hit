@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.iei.customer.model.service.CustomerService;
+import kr.or.iei.customer.model.vo.Address;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.WishListData;
@@ -43,9 +44,13 @@ public class CustomerController {
 	}
 	
 	//장바구니 페이지 이동
-	@GetMapping(value="/cart")
-	public String Cart() {
-		
+	public String Cart(@SessionAttribute(required = false)Customer c,Model model) {
+		int customerNo = c.getCustomerNo();
+		List cartList = customerService.selectCartList(customerNo);
+		Address address = customerService.selectAddressNo(customerNo);
+		model.addAttribute("cartList", cartList);
+		model.addAttribute("a", address);
+
 		return "customer/cart";
 	}
 	
@@ -237,6 +242,23 @@ public class CustomerController {
 		return "customer/searchIdPwFrm";
 	}
 	
+
+	//장바구니 상품 삭제
+	@ResponseBody
+	@PostMapping(value="/cartDelete")
+	public int cartDelete(int cartNo) {
+		int result = customerService.cartDelete(cartNo);
+		return result;
+	}
+	
+	//배송정보 입력
+	@ResponseBody
+	@PostMapping(value="/inputDeliver")
+	public int insertDeliver(Address a){
+		int result = customerService.insertDeliver(a);
+		return result;
+	}
+
 }
 
 
