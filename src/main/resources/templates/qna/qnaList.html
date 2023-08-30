@@ -14,8 +14,11 @@
 					<span class="move">Q & A</span>
 				</div>
 			<div class="qna-wrap">
-			<div id="write-btn">
-				<a th:if="${session.s != null || session.c != null}" href="/qna/qnaFrmEditor">글 작성하기</a>
+			<div id="write-btn" th:if="${session.s != null || session.c != null}">
+				<button type="button" class="btn-del">
+					<a  href="/qna/qnaFrmEditor">글 작성하기</a>
+				</button>
+				
 			</div>
 				<table class="qna">
 					<tr class="qna-tr">

@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class ReviewContentStar {
 	private String reviewContent;
-	private int star_count;
+	private int starCount;
 }

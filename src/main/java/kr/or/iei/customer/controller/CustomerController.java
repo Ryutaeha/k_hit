@@ -190,7 +190,7 @@ public class CustomerController {
 		if(result>0) {
 			model.addAttribute("title", "탈퇴완료");
 			model.addAttribute("msg", "그동안 이용해 주셔서 감사합니다.");
-			model.addAttribute("icon", "error");
+			model.addAttribute("icon", "success");
 			model.addAttribute("loc", "/customer/logout");
 			return "common/msg";
 		}else {

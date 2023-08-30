@@ -239,4 +239,9 @@ public class SellerService {
 		return s;
 	}
 
+	public int deleteSeller(Seller s) {
+		int result = sellerDao.deleteSeller(s);
+		return result;
+	}
+
 }

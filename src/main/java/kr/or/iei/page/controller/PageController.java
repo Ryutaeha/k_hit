@@ -27,6 +27,7 @@ public class PageController {
 		//하고자 하는 행위 : 검색창에 input 하면 productName에 1글자라도 겹치면 count세서 
 		//총 갯수,검색된 모든 product 목록화
 		PageSearchDate psd = pageService.searchProduct(searchWord);
+		model.addAttribute("psd", psd);
 		//리뷰카운트 조회
 		
 		
@@ -40,15 +41,15 @@ public class PageController {
 	}
 	//베스트 페이지
 	@GetMapping(value="/best")
-	public String bestPage() {
+	public String bestPage(Model model) {
 		List bestList = pageService.searchBest();
+		model.addAttribute("bestPrd", bestList);
 		return "/page/best";
 	}
 	//신상품 페이지
 	@GetMapping(value="/new")
 	public String newPage(Model model) {
 		List newPrd = pageService.searchNewList();
-		System.out.println("신상품 : "+newPrd);
 		model.addAttribute("newPrd", newPrd);
 		return "/page/new";
 	}

@@ -23,7 +23,8 @@
 					<table class="tbl">
 						<tr class="tbl-menu">
 							<th>주문번호</th>
-							<th>상품정보</th>
+							<th>상품이미지</th>
+							<th>상품이름</th>
 							<th>처리상태</th>
 							<th>처리버튼</th>
 						</tr>
@@ -37,22 +38,17 @@
 							<td>
 								<div class="table-prd">
 									<div class="img-prd">
-										<img src="/img/others/profile.png">
-									</div>
-									<div class="prd-info">
-										<ul>
-											<li>상품이름</li>
-											
-										</ul>
+										<img th:src="'/product/' + ${cl.productImg}">
 									</div>
 								</div>								
 							</td>
-							
+							<td  th:text="${cl.productName}">	
+							</td>
 							<td>
 								<span>취소요청</span>
 							</td>
 							<td>
-								<input type="submit" value="취소확인"></button>
+								<button type="button" class="btn-del" onclick="cancelPrd()">취소확인</button>
 								<!-- <a href="#">취소불가</a> -->
 							</td>
 						</tr>
@@ -72,7 +68,8 @@
 					<table class="tbl">
 						<tr class="tbl-menu">
 							<th>주문번호</th>
-							<th>상품정보</th>							
+							<th>상품이미지</th>
+							<th>상품이름</th>							
 							<th>처리상태</th>
 							<th>환불버튼</th>
 						</tr>
@@ -86,22 +83,16 @@
 							<td>
 								<div class="table-prd">
 									<div class="img-prd">
-										<img src="/img/others/profile.png">
-									</div>
-									<div class="prd-info">
-										<ul>
-											<li>상품이름</li>
-											
-										</ul>
-									</div>
+										<img th:src="'/product/' + ${rl.productImg}">
+									</div>									
 								</div>								
 							</td>
-							
+							<td  th:text="${rl.productName}"></td>
 							<td>
 								<span>환불요청</span>
 							</td>
 							<td>
-								<input type="submit" value="환불확인"></button>
+								<button type="button" class="btn-del">환불확인</button>
 								<!-- <a href="#">취소불가</a> -->
 							</td>
 						</tr>
@@ -113,5 +104,12 @@
 		</div>
 	</div>	
 	<th:block th:include="common/footer"></th:block>
+	<script>
+		function cancelPrd(orderNo){
+			if(confirm("취소요청을 확인하시겠습니까?")){
+				location.href = "/seller/cancelPrd?orderNo="+orderNo;
+			}
+		}
+	</script>
 </body>
 </html>
