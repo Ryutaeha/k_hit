@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+.content-main{
+    overflow: hidden;
+    /*아래애들이 float left 썼으니까 높이주려면 윗단계에 overflow hidden*/
+}
+.productDetail-img{
+    width: 500px;
+    float: left;
+    box-sizing: border-box;
+    padding: 30px 50px;
+    /*패딩을 위아래 양 옆 조금 떼어줌*/
+}

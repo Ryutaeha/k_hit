@@ -11,6 +11,7 @@ import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.CartListRowMapper;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
+import kr.or.iei.customer.model.vo.OrderDetailRowMapper;
 import kr.or.iei.customer.model.vo.WishListRowMapper;
 import kr.or.iei.review.model.vo.ReviewListRowMapper;
 
@@ -29,6 +30,9 @@ public class CustomerDao {
 	
 	@Autowired
 	private CartListRowMapper cartListRowMapper;
+	@Autowired
+	private OrderDetailRowMapper orderDetailRowMapper;
+
 
 	
 	public int insertCustomer(Customer customer, String customerEmail2) {
@@ -105,6 +109,12 @@ public class CustomerDao {
 		String query = "select cart_no,product_img,product_name,option_size,option_color,product_price,cart_count from cart_tbl join product_option_tbl using(product_option_no) join product_tbl using(product_no) where customer_no = ?";
 		List list = jdbc.query(query, cartListRowMapper, customerNo);
 		return list;
+	}
+
+	public List selectOrderList(int customerNo) {
+		String query ="select a.customer_no, ol.order_list_date, p.product_img, p.product_name, op.option_size, op.option_color, o.order_count,p.product_price,o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where customer_no=?";
+		List orderList = jdbc.query(query,orderDetailRowMapper,customerNo);
+		return orderList;
 	}
 
 

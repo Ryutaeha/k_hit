@@ -59,7 +59,9 @@ public class CustomerController {
 	
 	//마이페이지 주문 내역 목록 확인
 	@GetMapping(value="/orderList")
-	public String orderList() {
+	public String orderList(@SessionAttribute(required = false) Customer c, Model model) {
+		List ol = customerService.selectOrderList(c.getCustomerNo());
+		model.addAttribute("orderList", ol);
 		return "customer/orderList";
 	}
 	
