@@ -86,9 +86,10 @@
 }
 .info-main>.info2>.info-img{
     margin: 25px;
+    float: left;
 }
 .info-main>.info2 img{
-    width: 100px;
+     width: 100px;
     height: 100px;
     border: 1px solid #ccc;
     box-sizing: border-box;

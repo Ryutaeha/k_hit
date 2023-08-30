@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
+import kr.or.iei.customer.model.vo.OrderDetailRowMapper;
 import kr.or.iei.customer.model.vo.WishListRowMapper;
 import kr.or.iei.review.model.vo.ReviewListRowMapper;
 
@@ -25,6 +26,9 @@ public class CustomerDao {
 
 	@Autowired 
 	private WishListRowMapper wishListRowMapper;
+	
+	@Autowired
+	private OrderDetailRowMapper orderDetailRowMapper;
 
 	
 	public int insertCustomer(Customer customer, String customerEmail2) {
@@ -94,6 +98,12 @@ public class CustomerDao {
 		String query = "select count(*) as cnt from product_like where customer_no=?";
 		int totalCount = jdbc.queryForObject(query, Integer.class,customerNo);
 		return totalCount;
+	}
+
+	public List selectOrderList(Customer customerNo) {
+		String query = "SELECT a.CUSTOMER_NO, ol.ORDER_LIST_DATE, p.product_img, p.PRODUCT_NAME, op.OPTION_SIZE, op.OPTION_COLOR, o.ORDER_COUNT,p.product_price,o.ORDER_STATE FROM order_list_tbl ol JOIN order_tbl o ON ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.ADDRESS_NO = a.ADDRESS_NO where customer_no=?" ;
+		List orderList = jdbc.query(query,orderDetailRowMapper,customerNo);
+		return orderList;
 	}
 
 

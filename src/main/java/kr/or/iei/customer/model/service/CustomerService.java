@@ -111,5 +111,9 @@ public class CustomerService {
 		List reviewList = customerDao.customerReviewList(reviewWriter, start,end);
 		return reviewList;
 	}
+	public List selectOrderList(Customer customerNo) {
+		List old = customerDao.selectOrderList(customerNo);
+		return old;
+	}
 }
 
