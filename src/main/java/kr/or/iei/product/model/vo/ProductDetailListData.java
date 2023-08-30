@@ -12,4 +12,6 @@ import lombok.NoArgsConstructor;
 public class ProductDetailListData {
 	private Product productList;
 	private double avgStar;
+	private String sellerName;
+	private String sellerImg;
 }

@@ -9,8 +9,8 @@
     margin-top: 60px;
     /*min-width: 1600px;*/
 }
-.content-main{
-	width: 70%;
+.content-mains{
+	/*width: 70%;*/
     overflow: hidden;
     /*아래애들이 float left 썼으니까 높이주려면 윗단계에 overflow hidden*/
 }
@@ -34,6 +34,7 @@
 	height: 90%;
 	margin: 0 auto;
 	display: block;
+	box-shadow: 0 2px 5px rgba(0,0,0,.25);
 }
 .product-preview{
     width: 50%;
@@ -54,7 +55,7 @@
     box-shadow: 0 2px 5px rgba(0,0,0,.25);
 }
 .product-content{
-	padding : 10px;
+	padding : 30px;
 	height: 30%;
 	box-sizing: border-box;	
 	border: 1px solid #ededed;
@@ -106,7 +107,7 @@
     box-sizing: border-box;
     padding: 50px 30px;
     /*display: none;*/
-    border: 1px solid #888787;
+    border: 1px solid #ededed;
 }
 .tab-content>div.active-content{
     display: block;
@@ -148,20 +149,22 @@
 .beforeth{
     text-align: left;
     background-color: rgba(136, 135, 135, 0.3);
-    
+    width: 150px;
 }
 .product-detail>div>table td{
 	padding: 20px;
 }
-
-.product-detail>div>span{
-	font-size: 20px;
+/*
+.product-detail>div>div{
+	font-size: 24px;
 }
+*/
 .product-detail>div{
-	padding: 20px;
+	padding: 30px;
 }
-.product-review>div>span{
+.explanation{
 	font-size: 20px;
+	margin-bottom: 20px;
 }
 .product-review>div{
 	padding: 20px;
@@ -171,4 +174,44 @@
 }
 .product-comment>div{
 	padding: 20px;
+}
+.seller-line{
+	overflow: hidden;
+}
+.oneline>img{
+	width: 50px;
+	height: 50px;
+}
+.oneline{
+	float: left;
+}
+.oneline-name{
+	float: left;
+	font-size: 24px;
+	padding-left: 20px;
+	line-height: 50px;
+}
+.product-name>div{
+	font-size: 24px;
+	padding-bottom: 20px;
+}
+.price-part>div{
+	float: left;
+}
+.price-part{
+	overflow: hidden;
+}
+.won{
+	padding-left: 5px;
+	font-size: 22px;
+}
+.starline{
+	overflow: hidden;
+}
+.5points{
+	float: left;
+}
+.avgStar{
+	margin-right: 5px;
+	float: left;	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.iei.page.model.dao.PageDao;
+import kr.or.iei.page.model.vo.MainListData;
 import kr.or.iei.page.model.vo.PageSearch;
 import kr.or.iei.page.model.vo.PageSearchDate;
 import kr.or.iei.page.model.vo.ReviewContentStar;
@@ -82,13 +83,13 @@ public class PageService {
 		return list;
 	}
 
-	public List searchNewListFive() {
-		List list = pageDao.searchNewListFive();
-		return list;
+	public MainListData searchNewListFive() {
+		List newList = pageDao.searchNewListFive();
+		List bestList = pageDao.searchBestListFive();
+		MainListData mld = new MainListData(newList,bestList);
+		
+		return mld;
 	}
 
-	public List searchBestListFive() {
-		List list = pageDao.searchBestListFive();
-		return list;
-	}
+	
 }

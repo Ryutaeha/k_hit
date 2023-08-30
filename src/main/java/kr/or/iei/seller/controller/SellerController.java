@@ -40,10 +40,6 @@ public class SellerController {
 	@Value("${file.root}")
 	private String root;
 	
-//	@GetMapping(value="/selling")
-//	public String sellingPage() {
-//		return "seller/selling";
-//	}
 	
 	//판매상품관리
 	@GetMapping(value="/productManagement")
@@ -387,13 +383,21 @@ public class SellerController {
 			return "common/msg";
 		}
 	}
-	
+
+	//취소요청확인
+	@GetMapping(value = "/cancelPrd")
+	public String cancelPrd(int orderNo) {
+		int result = sellerService.cancelPrd(orderNo);
+		return "/";
+
+	}
 	@GetMapping(value="/selling")
 	public String selling(@SessionAttribute(required = false)Seller s,Model model) {
 		List selling = sellerService.selectSelling(s.getSellerNo());
 		model.addAttribute("sellingList", selling);
 		return "seller/selling";
 		
+
 	}
 }
 

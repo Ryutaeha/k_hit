@@ -14,7 +14,7 @@
 		<div class="content-wrap">
 			<div class="content-title">
 				<span>
-					CANCEL
+					CANCEL / REFUND
 				</span>
 			</div>
 			<div class="content-main">
@@ -30,7 +30,7 @@
 						</tr>
 						<tr th:if="${cancelList.isEmpty()}">
 							<td colspan="4">
-								취소요청이 없습니다.
+								취소/환불요청이 없습니다.
 							</td>
 						</tr>
 						<tr:block th:each="cl : ${cancelList}">
@@ -45,10 +45,10 @@
 							<td  th:text="${cl.productName}">	
 							</td>
 							<td>
-								<span>취소요청</span>
+								<span>취소/환불요청</span>
 							</td>
 							<td>
-								<button type="button" class="btn-del" onclick="cancelPrd()">취소확인</button>
+								<button type="button" class="btn-del" onclick="cancelPrd()">취소/환불확인</button>
 								<!-- <a href="#">취소불가</a> -->
 							</td>
 						</tr>
@@ -57,50 +57,9 @@
 				</form>
 				
 			</div>
-			<div class="content-title">
-				<span>
-					REFUND
-				</span>
-			</div>
+			
 
-			<form action="/seller/refund">
-				<div class="content-main">
-					<table class="tbl">
-						<tr class="tbl-menu">
-							<th>주문번호</th>
-							<th>상품이미지</th>
-							<th>상품이름</th>							
-							<th>처리상태</th>
-							<th>환불버튼</th>
-						</tr>
-						<tr th:if="${refundList.isEmpty()}">
-							<td colspan="4">
-								환불요청이 없습니다.
-							</td>
-						</tr>
-						<tr:block th:each="rl : ${refundList}">
-							<td th:text="${rl.orderNo}"></td>
-							<td>
-								<div class="table-prd">
-									<div class="img-prd">
-										<img th:src="'/product/' + ${rl.productImg}">
-									</div>									
-								</div>								
-							</td>
-							<td  th:text="${rl.productName}"></td>
-							<td>
-								<span>환불요청</span>
-							</td>
-							<td>
-								<button type="button" class="btn-del">환불확인</button>
-								<!-- <a href="#">취소불가</a> -->
-							</td>
-						</tr>
-						
-					</table>
-					</table>	
-				</div>			
-			</form>
+			
 		</div>
 	</div>	
 	<th:block th:include="common/footer"></th:block>

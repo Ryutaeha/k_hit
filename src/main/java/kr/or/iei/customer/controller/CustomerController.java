@@ -47,7 +47,9 @@ public class CustomerController {
 	public String Cart(@SessionAttribute(required = false)Customer c,Model model) {
 		int customerNo = c.getCustomerNo();
 		List cartList = customerService.selectCartList(customerNo);
+		int addressNo = customerService.selectAddressNo(customerNo);
 		model.addAttribute("cartList", cartList);
+		model.addAttribute("addressNo", addressNo);
 		return "customer/cart";
 	}
 	

@@ -172,4 +172,10 @@ public class SellerDao {
 		
 		return null;
 	}
+	public int cancelPrd(int orderNo) {
+		String query = "update into order_tbl set order_state=6 where order_no =?";
+		Object[] params = {orderNo};
+		int result = jdbc.update(query,params);
+		return result;
+	}
 }
