@@ -250,4 +250,13 @@ public class SellerService {
 		return result;
 	}
 
+	public List selectSelling(int sellerNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	
+
 }

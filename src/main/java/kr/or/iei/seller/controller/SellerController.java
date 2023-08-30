@@ -390,7 +390,7 @@ public class SellerController {
 		int result = sellerService.cancelPrd(orderNo);
 		return "/";
 
-	
+	}
 	@GetMapping(value="/selling")
 	public String selling(@SessionAttribute(required = false)Seller s,Model model) {
 		List selling = sellerService.selectSelling(s.getSellerNo());
