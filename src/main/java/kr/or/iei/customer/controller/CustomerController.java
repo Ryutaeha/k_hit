@@ -240,6 +240,13 @@ public class CustomerController {
 		return "customer/searchIdPwFrm";
 	}
 	
+	//장바구니 상품 삭제
+	@ResponseBody
+	@PostMapping(value="/cartDelete")
+	public int cartDelete(int cartNo) {
+		int result = customerService.cartDelete(cartNo);
+		return result;
+	}
 }
 
 

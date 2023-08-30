@@ -121,5 +121,9 @@ public class CustomerService {
 		return old;
 
 	}
+	public int cartDelete(int cartNo) {
+		int result = customerDao.cartDelete(cartNo);
+		return result;
+	}
 }
 

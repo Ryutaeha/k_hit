@@ -117,5 +117,11 @@ public class CustomerDao {
 		return orderList;
 	}
 
+	public int cartDelete(int cartNo) {
+		String query = "delete from cart_tbl where cart_no=?";
+		int result = jdbc.update(query,cartNo);
+		return result;
+	}
+
 
 }

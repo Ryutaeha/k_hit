@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class CartList {
 	private int cartNo;
 	private String productImg;
-	private String product_name;
+	private String productName;
 	private String optionSize;
 	private String optionColor;
 	private int productPrice;
