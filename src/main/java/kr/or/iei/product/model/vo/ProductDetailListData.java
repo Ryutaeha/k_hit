@@ -1,4 +1,4 @@
-package kr.or.iei.page.model.vo;
+package kr.or.iei.product.model.vo;
 
 import java.util.List;
 
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class PageSearchDate {
-	private List searchList;
-	private int searchCount;
-	private List reviewContent;
-	
+public class ProductDetailListData {
+	private Product productList;
+	private double avgStar;
 }

@@ -18,6 +18,8 @@ public class PageDao {
 	@Autowired
 	private ReviewContentStarRowMapper reviewContentStarRowMapper;
 	
+	
+	
 	public List searchProduct(String searchWord) {
 		//가져와야되는 정보: productNo,sellerNo,productName,productImg,productPrice,categoryNo
 		//검색했을 시 %검색단어% 쿼리
@@ -43,6 +45,11 @@ public class PageDao {
 		String query = "select * from product_tbl where PRODUCT_CHECK=2 order by product_reg_date DESC";
 		List newPrd = jdbc.query(query, productRowMapper);
 		return newPrd;
+	}
+	public List searchBest() {
+		String query = "SELECT p.PRODUCT_NO, p.PRODUCT_NAME,p.PRODUCT_CONTENT,p.PRODUCT_CONTENT_DETAILS,p.PRODUCT_IMG,p.PRODUCT_PRICE, sum(opo.ORDER_COUNT) FROM PRODUCT_TBL p,(SELECT po.PRODUCT_NO, o.ORDER_COUNT FROM ORDER_TBL o,(SELECT product_option_no,PRODUCT_NO FROM PRODUCT_OPTION_TBL) po WHERE po.product_option_no =o.PRODUCT_OPTION_NO) opo where opo.PRODUCT_NO = p.PRODUCT_NO GROUP BY p.PRODUCT_NO, p.PRODUCT_NAME,p.PRODUCT_CONTENT,p.PRODUCT_CONTENT_DETAILS,p.PRODUCT_IMG,p.PRODUCT_PRICE";
+		List bestPrd = jdbc.query(query,productRowMapper);
+		return bestPrd;
 	}
 	public List searchAll() {
 		String query = "select * from product_tbl where PRODUCT_CHECK=2";
@@ -84,8 +91,15 @@ public class PageDao {
 		List list = jdbc.query(query, productRowMapper);
 		return list;
 	}
-	public List searchBest() {
-		String query = "select * from";
+	
+	public List searchNewListFive() {
+		String query = "select * from (select rownum as rnum ,p.* from (select * from product_tbl where PRODUCT_CHECK=2  order by  product_reg_date DESC)p) where rnum<6";
+		List newPrd = jdbc.query(query, productRowMapper);
+		return newPrd;
+		
+	}
+	public List searchBestListFive() {
+		String query = "select * from (select rownum as rnum ,best.* from (SELECT p.PRODUCT_NO, p.PRODUCT_NAME,p.PRODUCT_CONTENT,p.PRODUCT_CONTENT_DETAILS,p.PRODUCT_IMG,p.PRODUCT_PRICE, sum(opo.ORDER_COUNT) FROM PRODUCT_TBL p,(SELECT po.PRODUCT_NO, o.ORDER_COUNT FROM ORDER_TBL o,(SELECT product_option_no,PRODUCT_NO FROM PRODUCT_OPTION_TBL) po WHERE po.product_option_no =o.PRODUCT_OPTION_NO) opo where opo.PRODUCT_NO = p.PRODUCT_NO GROUP BY p.PRODUCT_NO, p.PRODUCT_NAME,p.PRODUCT_CONTENT,p.PRODUCT_CONTENT_DETAILS,p.PRODUCT_IMG,p.PRODUCT_PRICE)best) where rnum<6";
 		return null;
 	}
 }
