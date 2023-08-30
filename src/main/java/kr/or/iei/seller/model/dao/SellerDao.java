@@ -136,7 +136,7 @@ public class SellerDao {
 		String query="select * from order_tbl where product_option_no in(select product_option_no from product_option_tbl where product_no in (select product_no from product_tbl where seller_no=?))and order_state = 5";
 		List list = jdbc.query(query,cancelListRowMapper,s.getSellerNo());
 		return list;
-
+	}
 	//판매자리뷰 전체 수
 	public int reviewTotalCount(int sellerNo) {
 		String query = "select count(*) from review_tbl join order_tbl using(order_no) join product_option_tbl using(product_option_no) join product_tbl using(product_no) where seller_no=? order by 1 desc";
