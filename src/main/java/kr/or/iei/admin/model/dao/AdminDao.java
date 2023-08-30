@@ -148,4 +148,9 @@ public class AdminDao {
 		String query = "SELECT * FROM QUESTION_TBL";
 		return jdbc.query(query, qnaRowMapper);
 	}
+
+	public List selectQna(String qNo) {
+		String query ="SELECT * FROM question_tbl WHERE question_no=?";
+		return jdbc.query(query, qnaRowMapper,qNo);
+	}
 }

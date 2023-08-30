@@ -191,4 +191,9 @@ public class AdminController {
 	public List test() {
 		return adminService.salesListTest();
 	}
+	@ResponseBody
+	@PostMapping(value="/qContent")
+	public List qContent(String qNo){
+		return adminService.selectQna(qNo);
+	}
 }

@@ -208,3 +208,39 @@ $(".modifyNoticeFrm>button:first-child").on('click',function(){
 	
 })
 
+$(".qMenuSel").on('click',function(){
+	qModal($(this).children().eq(0).text());
+})
+
+function qModal(qNo){
+	$(".qModal>table").children().children().children().empty();
+	$(".qnaAnswer").empty()
+	console.log(qNo)
+	$.ajax({
+		url : "/admin/qContent",
+		type : "post",
+		data : {qNo : qNo},
+		dataType : "json",
+		success: function(data){
+			console.log(data)
+			/*
+			*/
+			$(".mTitleQ").append($("<h2>").append(data[0].questionContent));
+			$(".mDateQ").append($("<h3>").append(data[0].questionDate));
+			if(data.questionSellWriter==null){
+			$(".mWriterQ").append($("<h3>").append(data[0].questionCusWriter));
+			}
+			if(data.questionCusWriter==null){
+			$(".mWriterQ").append($("<h3>").append(data[0].questionSellWriter));
+			}
+			$(".mContentQ").append($("<h3>").append(data[0].questionContent));
+			$(".qnaAnswer").append($("<input type = text name = qnaAnswerComment>"));
+			$(".qnaAnswer").append($("<input type = hidden name = qnaNo value= "+data[0].questionNo+">"));
+			$(".qnaAnswer").append($("<input type = submit value= 작성>"));
+			}
+		})
+	$(".modal-inpo").css("display","none");
+    $(".qModal").css("display","block");
+	$(".modal-wrap").css("display","flex");
+}
+	

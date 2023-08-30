@@ -103,5 +103,9 @@ public class AdminService {
 		return adminDao.question();
 	}
 
+	public List selectQna(String qNo) {
+		return adminDao.selectQna(qNo);
+	}
+
 	
 }

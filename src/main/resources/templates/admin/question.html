@@ -28,7 +28,7 @@
                     	</tr>
                     </table>
                     <table style="width: 90%" class="tbl product-tbl">
-                    	<tr th:each="qna : ${qna}" class="product-select">
+                    	<tr th:each="qna : ${qna}" class="product-select qMenuSel">
                     		<td th:text="${qna.questionNo}" style="width: 10%"></td>
                     		<td th:text="${qna.questionTitle}" style="width: 40%"></td>
                     		<td th:if="${qna.questionCusWriter}!=null"  style="width: 20%"><a th:text="${qna.questionCusWriter}" href="javascript:void(0);" class="seller-menu cMenu"></a></td>
