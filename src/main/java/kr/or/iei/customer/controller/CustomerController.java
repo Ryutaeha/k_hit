@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.iei.customer.model.service.CustomerService;
+import kr.or.iei.customer.model.vo.Address;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.WishListData;
@@ -47,10 +48,11 @@ public class CustomerController {
 	public String Cart(@SessionAttribute(required = false)Customer c,Model model) {
 		int customerNo = c.getCustomerNo();
 		List cartList = customerService.selectCartList(customerNo);
+		Address address = customerService.selectAddressNo(customerNo);
 		model.addAttribute("cartList", cartList);
-		return "customer/cart";
+		model.addAttribute("a", address);
+		return "/customer/cart";
 	}
-	
 	//결제하기
 	@GetMapping(value="/payment")
 	public String customerPayment() {
@@ -67,7 +69,9 @@ public class CustomerController {
 	
 	//고객 취소/환불 목록 페이지
 	@GetMapping(value="/cancelRefundList")
-	public String refundList() {
+	public String refundList(@SessionAttribute(required = false) Customer c, Model model) {
+		List crl = customerService.selectCancelRefundList(c.getCustomerNo());
+		model.addAttribute("cancelRefundList",crl);
 		return "customer/cancelRefundList";
 	}
 	
@@ -194,7 +198,7 @@ public class CustomerController {
 		if(result>0) {
 			model.addAttribute("title", "탈퇴완료");
 			model.addAttribute("msg", "그동안 이용해 주셔서 감사합니다.");
-			model.addAttribute("icon", "error");
+			model.addAttribute("icon", "success");
 			model.addAttribute("loc", "/customer/logout");
 			return "common/msg";
 		}else {
@@ -240,6 +244,22 @@ public class CustomerController {
 		return "customer/searchIdPwFrm";
 	}
 	
+	//장바구니 상품 삭제
+	@ResponseBody
+	@PostMapping(value="/cartDelete")
+	public int cartDelete(int cartNo) {
+		int result = customerService.cartDelete(cartNo);
+		return result;
+	}
+
+	
+	//배송정보 입력
+	@ResponseBody
+	@PostMapping(value="/inputDeliver")
+	public int insertDeliver(Address a){
+		int result = customerService.insertDeliver(a);
+		return result;
+	}
 }
 
 

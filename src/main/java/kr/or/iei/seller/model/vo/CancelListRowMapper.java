@@ -19,6 +19,8 @@ public class CancelListRowMapper implements RowMapper<CancelList>{
 		cl.setOrderCount(rs.getInt("order_count"));
 		cl.setOrderState(rs.getInt("order_state"));
 		cl.setOrderRequest(rs.getString("order_request"));
+		cl.setProductName(rs.getString("product_name"));
+		cl.setProductImg(rs.getString("product_img"));
 		return cl;
 	}
 	

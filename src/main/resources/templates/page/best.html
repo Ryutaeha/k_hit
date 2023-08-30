@@ -15,30 +15,27 @@
 			<div class="prdList-wrap">
 				<div class="search-list-wrap">	
 				<ul class="prdList">	
-					<li class="prdbox" th:each="newPrd : ${newPrd}">
+					<li class="prdbox" th:each="bestPrd : ${bestPrd}">
 						<div class="item_list_box">
 							<div class="tumbnail">								
 								<a href="#">
 									<img src="/img/others/profile.png">
 								</a>
-								
-									<span class="material-icons favorite_border">
-										favorite_border
-									</span>								
+														
 							</div>
 						</div>
 						<div class="prd_info">
 							<div class="inner">
 								<strong>
-									<a href="#" th:text="${newPrd.productName}"></a>
+									<a href="#" th:text="${bestPrd.productName}"></a>
 								</strong>
 								
 								<ul class="spec">
-									<li class="summary" th:text="${newPrd.productContent}">
+									<li class="summary" th:text="${bestPrd.productContent}">
 										
 									</li>
 									<li class="price_all">
-										<span id="price_span"th:text="${newPrd.productPrice}+원"> </span>
+										<span th:text="${#numbers.formatInteger(bestPrd.productPrice,3,'COMMA')+'원'}"></span>
 									</li>
 									<li class="review">
 										<a href="#" th:if="${reviewContent} == null">

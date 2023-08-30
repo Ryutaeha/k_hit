@@ -16,7 +16,7 @@ public class CartListRowMapper implements RowMapper<CartList> {
 		cl.setCartNo(rs.getInt("cart_no"));
 		cl.setOptionColor(rs.getString("option_color"));
 		cl.setOptionSize(rs.getString("option_size"));
-		cl.setProduct_name(rs.getString("product_name"));
+		cl.setProductName(rs.getString("product_name"));
 		cl.setProductImg(rs.getNString("product_img"));
 		cl.setProductPrice(rs.getInt("product_price"));
 		return cl;

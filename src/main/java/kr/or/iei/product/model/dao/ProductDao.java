@@ -60,5 +60,35 @@ public class ProductDao {
 		return result;
 	}
 
+	public Product ProductDetailListData(int productNo) {
+		String query = "select * from product_tbl where product_no=?";
+		List list = jdbc.query(query, productRowMapper,productNo);
+		return (Product)list.get(0);
+	}
+
+	public double averageStar(int productNo) {
+		//System.out.println("avg : "+productNo);
+		String query = "select nvl(avg(r.star_count),0) from (select star_count,product_no from product_option_tbl join order_tbl using(product_option_no) join review_tbl using(order_no) where product_no=?)r";
+		double avgStar = jdbc.queryForObject(query, Double.class,productNo);
+		return avgStar;
+	}
+
+	public List ProductOptionDetailListData(int productNo) {
+		String query = "select * from product_option_tbl where product_no=?";
+		List list = jdbc.query(query, productOptionRowMapper,productNo);
+		return list;
+	}
+
+	public String getSellerName(int productNo) {
+		String query = "select seller_name from seller_tbl join product_tbl using(seller_no) where product_no=?";
+		String sellerName = jdbc.queryForObject(query, String.class,productNo);
+		return sellerName;
+	}
+	
+	public String getSellerImg(int productNo) {
+		String query = "select seller_img from seller_tbl join product_tbl using(seller_no) where product_no=?";
+		String sellerImg = jdbc.queryForObject(query, String.class,productNo);
+		return sellerImg;
+	}
 
 }

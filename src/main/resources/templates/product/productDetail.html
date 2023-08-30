@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<link rel="stylesheet" href="/css/productDetail.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -11,36 +12,52 @@
 	<div class="page-content">
 		<div class="product-detail-wrap">
 			<div class="content">
-				<div class="content-main">
+				<div class="content-mains">
 					<div class="product-left">
 						<div class="productDetail-img">
-							<img src="/img/earring/earring1.png">
+							<img th:src="'/product/'+${productDetailList.productImg}">
 						</div>
-					<div class="product-content">간단설명간단설명간단설명간단설명간단설명간단설명간단설명</div>					
+					<div class="product-content" th:text="${productDetailList.productContent}"></div>					
 					</div>
 					<div class="product-preview">
 						<div class="product-name">
-							<h2>판매자아이디</h2>
-							<h2>상품명</h2>
-							<h2>상품가격</h2>
+							<div class="seller-line">
+								<div class="oneline"><img th:src="'/seller/' + ${sellerImg}"></div>
+								<div class="oneline-name" th:text="${sellerName}"></div>
+							</div>
+							<div th:text="${productDetailList.productName}"></div>
+							<div class="price-part">
+								<div th:text="${productDetailList.productPrice}"></div>
+								<div class="won">원</div>
+							</div>
 						</div>
-						<div class="product_info">
+						<div class="product-info">
 							<table>
 								<tr>
 									<th>별점</th>
-									<td>실제 별점</td>
+									<td class="starline">
+										<div class="avgStar" th:text="${avgStar}"></div>
+										<div class="5points"> / 5.0</div>
+									<td>
 								</tr>
 								<tr>
 									<th>배송비</th>
 									<td>무료배송 이벤트 중!</td>
-								</tr>						
+								</tr>
+								<tr>
+									<th>배송 시작</th>
+									<td>평균 4일, 최대 10일 이내</td>
+								</tr>															
 							</table>
 							<div class="option-dropdown">
 								옵션 드롭다운 파트입니다.
 							</div>
 							<div class="total-price">
-								<p>총 제품금액
-								<p>0원
+								<span>총 상품금액 : </span>
+								<span>
+									<span>10000</span>
+									<span>원</span>
+								</span>
 							</div>
 							<div class="buy-button">
 								<button class="cart">장바구니</button>
@@ -52,23 +69,55 @@
 				</div>
 			
 			<div class="content-detail">
-				<div class="tab">
+				<div class="tab-wrap">
+					<div class="tab">
 					<ul>
 						<li>구매정보</li>
 						<li>상품리뷰</li>
 						<li>상품댓글</li>
 						<!-- <li>관련상품</li> -->
 					</ul>
+					</div>
 				</div>
 				<div class="tab-content">
 					<div class="product-detail">
-						<p>구매정보</p>
+						<div>
+							<div class="explanation">상품 소개</div>
+							<div class="product-content" th:utext="${productDetailList.productContentDetails}"></div>
+						</div>
+						<div>
+							<div class="explanation">배송 안내</div>
+							<table>
+								<tr>
+									<td class="beforeth">배송비</td>
+									<td span class="txt-preline">현재 배송비 무료 이벤트 기간입니다.
+									(2023.09.30 구매분까지 해당)<td>
+								</tr>
+								<tr>
+									<td class="beforeth">제작 / 배송</td>
+									<td><span class="txt-preline">제작 : 이미 제작된 제품이므로 주문 접수 후 바로 배송이 시작됩니다.
+									배송 : 평균 4일, 최대 10일 내로 도착합니다.</span></td>
+									
+								</tr>
+								<tr>
+									<td class="beforeth">교환/환불</td>
+									<td><span class="txt-preline">배송 실수로 인한 파손, 분실 시 문의게시판에 주문정보를 남겨주세요.
+									택배사와 확인 후 재발송, 환불을 도와드리고 있습니다.
+									그 외에 단순 변심으로 인한 교환 및 활불은 불가능합니다.</span></td>
+								</tr>															
+							</table>							
+						</div>
 					</div>
-					<div>
-						<p>상품리뷰</p>
+					<div class="product-review">
+						<div>
+							<div class="explanation">상품리뷰</div>
+						</div>
 					</div>
-					<div>
-						<p>상품댓글</p>
+					<div class="product-comment">
+						<div>
+							<div class="explanation">상품댓글</div>
+							
+						</div>
 					</div>
 					<!-- 
 					<div>
@@ -82,5 +131,9 @@
 	</div>
 	
 	<th:block th:include="common/footer"></th:block>
+	
+	
+
+	
 </body>
 </html>

@@ -40,10 +40,7 @@ public class SellerController {
 	@Value("${file.root}")
 	private String root;
 	
-	@GetMapping(value="/selling")
-	public String sellingPage() {
-		return "seller/selling";
-	}
+	
 	//판매상품관리
 	@GetMapping(value="/productManagement")
 	public String productManagement(@SessionAttribute(required = false) Seller s, Model model, int reqPage) {
@@ -365,11 +362,43 @@ public class SellerController {
 		return "common/confirmMsg";
 	}
 		
-	@GetMapping(value = "/searchIdPwFrm")
-	public String searchIdPwFrm(){
-		return "seller/searchIdPwFrm";
+		@GetMapping(value = "/searchIdPwFrm")
+		public String searchIdPwFrm(){
+			return "seller/searchIdPwFrm";
+		}
+	@GetMapping(value = "/deleteSeller")
+	public String deleteSeller(@SessionAttribute(required = false)Seller s,Model model ) {
+		int result = sellerService.deleteSeller(s);
+		if(result>0) {
+			model.addAttribute("title", "탈퇴완료");
+			model.addAttribute("msg", "그동안 이용해 주셔서 감사합니다.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/seller/logout");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "회원탈퇴");
+			model.addAttribute("msg", "회원탈퇴를 실패했습니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/seller/myinfo");
+			return "common/msg";
+		}
 	}
-	
 
+	//취소요청확인
+	@GetMapping(value = "/cancelPrd")
+	public String cancelPrd(int orderNo) {
+		int result = sellerService.cancelPrd(orderNo);
+		return "/";
+
+	}
+	@GetMapping(value="/selling")
+	public String selling(@SessionAttribute(required = false)Seller s,Model model) {
+		List selling = sellerService.selectSelling(s.getSellerNo());
+		model.addAttribute("sellingList", selling);
+		return "seller/selling";
+		
+
+	}
 }
+
 

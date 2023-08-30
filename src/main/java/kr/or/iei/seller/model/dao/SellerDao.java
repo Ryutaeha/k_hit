@@ -127,13 +127,13 @@ public class SellerDao {
 
 	//판매자 번호?의 취소요청를 한 리스트
 	public List cancelList(Seller s) {
-		String query="select * from order_tbl where product_option_no in(select product_option_no from product_option_tbl where product_no in (select product_no from product_tbl where seller_no=?))and order_state = 4";
+		String query="select order_no,order_list_no,address_no,product_option_no,order_count,order_state,order_request,product_name,product_img from order_tbl join product_option_tbl using(product_option_no) join product_tbl using(product_no) where product_option_no in (select product_option_no from product_option_tbl join product_tbl using(product_no) where product_no in (select product_no from product_tbl where seller_no=?))and order_state = 4";
 		List list = jdbc.query(query,cancelListRowMapper,s.getSellerNo());
 		return list;
 	}
 
 	public List refundList(Seller s) {
-		String query="select * from order_tbl where product_option_no in(select product_option_no from product_option_tbl where product_no in (select product_no from product_tbl where seller_no=?))and order_state = 5";
+		String query="select order_no,order_list_no,address_no,product_option_no,order_count,order_state,order_request,product_name,product_img from order_tbl join product_option_tbl using(product_option_no) join product_tbl using(product_no) where product_option_no in (select product_option_no from product_option_tbl join product_tbl using(product_no) where product_no in (select product_no from product_tbl where seller_no=?))and order_state = 5";
 		List list = jdbc.query(query,cancelListRowMapper,s.getSellerNo());
 		return list;
 	}
@@ -158,5 +158,24 @@ public class SellerDao {
 		}
 		return (Seller)list.get(0);
 
+	}
+
+	public int deleteSeller(Seller s) {
+		String query = "delete from seller_tbl where seller_no=?";
+		Object[] params = {s.getSellerNo()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+	public List selectSelling(int sellerNo) {
+		String query ="";
+		
+		return null;
+	}
+	public int cancelPrd(int orderNo) {
+		String query = "update into order_tbl set order_state=6 where order_no =?";
+		Object[] params = {orderNo};
+		int result = jdbc.update(query,params);
+		return result;
 	}
 }
