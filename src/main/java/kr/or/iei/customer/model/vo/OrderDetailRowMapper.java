@@ -14,7 +14,7 @@ public class OrderDetailRowMapper  implements RowMapper<OrderDetail>{
 		OrderDetail od = new OrderDetail();
 		od.setCustomerNo(rs.getInt("customer_no"));
 		od.setOptionColor(rs.getString("option_color"));
-		od.setOptionSize(rs.getInt("option_size"));
+		od.setOptionSize(rs.getString("option_size"));
 		od.setOrderCount(rs.getInt("order_count"));
 		od.setOrderListDate(rs.getString("order_list_date"));
 		od.setOrderState(rs.getInt("order_state"));

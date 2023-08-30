@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>REFUND LIST</title>
+<title>ORDER LIST</title>
 <link rel="stylesheet" href="/css/orderList.css">
 </head>
 <body>
@@ -27,15 +27,15 @@
                     </tr>
                     <tr class="tbl info-main" th:each="orderList : ${orderList}">
                             <td class="info1">
-                                <span th:text="orderList">20230825</span>
+                                <span th:text="${orderList.orderListDate}"></span>
                             </td>
                             <td class="info2">
                                  <div class="info-img">
-                                    <img th:src="img/icemallimage/ice1.png">
+                                    <img th:src="'/orderList/'+${orderList.productImg}">
                                 </div> 
                                 <div class="info-name">
                                     <span th:text="${orderList.productName}">상품이름</span>
-                                    <div><span th:text="${orderList.productColor}"></span> <span th:text="${orderList.productSize}"></span></div>
+                                    <div><span>1. </span><span th:text="${orderList.optionColor}"></span><span> 2. </span> <span th:text="${orderList.optionSize}"></span></div>
                                 </div>
                             </td>
                             <td class="info3">

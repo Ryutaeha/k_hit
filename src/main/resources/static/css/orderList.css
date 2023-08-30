@@ -60,6 +60,7 @@
 }
 .info-top>.info1{
     text-align: center;
+   
 } 
 
 .info-top>div{
@@ -78,6 +79,7 @@
 
 .info-main{
     border-bottom: 3px solid #ccc;
+   
 }
 .info-main>.info1{
     text-align: center;
@@ -102,6 +104,7 @@
 
 .info-name{
     padding: 50px 0px 50px 0px;
+     text-align : left;
 }
 .info-name>span{
     font-family: ns_b;

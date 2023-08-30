@@ -12,7 +12,7 @@ public class OrderDetail {
 	private String orderListDate;
 	private String productImg;
 	private String productName;
-	private int optionSize;
+	private String optionSize;
 	private String optionColor;
 	private int orderCount;
 	private int orderState;
