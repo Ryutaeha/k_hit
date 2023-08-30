@@ -259,9 +259,5 @@ public class SellerService {
 
 	
 
-	public List selectSelling(int sellerNo) {
-		List selling = sellerDao.selectSelling(sellerNo);
-		return null;
-	}
 
 }
