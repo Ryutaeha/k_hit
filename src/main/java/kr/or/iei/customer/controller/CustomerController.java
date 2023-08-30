@@ -44,8 +44,10 @@ public class CustomerController {
 	
 	//장바구니 페이지 이동
 	@GetMapping(value="/cart")
-	public String Cart() {
-		
+	public String Cart(@SessionAttribute(required = false)Customer c,Model model) {
+		int customerNo = c.getCustomerNo();
+		List cartList = customerService.selectCartList(customerNo);
+		model.addAttribute("cartList", cartList);
 		return "customer/cart";
 	}
 	

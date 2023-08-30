@@ -5,9 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+/*
+import kr.or.iei.product.controller.ProductDetail;
+import kr.or.iei.product.controller.ProductDetailList;
+import kr.or.iei.product.controller.ProductDetailListData;
+*/
 import kr.or.iei.product.model.dao.ProductDao;
 import kr.or.iei.product.model.vo.Product;
+import kr.or.iei.product.model.vo.ProductDetailListData;
 import kr.or.iei.product.model.vo.ProductOption;
 
 @Service
@@ -62,4 +67,17 @@ public class ProductService {
 		int result = productDao.changeStockStatus(StockStatus, productOptionNo);
 		return result;
 	}
+
+	public ProductDetailListData productDetail(int productNo) {
+		Product productList = productDao.ProductDetailListData(productNo);
+		double avgStar = productDao.averageStar(productNo);
+		List productOptionList = productDao.ProductOptionDetailListData(productNo);
+		productList.setProductOptionList(productOptionList);
+		System.out.println(productOptionList);
+		ProductDetailListData pdld = new ProductDetailListData(productList,avgStar);
+		return pdld;
+	}
+
+	
+
 }

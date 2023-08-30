@@ -111,9 +111,15 @@ public class CustomerService {
 		List reviewList = customerDao.customerReviewList(reviewWriter, start,end);
 		return reviewList;
 	}
+
+	public List selectCartList(int customerNo) {
+		List cartList = customerDao.selectCartList(customerNo);
+		return cartList;
+	}
 	public List selectOrderList(int customerNo) {
 		List old = customerDao.selectOrderList(customerNo);
 		return old;
+
 	}
 	public List selectCancelRefundList(int customerNo) {
 		List crl = customerDao.selectcanCelList(customerNo);
