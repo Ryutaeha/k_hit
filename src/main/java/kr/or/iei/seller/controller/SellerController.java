@@ -328,7 +328,11 @@ public class SellerController {
 		
 		return "/seller/review";
 	}
+<<<<<<< HEAD
+*/
+=======
 	*/
+>>>>>>> main
 	
 	//판매자 리뷰 확인 
 	@GetMapping(value="/review")
