@@ -121,9 +121,16 @@ public class CustomerService {
 		return old;
 
 	}
+
+	public int cartDelete(int cartNo) {
+		int result = customerDao.cartDelete(cartNo);
+		return result;
+	}
+
 	public List selectCancelRefundList(int customerNo) {
 		List crl = customerDao.selectcanCelList(customerNo);
 		return crl;
+
 	}
 }
 
