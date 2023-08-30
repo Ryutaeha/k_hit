@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.iei.customer.model.vo.Cart;
+import kr.or.iei.customer.model.vo.CartListRowMapper;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
 import kr.or.iei.customer.model.vo.WishListRowMapper;
@@ -25,6 +26,9 @@ public class CustomerDao {
 
 	@Autowired 
 	private WishListRowMapper wishListRowMapper;
+	
+	@Autowired
+	private CartListRowMapper cartListRowMapper;
 
 	
 	public int insertCustomer(Customer customer, String customerEmail2) {
@@ -94,6 +98,13 @@ public class CustomerDao {
 		String query = "select count(*) as cnt from product_like where customer_no=?";
 		int totalCount = jdbc.queryForObject(query, Integer.class,customerNo);
 		return totalCount;
+	}
+	
+	//장바구니 리스트
+	public List selectCartList(int customerNo) {
+		String query = "select cart_no,product_img,product_name,option_size,option_color,product_price,cart_count from cart_tbl join product_option_tbl using(product_option_no) join product_tbl using(product_no) where customer_no = ?";
+		List list = jdbc.query(query, cartListRowMapper, customerNo);
+		return list;
 	}
 
 

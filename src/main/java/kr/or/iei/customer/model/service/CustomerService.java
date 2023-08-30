@@ -111,5 +111,9 @@ public class CustomerService {
 		List reviewList = customerDao.customerReviewList(reviewWriter, start,end);
 		return reviewList;
 	}
+	public List selectCartList(int customerNo) {
+		List cartList = customerDao.selectCartList(customerNo);
+		return cartList;
+	}
 }
 
