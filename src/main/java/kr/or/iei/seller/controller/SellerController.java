@@ -386,6 +386,12 @@ public class SellerController {
 			return "common/msg";
 		}
 	}
+	//취소요청확인
+	@GetMapping(value = "/cancelPrd")
+	public String cancelPrd(int orderNo) {
+		int result = sellerService.cancelPrd(orderNo);
+		return "/";
+	}
 }
 
 

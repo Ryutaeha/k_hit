@@ -33,8 +33,3 @@ $(".favorite_border").click(function(){
     $(this).css("display","none")
 
 });
-const price_span = $("#price_span").text();
-$("#price_span").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-const comma = $(".price_all").children().text();
-$(this).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); 

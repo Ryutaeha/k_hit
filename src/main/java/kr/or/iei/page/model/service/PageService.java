@@ -86,8 +86,6 @@ public class PageService {
 	public MainListData searchNewListFive() {
 		List newList = pageDao.searchNewListFive();
 		List bestList = pageDao.searchBestListFive();
-		System.out.println("new : "+newList);
-		System.out.println("best : "+bestList);
 		MainListData mld = new MainListData(newList,bestList);
 		
 		return mld;
