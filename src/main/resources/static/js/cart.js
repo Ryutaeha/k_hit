@@ -53,3 +53,14 @@ function cartDelete(obj, cartNo){
 		}
 	});
 }
+
+function searchAddress(){
+	
+	new daum.Postcode({
+		oncomplete: function(data){
+			$("#postcode").val(data.zonecode);
+			$("#address").val(data.roadAddress);
+			$("#detail").focus();
+		}
+	}).open();
+}

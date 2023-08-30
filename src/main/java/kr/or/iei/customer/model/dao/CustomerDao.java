@@ -135,5 +135,11 @@ public class CustomerDao {
 
 	}
 
+	public int selectAddressNo(int customerNo) {
+		String query = "select address_no from address_tbl where customer_no=?";
+		int addressNo = jdbc.queryForObject(query, Integer.class,customerNo);
+		return addressNo;
+	}
+
 
 }
