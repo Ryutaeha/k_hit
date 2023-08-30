@@ -102,18 +102,24 @@ function pModalO(pNo){
 		success: function(data){
 			console.log(data)
 			if(data.length==0){
-				$(".mProductS").append($("<h2>").append("옵션이 없습니다"));
+				$(".mProductO").append($("<h2>").append("옵션이 없습니다"));
 			}else{
 				for(var i =0;i<data.length;i++){
 					const div = $("<div style= 'padding: 10px 0; border: 1px solid black'>");
-					div.append($("<span style='width: 10%; display: inline-block;'>").append(data[i].productNo));
-					div.append($("<span style='width: 60%; display: inline-block;'>").append(data[i].productName));
-					div.append($("<span style='width: 30%; display: inline-block;'>").append(data[i].productPrice));
-					$(".mProductS").append(div);
+					div.append($("<span style='width: 35%; display: inline-block;'>").append(data[i].optionColor));
+					div.append($("<span style='width: 35%; display: inline-block;'>").append(data[i].optionSize));
+					div.append($("<span style='width: 15%; display: inline-block;'>").append(data[i].optionStock));
+						if(data[i].outOfStock==0){
+							div.append($("<span style='width: 15%; display: inline-block;'>").append('판매'));
+						}else{
+							div.append($("<span style='width: 15%; display: inline-block;'>").append('중지'));
+						}
+					$(".mProductO").append(div);
 				}
+	    	}
 	    }
+	    
     })
-
 }
 
 $(".sMenu").on('click',function(){
@@ -161,24 +167,42 @@ console.log(sId)
 		data : {sId : sId},
 		dataType : "json",
 		success: function(data){
-			
+			console.log(data.isEmpty)
+			if(data.length==0){
+				$(".mProductS").append($("<h2>").append("등록한 상품이 없습니다"));
+			}else{
+				for(var i =0;i<data.length;i++){
+					const div = $("<div style= 'padding: 10px 0; border: 1px solid black'>");
+					div.append($("<span style='width: 10%; display: inline-block;'>").append(data[i].productNo));
+					div.append($("<span style='width: 60%; display: inline-block;'>").append(data[i].productName));
+					div.append($("<span style='width: 30%; display: inline-block;'>").append(data[i].productPrice));
+					$(".mProductS").append(div);
+				}
 			}
-		
+		}
 	})
 }
 
 $(".cMenu").on('click',function(){
-	console.log($(this).text());
+	$(".cModal>table").children().children().children('td').empty();	
 	cModal($(this).text());
+	$(".modal-inpo").css("display","none");
+    $(".cModal").css("display","block");
+	$(".modal-wrap").css("display","flex");
     event.stopPropagation();
 })
 
 $(".cMenuSel").on('click',function(){
+	$(".cModal>table").children().children().children('td').empty();
 	cModal($(this).children().eq(1).text());
+	cModalB($(this).children().eq(1).text());
+	$(".modal-inpo").css("display","none");
+    $(".cModal").css("display","block");
+	$(".modal-wrap").css("display","flex");
 })
 
 function cModal(cId){
-	$(".cModal>table").children().children().children().empty();
+
 	$.ajax({
 		url : "/admin/cContent",
 		type : "post",
@@ -193,9 +217,26 @@ function cModal(cId){
 			$(".mPhoneC").append($("<h3>").append(data.customerPhone));
 		}
 	})
-	$(".modal-inpo").css("display","none");
-    $(".cModal").css("display","block");
-	$(".modal-wrap").css("display","flex");
+	
+}
+
+function cModalB(cId){
+
+	$.ajax({
+		url : "/admin/cContentB",
+		type : "post",
+		data : {cId : cId},
+		dataType : "json",
+		success: function(data){
+			console.log(data)
+			$(".mIdC").append($("<h2>").append(data.customerId));
+			$(".mNameC").append($("<h2>").append(data.customerName));
+			$(".mRegDateC").append($("<h3>").append(data.customerEnrolldate));
+			$(".mEmailC").append($("<h4>").append(data.customerEmail));
+			$(".mPhoneC").append($("<h3>").append(data.customerPhone));
+		}
+	})
+	
 }
 
 $(".nSelect").on('click',function(){

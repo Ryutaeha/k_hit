@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.iei.admin.model.vo.Admin;
 import kr.or.iei.admin.model.vo.AdminRowMapper;
+import kr.or.iei.admin.model.vo.BuyList;
 import kr.or.iei.admin.model.vo.ChartRowMapper;
 import kr.or.iei.admin.model.vo.MenuChartRowMapper;
 import kr.or.iei.customer.model.vo.Customer;
@@ -46,8 +47,11 @@ public class AdminDao {
 	private MenuChartRowMapper menuChartRowMapper;
 	@Autowired
 	private ProductOptionRowMapper productOptionRowMapper;
-	
+	@Autowired
 	private QnaRowMapper qnaRowMapper;
+	@Autowired
+	private BuyList buyList;
+	
 	public List customerList(String input) {
 		System.out.println(input);
 		String query = "SELECT * FROM CUSTOMER_TBL WHERE CUSTOMER_ID LIKE ?";
@@ -165,5 +169,13 @@ public class AdminDao {
 	public List productO(int pNo) {
 		String query ="SELECT * FROM product_option_tbl WHERE product_NO=?";
 		return jdbc.query(query, productOptionRowMapper,pNo);
+	}
+
+	public List selectCustomerB(String cId) {
+		String query = "SELECT * FROM view1 WHERE customer_id LIKE ?";
+		List list =jdbc.query(query, buyList , cId);
+		System.out.println(list);
+		return jdbc.query(query, buyList , list);
+		
 	}
 }

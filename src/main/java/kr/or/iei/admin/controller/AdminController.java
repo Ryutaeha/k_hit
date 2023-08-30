@@ -140,6 +140,11 @@ public class AdminController {
 		return adminService.selectCustomer(cId);
 	}
 	@ResponseBody
+	@PostMapping(value="/cContentB")
+	public List cContentB(String cId){
+		return adminService.selectCustomerB(cId);
+	}
+	@ResponseBody
 	@PostMapping(value="/nContent")
 	public Notice nContent(int nNo){
 		return adminService.noticeView(nNo);

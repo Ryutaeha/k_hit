@@ -115,5 +115,9 @@ public class AdminService {
 		return adminDao.productO(pNo);
 	}
 
+	public List selectCustomerB(String cId) {
+		return adminDao.selectCustomerB(cId);
+	}
+
 	
 }
