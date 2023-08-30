@@ -157,6 +157,8 @@ public class ProductController {
 		//System.out.println(productNo);
 		model.addAttribute("productDetailList", pdld.getProductList());
 		model.addAttribute("avgStar", pdld.getAvgStar());
+		model.addAttribute("sellerName", pdld.getSellerName());
+		model.addAttribute("sellerImg", pdld.getSellerImg());
 		return "product/productDetail";
 	}
 	

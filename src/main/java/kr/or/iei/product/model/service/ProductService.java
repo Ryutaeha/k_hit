@@ -73,8 +73,10 @@ public class ProductService {
 		double avgStar = productDao.averageStar(productNo);
 		List productOptionList = productDao.ProductOptionDetailListData(productNo);
 		productList.setProductOptionList(productOptionList);
-		System.out.println(productOptionList);
-		ProductDetailListData pdld = new ProductDetailListData(productList,avgStar);
+		String sellerName = productDao.getSellerName(productNo);
+		String sellerImg = productDao.getSellerImg(productNo);
+		//System.out.println(productOptionList);
+		ProductDetailListData pdld = new ProductDetailListData(productList,avgStar,sellerName,sellerImg);
 		return pdld;
 	}
 

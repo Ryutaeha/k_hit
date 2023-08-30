@@ -79,4 +79,16 @@ public class ProductDao {
 		return list;
 	}
 
+	public String getSellerName(int productNo) {
+		String query = "select seller_name from seller_tbl join product_tbl using(seller_no) where product_no=?";
+		String sellerName = jdbc.queryForObject(query, String.class,productNo);
+		return sellerName;
+	}
+	
+	public String getSellerImg(int productNo) {
+		String query = "select seller_img from seller_tbl join product_tbl using(seller_no) where product_no=?";
+		String sellerImg = jdbc.queryForObject(query, String.class,productNo);
+		return sellerImg;
+	}
+
 }
