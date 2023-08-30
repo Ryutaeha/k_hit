@@ -72,17 +72,16 @@ public class CustomerController {
 	public String cancel() {
 		return "customer/cancel";
 	}
-
 	
-	//찜목록
-	@GetMapping(value="/wishList") 
-	public String wishList(@SessionAttribute(required = false) Customer c, Model model, int reqPage){
-		WishListData wld = customerService.selectWishList(c.getCustomerNo(),reqPage);
-		model.addAttribute("wishList",wld.getWishList());
-		model.addAttribute("pageNavi",wld.getPageNavi());
-		
-		return "customer/wishList";
-	}
+//	//찜목록
+//	@GetMapping(value="/wishList") 
+//	public String wishList(@SessionAttribute(required = false) Customer c, Model model, int reqPage){
+//		WishListData wld = customerService.selectWishList(c.getCustomerNo(),reqPage);
+//		model.addAttribute("wishList",wld.getWishList());
+//		model.addAttribute("pageNavi",wld.getPageNavi());
+//		
+//		return "customer/wishList";
+//	}
 
 	
 	//회원가입

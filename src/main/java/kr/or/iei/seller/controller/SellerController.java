@@ -321,14 +321,18 @@ public class SellerController {
 	}
 	*/
 
-	//리뷰페이지이동
+	/*리뷰페이지이동
 	@GetMapping(value="/review")
 	public String reviewPage() {
 		
 		
 		return "/seller/review";
 	}
-
+<<<<<<< HEAD
+*/
+=======
+	*/
+>>>>>>> main
 	
 	//판매자 리뷰 확인 
 	@GetMapping(value="/review")
