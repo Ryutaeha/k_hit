@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.iei.admin.model.vo.Admin;
 import kr.or.iei.admin.model.vo.AdminRowMapper;
+import kr.or.iei.admin.model.vo.ChartRowMapper;
+import kr.or.iei.admin.model.vo.MenuChartRowMapper;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
 import kr.or.iei.notice.vo.Notice;
@@ -15,6 +17,7 @@ import kr.or.iei.notice.vo.NoticeRowMapper;
 import kr.or.iei.product.model.vo.CategoryRowMapper;
 import kr.or.iei.product.model.vo.ProductDetailRowMapper;
 import kr.or.iei.product.model.vo.ProductRowMapper;
+import kr.or.iei.qna.model.vo.QnaRowMapper;
 import kr.or.iei.seller.model.vo.Seller;
 import kr.or.iei.seller.model.vo.SellerRowMapper;
 
@@ -36,7 +39,12 @@ public class AdminDao {
 	private ProductDetailRowMapper productDetailRowMapper;
 	@Autowired
 	private NoticeRowMapper noticeRowMapper;
-	
+	@Autowired
+	private ChartRowMapper chartRowMapper;
+	@Autowired
+	private MenuChartRowMapper menuChartRowMapper;
+	@Autowired
+	private QnaRowMapper qnaRowMapper;
 	public List customerList(String input) {
 		System.out.println(input);
 		String query = "SELECT * FROM CUSTOMER_TBL WHERE CUSTOMER_ID LIKE ?";
@@ -123,5 +131,21 @@ public class AdminDao {
 	public int fix(int fix, int nNo) {
 		String qurey = "UPDATE notice_tbl SET notice_fix = ?  WHERE notice_no=?";
 		return jdbc.update(qurey, fix,nNo);
+	}
+
+	public List salesList() {
+		String query = "SELECT oldl.*,p.PRODUCT_PRICE,p.SELLER_NO FROM PRODUCT_TBL p, (SELECT ol.ORDER_LIST_DATE, old.* FROM ORDER_LIST_TBL ol, (SELECT op.PRODUCT_NO, o.order_count, o.order_state, o.ORDER_LIST_NO FROM PRODUCT_OPTION_TBL op, (SELECT * FROM ORDER_TBL) o WHERE op.PRODUCT_OPTION_NO = o.product_option_no) old WHERE ol.ORDER_LIST_NO=old.ORDER_LIST_NO) oldl WHERE p.PRODUCT_NO=oldl.PRODUCT_NO";
+			List list = jdbc.query(query, chartRowMapper);
+		return list;
+	}
+
+	public List salesListTest() {
+		String query ="SELECT oldl.ORDER_LIST_DATE,sum(p.PRODUCT_PRICE*oldl.ORDER_COUNT) X FROM PRODUCT_TBL p, (SELECT ol.ORDER_LIST_DATE, old.* FROM ORDER_LIST_TBL ol, (SELECT op.PRODUCT_NO, o.order_count, o.order_state, o.ORDER_LIST_NO FROM PRODUCT_OPTION_TBL op, (SELECT * FROM ORDER_TBL) o WHERE op.PRODUCT_OPTION_NO = o.product_option_no) old WHERE ol.ORDER_LIST_NO=old.ORDER_LIST_NO) oldl WHERE p.PRODUCT_NO=oldl.PRODUCT_NO AND p.SELLER_NO = 21 and oldl.order_list_date between to_char(sysdate-6,'yyyy-mm-dd') and to_char(sysdate,'yyyy-mm-dd') and oldl.order_state >= 1 and oldl.order_state <= 4 GROUP BY oldl.ORDER_LIST_DATE ORDER by oldl.ORDER_LIST_DATE";
+		return jdbc.query(query, menuChartRowMapper);
+	}
+
+	public List question() {
+		String query = "SELECT * FROM QUESTION_TBL";
+		return jdbc.query(query, qnaRowMapper);
 	}
 }

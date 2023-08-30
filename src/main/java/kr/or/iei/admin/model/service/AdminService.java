@@ -91,5 +91,17 @@ public class AdminService {
 		return adminDao.fix(fix,nNo);
 	}
 
+	public List salesList() {
+		return adminDao.salesList();
+	}
+
+	public List salesListTest() {
+		return adminDao.salesListTest();
+	}
+
+	public List question() {
+		return adminDao.question();
+	}
+
 	
 }

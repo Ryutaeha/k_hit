@@ -122,6 +122,12 @@ function sModal(sId){
 	$(".modal-wrap").css("display","flex");
 }
 
+$(".cMenu").on('click',function(){
+	console.log($(this).text());
+	cModal($(this).text());
+    event.stopPropagation();
+})
+
 $(".cMenuSel").on('click',function(){
 	cModal($(this).children().eq(1).text());
 })
