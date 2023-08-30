@@ -386,6 +386,12 @@ public class SellerController {
 			return "common/msg";
 		}
 	}
+	
+	@GetMapping(value="/selling")
+	public String selling(@SessionAttribute(required = false)Seller s,Model model) {
+		List selling = sellerService.selectSelling(s.getSellerNo());
+		
+	}
 }
 
 
