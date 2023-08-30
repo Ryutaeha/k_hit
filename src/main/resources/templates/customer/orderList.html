@@ -26,10 +26,10 @@
                             <th class="info5">처리상태</th>
                     </tr>
                     <tr class="tbl info-main" th:each="orderList : ${orderList}">
-                            <td class="info1">
+                            <th class="info1">
                                 <span th:text="${orderList.orderListDate}"></span>
-                            </td>
-                            <td class="info2">
+                            </th>
+                            <th class="info2">
                                  <div class="info-img">
                                     <img th:src="'/orderList/'+${orderList.productImg}">
                                 </div> 
@@ -37,18 +37,18 @@
                                     <span th:text="${orderList.productName}">상품이름</span>
                                     <div><span>1. </span><span th:text="${orderList.optionColor}"></span><span> 2. </span> <span th:text="${orderList.optionSize}"></span></div>
                                 </div>
-                            </td>
-                            <td class="info3">
+                            </th>
+                            <th class="info3">
                                 <span th:text="${orderList.orderCount}">0개</span>
-                            </td>
-                            <td class="info4"><span th:text="${orderList.productPrice}">3800원</span></td>
-                            <td class="info5"><span th:text="${orderList.orderState}">상품준비중</span></td>
+                            </th>
+                            <th class="info4"><span th:text="${orderList.productPrice}">3800원</span></th>
+                            <th class="info5"><span th:text="${orderList.orderState}">상품준비중</span></th>
                     </tr>
                 </table>
             </div>
-            <div class="order-info-bottom">
+            <!-- <div class="order-info-bottom">
                 <button type="button">더보기</button>
-            </div>
+            </div> -->
         </div>
     </div>
 	<th:bolck th:include="common/footer"></th:bolck>

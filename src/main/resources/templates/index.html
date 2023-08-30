@@ -32,11 +32,7 @@
 				<div class="best_prd_title">
 					<span class="move">BEST PRODUCT</span>
 					<div class="search-list-wrap">
-
-
-						<ul class="prdList">
-			
-			
+						<ul class="prdList">			
 							<li class="prdbox">
 								<div class="item_list_box">
 									<div class="tumbnail">
@@ -83,163 +79,8 @@
 										</ul>
 									</div>
 								</div>
-							</li>
-			
-							<li class="prdbox">
-								<div class="item_list_box">
-									<div class="tumbnail">
-										<span id="best">
-											2
-										   </span>
-										<a href="#">
-											<img src="/img/others/profile.png">
-										</a>
-									</div>
-								</div>
-								<div class="prd_info">
-									<div class="inner">
-										<strong>
-											<a href="#">제품명</a>
-										</strong>
-										<ul class="spec">
-											<li class="summary">
-												제품상세내용
-											</li>
-											<li class="price_all">
-												<span>00,000원</span>
-											</li>
-											<li class="review">
-												<a href="#">
-													별별별별
-												</a>
-												<a href="#">
-													<span class="review_content">
-														리뷰내용리뷰내용리뷰내용
-													</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>
-			
-							<li class="prdbox">
-								<div class="item_list_box">
-									<div class="tumbnail">
-										<span id="best">
-											3
-										   </span>
-										<a href="#">
-											<img src="/img/others/profile.png">
-										</a>
-									</div>
-								</div>
-								<div class="prd_info">
-									<div class="inner">
-										<strong>
-											<a href="#">제품명</a>
-										</strong>
-										<ul class="spec">
-											<li class="summary">
-												제품상세내용
-											</li>
-											<li class="price_all">
-												<span>00,000원</span>
-											</li>
-											<li class="review">
-												<a href="#">
-													별별별별
-												</a>
-												<a href="#">
-													<span class="review_content">
-														리뷰내용리뷰내용리뷰내용
-													</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>
-			
-							<li class="prdbox">
-								<div class="item_list_box">
-									<div class="tumbnail">
-										<span id="best">
-											4
-										   </span>
-										<a href="#">
-											<img src="/img/others/profile.png">
-										</a>
-									</div>
-								</div>
-								<div class="prd_info">
-									<div class="inner">
-										<strong>
-											<a href="#">제품명</a>
-										</strong>
-										<ul class="spec">
-											<li class="summary">
-												제품상세내용
-											</li>
-											<li class="price_all">
-												<span>00,000원</span>
-											</li>
-											<li class="review">
-												<a href="#">
-													별별별별
-												</a>
-												<a href="#">
-													<span class="review_content">
-														리뷰내용리뷰내용리뷰내용
-													</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>
-			
-							<li class="prdbox">
-								<div class="item_list_box">
-									<div class="tumbnail">
-										<span id="best">
-											5
-										   </span>
-										<a href="#">
-											<img src="/img/others/profile.png">
-										</a>
-									</div>
-								</div>
-								<div class="prd_info">
-									<div class="inner">
-										<strong>
-											<a href="#">제품명</a>
-										</strong>
-										<ul class="spec">
-											<li class="summary">
-												제품상세내용
-											</li>
-											<li class="price_all">
-												<span>00,000원</span>
-											</li>
-											<li class="review">
-												<a href="#">
-													별별별별
-												</a>
-												<a href="#">
-													<span class="review_content">
-														리뷰내용리뷰내용리뷰내용
-													</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>
-			
-			
-			
-						
+							</li>		
+						</ul>					
 			
 					</div>
 				</div>
@@ -247,39 +88,32 @@
 			<div class="prd">
 				<span class="move">NEW PRODUCT</span>
 				<div class="search-list-wrap">
-
-
-					<ul class="prdList">
-		
-		
-						<li class="prdbox">
+					<ul class="prdList">		
+						<li class="prdbox" th:each="newPrd : ${newPrd}">
 							<div class="item_list_box">
 								<div class="tumbnail">
-								<span id="best">
-								 1
+								<span id="best" th:text="${newPrdStat.count}">
+								 
 								</span>
 									<a href="#">
 										<img src="/img/others/profile.png">
 									</a>
 									
-										<span class="material-icons favorite_border">
-											favorite_border
-											</span>
-									
+																		
 								</div>
 							</div>
 							<div class="prd_info">
 								<div class="inner">
 									<strong>
-										<a href="#">제품명</a>
+										<a href="#" th:text="${newPrd.productName}">제품명</a>
 									</strong>
 									
 									<ul class="spec">
-										<li class="summary">
-											제품상세내용
+										<li class="summary" th:text="${newPrd.productContent}">
+											
 										</li>
-										<li class="price_all">
-											<span>1,000 원</span>
+										<li class="price_all" >
+											<span th:text="${newPrd.productPrice}+원"></span>
 										</li>
 										<li class="review">
 											<a href="#">
@@ -298,164 +132,7 @@
 									</ul>
 								</div>
 							</div>
-						</li>
-		
-						<li class="prdbox">
-							<div class="item_list_box">
-								<div class="tumbnail">
-									<span id="best">
-										2
-									   </span>
-									<a href="#">
-										<img src="/img/others/profile.png">
-									</a>
-								</div>
-							</div>
-							<div class="prd_info">
-								<div class="inner">
-									<strong>
-										<a href="#">제품명</a>
-									</strong>
-									<ul class="spec">
-										<li class="summary">
-											제품상세내용
-										</li>
-										<li class="price_all">
-											<span>00,000원</span>
-										</li>
-										<li class="review">
-											<a href="#">
-												별별별별
-											</a>
-											<a href="#">
-												<span class="review_content">
-													리뷰내용리뷰내용리뷰내용
-												</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</li>
-		
-						<li class="prdbox">
-							<div class="item_list_box">
-								<div class="tumbnail">
-									<span id="best">
-										3
-									   </span>
-									<a href="#">
-										<img src="/img/others/profile.png">
-									</a>
-								</div>
-							</div>
-							<div class="prd_info">
-								<div class="inner">
-									<strong>
-										<a href="#">제품명</a>
-									</strong>
-									<ul class="spec">
-										<li class="summary">
-											제품상세내용
-										</li>
-										<li class="price_all">
-											<span>00,000원</span>
-										</li>
-										<li class="review">
-											<a href="#">
-												별별별별
-											</a>
-											<a href="#">
-												<span class="review_content">
-													리뷰내용리뷰내용리뷰내용
-												</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</li>
-		
-						<li class="prdbox">
-							<div class="item_list_box">
-								<div class="tumbnail">
-									<span id="best">
-										4
-									   </span>
-									<a href="#">
-										<img src="/img/others/profile.png">
-									</a>
-								</div>
-							</div>
-							<div class="prd_info">
-								<div class="inner">
-									<strong>
-										<a href="#">제품명</a>
-									</strong>
-									<ul class="spec">
-										<li class="summary">
-											제품상세내용
-										</li>
-										<li class="price_all">
-											<span>00,000원</span>
-										</li>
-										<li class="review">
-											<a href="#">
-												별별별별
-											</a>
-											<a href="#">
-												<span class="review_content">
-													리뷰내용리뷰내용리뷰내용
-												</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</li>
-		
-						<li class="prdbox">
-							<div class="item_list_box">
-								<div class="tumbnail">
-									<span id="best">
-										5
-									   </span>
-									<a href="#">
-										<img src="/img/others/profile.png">
-									</a>
-								</div>
-							</div>
-							<div class="prd_info">
-								<div class="inner">
-									<strong>
-										<a href="#">제품명</a>
-									</strong>
-									<ul class="spec">
-										<li class="summary">
-											제품상세내용
-										</li>
-										<li class="price_all">
-											<span>00,000원</span>
-										</li>
-										<li class="review">
-											<a href="#">
-												별별별별
-											</a>
-											<a href="#">
-												<span class="review_content">
-													리뷰내용리뷰내용리뷰내용
-												</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</li>
-		
-		
-		
-					
-		
+						</li>		
 				</div>
 			</div>
 	
