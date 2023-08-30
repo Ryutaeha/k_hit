@@ -4,51 +4,125 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<link rel="stylesheet" href="/css/productDetail.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
 	
 	<div class="page-content">
-		<div class="wrap">
-			<div class="content-main">
-				<div class="productDetail-img">
-					<img src="/img/earring/earring1.png">
+		<div class="product-detail-wrap">
+			<div class="content">
+				<div class="content-main">
+					<div class="product-left">
+						<div class="productDetail-img">
+							<img th:src="'/product/'+${productDetailList.productImg}">
+							
+						</div>
+					<div class="product-content">간단설명간단설명간단설명간단설명간단설명간단설명간단설명</div>					
+					</div>
+					<div class="product-preview">
+						<div class="product-name">
+							<h2>판매자아이디</h2>
+							<div th:text="${productDetailList.productName}"></div>
+							<h2>상품가격</h2>
+						</div>
+						<div class="product-info">
+							<table>
+								<tr>
+									<th>별점</th>
+									<td>별별별별별(8.5)<td>
+								</tr>
+								<tr>
+									<th>배송비</th>
+									<td>무료배송 이벤트 중!</td>
+								</tr>
+								<tr>
+									<th>배송 시작</th>
+									<td>평균 4일, 최대 10일 이내</td>
+								</tr>															
+							</table>
+							<div class="option-dropdown">
+								옵션 드롭다운 파트입니다.
+							</div>
+							<div class="total-price">
+								<span>총 상품금액 : </span>
+								<span>
+									<span>10000</span>
+									<span>원</span>
+								</span>
+							</div>
+							<div class="buy-button">
+								<button class="cart">장바구니</button>
+								<!-- <button class="purchase">구매하기</button> -->
+								<!-- 구매하기를 누르면 장바구니 스킵하고 바로 구매페이지로 -->
+							</div>					
+						</div>
+					</div>
 				</div>
-				<div class="product-content">
-				
-				</div>
-				<div class="product_info">
-				
-				</div>
-			</div>
 			
 			<div class="content-detail">
-				<div class="tab">
+				<div class="tab-wrap">
+					<div class="tab">
 					<ul>
 						<li>구매정보</li>
 						<li>상품리뷰</li>
 						<li>상품댓글</li>
-						<li>관련상품</li>
+						<!-- <li>관련상품</li> -->
 					</ul>
+					</div>
 				</div>
 				<div class="tab-content">
 					<div class="product-detail">
-						<p>구매정보</p>
+						<div>
+							<span>상품 상세 설명</span>
+						</div>
+						<div>
+							<span>배송 안내</span>
+							<table>
+								<tr>
+									<td class="beforeth">배송비</td>
+									<td>현재 배송비 무료 이벤트 기간입니다. (2023.09.30 구매분까지 해당)<td>
+								</tr>
+								<tr>
+									<td class="beforeth">제작 / 배송</td>
+									<td><span class="txt-preline">제작 : 이미 제작된 제품이므로 주문 접수 후 바로 배송이 시작됩니다.
+									배송 : 평균 4일, 최대 10일 내로 도착합니다.</span></td>
+									
+								</tr>
+								<tr>
+									<td class="beforeth">교환/환불</td>
+									<td><span class="txt-preline">배송 실수로 인한 파손, 분실 시 문의게시판에 주문정보를 남겨주시면 택배사와 확인 후 재발송, 환불을 도와드리고 있습니다.
+									그 외에 단순 변심으로 인한 교환 및 활불은 불가능합니다.</span></td>
+								</tr>															
+							</table>							
+						</div>
 					</div>
-					<div>
-						<p>상품리뷰</p>
+					<div class="product-review">
+						<div>
+							<span>상품리뷰</span>
+						</div>
 					</div>
-					<div>
-						<p>상품댓글</p>
+					<div class="product-comment">
+						<div>
+							<span>상품댓글</span>
+							
+						</div>
 					</div>
+					<!-- 
 					<div>
 						<p>관련상품</p>
 					</div>
+					 -->
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
 	
 	<th:block th:include="common/footer"></th:block>
+	
+	
+
+	
 </body>
 </html>

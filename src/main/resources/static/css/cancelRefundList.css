@@ -105,16 +105,17 @@
     line-height: 150px;
     font-weight: bold;
 }
-/* .info-main>.info2>.info-img{
+.info-main>.info2>.info-img{
     margin: 25px;
+    float: left;
 }
 .info-main>.info2 img{
-    width: 100px;
+     width: 100px;
     height: 100px;
     border: 1px solid #ccc;
     box-sizing: border-box;
     border-radius: 5px;
-} */
+}
 .info-main>.info2{
     overflow: none;
     height: 150px;

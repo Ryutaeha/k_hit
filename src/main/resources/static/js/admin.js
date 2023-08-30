@@ -46,17 +46,19 @@ $(".delModal").on('click',function(){
 })
 $(".pSelect").on('click',function(){
 	pModal($(this).children().eq(0).text());
+
 })
 
 function pModal(pNo){
 	$(".pModal>table").children().children().children().empty();
-	$(".pModal").children('div').remove();
+	$(".pModal").children('form').remove();
 	$.ajax({
 		url : "/admin/pContent",
 		type : "post",
 		data : {pNo : pNo},
 		dataType : "json",
 		success: function(data){
+			console.log(data)
 			$(".mImgP").append($("<h2>").append(data[0].productImg));
 			$(".mNameP").append($("<h2>").append(data[0].productName));
 			$(".mSellerIdP").append($("<h3>").append(data[0].sellerId));
@@ -67,26 +69,26 @@ function pModal(pNo){
 	    	if(data[0].productCheck==4){
 	   			$(".pModal").append($("<div></div>").append($("<h2>").append("현재 판매가 중지 된 상품입니다")));
 	   		}else{
-	   			var checkP = $("<div>");
-	   			var select = $("<select></select>");
+	   			var checkP = $("<form action=/admin/productCheckChange method=post></form>");
+	   			var select = $("<select name=productCheck></select>");
 	   			select.attr("id","pCheck");
 	   			select.append($("<option value=1>승인</option>"));
 	   			select.append($("<option value=2>검수</option>"));
 	   			select.append($("<option value=3>반려</option>"));
 	   			checkP.append(select);
-	   			checkP.append("<input type=button value=변경 class = pCheckChange>");
+	   			checkP.append("<input type=submit value=변경 class = pCheckChange>");
+	   			checkP.append("<input type=hidden value="+data[0].productNo+" class = pNo name=productNo>");
 	   			$(".pModal").append(checkP);
+	   			$("#pCheck").val(data[0].productCheck);
+	   			
 	    	}
 	    }
     })
     $(".modal-inpo").css("display","none");
     $(".pModal").css("display","block");
 	$(".modal-wrap").css("display","flex");
+	
 }
-
-$(document).on('click',".pCheckChange",function(){
-	console.log($("#pCheck").val());
-})
 
 
 $(".sMenu").on('click',function(){
@@ -120,6 +122,12 @@ function sModal(sId){
 	$(".modal-wrap").css("display","flex");
 }
 
+$(".cMenu").on('click',function(){
+	console.log($(this).text());
+	cModal($(this).text());
+    event.stopPropagation();
+})
+
 $(".cMenuSel").on('click',function(){
 	cModal($(this).children().eq(1).text());
 })
@@ -149,8 +157,26 @@ $(".nSelect").on('click',function(){
 	nModal($(this).children().eq(0).text());
 })
 
+$(document).on('click',".fix",function(){
+	const fix = $(this).val();
+	const nNo = $(".mNoN").val()
+	$.ajax({
+		url : "/admin/fix",
+		type : "post",
+		data : {fix : fix, nNo : nNo},
+		dataType : "json",
+		success: function(data){
+			alert("수정 성공");
+			 nModal(nNo);
+		}
+	})
+	/*
+	*/
+})
+
 function nModal(nNo){
-	$(".nModal>table").children().children().children().empty();
+	$(".nModal>table").children().children().children().not('.mContentN').empty();
+	$(".fix").remove()
 	$.ajax({
 		url : "/admin/nContent",
 		type : "post",
@@ -159,11 +185,26 @@ function nModal(nNo){
 		success: function(data){
 			console.log(data)
 			$(".mTitleN").append($("<h2>").append(data.noticeTitle));
+			$(".mTitleN").append($("<input type = text style=display:none>").append(data.noticeTitle));
 			$(".mDateN").append($("<h3>").append(data.noticeDate));
-			$(".mContentN").append($("<div>").append(data.noticeContent));
+			$(".mDateN").append($("<input type=hidden value ="+data.noticeNo+" class=mNoN>"));
+			$("#noticeContent").append(data.noticeContent);
+			$("#noticeContent").append("dsd");
+			if(data.noticeFix==0){
+				$(".modifyNoticeFrm").append($("<button value=1 class = fix>").append("고정"));
+			}else{
+				$(".modifyNoticeFrm").append($("<button value=0 class = fix>").append("고정해제"));
+			}
 		}
 	})
 	$(".modal-inpo").css("display","none");
     $(".nModal").css("display","block");
 	$(".modal-wrap").css("display","flex");
 }
+
+$(".modifyNoticeFrm>button:first-child").on('click',function(){
+	$(".modifyNoticeFrm").css('display','none');	
+	$(".modifyNotice").css('display','block');
+	
+})
+

@@ -26,17 +26,32 @@
 }
 
 .info1,.info6{
-    width: 12.5%;
+    width: 10%;
     padding: 0.75rem;
     border-top: 1px solid #dee2e6;
 }
 .info2{
-    width: 40%;
+    width: 50%;
     padding: 0.75rem;
     border-top: 1px solid #dee2e6;
+    overflow: hidden;
+}
+.info-main>.info2>.info-img{
+    margin: 25px;
+    float: left;
+}
+.info-main>.info2 img{
+     width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.info-name{
+	float: left;
 }
 .info3,.info4,.info5{
-    width: 16%;
+    width: 10%;
     padding: 0.75rem;
     border-top: 1px solid #dee2e6;
 }
@@ -79,17 +94,10 @@
     padding : 60px 15px 60px 15px;
     box-sizing: border-box;
 }
-.info3>button{
-    float: left;
-    width: 30px;
-    height: 30px;
-    font-size: 15px;
-    font-family: ns_b;
-    text-align: center;
-    line-height: 20px;
+.info{
+	text-align: center;
 }
-.info3>input{
-    float: left;
+.info3>div{
     width: 60px;
     height: 30px;
     box-sizing: border-box;

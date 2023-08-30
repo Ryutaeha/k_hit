@@ -1,14 +1,13 @@
-package kr.or.iei.customer.model.vo;
+package kr.or.iei.admin.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class OrderList {
-	private int orderListNo;
+public class MenuChart {
 	private String orderListDate;
-	private int orderListCost;
+	private int x;
 }
