@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.or.iei.FileUtil;
 import kr.or.iei.product.model.service.ProductService;
 import kr.or.iei.product.model.vo.Product;
+import kr.or.iei.product.model.vo.ProductDetailListData;
 import kr.or.iei.seller.model.vo.Seller;
 
 @Controller
@@ -29,11 +30,6 @@ public class ProductController {
 	private FileUtil fileUtil;
 	@Value("${file.root}")
 	private String root;
-	
-	@GetMapping(value="/productDetail")
-	public String productDetail() {
-		return "/product/productDetail";
-	}
 	
 	@ResponseBody
 	@PostMapping(value="/editor",produces = "plain/text;charset=utf-8")
@@ -72,7 +68,6 @@ public class ProductController {
 		Product p = productService.getProduct(productNo);
 		//System.out.println(p); 수정버튼 클릭시 정보 확인용
 		model.addAttribute("p", p);
-		
 		return "seller/updateProductFrm";
 	}
 	
@@ -154,4 +149,15 @@ public class ProductController {
 			return "1";
 		}
 	}
+	
+	//상세페이지 연결
+	@GetMapping(value="/productDetail")
+	public String productDetail(Model model, int productNo) {
+		ProductDetailListData pdld = productService.productDetail(productNo);
+		//System.out.println(productNo);
+		model.addAttribute("productDetailList", pdld.getProductList());
+		model.addAttribute("avgStar", pdld.getAvgStar());
+		return "product/productDetail";
+	}
+	
 }

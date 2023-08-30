@@ -23,5 +23,6 @@ public class Product {
 	//좋아요
 	//private int isLike;
 	
+	//옵션은 종속된거라 여기 생성
 	private List productOptionList;
 }
