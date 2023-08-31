@@ -251,7 +251,8 @@ $(".nSelect").on('click',function(){
 
 $(document).on('click',".fix",function(){
 	const fix = $(this).val();
-	const nNo = $(".mNoN").val()
+	const nNo = $(".mNoN").text()
+	console.log($(".mNoN"));
 	$.ajax({
 		url : "/admin/fix",
 		type : "post",
@@ -276,6 +277,7 @@ function nModal(nNo){
 		dataType : "json",
 		success: function(data){
 			console.log(data)
+			$(".mTitleN").append($("<div style='display:none;' class = mNoN>").append(data.noticeNo));
 			$(".mTitleN").append($("<h2>").append(data.noticeTitle));
 			$(".mDateN").append($("<h3>").append(data.noticeDate));
 			$(".mContentN").append($("<h3>").append(data.noticeContent));
@@ -284,6 +286,7 @@ function nModal(nNo){
 			}else{
 				$(".modifyNoticeFrm").append($("<button value=0 class = fix>").append("고정해제"));
 			}
+			$(".modifyNotice>form>button:first-child").val(data.noticeNo);
 		}
 	})
 	$(".modal-inpo").css("display","none");
@@ -297,14 +300,22 @@ $(".modifyNoticeFrm>button:first-child").on('click',function(){
 	
 })
 
+$(".modifyNotice>form>button:last-child").on('click',function(){
+	$(".modifyNoticeFrm").css('display','block');	
+	$(".modifyNotice").css('display','none');
+	
+})
+
+
+
 $(".qMenuSel").on('click',function(){
 	qModal($(this).children().eq(0).text());
+	qModalC($(this).children().eq(0).text());
 })
 
 function qModal(qNo){
 	$(".qModal>table").children().children().children().empty();
 	$(".qnaAnswer").empty()
-	console.log(qNo)
 	$.ajax({
 		url : "/admin/qContent",
 		type : "post",
@@ -314,7 +325,7 @@ function qModal(qNo){
 			console.log(data)
 			/*
 			*/
-			$(".mTitleQ").append($("<h2>").append(data[0].questionContent));
+			$(".mTitleQ").append($("<h2>").append(data[0].questionTitle));
 			$(".mDateQ").append($("<h3>").append(data[0].questionDate));
 			if(data.questionSellWriter==null){
 			$(".mWriterQ").append($("<h3>").append(data[0].questionCusWriter));
@@ -323,13 +334,33 @@ function qModal(qNo){
 			$(".mWriterQ").append($("<h3>").append(data[0].questionSellWriter));
 			}
 			$(".mContentQ").append($("<h3>").append(data[0].questionContent));
-			$(".qnaAnswer").append($("<input type = text name = qnaAnswerComment>"));
-			$(".qnaAnswer").append($("<input type = hidden name = qnaNo value= "+data[0].questionNo+">"));
-			$(".qnaAnswer").append($("<input type = submit value= 작성>"));
+			
 			}
 		})
 	$(".modal-inpo").css("display","none");
     $(".qModal").css("display","block");
 	$(".modal-wrap").css("display","flex");
 }
+
+function qModalC(qNo){
+$.ajax({
+		url : "/admin/qContentC",
+		type : "post",
+		data : {qNo : qNo},
+		dataType : "json",
+		success: function(data){
+			console.log(data)
+			if(data.length==0){
+				$(".mContentQC").append($("<h3>").append('작성된 답변이 없습니다'));
+				$(".qnaAnswer").append($("<textarea name = qnaAnswerComment>"));
+				$(".qnaAnswer").append($("<input type = hidden name = qnaNo value= "+qNo+">"));
+				$(".qnaAnswer").append($("<input type = submit value= 작성>"));
+			}else{
+				$(".mContentQC").append($("<h3>").append(data[0].questionContent));
+				$(".qnaAnswerDel").append($("<input type = hidden name = qnaNo value= "+data[0].questionCommentNo+">"));
+				$(".qnaAnswerDel").append($("<input type = submit value= 삭제>"));
+				}
+			}
+		})
+	}	
 	

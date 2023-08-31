@@ -164,17 +164,18 @@
 			</tr>
 			<tr>
 				<td class="mContentN" colspan="2">
-				
 				</td>
 			</tr>
 		</table>
 		<div class="modifyNoticeFrm">
-			<button>수정하기</button>
+			<button>삭제하기</button>
 			
 		</div>
 		<div class="modifyNotice" style="display: none;">
-			<button>수정</button>
-			<button>취소</button>
+		<form action="/admin/noticeDel" method="post">
+			<button type="submit" name="noticeNo">삭제</button>
+			<button type="button">취소</button>
+		</form>
 		</div>
 	</div>
 	
@@ -199,10 +200,18 @@
 					
 				</td>
 			</tr>
+			<tr>
+				<td class="mContentQC" colspan="2">
+					
+				</td>
+			</tr>
 		</table>
 		<div >
-			<form action="/" class="qnaAnswer">
+			<form action="/admin/qnaAnswer" class="qnaAnswer" method="post" >
 			
+			</form>
+			<form action="/admin/qnaAnswerDel" class="qnaAnswerDel" method="post">
+				
 			</form>
 		</div>
 	</div>

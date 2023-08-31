@@ -30,7 +30,8 @@ public class WebConfig implements WebMvcConfigurer{
 	
 	
 	registry.addInterceptor(new AdminIntercentor())
-	.addPathPatterns("");
+	.addPathPatterns("/admin/**")
+	.excludePathPatterns("/admin/adminLogin","/admin/login","/admin/adminMsg");
 	}
 	
 }
