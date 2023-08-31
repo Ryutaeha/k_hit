@@ -143,10 +143,15 @@
     transform: scale(1.1);
     transition: 0.3s;    
 }
+
 .sub-menu>li:hover{
     font-weight: 500;
     transform: scale(1.1);
     transition: 0.3s;   
+}
+.sub-menu>li>a{
+    width: 100%;
+    height: 100%;
 }
 .main-menu>li:hover>a +.sub-menu{
     display: block;

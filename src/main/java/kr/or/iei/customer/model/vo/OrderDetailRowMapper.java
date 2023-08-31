@@ -21,7 +21,7 @@ public class OrderDetailRowMapper  implements RowMapper<OrderDetail>{
 		od.setProductImg(rs.getNString("product_img"));
 		od.setProductName(rs.getString("product_name"));
 		od.setProductPrice(rs.getInt("product_price"));
-		// TODO Auto-generated method stub
+		od.setOrderNo(rs.getInt("order_no"));
 		return od;
 	}
 	

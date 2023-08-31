@@ -293,6 +293,12 @@
     color: #fff;
     background-color: #61677A;
 }
+.btn-del>a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 25px;
+}
 .btn-del>a:hover{
     color: #fff;
 }
@@ -485,10 +491,6 @@
     text-align: center;
     line-height: 40px;
 }
-.info-top{
-    border-bottom: 3px solid #ccc;
-
-}
 .info-top>div>span{
     font-size: 20px;
     font-family: ns_m;
@@ -673,7 +675,12 @@ body{
     border-radius: 5px;
     background-color: #61677A;
 }
-
+/*판매자 판매내역 드롭다운*/
+.info5>.select{
+	width:100px;
+	height:30px;
+	
+}
 
 
 

@@ -30,7 +30,57 @@ td{
     border-bottom: 1px solid #ededed;
     border-collapse: collapse;
 }
-td, th{
+.qna td, th{
     padding: 1em .5em;
     text-align: center;
+}
+.qnaFrm{
+    margin-top: 20px;
+    width: 100%;
+    
+    border: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+    border-collapse: collapse;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    padding: 40px;
+}
+.qnaFrm-title-wrap{
+    overflow: hidden;
+    
+    padding: 10px;
+    box-sizing: border-box;
+}
+.qnaFrm-title-wrap *{
+    display: block;
+    float: left;
+    height: 50px;
+}
+.qnaFrm-id{
+    width: 20%;
+    font-size: 30px;
+    font-weight: 900;
+}
+.qnaFrm-date{
+    width: 70%;
+    line-height: 60px;
+    font-size: 20px;
+}
+.qnaFrm-count{
+    width: 10%;
+    line-height: 60px;
+}
+.qnaFrm-title{
+    font-family: ns-eb;
+    font-size: 30px;
+    padding: 10px;
+}
+.qnaFrm-content{
+    margin: 10px;
+    border: 1px solid #ededed;
+    padding: 10px;
+    width: 70%;
+}
+.qnaFrm-comment{
+    padding: 10px;
 }

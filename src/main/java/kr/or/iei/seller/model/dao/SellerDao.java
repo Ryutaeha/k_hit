@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.product.model.vo.ProductOptionRowMapperSecond;
+import kr.or.iei.customer.model.vo.OrderDetailRowMapper;
 import kr.or.iei.product.model.vo.Product;
 import kr.or.iei.product.model.vo.ProductOption;
 import kr.or.iei.product.model.vo.ProductOptionRowMapper;
@@ -21,6 +22,7 @@ import kr.or.iei.review.model.vo.ReviewListRowMapper;
 
 import kr.or.iei.seller.model.vo.Seller;
 import kr.or.iei.seller.model.vo.SellerRowMapper;
+import kr.or.iei.seller.model.vo.SellingDetailRowMapper;
 
 
 @Repository
@@ -41,6 +43,7 @@ public class SellerDao {
 	private CancelListRowMapper cancelListRowMapper;
 	@Autowired
 	private ReviewListRowMapper reviewListRowMapper;
+	@Autowired SellingDetailRowMapper sellingDetailRowMapper;
 
 	
 	public List selectProductList(int sellerNo, int start, int end) {
@@ -127,13 +130,13 @@ public class SellerDao {
 
 	//판매자 번호?의 취소요청를 한 리스트
 	public List cancelList(Seller s) {
-		String query="select order_no,order_list_no,address_no,product_option_no,order_count,order_state,order_request,product_name,product_img from order_tbl join product_option_tbl using(product_option_no) join product_tbl using(product_no) where product_option_no in (select product_option_no from product_option_tbl join product_tbl using(product_no) where product_no in (select product_no from product_tbl where seller_no=?))and order_state = 4";
+		String query="select order_no,order_list_no,address_no,product_option_no,order_count,order_state,product_name,product_img from order_tbl join product_option_tbl using(product_option_no) join product_tbl using(product_no) where product_option_no in (select product_option_no from product_option_tbl join product_tbl using(product_no) where product_no in (select product_no from product_tbl where seller_no=?))and order_state = 5";
 		List list = jdbc.query(query,cancelListRowMapper,s.getSellerNo());
 		return list;
 	}
 
 	public List refundList(Seller s) {
-		String query="select order_no,order_list_no,address_no,product_option_no,order_count,order_state,order_request,product_name,product_img from order_tbl join product_option_tbl using(product_option_no) join product_tbl using(product_no) where product_option_no in (select product_option_no from product_option_tbl join product_tbl using(product_no) where product_no in (select product_no from product_tbl where seller_no=?))and order_state = 5";
+		String query="select order_no,order_list_no,address_no,product_option_no,order_count,order_state,product_name,product_img from order_tbl join product_option_tbl using(product_option_no) join product_tbl using(product_no) where product_option_no in (select product_option_no from product_option_tbl join product_tbl using(product_no) where product_no in (select product_no from product_tbl where seller_no=?))and order_state = 5";
 		List list = jdbc.query(query,cancelListRowMapper,s.getSellerNo());
 		return list;
 	}
@@ -168,14 +171,19 @@ public class SellerDao {
 	}
 
 	public List selectSelling(int sellerNo) {
-		String query ="";
-		
-		return null;
+		String query ="SELECT    s.seller_no,    ol.ORDER_LIST_DATE,    p.product_img,    p.PRODUCT_NAME, op.OPTION_SIZE, op.OPTION_COLOR, o.ORDER_COUNT, p.product_price, o.ORDER_STATE FROM order_list_tbl ol JOIN order_tbl o ON ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join seller_tbl s on s.seller_no = p.seller_no where s.seller_no=?";
+		List selling = jdbc.query(query, sellingDetailRowMapper, sellerNo);
+		return selling;
 	}
 	public int cancelPrd(int orderNo) {
-		String query = "update into order_tbl set order_state=6 where order_no =?";
+		String query = "update order_tbl set order_state=6 where order_no =?";
 		Object[] params = {orderNo};
 		int result = jdbc.update(query,params);
 		return result;
+	}
+
+	public int updateOrderState(int orderState) {
+		String query = "";
+		return 0;
 	}
 }
