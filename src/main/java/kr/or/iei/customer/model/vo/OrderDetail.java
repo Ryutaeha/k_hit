@@ -17,4 +17,5 @@ public class OrderDetail {
 	private int orderCount;
 	private int orderState;
 	private int productPrice;
+	private int orderNo;
 }
