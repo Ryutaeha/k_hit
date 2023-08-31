@@ -4,65 +4,13 @@
     font-family: ns-r;
     color: #1e1e1e;
 }
-
-.title1{
-    text-align: center;
-    margin: 100px 0;
+.content-title>span {
+    font-family: ns-eb;
+    letter-spacing: 3px;
 }
 
-.cancel-content>h3{
-    font-size: 20px;
-    padding-top: 30px;
-    padding-bottom: 20px;
-}
-
-.cancel-wrap{
-    border-radius: 10px;
-    background-color: white;
-    width: 1000px;
-    margin: 0 auto;
-}
-.content-info>.cancel{
-    width: 1000px;
-    overflow: hidden;
-}
-.cancel-content>hr{
-    border: 2px solid #dee2e6;
-}
-
-.content-info>.cancel{
-    width: 1000px;
-    overflow: hidden;
-}
-
-.content-info>.cancel>div{
-    float: left;
-}
-.content-info>.cancel:first-child>div{
-    height: 40px;
-}
-.info-top>.info1{
-    text-align: center;
-    /* display: none; */
-} 
-
-.info1>input{
-    width: 20px;
-    height: 20px;
-    margin: 10px;
-}
-.info-top>div{
-    text-align: center;
-    line-height: 40px;
-}
-
-.info-top>div>span{
-    font-size: 20px;
-    font-family: ns_m;
-    color: #0c0c0c;
-}
 /* 테이블 간 넓이 */
-.cancelTbl{
+.cancelRefundTbl{
 	width: 100%;
 	border-collapse: collapse;
 }
@@ -82,35 +30,52 @@
     padding: 0.75rem;
     border-top: 1px solid #dee2e6;
 }
+
+
+.content-info>.order{
+    width: 1000px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.content-info>.order>div{
+    float: left;
+}
+.content-info>.order:first-child>div{
+    height: 40px;
+}
+.cr-info-top>.info1{
+    text-align: center;
+   
+} 
+
 .info-main{
     border-bottom: 3px solid #ccc;
+   
 }
 .info-main>.info1{
     text-align: center;
     line-height: 150px;
-}
-.info-main>.info1>span{
-    text-align: center;
-    line-height: 150px;
     font-weight: bold;
 }
-/* .info-main>.info2>.info-img{
+.info-main>.info2>.info-img{
     margin: 25px;
+    float: left;
 }
 .info-main>.info2 img{
-    width: 90px;
-    height: 90px;
+     width: 100px;
+    height: 100px;
     border: 1px solid #ccc;
     box-sizing: border-box;
     border-radius: 5px;
-} 보류 */
+}
 .info-main>.info2{
     overflow: none;
     height: 150px;
 }
 
 .info-name{
-    padding: 45px 0px 50px 0px;
+    padding: 50px 0px 50px 0px;
+     text-align : left;
 }
 .info-name>span{
     font-family: ns_b;
@@ -123,31 +88,29 @@
 }
 
 .info-main>.info3{
-    text-align: center;
-    line-height: 150px;
-    font-size: 18px;
-    font-family: ns_r;
+    overflow: hidden;
+    padding : 60px 15px 60px 15px;
+    box-sizing: border-box;
 }
 
+.info-main>.info3>span{
+    width: 60px;
+    height: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
 .info-main>.info4{
     text-align: center;
-    line-height: 150px;
+    line-height: 140px;
     font-size: 18px;
     font-family: ns_r;
 }
 .info-main>.info5{
     text-align: center;
-    line-height: 150px;
     font-size: 18px;
+    font-weight: bold;
     font-family: ns_r;
 }
-.info-main>.info6{
-    text-align: center;
-    line-height: 150px;
-    font-size: 14px;
-    font-family: ns_r;
-}
-
 /* 취소 / 환불 페이지 */
 .cancel-way-content>h3{
     font-size: 20px;

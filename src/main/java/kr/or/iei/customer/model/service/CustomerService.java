@@ -129,7 +129,7 @@ public class CustomerService {
 	}
 
 	public List selectCancelRefundList(int customerNo) {
-		List crl = customerDao.selectcanCelList(customerNo);
+		List crl = customerDao.selectCancelRefundList(customerNo);
 		return crl;
 
 	}
@@ -141,6 +141,10 @@ public class CustomerService {
 	public int insertDeliver(Address a) {
 		int result = customerDao.insertDeliver(a);
 		return result;
+	}
+	public List cancelRefundapplication(int customerNo,int orderNo) {
+		List cr = customerDao.cancelRefundapplication(customerNo,orderNo);
+		return cr;
 	}
 
 }

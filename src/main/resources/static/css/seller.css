@@ -485,10 +485,6 @@
     text-align: center;
     line-height: 40px;
 }
-.info-top{
-    border-bottom: 3px solid #ccc;
-
-}
 .info-top>div>span{
     font-size: 20px;
     font-family: ns_m;
