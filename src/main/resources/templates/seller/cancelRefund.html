@@ -29,7 +29,7 @@
 							<th>처리버튼</th>
 						</tr>
 						<tr th:if="${cancelList.isEmpty()}">
-							<td colspan="4">
+							<td colspan="5">
 								취소/환불요청이 없습니다.
 							</td>
 						</tr>
@@ -44,12 +44,12 @@
 							</td>
 							<td  th:text="${cl.productName}">	
 							</td>
-							<td>
-								<span>취소/환불요청</span>
-							</td>
-							<td>
-								<button type="button" class="btn-del" onclick="cancelPrd()">취소/환불확인</button>
-								<!-- <a href="#">취소불가</a> -->
+							<td th:switch="${cl.orderState}">
+								<span th:case="5">취소/환불요청</span>							
+								<span th:case="6">처리완료</span>							
+							<td th:switch="${cl.orderState}">
+								<button th:case="5" type="button" class="btn-del" th:onclick="cancelPrd([[${cl.orderNo}]])">취소/환불확인</button>
+								<button th:case="6" type="button" class="btn-del">처리완료</button>
 							</td>
 						</tr>
 						
