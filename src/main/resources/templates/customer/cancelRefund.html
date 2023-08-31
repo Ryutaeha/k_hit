@@ -52,25 +52,15 @@
 				                 <!-- 취소 / 환불 페이지 -->
 		                <div class="cancel-way-wrap">
 		                    <div class="cancel-way-content">
-		                    <h3>취소 환불 사유</h3>
-		                    <hr>
-		                    <div class="cancel-way">
-		                        <span><input type="checkbox" class="res1">단순변심</span>
-		                        <span><input type="checkbox" class="res2">상품의 옵션을 잘못 선택함</span>
-		                        <span><input type="checkbox" class="res3">수량을 잘못 선택함</span>
-		                        <span><input type="checkbox" class="res4">상품 불량</span>
-		                        <span><input type="checkbox" class="res5">기타사유</span>
-		                        <textarea class="canceldescription">상세 사유를 입력해주세요.</textarea>
-		                    </div>
-		                    <div class="total-cancel-btn">
-		                        <button type="button">취소</button>
-		                        <form action="/seller/cancelRefund">
-								<input type="hidden" name="orderNo" th:value="${cancelRefund.orderNo}">		                        
-		                        <button type="submit" th:if="${cancelRefund.orderState}==1 && ${cancelRefund.orderState}==3">신청</button>
-		                        </form>
-		                    </div>
+			                    <div class="total-cancel-btn">
+			                        <form action="/seller/cancelRefund">
+			                        <button type="button" class="crBtn">취소</button>
+									<input type="hidden" name="orderNo" th:value=" ${cancelRefund[0].orderNo}">	<!-- ${cancelRefund.orderNo} -->	                        
+			                        <button type="submit" class="crBtn" th:if="${cancelRefund[0].orderState==1 || cancelRefund[0].orderState==3}">취소/환불</button>
+			                        </form>
+			                    </div>
 		                </div>
-		            </div>  <!-- cancel-wrap -->
+		            </div>  
 	    	</div>
 	    </div> 
 	<th:bolck th:include="common/footer"></th:bolck>

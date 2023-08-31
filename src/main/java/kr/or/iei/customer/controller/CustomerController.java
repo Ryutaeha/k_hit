@@ -2,6 +2,7 @@ package kr.or.iei.customer.controller;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import kr.or.iei.customer.model.vo.Address;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.Order;
-import kr.or.iei.customer.model.vo.WishListData;
 
 @Controller
 @RequestMapping("/customer")

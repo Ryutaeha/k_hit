@@ -239,7 +239,7 @@ public class SellerController {
 	}
 	//취소환불내역 페이지이동
 	@GetMapping(value="/cancelRefund")
-	public String concelRefundPage(Model model,@SessionAttribute(required = false) Seller s ) {
+	public String concelRefundPage(Model model,@SessionAttribute(required = false) Seller s) {
 		
 		CancelRefundData crd = sellerService.cancelList(s);
 		//System.out.println("list : "+list);
@@ -407,6 +407,7 @@ public class SellerController {
 	@GetMapping(value="/selling")
 	public String selling(@SessionAttribute(required = false)Seller s,Model model) {
 		List selling = sellerService.selectSelling(s.getSellerNo());
+		//int result = sellerService.updateOrderState(orderState);
 		model.addAttribute("sellingList", selling);
 		return "seller/selling";
 		

@@ -181,4 +181,9 @@ public class SellerDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
+
+	public int updateOrderState(int orderState) {
+		String query = "";
+		return 0;
+	}
 }

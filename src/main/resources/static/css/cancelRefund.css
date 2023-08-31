@@ -111,39 +111,7 @@
     font-weight: bold;
     font-family: ns_r;
 }
-/* 취소 / 환불 페이지 */
-.cancel-way-content>h3{
-    font-size: 20px;
-    padding-top: 30px;
-    padding-bottom: 20px;
-}
-.cancel-way-content>hr{
-    border: 2px solid #dee2e6;
-}
-.cancel-way{
-    padding : 50px 0px 50px 0px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 25px;
-}
-.cancel-way>span{
-    padding: 10px 0px 10px 0px;
-    text-align: left;
-    display: block;
-}
-.cancel-way>span>input{
-    display: inline;
-    line-height: 10px;
-    position: relative;
-    width: 20px;
-    height: 20px;
 
-}
-.canceldescription{
-    resize: none;
-    width: 1000px;
-    height: 200px;
-}
 /* 버튼 */
 .total-cancel-btn{
     text-align: center;
@@ -161,6 +129,22 @@
     border : none;
 }
 .total-cancel-btn>button:hover{
+    color: #fff;
+    background-color: #5e5e5e;
+    cursor: pointer;
+}
+.crBtn{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    width: 400px;
+    height: 60px;
+    background-color: #ccc;
+    color: #0c0c0c;
+    border-radius: 5px;
+    border : none;
+}
+.crBtn:hover{
     color: #fff;
     background-color: #5e5e5e;
     cursor: pointer;

@@ -4,6 +4,7 @@ import java.util.List;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,6 @@ import kr.or.iei.customer.model.vo.CartListRowMapper;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
 import kr.or.iei.customer.model.vo.OrderDetailRowMapper;
-import kr.or.iei.customer.model.vo.WishListRowMapper;
 import kr.or.iei.review.model.vo.ReviewListRowMapper;
 
 @Repository
@@ -31,8 +31,6 @@ public class CustomerDao {
 	@Autowired
 	private ReviewListRowMapper reviewListRowMapper;
 	@Autowired 
-	private WishListRowMapper wishListRowMapper;	
-	@Autowired
 	private CartListRowMapper cartListRowMapper;
 	@Autowired
 	private OrderDetailRowMapper orderDetailRowMapper;
@@ -85,12 +83,6 @@ public class CustomerDao {
 		Object[] params = {customerNo};
 		int result = jdbc.update(query,params);
 		return result;
-	}
-	//찜목록
-	public List selectWishList(int customerNo, int start, int end) {
-		String query = "select * from (select rownum as rnum, n.* from (select * from product_like where customer_no=? order by 1 desc)n) where rnum between ? and ?";
-		List list = jdbc.query(query, wishListRowMapper, customerNo, start, end);
-		return list;
 	}
 	//고객리뷰 전체 수
 	public int reviewTotalCount(String reviewWriter) {
