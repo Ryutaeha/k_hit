@@ -29,7 +29,7 @@
             <div class="content-view">
                 <div class="box">
                 <div class="modifybox">
-                    <form action="/admin/modifyGo" method="post">
+                    <form action="/admin/modifyGo" method="post" class="adminModify">
                     	<table>
                     		<tr>
                     			<th width="20%">
@@ -58,11 +58,7 @@
                     			전화번호
                     			</td>
                     			<td width="80%">
-                    			<input type="text" placeholder="010" required name="phone1" style="width: 20%"  maxlength='3'>
-                    			<span style="width: 5%">-</span>
-                    			<input type="text" placeholder="1234" required name="phone2" style="width: 35%"  maxlength='4'>
-                    			<span style="width: 5%">-</span>
-                    			<input type="text" placeholder="5678" required name="phone3" style="width: 35%"  maxlength='4'>
+                    			<input type="text" placeholder="010-1111-1111" required name="phone" style="width: 100%"  maxlength='13'>
                     			</td>
                     		</tr>
                     		<tr>
@@ -83,9 +79,9 @@
     <script>
     	$(".btnB").on('click',function(){
     		if($("[name=pw]").val()==$("[name=pwCk]").val()){
-    			console.log('dd')
+    			$(".btnS").click();
     		}else{
-    			
+    			alert("입력값을 확인하세요");
     		}
     	})
     </script>

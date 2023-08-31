@@ -85,6 +85,7 @@ function pModal(pNo){
 	   			checkP.append("<input type=hidden value="+data[0].productNo+" class = pNo name=productNo>");
 	   			$(".pModal").append(checkP);
 	   			$("#pCheck").val(data[0].productCheck);
+	   			$(".mContentDetailP img").css('width','100%')
 	   			
 	    	}
 	    }
@@ -230,7 +231,7 @@ function cModalB(cId){
 		dataType : "json",
 		success: function(data){
 			if(data.length==0){
-				$(".mProductO").append($("<h2>").append("등록한 상품이 없습니다"));
+				$(".mProductO").append($("<h2>").append("구매한 상품이 없습니다"));
 			}else{
 				for(var i =0;i<data.length;i++){
 					const div = $("<div style= 'padding: 10px 0; border: 1px solid black'>");

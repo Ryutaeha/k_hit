@@ -50,7 +50,7 @@ public class AdminController {
 			model.addAttribute("title","로그인 성공");
 			model.addAttribute("msg", "환영합니다.");
 			model.addAttribute("icon", "success");
-			model.addAttribute("loc", "/admin/adminIndex");		
+			model.addAttribute("loc", "/admin/member?memberCode=1&input=");		
 		}else {
 			model.addAttribute("title","로그인 실패");
 			model.addAttribute("msg", "아이디/비밀번호를 확인해 주세요.");
@@ -65,10 +65,7 @@ public class AdminController {
 		session.invalidate();
 		return "/admin/adminLogin";
 	}
-	@GetMapping(value = "/adminIndex")
-	public String adminIndex() {
-		return "/admin/adminIndex";
-	}
+
 	
 	@GetMapping(value = "/test")
 	public String test(Model model) {
@@ -310,4 +307,5 @@ public class AdminController {
 			return "common/msg";
 		}
 	}
+	
 }
