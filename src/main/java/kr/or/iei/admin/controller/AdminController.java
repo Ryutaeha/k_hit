@@ -41,6 +41,7 @@ public class AdminController {
 	public String adminLogin() {
 		return "/admin/adminLogin";
 	}
+	
 	@PostMapping(value = "/login")
 	public String login(String adminSignId, String adminSignPw, Model model,HttpSession session) {
 		Admin a = adminService.AdminLogin(adminSignId,adminSignPw);
@@ -57,6 +58,12 @@ public class AdminController {
 			model.addAttribute("loc", "/admin/adminLogin");
 		}
 		return "common/msg";
+	}
+	@GetMapping(value = "/logout")
+	public String logout(HttpSession session) {
+//		현재세션에 저장되어 있는 정보 파기
+		session.invalidate();
+		return "/admin/adminLogin";
 	}
 	@GetMapping(value = "/adminIndex")
 	public String adminIndex() {
@@ -272,6 +279,23 @@ public class AdminController {
 	@PostMapping(value = "/noticeDel")
 	public String noticeDel(int noticeNo,Model model) {
 		int result = adminService.noticeDel(noticeNo);
+		if(result!=0) {
+			model.addAttribute("title", "삭제완료");
+			model.addAttribute("msg", "공지사항 삭제 완료");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/noticeList?noticeFix=2&input=");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "삭제실패");
+			model.addAttribute("msg", "잠시후 시도해주세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/noticeList?noticeFix=2&input=");
+			return "common/msg";
+		}
+	}
+	@PostMapping(value = "/qnaAnswerDel")
+	public String qnaAnswerDel(int qnaCommentNo,Model model) {
+		int result = adminService.qnaAnswerDel(qnaCommentNo);
 		if(result!=0) {
 			model.addAttribute("title", "삭제완료");
 			model.addAttribute("msg", "공지사항 삭제 완료");

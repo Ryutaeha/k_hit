@@ -198,4 +198,9 @@ public class AdminDao {
 		String query = "DELETE FROM notice_tbl where notice_no = ?";
 		return jdbc.update(query,noticeNo);
 	}
+
+	public int qnaAnswerDel(int qnaCommentNo) {
+		String query = "DELETE FROM QUESTION_COMMENT_TBL where QUESTION_COMMENT_NO = ?";
+		return jdbc.update(query,qnaCommentNo);
+	}
 }

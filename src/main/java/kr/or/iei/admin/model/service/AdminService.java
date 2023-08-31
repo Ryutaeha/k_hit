@@ -137,5 +137,9 @@ public class AdminService {
 		return adminDao.noticeDel(noticeNo);
 	}
 
+	public int qnaAnswerDel(int qnaCommentNo) {
+		return adminDao.qnaAnswerDel(qnaCommentNo);
+	}
+
 	
 }

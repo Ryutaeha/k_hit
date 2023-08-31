@@ -239,7 +239,7 @@ function cModalB(cId){
 					div.append($("<span style='width: 30%; display: inline-block;'>").append(data[i].productPrice));
 					$(".mProductO").append(div);
 				}
-				}
+			}
 		}
 	})
 	
@@ -316,6 +316,7 @@ $(".qMenuSel").on('click',function(){
 function qModal(qNo){
 	$(".qModal>table").children().children().children().empty();
 	$(".qnaAnswer").empty()
+	$(".qnaAnswerDel").empty()	
 	$.ajax({
 		url : "/admin/qContent",
 		type : "post",
@@ -357,7 +358,7 @@ $.ajax({
 				$(".qnaAnswer").append($("<input type = submit value= 작성>"));
 			}else{
 				$(".mContentQC").append($("<h3>").append(data[0].questionContent));
-				$(".qnaAnswerDel").append($("<input type = hidden name = qnaNo value= "+data[0].questionCommentNo+">"));
+				$(".qnaAnswerDel").append($("<input type = hidden name = qnaCommentNo value= "+data[0].questionCommentNo+">"));
 				$(".qnaAnswerDel").append($("<input type = submit value= 삭제>"));
 				}
 			}
