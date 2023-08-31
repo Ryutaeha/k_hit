@@ -21,75 +21,23 @@
 				<div class="qnaFrm">
 					<ul class="qnaFrm-title-wrap">
 						<li class="qnaFrm-id">
-							<span>작성자 아이디</span>			
+							<span th:text="${q.questionSellWriter}+님"></span>			
 						</li>
 						<li class="qnaFrm-date">
-							<span>2023-00-00</span>
+							<span th:text="${q.questionDate}"></span>
 						</li>
 						<li class="qnaFrm-count">
 							<span>view : </span>
-							<span>count</span>
+							<span th:text="${q.questionReadCount}"></span>
 						</li>
 					</ul>
 						<div class="qnaFrm-title">
-							<span>문의사항 제목</span>
+							<span th:text="${q.questionTitle}"></span>
 						</div>
-						<div class="qnaFrm-content">							
-								문의내용문의내용			
+						<div class="qnaFrm-content" th:text="${q.questionContent}">
+										
 						</div>
-						<div class="qnaFrm-comment">
-							<div class="inputCommentBox" th:if="${session.c == null}">
-								<ul>
-									<li>
-										<textarea name="reviewCommentContent" class="comment-input-form" placeholder="댓글을 입력해 주세요."></textarea>
-									</li>
-									<li>
-										<button type="button" class="btn2" onclick="loginMsg();">댓글등록</button>
-									</li>
-								</ul>
-							</div>
-							<div class="inputCommentBox" th:if="${session.c != null}">
-								<form action="/review/insertComment" method="post">
-									<ul>
-										<li>
-											<input type="hidden" name="reviewCommentWriter" th:value="${session.c.customerId}">
-											<input type="hidden" name="reviewRef" th:value="${r.reviewNo}">
-											<textarea name="reviewCommentContent" class="comment-input-form" placeholder="댓글을 입력해 주세요."></textarea>
-										</li>
-										<li>
-											<button type="submit" class="btn2">댓글등록</button>
-										</li>
-									</ul>
-								</form>
-							</div>
-						</div>
-
-						<div class="qnaFrm-comment-box">
-							<th:block th:each="rc : ${comment}">
-                        	<!-- 댓글 -->
-                            <ul class="posting-comment comment-first">
-                                <li class="comment-view">
-                                    <p class="comment-info">
-                                        <span th:text="${rc.reviewCommentWriter}"></span>
-                                        <span>|</span>                                           
-                                        <span th:text="${rc.reviewCommentDate}"></span>
-                                    </p>
-                                    <div class="review-comment-content" th:text="${rc.reviewCommentContent}"></div>
-                                    <textarea name="reviewCommentContent" class="review-recomment-input" style="min-height:60px; width:620px; display:none;" th:text="${rc.reviewCommentContent}"></textarea>
-                                    <p class="comment-link">
-                                    	<a href="javascript:void(0)" class="recShow" onclick="loginMsg();" th:if="${session.c == null}">답글달기</a>
-                                    <th:block th:if="${session.c != null}">
-                                    	<a href="javascript:void(0)" class="recShow recShow2">답글달기</a>
-                                        <th:block th:if="${session.c.customerId == rc.reviewCommentWriter}">
-                                        <a href="javascript:void(0);" th:onclick="modifyComment(this,[[${rc.reviewCommentNo}]],[[${r.reviewNo}]]);">수정</a>
-                                        <a href="javascript:void(0);" th:onclick="deleteComment(this,[[${rc.reviewCommentNo}]],[[${r.reviewNo}]]);">삭제</a>
-                                        </th:block>
-                                    </th:block>                                        
-                                    </p>
-                                </li>
-                            </ul>
-							</th:block>
-						</div>
+						
 				</div>				
 			</div>
 		</div>
@@ -101,7 +49,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 	<script>
-		
+	
 		//답글달기 취소버튼
 		$(".recShow2").on("click",function(){
 			const index = $(".recShow").index(this);

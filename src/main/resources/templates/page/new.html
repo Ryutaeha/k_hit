@@ -25,7 +25,7 @@
 						<div class="item_list_box">
 							<div class="tumbnail">								
 								<a href="#">
-									<img src="/img/others/profile.png">
+									<img th:src="'/seller/' + ${list.productImg}">
 								</a>
 													
 							</div>
@@ -44,25 +44,11 @@
 										<span th:text="${#numbers.formatInteger(newPrd.productPrice,3,'COMMA')+'원'}"></span>
 									</li>
 									<li class="review">
-										<a href="#" th:if="${reviewContent} == null">
-											<span class="material-icons star star-b">star</span>
-											<span class="material-icons star star-b">star</span>
-											<span class="material-icons star star-b">star</span>
-											<span class="material-icons star star-b">star</span>
-											<span class="material-icons star star-b">star</span>
-										</a>
-										<a href="#" th:if="${reviewContent} != null">
-											<span class="material-icons star">star</span>
-											<span class="material-icons star">star</span>
-											<span class="material-icons star">star</span>
-											<span class="material-icons star">star</span>
-											<span class="material-icons star">star</span>
-										</a>
+										
+										
 										
 										<a href="#" th:if="${reviewContent} != null">
-											<span class="review_content">
-												리뷰내용리뷰내용리뷰내용
-											</span>
+											
 										</a>
 									</li>
 								</ul>

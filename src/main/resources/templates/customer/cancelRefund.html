@@ -49,13 +49,13 @@
                             </tr>
                         </table>
                     </div>
-				                 <!-- 취소 / 환불 페이지 -->
+				       <!-- 취소 / 환불 페이지 -->
 		                <div class="cancel-way-wrap">
 		                    <div class="cancel-way-content">
 			                    <div class="total-cancel-btn">
-			                        <form action="/seller/cancelRefund">
+			                        <form action="/seller/cancelRefundBtn">
 			                        <button type="button" class="crBtn">취소</button>
-									<input type="hidden" name="orderNo" th:value=" ${cancelRefund[0].orderNo}">	<!-- ${cancelRefund.orderNo} -->	                        
+									<input type="hidden" name="orderNo" th:value=" ${cancelRefund[0].orderNo}">                    
 			                        <button type="submit" class="crBtn" th:if="${cancelRefund[0].orderState==1 || cancelRefund[0].orderState==3}">취소/환불</button>
 			                        </form>
 			                    </div>

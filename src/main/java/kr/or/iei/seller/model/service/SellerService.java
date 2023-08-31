@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.product.model.vo.Product;
@@ -255,10 +256,19 @@ public class SellerService {
 		return selling;
 	}
 
-	public int updateOrderState(int orderState) {
-		int result = sellerDao.updateOrderState(orderState);
-		return 0;
+	@Transactional
+	public int cancelRefundBtn(int orderNo) {
+		int result = sellerDao.cancelRefundBtn(orderNo);
+		// TODO Auto-generated method stub
+		return result;
 	}
+	
+	@Transactional
+	public int updateOrderState(int orderState, int orderNo) {
+		int result =  sellerDao.updateOrderState(orderState,orderNo);
+		return result;
+	}
+	
 
 	
 

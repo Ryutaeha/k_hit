@@ -43,7 +43,7 @@
 									
 									</span>
 										<a href="#">
-											<img src="/img/others/profile.png">
+											<img th:src="'/seller/' + ${list.productImg}">
 										</a>											
 									</div>
 								</div>
@@ -61,17 +61,9 @@
 												<span th:text="${#numbers.formatInteger(list.productPrice,3,'COMMA')+'원'}"></span>
 											</li>
 											<li class="review">
+												
 												<a href="#">
-													<span class="material-icons star">star</span>
-													<span class="material-icons star">star</span>
-													<span class="material-icons star">star</span>
-													<span class="material-icons star">star</span>
-													<span class="material-icons star">star</span>
-												</a>
-												<a href="#">
-													<span class="review_content">
-														리뷰내용리뷰내용리뷰내용
-													</span>
+													
 												</a>
 											</li>
 										</ul>
@@ -94,7 +86,7 @@
 								 
 								</span>
 									<a href="#">
-										<img src="/img/others/profile.png">
+										<img th:src="'/seller/' + ${newPrd.productImg}">
 									</a>
 									
 																		
@@ -114,17 +106,9 @@
 											<span th:text="${#numbers.formatInteger(newPrd.productPrice,3,'COMMA')+'원'}"></span>
 										</li>
 										<li class="review">
+											
 											<a href="#">
-												<span class="material-icons star">star</span>
-												<span class="material-icons star">star</span>
-												<span class="material-icons star">star</span>
-												<span class="material-icons star">star</span>
-												<span class="material-icons star">star</span>
-											</a>
-											<a href="#">
-												<span class="review_content">
-													리뷰내용리뷰내용리뷰내용
-												</span>
+												
 											</a>
 										</li>
 									</ul>

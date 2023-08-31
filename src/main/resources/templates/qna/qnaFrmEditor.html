@@ -21,23 +21,20 @@
 				<div class="qnaFrm">
 					
 					<div class="info-wrap">
-						<form action="/qna/qnaWrite" method="post" enctype="multipart/form-data">
-																			
+						<form action="/qna/qnaWrite" method="post" enctype="multipart/form-data">															
 							
-								<table class="input-tbl qna-a"> 
-									
+								<table class="input-tbl qna-a"> 									
 									<tr class="input-tr">
 										<th>아이디</th>
 										<td>
-											<input type="text" th:value="${session.s.sellerId}" readonly>
-											
+											<input type="text" th:if="${session.s !=null}" th:value="${session.s.sellerId}"  th:name="${session.s.sellerId}" readonly>
+											<input type="text" th:if="${session.c !=null}" th:value="${session.c.customerId}"  th:name="${session.c.customerId}" readonly>											
 										</td>
 									</tr>			
 									<tr class="input-tr">
 										<th>문의제목<span>*</span></th>
 										<td>
-											<input type="text" name="questionTitle" required>
-											
+											<input type="text" name="questionTitle" required>											
 										</td>
 									</tr>
 									<tr class="input-tr">
