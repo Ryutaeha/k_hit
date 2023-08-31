@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+	.modifybox{
+		width: 600px;
+		margin: auto;
+	}
+	input{
+		text-align: center;
+	}
+	.btnB{
+		width: 100px;
+		margin: 10px auto;
+    	display: block;
+	}
+</style>
 </head>
 <body>
     <div class="admin-wrap">
@@ -14,14 +28,21 @@
             </div>
             <div class="content-view">
                 <div class="box">
+                <div class="modifybox">
                     <form action="/admin/modifyGo" method="post">
                     	<table>
+                    		<tr>
+                    			<th width="20%">
+                    			</th>
+                    			<th width="80%">
+                    			</th>
+                    		</tr>
                     		<tr>
                     			<td>
                     			비밀번호
                     			</td>
                     			<td>
-                    			<input type="password" placeholder="변경할 비밀번호 입력" required name="pw">
+                    			<input type="password" placeholder="변경할 비밀번호 입력" required name="pw" style="width: 100%">
                     			</td>
                     		</tr>
                     		<tr>
@@ -29,28 +50,44 @@
                     			비밀번호 확인
                     			</td>
                     			<td>
-                    			<input type="password" placeholder="비밀번호 다시 입력" required name="pwCk">
+                    			<input type="password" placeholder="비밀번호 다시 입력" required name="pwCk" style="width: 100%">
                     			</td>
                     		</tr>
                     		<tr>
-                    			<td>
+                    			<td width="20%">
                     			전화번호
                     			</td>
-                    			<td>
-                    			<input type="text" placeholder="변경할 전화번호 입력" required name="phone">
+                    			<td width="80%">
+                    			<input type="text" placeholder="010" required name="phone1" style="width: 20%"  maxlength='3'>
+                    			<span style="width: 5%">-</span>
+                    			<input type="text" placeholder="1234" required name="phone2" style="width: 35%"  maxlength='4'>
+                    			<span style="width: 5%">-</span>
+                    			<input type="text" placeholder="5678" required name="phone3" style="width: 35%"  maxlength='4'>
                     			</td>
                     		</tr>
                     		<tr>
                     			<td colspan="2">
-                    				<input type="submit" value="변경">
+                    				<input type="button" value="변경" class="btnB">
+                    				<input type="submit" value="변경" style="display: none;" class="btnS">
+                    				
                     			</td>
                     		</tr>
                     	</table>
                     </form>
                 </div>
+                </div>
             </div>
         </div>
     </div>
     <script src="/js/admin.js"></script>
+    <script>
+    	$(".btnB").on('click',function(){
+    		if($("[name=pw]").val()==$("[name=pwCk]").val()){
+    			console.log('dd')
+    		}else{
+    			
+    		}
+    	})
+    </script>
 </body>
 </html>
