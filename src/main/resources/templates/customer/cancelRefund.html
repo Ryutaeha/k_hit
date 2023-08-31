@@ -66,7 +66,7 @@
 		                        <button type="button">취소</button>
 		                        <form action="/seller/cancelRefund">
 								<input type="hidden" name="orderNo" th:value="${cancelRefund.orderNo}">		                        
-		                        <button type="submit" th:if="${cancelRefund.orderState==1 && cancelRefund.orderState==3}">신청</button>
+		                        <button type="submit" th:if="${cancelRefund.orderState}==1 && ${cancelRefund.orderState}==3">신청</button>
 		                        </form>
 		                    </div>
 		                </div>
