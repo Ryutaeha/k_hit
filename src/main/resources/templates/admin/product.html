@@ -38,8 +38,8 @@
                     		<td th:text="${product.productName}" style="width: 40%"></td>
                     		<td style="width: 20%"><a th:text="${product.sellerId}" href="javascript:void(0);" class="seller-menu sMenu"></a></td>
                     		<td th:text="${product.categoryName}" style="width: 20%"></td>
-                    		<td th:if="${product.productCheck}==1" style="width: 10%">판매중</td>
-                    		<td th:if="${product.productCheck}==2" style="width: 10%">검수중</td>
+                    		<td th:if="${product.productCheck}==1" style="width: 10%">검수중</td>
+                    		<td th:if="${product.productCheck}==2" style="width: 10%">판매중</td>
                     		<td th:if="${product.productCheck}==3" style="width: 10%">반려</td>
                     		<td th:if="${product.productCheck}==4" style="width: 10%">판매중지</td>
                     	</tr>

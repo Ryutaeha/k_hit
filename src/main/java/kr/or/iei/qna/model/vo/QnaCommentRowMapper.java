@@ -8,18 +8,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class QnaCommentRowMapper implements RowMapper<QnaComment>{
-
 	@Override
 	public QnaComment mapRow(ResultSet rs, int rowNum) throws SQLException {
 		QnaComment qc = new QnaComment();
-		qc.setQnaCommentNo(rs.getInt("qna_comment_no"));
-		qc.setQnaCommentWriter(rs.getString("qna_comment_writer"));
-		qc.setQnaCommentContent(rs.getString("qna_comment_content"));
-		qc.setQnaCommentDate(rs.getString("qna_comment_date"));
-		qc.setQnaRef(rs.getInt("qna_ref"));
-		qc.setQnaCommentRef(rs.getInt("qna_comment_ref"));
+		qc.setQuestionCommentNo(rs.getInt("QUESTION_COMMENT_NO"));
+		qc.setQuestionNo(rs.getInt("QUESTION_NO"));
+		qc.setQuestionWriter(rs.getString("QUESTION_WRITER"));
+		qc.setQuestionContent(rs.getString("QUESTION_CONTENT"));
+		qc.setQuestionDate(rs.getString("QUESTION_DATE"));
 		return qc;
 	}
-	
 
 }
