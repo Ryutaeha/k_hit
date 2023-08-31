@@ -14,15 +14,6 @@
     letter-spacing: 3px;
 }
 
-/*
-.content-date{
-    padding: 20px 20px 20px 0px;
-}
-.content-date>span{
-    color: #272829;
-    font-weight: bold;
-}
-*/
 
 /* 테이블 간 넓이 */
 .orderListTbl{
@@ -58,24 +49,10 @@
 .content-info>.order:first-child>div{
     height: 40px;
 }
-.info-top>.info1{
+.info-top1>.info1{
     text-align: center;
    
 } 
-
-.info-top>div{
-    text-align: center;
-    line-height: 40px;
-}
-.info-top{
-    border-bottom: 3px solid #ccc;
-
-}
-.info-top>div>span{
-    font-size: 20px;
-    font-family: ns_m;
-    color: #0c0c0c;
-}
 
 .info-main{
     border-bottom: 3px solid #ccc;
@@ -156,7 +133,7 @@
 }
 
 
-/* 더보기 버튼 */
+/* 더보기 버튼
 .order-info-bottom{
     text-align: center;
     padding-top: 50px;
@@ -189,7 +166,7 @@
     font-size: 30px;
     text-align: right;
 }
-/* modal css */
+/* modal css 
 body{
     margin: 0;
 }
@@ -255,3 +232,4 @@ body{
     border-radius: 5px;
     background-color: #61677A;
 }
+*/

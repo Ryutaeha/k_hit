@@ -23,7 +23,7 @@
                             <th class="info2">상품정보</th>
                             <th class="info3">수량</th>
                             <th class="info4">상품금액</th>
-                            <th class="info5">처리상태</th>
+                            <th class="info5">주문상태</th>
                     </tr>
                     <tr class="tbl info-main" th:each="orderList : ${orderList}">
                             <th class="info1">
@@ -31,7 +31,7 @@
                             </th>
                             <th class="info2">
                                  <div class="info-img">
-                                    <img th:src="'/orderList/'+${orderList.productImg}">
+                                    <img th:src="'/product/'+${orderList.productImg}">
                                 </div> 
                                 <div class="info-name">
                                     <span th:text="${orderList.productName}">상품이름</span>
@@ -42,13 +42,23 @@
                                 <span th:text="${orderList.orderCount}">0개</span>
                             </th>
                             <th class="info4"><span th:text="${orderList.productPrice}">3800원</span></th>
-                            <th class="info5"><span th:text="${orderList.orderState}">상품준비중</span></th>
-                    </tr>
+                            <th class="info5" th:switch="${orderList.orderState}">
+                            	 <span th:case="1">상품준비중</span>
+                            	 <form action="/customer/cancelRefund">
+                            	 <input type="hidden" name="orderNo" th:value="${orderList.orderNo}">
+                                 <button type="submit" class="cancelRefundBtn" th:if="${orderList.orderState==1}" style="width:150px;  border: none; border-radius: 5px; cursor:pointer;">취소/환불 접수</button>
+                                 </form>
+                                 <span th:case="2">배송중</span>
+                            	 <span th:case="3">배송완료</span>
+                                 <span th:case="4">구매확정</span>
+                                 <form action="/review/reviewWriteFrm">
+                                 <input type="hidden" name="orderNo" th:value="${orderList.orderNo}">
+                                 <button type="submit" class="reviewBtn" th:if="${orderList.orderState==4}" style="width:150px;  border: none; border-radius: 5px; cursor:pointer;">리뷰작성 하러가기</button>
+                                 </form>
+                            </th>
+                    	</tr>
                 </table>
             </div>
-            <!-- <div class="order-info-bottom">
-                <button type="button">더보기</button>
-            </div> -->
         </div>
     </div>
 	<th:bolck th:include="common/footer"></th:bolck>
