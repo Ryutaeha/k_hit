@@ -255,6 +255,11 @@ public class SellerService {
 		return selling;
 	}
 
+	public int updateOrderState(int orderState) {
+		int result = sellerDao.updateOrderState(orderState);
+		return 0;
+	}
+
 	
 
 	

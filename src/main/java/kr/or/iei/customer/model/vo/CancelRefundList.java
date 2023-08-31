@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDetail {
+public class CancelRefundList {
 	private int customerNo;
 	private String orderListDate;
 	private String productImg;

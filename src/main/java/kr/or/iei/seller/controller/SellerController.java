@@ -239,7 +239,7 @@ public class SellerController {
 	}
 	//취소환불내역 페이지이동
 	@GetMapping(value="/cancelRefund")
-	public String concelRefundPage(Model model,@SessionAttribute(required = false) Seller s ) {
+	public String concelRefundPage(Model model,@SessionAttribute(required = false) Seller s) {
 		
 		CancelRefundData crd = sellerService.cancelList(s);
 		//System.out.println("list : "+list);
@@ -386,15 +386,28 @@ public class SellerController {
 
 	//취소요청확인
 	@GetMapping(value = "/cancelPrd")
-	public String cancelPrd(int orderNo) {
+	public String cancelPrd(int orderNo,Model model) {
 		int result = sellerService.cancelPrd(orderNo);
-		return "/";
-
+		if(result>0) {
+			model.addAttribute("title", "처리완료");
+			model.addAttribute("msg", "취소/환불처리를 완료되었습니다.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/seller/cancelRefund");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "처리실패");
+			model.addAttribute("msg", "취소/환불처리를 실패했습니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/seller/cancelRefund");
+			return "common/msg";
+		}
+		
 	}
 	//판매자 판매내역
 	@GetMapping(value="/selling")
 	public String selling(@SessionAttribute(required = false)Seller s,Model model) {
 		List selling = sellerService.selectSelling(s.getSellerNo());
+		//int result = sellerService.updateOrderState(orderState);
 		model.addAttribute("sellingList", selling);
 		return "seller/selling";
 		

@@ -1,5 +1,7 @@
 package kr.or.iei.seller.model.vo;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,4 +21,6 @@ public class Seller {
 	private String sellerIntroduce;
 	private String sellerEnrollDate;
 	private int memberCode;
+	private List fileList;
+	
 }
