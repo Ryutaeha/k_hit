@@ -80,6 +80,11 @@ public class ProductService {
 		return pdld;
 	}
 
+	public int addCart(int productOptionNo, int selectOptionStock, int customerNo) {
+		int result = productDao.addCart(productOptionNo, selectOptionStock, customerNo);
+		return result;
+	}
+
 	
 
 }

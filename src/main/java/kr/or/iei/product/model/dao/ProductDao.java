@@ -91,4 +91,11 @@ public class ProductDao {
 		return sellerImg;
 	}
 
+	public int addCart(int productOptionNo, int selectOptionStock, int customerNo) {
+		String query = "INSERT INTO CART_TBL VALUES(CART_SEQ.NEXTVAL,?,?,?)";
+		Object[] params = {customerNo,productOptionNo,selectOptionStock};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
 }

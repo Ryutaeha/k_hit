@@ -101,6 +101,20 @@ public class CustomerService {
 		int result = customerDao.updateDeliver(a);
 		return result;
 	}
+	
+	@Transactional
+	public int insertOrderInfo(int[] cartNo, int addressNo) {
+		int result = customerDao.insertOrderList();
+		if(result>0) {
+			int orderListNo = customerDao.getOrderList();
+			for(int i=0;i<cartNo.length;i++) {
+				Cart c = customerDao.searchCartOrder(cartNo[i]);
+				result += customerDao.insertOrder(c,orderListNo,addressNo);
+				result += customerDao.cartDelete(c.getCartNo());
+			}
+		}
+		return result;
+	}
 
 }
 

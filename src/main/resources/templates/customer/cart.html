@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/css/cart.css">
 <link rel="stylesheet" href="/css/seller.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -14,191 +15,191 @@
 			<span class="move">CART</span>
 		</div>
 		<div class="cart-wrap">
-		        <!-- 페이지 제목 -->
-		        
-		        <!-- 장바구니 내용 -->
-		        <!--  <form action="" method="post"> --> 
-
-			<div class="cart-content">
-				<div class="content-info">
-					<table class="cartTbl info-top">
-						<tr class="tbl-top">
-							<th class="info1">선택</th>
-							<th class="info2">상품정보</th>
-							<th class="info3">수량</th>
-							<th class="info4">상품금액</th>
-							<th class="info5">배송비</th>
-							<th class="info6"></th>
-						</tr>
-						<tr class="tbl info-main" th:each="cl : ${cartList}">
-							<th class="info1"><input type="checkbox" id="useCheck"
-								class="check"></th>
-							<th class="info2">
-								<div class="info-img">
-									<img th:src="${cl.productImg}">
-								</div>
-								<div class="info-name">
-									<span th:text="${cl.productName}"></span>
-									<div>
-										<span th:text="${cl.optionSize}"></span><span> / </span><span
-											th:text="${cl.optionColor}"></span>
+			<form action="/customer/payment" method="post" id="cartForm"> 
+				<div class="cart-content">
+					<div class="content-info">
+						<table class="cartTbl info-top">
+							<tr class="tbl-top">
+								<th class="info1">선택</th>
+								<th class="info2">상품정보</th>
+								<th class="info3">수량</th>
+								<th class="info4">상품금액</th>
+								<th class="info5">배송비</th>
+								<th class="info6"></th>
+							</tr>
+							<tr class="tbl info-main" th:each="cl : ${cartList}">
+								<th class="info1"><input type="checkbox" name="cartNo" id="useCheck" th:value="${cl.cartNo}"
+									class="check"></th>
+								<th class="info2">
+									<div class="info-img">
+										<img th:src="${cl.productImg}">
 									</div>
-								</div>
-							</th>
-							<th class="info3">
-								<div th:text="${cl.cartCount}"></div>
-							</th>
-							<th class="info4" th:text="${cl.productPrice}*${cl.cartCount}+원"></th>
-							<th class="info5"><span>0 원</span></th>
-							<th class="info6"><span class="material-icons"
-								th:onclick="cartDelete(this,[[${cl.cartNo}]]);">close</span></th>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<!-- 장바구니 전체 선택 및 버튼 -->
-			<div class="info-bottom">
-				<div>
-					<input type="checkbox" class="allCheck" id="allCheck">
-				</div>
-				<label for="allCheck">전체선택</label>
-			</div>
-			<!-- 결제 금액 확인 -->
-			<div class="content-amount">
-				<div class="amount product">
-					<div>상품금액</div>
-					<div>
-						<span class="paymentPrice">0</span><span>원</span>
-					</div>
-				</div>
-				<div class="sign">
-					<span class="material-icons">add</span>
-				</div>
-				<div class="amount delivery">
-					<div>배송비</div>
-					<div>
-						<span>0원</span>
-					</div>
-				</div>
-				<div class="sign">
-					<span class="material-icons">double_arrow</span>
-				</div>
-				<div class="order">
-					<div>
-						<span>결제 예정 금액</span>
-					</div>
-					<div>
-						<span class="paymentPrice">0</span><span>원</span>
-					</div>
-				</div>
-			</div>
-			<!-- 주문자 정보 -->
-			<div class="customer-info">
-				<div class="customer-info-title infoTitle">주문자 정보</div>
-				<div class="customer-info-content">
-					<table>
-						<tr class="tr">
-							<th>주문고객</th>
-							<td th:text="${session.c.customerId}"></td>
-						</tr>
-						<tr class="tr">
-							<th>전화번호</th>
-							<td th:text="${session.c.customerPhone}"></td>
-						</tr>
-						<tr class="tr">
-							<th>이메일</th>
-							<td th:text="${session.c.customerEmail}"></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<!-- 배송지 정보 -->
-			<div class="customer-info">
-				<div class="deliver-info-title infoTitle">배송 정보</div>
-				<!-- 신규입력 -->
-				<div class="customer-info-content" th:if="${a == null}">
-					<div class="deliver-title" id="newInputTitle">신규 입력</div>
-					<div class="new-deliver-info">
-						<table class="input-tbl">
-							<tr class="input-tr addrTr">
-								<th>수령인</th>
-								<td><input type="text" name="addressName" id="name"
-									class="deliverInput" placeholder="이름을 입력해 주세요"></td>
-							</tr>
-							<tr class="input-tr1 addrTr">
-								<th>전화번호</th>
-								<td><input type="text" name="addressPhone" id="phone"
-									class="deliverInput" placeholder="전화번호를 입력해 주세요"></td>
-							</tr>
-							<tr class="input-tr2 addrTr">
-								<th rowspan="3">주소</th>
-								<td><input type="text" name="addressPostalCode"
-									class="deliverInput dShortInput" id="postalCode"
-									placeholder="우편번호">
-									<button type="button" class="searchBtn"
-										onclick="searchAddress();">주소찾기</button></td>
-							</tr>
-							<tr class="input-tr2">
-								<td><input type="text" name="addressSimple"
-									class="deliverInput" id="address" placeholder="주소"></td>
-							</tr>
-							<tr class="input-tr2">
-								<td><input type="text" name="addressDetails"
-									class="deliverInput" id="detail" placeholder="상세주소를 입력해 주세요"></td>
+									<div class="info-name">
+										<span th:text="${cl.productName}"></span>
+										<div>
+											<span th:text="${cl.optionSize}"></span><span> / </span><span
+												th:text="${cl.optionColor}"></span>
+										</div>
+									</div>
+								</th>
+								<th class="info3">
+									<div th:text="${cl.cartCount}"></div>
+								</th>
+								<th class="info4" th:text="${cl.productPrice}*${cl.cartCount}+원"></th>
+								<th class="info5"><span>0 원</span></th>
+								<th class="info6"><span class="material-icons"
+									th:onclick="cartDelete(this,[[${cl.cartNo}]]);">close</span></th>
 							</tr>
 						</table>
-						<div class="submitBtn-wrap">
-							<input type="button" value="배송지 입력" th:onclick="inputDeliver(this,[[${session.c.customerNo}]]);">
+					</div>
+				</div>
+				<!-- 장바구니 전체 선택 및 버튼 -->
+				<div class="info-bottom">
+					<div>
+						<input type="checkbox" class="allCheck" id="allCheck">
+					</div>
+					<label for="allCheck">전체선택</label>
+				</div>
+				<!-- 결제 금액 확인 -->
+				<div class="content-amount">
+					<div class="amount product">
+						<div>상품금액</div>
+						<div>
+							<span class="paymentPrice" id="paymentPrice">0</span><span>원</span>
+						</div>
+					</div>
+					<div class="sign">
+						<span class="material-icons">add</span>
+					</div>
+					<div class="amount delivery">
+						<div>배송비</div>
+						<div>
+							<span>0원</span>
+						</div>
+					</div>
+					<div class="sign">
+						<span class="material-icons">double_arrow</span>
+					</div>
+					<div class="order">
+						<div>
+							<span>결제 예정 금액</span>
+						</div>
+						<div>
+							<span class="paymentPrice">0</span><span>원</span>
 						</div>
 					</div>
 				</div>
-				<!-- 기본배송지 -->
-				<div class="customer-info-content" th:if="${a != null}">
-					<div class="deliver-title updateInputTitle">기본 배송지</div>
-					<div class="new-deliver-info">
-						<table class="input-tbl">
-							<tr class="input-tr addrTr">
-								<th>수령인</th>
-								<td><input type="text" name="addressName" id="updateName"
-									class="deliverInput" th:value="${a.addressName}" readonly></td>
+				<!-- 주문자 정보 -->
+				<div class="customer-info">
+					<div class="customer-info-title infoTitle">주문자 정보</div>
+					<div class="customer-info-content">
+						<table>
+							<tr class="tr">
+								<th>주문고객</th>
+								<td th:text="${session.c.customerId}"></td>
 							</tr>
-							<tr class="input-tr1 addrTr">
+							<tr class="tr">
 								<th>전화번호</th>
-								<td><input type="text" name="addressPhone" id="updatePhone"
-									class="deliverInput" th:value="${a.addressPhone}" readonly></td>
+								<td th:text="${session.c.customerPhone}"></td>
 							</tr>
-							<tr class="input-tr2 addrTr">
-								<th rowspan="3">주소</th>
-								<td><input type="text" name="addressPostalCode"
-									class="deliverInput dShortInput" id="updatePostalCode"
-									th:value="${a.addressPostalCode}" readonly>
-									<button type="button" class="searchBtn" style="display:none";
-										onclick="searchAddress();">주소찾기</button></td>
-							</tr>
-							<tr class="input-tr2">
-								<td><input type="text" name="addressSimple"
-									class="deliverInput" id="updateAddress" th:value="${a.addressSimple}" readonly></td>
-							</tr>
-							<tr class="input-tr2">
-								<td><input type="text" name="addressDetails"
-									class="deliverInput" id="updateDetail" th:value="${a.addressDetail}" readonly></td>
+							<tr class="tr">
+								<th>이메일</th>
+								<td th:text="${session.c.customerEmail}"></td>
 							</tr>
 						</table>
-						<div class="submitBtn-wrap">
-							<button type="button" id="updateDeliverFrm">정보 수정</button>
-							<button type="button" style="display:none" th:onclick="updateDeliver(this,[[${session.c.customerNo}]]);">배송지 수정</button>
-						</div>
 					</div>
 				</div>
-			</div>	
-				
-			<div class="content-bottom">
-				<button type="button" class="keepShopping">계속 쇼핑하기</button>
-				<button type="button" class="payment">구매하기</button>
-			</div>
+				<!-- 배송지 정보 -->
+				<div class="customer-info">
+					<div class="deliver-info-title infoTitle">배송 정보</div>
+					<!-- 신규입력 -->
+					<div class="customer-info-content" th:if="${a == null}">
+						<div class="deliver-title" id="newInputTitle">신규 입력</div>
+						<div class="new-deliver-info">
+							<table class="input-tbl">
+								<tr class="input-tr addrTr">
+									<th>수령인</th>
+									<td><input type="text" name="addressName" id="name"
+										class="deliverInput" placeholder="이름을 입력해 주세요" required></td>
+								</tr>
+								<tr class="input-tr1 addrTr">
+									<th>전화번호</th>
+									<td><input type="text" name="addressPhone" id="phone"
+										class="deliverInput" placeholder="전화번호를 입력해 주세요" required></td>
+								</tr>
+								<tr class="input-tr2 addrTr">
+									<th rowspan="3">주소</th>
+									<td><input type="text" name="addressPostalCode"
+										class="deliverInput dShortInput" id="postalCode"
+										placeholder="우편번호" required>
+										<button type="button" class="searchBtn"
+											onclick="searchAddress();">주소찾기</button></td>
+								</tr>
+								<tr class="input-tr2">
+									<td><input type="text" name="addressSimple"
+										class="deliverInput" id="address" placeholder="주소"></td>
+								</tr>
+								<tr class="input-tr2">
+									<td><input type="text" name="addressDetail"
+										class="deliverInput" id="detail" placeholder="상세주소를 입력해 주세요" required></td>
+								</tr>
+							</table>
+							<div class="submitBtn-wrap">
+								<input type="button" value="배송지 입력" th:onclick="inputDeliver(this,[[${session.c.customerNo}]]);">
+							</div>
+						</div>
+					</div>
+					<!-- 기본배송지 -->
+					<div class="customer-info-content" th:if="${a != null}">
+						<div class="deliver-title updateInputTitle">기본 배송지</div>
+						<div class="new-deliver-info">
+							<table class="input-tbl">
+								<tr class="input-tr addrTr">
+									<th>수령인</th>
+									<td><input type="text" name="addressName" id="updateName"
+										class="deliverInput" th:value="${a.addressName}" readonly></td>
+								</tr>
+								<tr class="input-tr1 addrTr">
+									<th>전화번호</th>
+									<td><input type="text" name="addressPhone" id="updatePhone"
+										class="deliverInput" th:value="${a.addressPhone}" readonly></td>
+								</tr>
+								<tr class="input-tr2 addrTr">
+									<th rowspan="3">주소</th>
+									<td><input type="text" name="addressPostalCode"
+										class="deliverInput dShortInput" id="updatePostalCode"
+										th:value="${a.addressPostalCode}" readonly>
+										<button type="button" class="searchBtn" style="display:none";
+											onclick="searchAddress();">주소찾기</button></td>
+								</tr>
+								<tr class="input-tr2">
+									<td><input type="text" name="addressSimple"
+										class="deliverInput" id="updateAddress" th:value="${a.addressSimple}" readonly></td>
+								</tr>
+								<tr class="input-tr2">
+									<td><input type="text" name="addressDetail"
+										class="deliverInput" id="updateDetail" th:value="${a.addressDetail}" readonly></td>
+								</tr>
+							</table>
+							<div class="submitBtn-wrap">
+								<button type="button" id="updateDeliverFrm">정보 수정</button>
+								<button type="button" style="display:none" th:onclick="updateDeliver(this,[[${session.c.customerNo}]]);">배송지 수정</button>
+							</div>
+						</div>
+					</div>
+				</div>	
+					
+				<input type="hidden" name="addressNo" th:value="${a.addressNo}">
+				<div class="content-bottom">
+					<button type="button" class="keepShopping">계속 쇼핑하기</button>
+					<button type="button" class="payment" id="buyBtn">구매하기</button>
+				</div>
+			</form>
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 	<script src="/js/cart.js"></script>
 </body>
 </html>
