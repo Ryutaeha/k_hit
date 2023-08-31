@@ -142,6 +142,11 @@ public class CustomerService {
 		int result = customerDao.insertDeliver(a);
 		return result;
 	}
+	@Transactional
+	public int updateDeliver(Address a) {
+		int result = customerDao.updateDeliver(a);
+		return result;
+	}
 
 }
 

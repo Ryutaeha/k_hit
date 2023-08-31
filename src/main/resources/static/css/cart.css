@@ -375,6 +375,23 @@
     cursor: pointer;
     font-weight: 900;
 }
+.submitBtn-wrap>button{
+	border: none;
+	width: 180px;
+	height: 40px;
+	border-radius: 3px;
+    font-size: 17px;
+    margin: 0 5px;
+    color: #272829;
+    background-color: #D8D9DA;
+    font-family: ns-b;
+}
+.submitBtn-wrap>button:hover{
+	 background-color: #61677A;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 900;
+}
 
 .addrTr1{
 	height: 30px;
@@ -386,4 +403,6 @@
 .addrTr1>td{
 	padding-left: 70px;
 }
+
+
 	
