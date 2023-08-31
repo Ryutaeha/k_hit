@@ -251,8 +251,8 @@ public class SellerService {
 	}
 
 	public List selectSelling(int sellerNo) {
-		// TODO Auto-generated method stub
-		return null;
+		List selling = sellerDao.selectSelling(sellerNo);
+		return selling;
 	}
 
 	

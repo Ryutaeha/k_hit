@@ -673,7 +673,12 @@ body{
     border-radius: 5px;
     background-color: #61677A;
 }
-
+/*판매자 판매내역 드롭다운*/
+.info5>.select{
+	width:100px;
+	height:30px;
+	
+}
 
 
 

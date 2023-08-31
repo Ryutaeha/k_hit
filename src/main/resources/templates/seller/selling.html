@@ -28,11 +28,11 @@
                     </tr>
                     <tr class="tbl info-main" th:each="sellingList : ${sellingList}">
                             <td class="info1">
-                                <span th:text="${sellingList.sellingListDate}"></span>
+                                <span th:text="${sellingList.orderListDate}"></span>
                             </td>
                             <td class="info2">
                                  <div class="info-img">
-                                    <img th:src="'/sellingList/'+${sellingList.productImg}">
+                                    <img th:src="'/product/'+${sellingList.productImg}">
                                 </div> 
                                 <div class="info-name">
                                     <span th:text="${sellingList.productName}">상품이름</span>
@@ -43,7 +43,14 @@
                                 <span th:text="${sellingList.orderCount}">개</span>
                             </td>
                             <td class="info4"><span th:text="${sellingList.productPrice}">원</span></td>
-                            <td class="info5"><span th:text="${sellingList.orderState}">상품준비중</span></td>
+                            <td class="info5">
+									<select th:if="${sellingList.orderState}" class="select"> 
+									  <option value="">선택하세요</option> 
+									  <option value="1">배송중</option> 
+									  <option value="2">배송완료</option> 
+									  <option value="3">구매확정</option> 
+									</select>
+							</td>
                     </tr>
                 </table>
             </div>
