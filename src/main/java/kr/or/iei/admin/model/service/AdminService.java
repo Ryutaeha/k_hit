@@ -118,6 +118,24 @@ public class AdminService {
 	public List selectCustomerB(String cId) {
 		return adminDao.selectCustomerB(cId);
 	}
+	
+	@Transactional
+	public int qnaAnswer(int qnaNo, String qnaAnswerComment, String adminId) {
+		return adminDao.qnaAnswer(qnaNo,qnaAnswerComment,adminId);
+		
+	}
+
+	public List selectQnaC(String qNo) {
+		return adminDao.selectQnaC(qNo);
+	}
+
+	public List question(String input) {
+		return adminDao.question(input);
+	}
+
+	public int noticeDel(int noticeNo) {
+		return adminDao.noticeDel(noticeNo);
+	}
 
 	
 }

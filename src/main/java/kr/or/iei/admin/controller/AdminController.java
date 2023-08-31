@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,15 @@ public class AdminController {
 		model.addAttribute("qna",list);
 		return "/admin/question";
 	}
-
+	
+	@GetMapping(value = "/questionSearch")
+	public String questionSearch(Model model,String input) {
+		List list = adminService.question(input);
+		System.out.println(input);
+		System.out.println(list);
+		model.addAttribute("qna",list);
+		return "/admin/question";
+	}
 
 	@GetMapping(value="/member")
 	public String member(int memberCode,String input, Model model){
@@ -178,7 +187,19 @@ public class AdminController {
 	@PostMapping(value = "/write")
 	public String noticeWrite(Notice n ,Model model) {
 		int result = adminService.insertNotice(n);
-		return "/admin/noticeFrm";
+		if(result!=0) {
+			model.addAttribute("title", "작성완료");
+			model.addAttribute("msg", "공지사항 처리완료");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/noticeList?noticeFix=2&input=");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "작성실패");
+			model.addAttribute("msg", "잠시후 시도해주세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/noticeList?noticeFix=2&input=");
+			return "common/msg";
+		}
 	}
 	@PostMapping(value="/productCheckChange")
 	public String productCheckChange(int productCheck,int productNo,Model model){
@@ -211,5 +232,58 @@ public class AdminController {
 	@PostMapping(value="/qContent")
 	public List qContent(String qNo){
 		return adminService.selectQna(qNo);
+	}
+	@ResponseBody
+	@PostMapping(value="/qContentC")
+	public List qContentC(String qNo){
+	return adminService.selectQnaC(qNo);
+	}
+	@GetMapping(value = "/adminMsg")
+	public String adminMsg(Model model) {
+		model.addAttribute("title", "관리자 페이지");
+		model.addAttribute("msg", "하지만 막혔죠?");
+		model.addAttribute("icon", "warning");
+		model.addAttribute("loc", "/admin/adminLogin");
+		return "common/msg";
+	}
+	
+	@PostMapping(value="/qnaAnswer")
+	public String qnaAnswer(int qnaNo, String qnaAnswerComment, Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Admin a = (Admin)session.getAttribute("a");
+		String adminId =a.getAdminId();
+		System.out.println(qnaNo+qnaAnswerComment+adminId);
+		int result = adminService.qnaAnswer(qnaNo,qnaAnswerComment,adminId);
+		if(result!=0) {
+			model.addAttribute("title", "작성완료");
+			model.addAttribute("msg", "문의 사항 처리 완료");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/question");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "작성실패");
+			model.addAttribute("msg", "잠시후 시도해주세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/question");
+			return "common/msg";
+		}
+	}
+	
+	@PostMapping(value = "/noticeDel")
+	public String noticeDel(int noticeNo,Model model) {
+		int result = adminService.noticeDel(noticeNo);
+		if(result!=0) {
+			model.addAttribute("title", "삭제완료");
+			model.addAttribute("msg", "공지사항 삭제 완료");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/noticeList?noticeFix=2&input=");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "삭제실패");
+			model.addAttribute("msg", "잠시후 시도해주세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/noticeList?noticeFix=2&input=");
+			return "common/msg";
+		}
 	}
 }

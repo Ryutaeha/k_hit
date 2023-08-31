@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -34,22 +35,42 @@ public class QnaController {
 	@GetMapping(value="/qnaView")
 	public String qnaView(int questionNo, Model model,@SessionAttribute(required = false)Seller s,@SessionAttribute(required = false) Customer c) {
 		int sellerNo = (s == null)? 0 : s.getSellerNo();
-		int customerNo = (c == null)? 0 : c.getCustomerNo();
-		QnaViewData qvd = qnaService.selectOneQna(questionNo,sellerNo,customerNo);
+		int customerNo = (c == null)? 0 : c.getCustomerNo();		
+		QnaViewData qvd = qnaService.selectOneQna(questionNo,sellerNo,customerNo);		
+		if(qvd != null) {
+			model.addAttribute("q", qvd.getQ());
+			model.addAttribute("commentList", qvd.getCommentList());			
+			return "/qna/qnaView";
+		}else {
+			model.addAttribute("title", "조회실패");
+			model.addAttribute("msg", "이미삭제된 게시물입니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/qna/qnaList?reqPage=1");
+			return "common/msg";
+		}
 		//List viewList = qnaService.selectOneQna(questionNo);
-		return null;
 	}
-	
-	
-	
-	
-	@GetMapping(value="/qnaDetail")
-	public String qnaDetail() {
-		return "/qna/qnaDetail";
-	}
-	
+	//qna글작성페이지 이동
 	@GetMapping(value="/qnaFrmEditor")
 	public String qnaFrmEditor() {
 		return "/qna/qnaFrmEditor";
+	}
+	//qna글작성 insert
+	@PostMapping(value = "/qnaWrite")
+	public String insertQna(Qna q,Model model,@SessionAttribute(required = false)Seller s,@SessionAttribute(required = false) Customer c) {
+		System.out.println("s :"+s );
+		System.out.println("c : "+c);
+		int result = qnaService.insertQna(q,s,c);
+		if(result>0) {
+			model.addAttribute("title", "문의사항 작성 성공");
+			model.addAttribute("msg", "문의사항이 작성되었습니다.");
+			model.addAttribute("icon", "success");
+		}else {
+			model.addAttribute("title", "문의사항 작성 실패");
+			model.addAttribute("msg", "문의사항이 작성이 실패되었습니다.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc","/qna/qnaList?reqPage=1");
+		return "common/msg";
 	}
 }

@@ -186,6 +186,7 @@ console.log(sId)
 $(".cMenu").on('click',function(){
 	$(".cModal>table").children().children().children('td').empty();	
 	cModal($(this).text());
+	cModalB($(this).children().eq(1).text());
 	$(".modal-inpo").css("display","none");
     $(".cModal").css("display","block");
 	$(".modal-wrap").css("display","flex");
@@ -228,12 +229,17 @@ function cModalB(cId){
 		data : {cId : cId},
 		dataType : "json",
 		success: function(data){
-			console.log(data)
-			$(".mIdC").append($("<h2>").append(data.customerId));
-			$(".mNameC").append($("<h2>").append(data.customerName));
-			$(".mRegDateC").append($("<h3>").append(data.customerEnrolldate));
-			$(".mEmailC").append($("<h4>").append(data.customerEmail));
-			$(".mPhoneC").append($("<h3>").append(data.customerPhone));
+			if(data.length==0){
+				$(".mProductO").append($("<h2>").append("등록한 상품이 없습니다"));
+			}else{
+				for(var i =0;i<data.length;i++){
+					const div = $("<div style= 'padding: 10px 0; border: 1px solid black'>");
+					div.append($("<span style='width: 20%; display: inline-block;'>").append(data[i].productNo));
+					div.append($("<span style='width: 50%; display: inline-block;'>").append(data[i].productName));
+					div.append($("<span style='width: 30%; display: inline-block;'>").append(data[i].productPrice));
+					$(".mProductO").append(div);
+				}
+				}
 		}
 	})
 	
@@ -245,7 +251,8 @@ $(".nSelect").on('click',function(){
 
 $(document).on('click',".fix",function(){
 	const fix = $(this).val();
-	const nNo = $(".mNoN").val()
+	const nNo = $(".mNoN").text()
+	console.log($(".mNoN"));
 	$.ajax({
 		url : "/admin/fix",
 		type : "post",
@@ -270,6 +277,7 @@ function nModal(nNo){
 		dataType : "json",
 		success: function(data){
 			console.log(data)
+			$(".mTitleN").append($("<div style='display:none;' class = mNoN>").append(data.noticeNo));
 			$(".mTitleN").append($("<h2>").append(data.noticeTitle));
 			$(".mDateN").append($("<h3>").append(data.noticeDate));
 			$(".mContentN").append($("<h3>").append(data.noticeContent));
@@ -278,6 +286,7 @@ function nModal(nNo){
 			}else{
 				$(".modifyNoticeFrm").append($("<button value=0 class = fix>").append("고정해제"));
 			}
+			$(".modifyNotice>form>button:first-child").val(data.noticeNo);
 		}
 	})
 	$(".modal-inpo").css("display","none");
@@ -291,14 +300,22 @@ $(".modifyNoticeFrm>button:first-child").on('click',function(){
 	
 })
 
+$(".modifyNotice>form>button:last-child").on('click',function(){
+	$(".modifyNoticeFrm").css('display','block');	
+	$(".modifyNotice").css('display','none');
+	
+})
+
+
+
 $(".qMenuSel").on('click',function(){
 	qModal($(this).children().eq(0).text());
+	qModalC($(this).children().eq(0).text());
 })
 
 function qModal(qNo){
 	$(".qModal>table").children().children().children().empty();
 	$(".qnaAnswer").empty()
-	console.log(qNo)
 	$.ajax({
 		url : "/admin/qContent",
 		type : "post",
@@ -308,7 +325,7 @@ function qModal(qNo){
 			console.log(data)
 			/*
 			*/
-			$(".mTitleQ").append($("<h2>").append(data[0].questionContent));
+			$(".mTitleQ").append($("<h2>").append(data[0].questionTitle));
 			$(".mDateQ").append($("<h3>").append(data[0].questionDate));
 			if(data.questionSellWriter==null){
 			$(".mWriterQ").append($("<h3>").append(data[0].questionCusWriter));
@@ -317,13 +334,33 @@ function qModal(qNo){
 			$(".mWriterQ").append($("<h3>").append(data[0].questionSellWriter));
 			}
 			$(".mContentQ").append($("<h3>").append(data[0].questionContent));
-			$(".qnaAnswer").append($("<input type = text name = qnaAnswerComment>"));
-			$(".qnaAnswer").append($("<input type = hidden name = qnaNo value= "+data[0].questionNo+">"));
-			$(".qnaAnswer").append($("<input type = submit value= 작성>"));
+			
 			}
 		})
 	$(".modal-inpo").css("display","none");
     $(".qModal").css("display","block");
 	$(".modal-wrap").css("display","flex");
 }
+
+function qModalC(qNo){
+$.ajax({
+		url : "/admin/qContentC",
+		type : "post",
+		data : {qNo : qNo},
+		dataType : "json",
+		success: function(data){
+			console.log(data)
+			if(data.length==0){
+				$(".mContentQC").append($("<h3>").append('작성된 답변이 없습니다'));
+				$(".qnaAnswer").append($("<textarea name = qnaAnswerComment>"));
+				$(".qnaAnswer").append($("<input type = hidden name = qnaNo value= "+qNo+">"));
+				$(".qnaAnswer").append($("<input type = submit value= 작성>"));
+			}else{
+				$(".mContentQC").append($("<h3>").append(data[0].questionContent));
+				$(".qnaAnswerDel").append($("<input type = hidden name = qnaNo value= "+data[0].questionCommentNo+">"));
+				$(".qnaAnswerDel").append($("<input type = submit value= 삭제>"));
+				}
+			}
+		})
+	}	
 	

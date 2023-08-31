@@ -4,19 +4,126 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<link rel="stylesheet" href="/css/qna.css">
-	<link rel="stylesheet" href="/css/seller.css">
+	<link rel="stylesheet" href="/css/review.css">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-		<div class="page-content">
-				<div class="seller-header">
-					<span class="move">Q & A</span>
-				</div>
-			<div class="qna-wrap">
-				
+	
+	<div class="page-content">
+		<div class="seller-header">
+			<span class="move">Q & A</span>
+		</div>
+		<div class="qna-wrap">
+			<div id="write-btn">
+				<button type="button" class="btn-del">
+					<a href="/qna/qnaList?reqPage=1">목록가기</a>
+				</button>
+				<div class="qnaFrm">
+					<ul class="qnaFrm-title-wrap">
+						<li class="qnaFrm-id">
+							<span th:text="${q.questionSellWriter}+님"></span>			
+						</li>
+						<li class="qnaFrm-date">
+							<span th:text="${q.questionDate}"></span>
+						</li>
+						<li class="qnaFrm-count">
+							<span>view : </span>
+							<span th:text="${q.questionReadCount}"></span>
+						</li>
+					</ul>
+						<div class="qnaFrm-title">
+							<span th:text="${q.questionTitle}"></span>
+						</div>
+						<div class="qnaFrm-content" th:text="${q.questionContent}">
+										
+						</div>
+						
+				</div>				
 			</div>
 		</div>
+		
+		
+	</div>
 	
 	<th:block th:include="common/footer"></th:block>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script>
+	
+		//답글달기 취소버튼
+		$(".recShow2").on("click",function(){
+			const index = $(".recShow").index(this);
+			if($(this).text()=="답글달기"){
+				$(this).text("취소");
+			}else{
+				$(this).text("답글달기")
+			}
+			$(".inputRecommentBox").eq(index).toggle();
+			$(".inputRecommentBox").eq(index).find("textarea").focus();
+		});
+
+        function deleteComment(obj,reviewCommentNo,reviewNo){
+        	Swal.fire({
+				title : "댓글 삭제",
+				text : "댓글을 삭제하시겠습니까?",
+				icon : "question",
+				showCancelButton: true,
+		        confirmButtonColor: '#61677A',
+		        cancelButtonColor: '#D8D9DA',
+		        confirmButtonText: '확인',
+		        cancelButtonText: '취소',
+		        reverseButtons: true,
+		        
+	        	}).then(result => {
+		    	    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+		    	    	location.href = "/review/deleteComment?reviewCommentNo="+reviewCommentNo+"&reviewNo="+reviewNo;
+		    	    }
+		    	});
+        }
+        
+        //답글 수정
+        function modifyComment(obj,reviewCommentNo,reviewNo){
+			$(obj).parent().prev().prev().hide();
+			$(obj).parent().prev().show();
+			
+			$(obj).text("수정완료");
+			$(obj).attr("onclick","modifyComplete(this,"+reviewCommentNo+","+reviewNo+")");
+			
+			$(obj).next().text("수정취소");
+			$(obj).next().attr("onclick","modifyCancel(this,"+reviewCommentNo+","+reviewNo+")")
+			
+			$(obj).prev().hide();
+		}
+		function modifyCancel(obj,reviewCommentNo,reviewNo){
+			$(obj).parent().prev().prev().show();
+			
+			$(obj).parent().prev().hide();
+
+			$(obj).prev().text("수정");
+			$(obj).prev().attr("onclick","modifyComment(this,"+reviewCommentNo+","+reviewNo+")");
+			
+			$(obj).text("삭제");
+			$(obj).attr("onclick","deleteComment(this,"+reviewCommentNo+","+reviewNo+")");
+			
+			$(obj).prev().prev().show();
+		}
+		
+		function modifyComplete(obj,reviewCommentNo,reviewNo){
+			const form = $("<form style='display:none' action='/review/updateComment' method='post'>");
+			
+			const commentNoInput = $("<input type='text' name='reviewCommentNo'>");
+			commentNoInput.val(reviewCommentNo);
+			const reviewNoInput = $("<input type='text' name='reviewRef'>");
+			reviewNoInput.val(reviewNo);
+			
+			const textArea = $(obj).parent().prev().clone();
+			
+			form.append(commentNoInput).append(reviewNoInput).append(textArea);
+			
+			$(".review-info").append(form);
+			
+			form.submit();
+		}
+	</script>
 </body>
 </html>

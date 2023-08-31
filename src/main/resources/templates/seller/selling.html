@@ -20,42 +20,54 @@
             <div class="selling info-top">
                 <table class="sellingListTbl info-top">
                     <tr class="tbl-top">
-                            <th class="info1">No.</th>
+                            <th class="info1">주문번호</th>
                             <th class="info2">상품정보</th>
                             <th class="info3">수량</th>
                             <th class="info4">금액</th>
                             <th class="info5">주문처리상태</th>
                     </tr>
                     <tr class="tbl info-main" th:each="sellingList : ${sellingList}">
-                            <td class="info1">
-                                <span th:text="${sellingList.sellingListDate}"></span>
-                            </td>
-                            <td class="info2">
+                            <th class="info1">
+                                <span th:text="${sellingList.orderListDate}"></span>
+                            </th>
+                            <th class="info2">
                                  <div class="info-img">
-                                    <img th:src="'/sellingList/'+${sellingList.productImg}">
+                                    <img th:src="'/product/'+${sellingList.productImg}">
                                 </div> 
                                 <div class="info-name">
                                     <span th:text="${sellingList.productName}">상품이름</span>
                                     <div><span>1. </span><span th:text="${sellingList.optionColor}"></span><span> 2. </span> <span th:text="${sellingList.optionSize}"></span></div>
                                 </div>
-                            </td>
-                            <td class="info3">
+                            </th>
+                            <th class="info3">
                                 <span th:text="${sellingList.orderCount}">개</span>
-                            </td>
-                            <td class="info4"><span th:text="${sellingList.productPrice}">원</span></td>
-                            <td class="info5"><span th:text="${sellingList.orderState}">상품준비중</span></td>
+                            </th>
+                            <th class="info4"><span th:text="${sellingList.productPrice}">원</span></th>
+                            <th class="info5">
+                            	<form action="/seller/sellingDropDown">
+									<select  name="orderState" class="fix"> 
+									  <option value="0">선택하세요</option>
+									  <option value="1" >상품준비중</option> 
+									  <option value="2" >배송중</option> 
+									  <option value="3" >배송완료</option>
+									</select>
+									  <button type="submit" class="dropDown" style="display:none;"></button>
+									  <input type="hidden" name="orderNo" th:value="${sellingList.orderNo}" >
+                            	</form>
+							</th>
                     </tr>
                 </table>
             </div>
-        <!-- 
-            <div class="order-info-bottom">
-                <button type="button">더보기</button>
-            </div>
-         -->
         </div>
-
 			</div>
 		</div>
 	<th:block th:include="common/footer"></th:block>
+	<script>
+		$(document).on("change",".fix",function(fix){
+			console.log($(this).val());
+			console.log($("[name=orderNo]").val());
+			$(this).next().click();
+		});
+	</script>
 </body>
 </html>

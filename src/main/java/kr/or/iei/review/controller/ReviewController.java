@@ -37,8 +37,7 @@ public class ReviewController {
 	
 	//리뷰 작성/수정 페이지 이동
 	@GetMapping("/reviewWriteFrm")
-	public String reviewWrtieFrm(Model model) { //개별상품번호 받은 후 넣기!!
-		int orderNo = 25;
+	public String reviewWrtieFrm(int orderNo, Model model) { //개별상품번호 받은 후 넣기!!
 		ReviewProduct rp = reviewService.selectReviewProduct(orderNo);
 		model.addAttribute("rp",rp);
 		return "review/reviewWriteFrm";

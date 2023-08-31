@@ -5,17 +5,18 @@
 <title>M Y P A G E</title>
 <link rel="stylesheet" href="/css/customer.css">
 <link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/seller.css">
 <script src="js/jquery-3.6.0.js"></script>
 </head>
 <body>
         <div class="customer-head-wrap">
-            <div class="customer-title">
-                <h2 class="title1">MY PAGE</h2>
+            <div class="seller-header">
+                <span class="move">MY PAGE</span>
             </div>
             <div class="customer-info">
                 <div class="info">
                     <img src="/img/common/person.png">
-                    <button type="button" id="mypage-memberName" th:text="${session.c.getCustomerId}"></button>
+                    <button type="button" id="mypage-memberName" th:text="${session.c.getCustomerId}+님"></button>
                 </div>
             </div>
         </div>

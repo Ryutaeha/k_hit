@@ -2,6 +2,7 @@ package kr.or.iei.customer.controller;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import kr.or.iei.customer.model.service.CustomerService;
 import kr.or.iei.customer.model.vo.Address;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
-import kr.or.iei.customer.model.vo.WishListData;
+import kr.or.iei.customer.model.vo.Order;
 
 @Controller
 @RequestMapping("/customer")
@@ -66,32 +67,25 @@ public class CustomerController {
 		model.addAttribute("orderList", ol);
 		return "customer/orderList";
 	}
+	//고객 취소/환불 신청 페이지
+	@GetMapping(value="/cancelRefund")
+	public String cancelRefund(@SessionAttribute(required = false) Customer c,int orderNo, Model model) {
+		List cr =  customerService.cancelRefundapplication(c.getCustomerNo(),orderNo);
+		System.out.println(cr);
+		model.addAttribute("cancelRefund", cr);
+		return "customer/cancelRefund";
+	}
 	
 	//고객 취소/환불 목록 페이지
 	@GetMapping(value="/cancelRefundList")
-	public String refundList(@SessionAttribute(required = false) Customer c, Model model) {
+	public String cancelRefundList(@SessionAttribute(required = false) Customer c, Model model) {
 		List crl = customerService.selectCancelRefundList(c.getCustomerNo());
+		System.out.println(crl);
 		model.addAttribute("cancelRefundList",crl);
 		return "customer/cancelRefundList";
 	}
-	
-	//취소 신청 페이지
-	@GetMapping(value="/cancel")
-	public String cancel() {
-		return "customer/cancel";
-	}
-	
-//	//찜목록
-//	@GetMapping(value="/wishList") 
-//	public String wishList(@SessionAttribute(required = false) Customer c, Model model, int reqPage){
-//		WishListData wld = customerService.selectWishList(c.getCustomerNo(),reqPage);
-//		model.addAttribute("wishList",wld.getWishList());
-//		model.addAttribute("pageNavi",wld.getPageNavi());
-//		
-//		return "customer/wishList";
-//	}
 
-	
+		
 	//회원가입
 	@PostMapping(value="/joinComplete")
 
@@ -260,6 +254,35 @@ public class CustomerController {
 		int result = customerService.insertDeliver(a);
 		return result;
 	}
+
+	
+	//배송정보 수정
+	@ResponseBody
+	@PostMapping(value="/updateDeliver")
+	public int updateDeliver(Address a) {
+		int result = customerService.updateDeliver(a);
+		return result;
+	}
+	
+	//장바구니 구매하기
+	@PostMapping(value="/payment")
+	public String cartPayment(int[] cartNo, int addressNo, Model model) {
+		int result = customerService.insertOrderInfo(cartNo, addressNo);
+		if(result>0) {
+			model.addAttribute("title", "결제 완료");
+			model.addAttribute("msg", "결제가 완료되었습니다.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/customer/orderList");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "결제 실패");
+			model.addAttribute("msg", "결제를 실패했습니다. 관리자에게 문의해 주세요.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/cusotmer/cart");
+			return "common/msg";
+		}
+	}
+	
 }
 
 

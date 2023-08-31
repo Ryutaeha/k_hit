@@ -12,8 +12,10 @@
     overflow: hidden;
     min-width: 1600px; 
     box-sizing: border-box;
-    background-color: #FFF6E0;
+    background-color: #fdfae8;
     float: left;
+    border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
 }
 .customer-info>.info{
     margin: 15px 200px;
@@ -22,7 +24,8 @@
     width: 90px;
     height: 90px;
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 100%;
+    background-color: #fff;
 }
 .info{
     overflow: hidden;

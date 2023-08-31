@@ -2,6 +2,7 @@ package kr.or.iei;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -23,6 +24,14 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addResourceHandler("/review/**").addResourceLocations("file:///C:/khit/upload/review/");
 		
 		registry.addResourceHandler("/admin/**").addResourceLocations("file:///C:/khit/upload/notice/");
+	}
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+	
+	
+	registry.addInterceptor(new AdminIntercentor())
+	.addPathPatterns("/admin/**")
+	.excludePathPatterns("/admin/adminLogin","/admin/login","/admin/adminMsg");
 	}
 	
 }
