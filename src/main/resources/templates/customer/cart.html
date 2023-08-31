@@ -14,7 +14,6 @@
 		<div class="seller-header">
 			<span class="move">CART</span>
 		</div>
-		<div class="cart-wrap">
 			<form action="/customer/payment" method="post" id="cartForm"> 
 				<div class="cart-content">
 					<div class="content-info">
@@ -50,6 +49,13 @@
 								<th class="info6"><span class="material-icons"
 									th:onclick="cartDelete(this,[[${cl.cartNo}]]);">close</span></th>
 							</tr>
+							<!-- 
+							<tr th:if="${cartList.isEmpty()}">
+								<td colspan="5">
+								등록된 상품이 없습니다.
+								</td>
+							</tr>
+							 -->
 						</table>
 					</div>
 				</div>
@@ -147,6 +153,7 @@
 							<div class="submitBtn-wrap">
 								<input type="button" value="배송지 입력" th:onclick="inputDeliver(this,[[${session.c.customerNo}]]);">
 							</div>
+							<input type="hidden" name="addressNo">
 						</div>
 					</div>
 					<!-- 기본배송지 -->
@@ -185,11 +192,11 @@
 								<button type="button" id="updateDeliverFrm">정보 수정</button>
 								<button type="button" style="display:none" th:onclick="updateDeliver(this,[[${session.c.customerNo}]]);">배송지 수정</button>
 							</div>
+							<input type="hidden" name="addressNo" th:value="${a.addressNo}">
 						</div>
 					</div>
 				</div>	
 					
-				<input type="hidden" name="addressNo" th:value="${a.addressNo}">
 				<div class="content-bottom">
 					<button type="button" class="keepShopping">계속 쇼핑하기</button>
 					<button type="button" class="payment" id="buyBtn">구매하기</button>
