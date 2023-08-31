@@ -11,7 +11,7 @@
 .cart-wrap{
     border-radius: 10px;
     background-color: white;
-    width: 1000px;
+    width: 1200px;
     margin: 0 auto;
 }
 
@@ -29,27 +29,27 @@
 	border-collapse: collapse;
 }
 
-.info1,.info6{
-    width: 10%;
-    padding: 0.75rem;
+.info11,.info6{
+    width: 8%;
+    padding:0.7rem;
     border-top: 1px solid #dee2e6;
 }
-.info1>input{
+.info11>input{
 	cursor: pointer;
 }
-.info2{
-    width: 44%;
-    padding: 0.75rem;
+.info22{
+    width: 52%;
+    padding: 0.7rem;
     border-top: 1px solid #dee2e6;
     overflow: hidden;
 }
-.info-main>.info2>.info-img{
+.info-main>.info22>.info-img{
     margin: 25px;
     float: left;
 }
-.info-main>.info2 img{
+.info-main>.info22 img{
      width: 100px;
-    height: 100px;
+     height: 100px;
     border: 1px solid #ccc;
     box-sizing: border-box;
     border-radius: 5px;
@@ -59,33 +59,23 @@
 }
 .info4{
     width: 14%;
-    padding: 0.75rem;
+    padding: 0.7rem;
     border-top: 1px solid #dee2e6;
 }
 .info3,.info5{
-	width: 10%;
-    padding: 0.75rem;
+	width: 9%;
+    padding: 0.7rem;
     border-top: 1px solid #dee2e6;
 }
 
 /* 선택 체크박스 */
-.info1>input{
+.info11>input{
     width: 20px;
     height: 20px;
     margin: 10px;
 }
 
-/* 상품정보 img 보류 */
-/* .info2info-img{
-    margin: 25px;
-    display: block;
-}
-.info2 img{
-    width: 100px;
-    height: 100px;
-    box-sizing: border-box;
-    border-radius: 5px;
-} */
+
 
 /* 상품 이름 */
 .info-name{
@@ -386,4 +376,15 @@
 .addrTr1>td{
 	padding-left: 70px;
 }
-	
+
+
+.noCartProduct{
+	text-align: center;
+	height: 150px;
+	line-height: 150px;
+	border: 1px solid #ededed;
+}
+.noCartProduct>td{
+	font-size: 20px;
+}
+
