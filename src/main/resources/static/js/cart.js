@@ -119,3 +119,45 @@ function updateDeliver(obj, customerNo){
 		}
 	});
 }
+
+$("#buyBtn").on("click",function(){
+	
+	const priceStr = $("#paymentPrice").text();
+	const price = Number(priceStr);
+	const d = new Date();
+	const date = d.getFullYear()+""+(d.getMonth()+1)+""+d.getDate()
+				+""+d.getHours()+""+d.getMinutes()+""+d.getSeconds();
+	const customerName = $("input[name=addressName]").val();
+	const customerPhone = $("input[name=addressPhone]").val();
+	const address = $("input[name=addressSimple]").val();
+	const post = $("input[name=addressPostalCode]").val();
+	
+	IMP.init("imp57311522");
+	
+	IMP.request_pay({
+		pg : "html5_inicis",
+		pay_method : "card",	
+		name : "KHIT",
+		amount : price,
+		buyer_name : customerName,
+		buyer_tel : customerPhone,
+		buyer_addr : address,
+		buyer_post : post
+	},function(rsp){
+		alert(rsp);
+		if(rsp.success){
+			$("#cartForm").submit();	
+		}else{
+			Swal.fire({
+						title : "결제 실패",
+						text : "결제 실패하였습니다. 다시 시도해 주세요.",
+						icon : "error",
+				        confirmButtonColor: '#61677A',
+				        confirmButtonText: '확인',
+				        
+				    });	
+		}
+	});
+
+
+});
