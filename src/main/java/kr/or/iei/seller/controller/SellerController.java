@@ -391,6 +391,7 @@ public class SellerController {
 		return "/";
 
 	}
+	//판매자 판매내역
 	@GetMapping(value="/selling")
 	public String selling(@SessionAttribute(required = false)Seller s,Model model) {
 		List selling = sellerService.selectSelling(s.getSellerNo());
