@@ -117,7 +117,7 @@ public class CustomerDao {
 	}
 
 	public List selectOrderList(int customerNo) {
-		String query ="select a.customer_no, ol.order_list_date, p.product_img, p.product_name, op.option_size, op.option_color, o.order_count,p.product_price,o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where customer_no=?";
+		String query ="select     a.customer_no,    o.order_no,    ol.order_list_date,     p.product_img,     p.product_name,     op.option_size,     op.option_color,     o.order_count,    p.product_price,    o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where customer_no=? and not order_state in ('5','6')";
 		List orderList = jdbc.query(query,orderDetailRowMapper,customerNo);
 		return orderList;
 	}

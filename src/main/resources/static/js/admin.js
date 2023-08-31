@@ -186,6 +186,7 @@ console.log(sId)
 $(".cMenu").on('click',function(){
 	$(".cModal>table").children().children().children('td').empty();	
 	cModal($(this).text());
+	cModalB($(this).children().eq(1).text());
 	$(".modal-inpo").css("display","none");
     $(".cModal").css("display","block");
 	$(".modal-wrap").css("display","flex");
@@ -228,12 +229,17 @@ function cModalB(cId){
 		data : {cId : cId},
 		dataType : "json",
 		success: function(data){
-			console.log(data)
-			$(".mIdC").append($("<h2>").append(data.customerId));
-			$(".mNameC").append($("<h2>").append(data.customerName));
-			$(".mRegDateC").append($("<h3>").append(data.customerEnrolldate));
-			$(".mEmailC").append($("<h4>").append(data.customerEmail));
-			$(".mPhoneC").append($("<h3>").append(data.customerPhone));
+			if(data.length==0){
+				$(".mProductO").append($("<h2>").append("등록한 상품이 없습니다"));
+			}else{
+				for(var i =0;i<data.length;i++){
+					const div = $("<div style= 'padding: 10px 0; border: 1px solid black'>");
+					div.append($("<span style='width: 20%; display: inline-block;'>").append(data[i].productNo));
+					div.append($("<span style='width: 50%; display: inline-block;'>").append(data[i].productName));
+					div.append($("<span style='width: 30%; display: inline-block;'>").append(data[i].productPrice));
+					$(".mProductO").append(div);
+				}
+				}
 		}
 	})
 	
