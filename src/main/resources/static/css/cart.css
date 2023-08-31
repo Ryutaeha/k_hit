@@ -224,30 +224,30 @@
 
 /* 계속 쇼핑하기, 구매하기 버튼 */
 .content-bottom{
-    padding-top: 50px;
-    width: 500px;
+    padding-top: 150px;
+    width: 600px;
     margin: 0 auto;
     overflow: hidden;
     text-align: center;
     padding-bottom: 100px;
 }
 .content-bottom>button{
-    width: 220px;
+    width: 260px;
     height: 50px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
     border: none;
     border-radius: 5px;
     font-family: ns_b;
     font-size: 20px;
-    color: #282828;
-    background-color: rgb(224, 224, 224);
+    color: #272829;
+    background-color: #D8D9DA;
 }
 .content-bottom>button:hover{
     font-family: ns-b;
     font-size: 20px;
+    background-color: #61677A;
     color: #fff;
-    background-color: #5e5e5e;
     cursor: pointer;
 }
 
@@ -370,7 +370,7 @@
     font-family: ns-b;
 }
 .submitBtn-wrap>input:hover{
-	 background-color: #61677A;
+	background-color: #61677A;
     color: #fff;
     cursor: pointer;
     font-weight: 900;
