@@ -14,7 +14,9 @@ import kr.or.iei.customer.model.vo.Address;
 import kr.or.iei.customer.model.vo.AdressRowMapper;
 import kr.or.iei.customer.model.vo.CancelRefundRowMapper;
 import kr.or.iei.customer.model.vo.Cart;
+import kr.or.iei.customer.model.vo.CartList;
 import kr.or.iei.customer.model.vo.CartListRowMapper;
+import kr.or.iei.customer.model.vo.CartRowMapper;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
 import kr.or.iei.customer.model.vo.OrderDetailRowMapper;
@@ -39,6 +41,8 @@ public class CustomerDao {
 	private CancelRefundRowMapper cancelRefundRowMapper;
 	@Autowired
 	private AdressRowMapper addressRowMapper;
+	@Autowired
+	private CartRowMapper cartRowMapper;
 
 	public int insertCustomer(Customer customer, String customerEmail2) {
 		String query = "insert into customer_tbl values(customer_seq.nextval,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),default)";
@@ -158,6 +162,35 @@ public class CustomerDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
+
+	public int insertOrderList() {
+		String query = "insert into order_list_tbl values(order_list_seq.nextval,to_char(sysdate,'yyyy-mm-dd'),0)";
+		int result = jdbc.update(query);
+		return result;
+	}
+	//최신 총주문번호 구하기
+	public int getOrderList() {
+		String query = "select max(order_list_no) from order_list_tbl";
+		int orderListNo = jdbc.queryForObject(query, Integer.class);
+		return orderListNo;
+	}
+
+	public Cart searchCartOrder(int i) {
+		String query = "select * from cart_tbl where cart_no=?";
+		List list = jdbc.query(query, cartRowMapper, i);
+		if(list.isEmpty()) {
+			return null;
+		}
+		return (Cart)list.get(0);
+	}
+	//개별주문 넣기
+	public int insertOrder(Cart c, int orderListNo, int addressNo) {
+		String query = "insert into order_tbl values(order_seq.nextval,?,?,?,?,1)";
+		Object[] params = {orderListNo,addressNo,c.getProductOptionNo(),c.getCartCount()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+	
 	
 
 }
