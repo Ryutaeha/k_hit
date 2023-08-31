@@ -50,13 +50,11 @@
 								<th class="info66"><span class="material-icons"
 									th:onclick="cartDelete(this,[[${cl.cartNo}]]);">close</span></th>
 							</tr>
-							<!-- 
-							<tr th:if="${cartList.isEmpty()}">
-								<td colspan="5">
+							<tr th:if="${cartList.isEmpty()}" class="noCartProduct">
+								<td colspan="6" >
 								등록된 상품이 없습니다.
 								</td>
 							</tr>
-							 -->
 						</table>
 					</div>
 				</div>
