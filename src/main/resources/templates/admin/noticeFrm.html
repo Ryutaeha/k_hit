@@ -23,7 +23,7 @@
 							<tr class="tr-1">
 								<th class="td-3">제목</th>
 								<td colspan="3"><input type="text" name="noticeTitle"
-									class="input-form">
+									class="input-form" required>
 								<input type="hidden" name="noticeWriter" th:value="${session.a.adminId}">
 								</td>
 								
@@ -35,7 +35,7 @@
 							</tr>
 							<tr>
 								<td colspan="4">
-									<button type="submit" class="btn bc1 bs4">공지사항작성</button>
+									<button type="submit" class="btnNotice">공지사항작성</button>
 								</td>
 							</tr>
 						</table>

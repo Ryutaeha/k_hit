@@ -247,3 +247,22 @@ body{
 .modal-tbl>tbody>tr>td{
     border: 1px solid black;
 }
+.input-form{
+	width: 90%;
+	height: 30px;
+	padding-left: 10px;
+	font-size: 20px
+}
+.btnNotice{
+	width: 80%;
+	height: 50px;
+	margin: 10px 0;
+}
+.modifyNoticeFrm{
+	text-align: center;
+}
+.modifyNoticeFrm>button{
+	width: 30%;
+	font-size: 20px;
+	margin-top: 10px;
+}

@@ -106,7 +106,11 @@ public class AdminDao {
 	public Admin adminLogin(String adminSignId, String adminSignPw) {
 		String query = "SELECT * FROM ADMIN_TBL WHERE ADMIN_ID=? and ADMIN_PW=?";
 		List list = jdbc.query(query, adminRowMapper, adminSignId, adminSignPw);
-		return (Admin)list.get(0);
+		if(list.isEmpty()) {
+			return null;
+		}else {
+			return (Admin)list.get(0);			
+		}
 	}
 
 	public int insertNotice(Notice n) {
@@ -202,5 +206,10 @@ public class AdminDao {
 	public int qnaAnswerDel(int qnaCommentNo) {
 		String query = "DELETE FROM QUESTION_COMMENT_TBL where QUESTION_COMMENT_NO = ?";
 		return jdbc.update(query,qnaCommentNo);
+	}
+
+	public int modifyGo(int pw, String phone, String adminId) {
+		String qurey = "UPDATE admin_TBL SET admin_pw=?,admin_phone=?  WHERE admin_id=?";
+		return jdbc.update(qurey, pw,phone,adminId);
 	}
 }

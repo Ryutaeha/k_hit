@@ -245,7 +245,7 @@ public class AdminController {
 	@GetMapping(value = "/adminMsg")
 	public String adminMsg(Model model) {
 		model.addAttribute("title", "관리자 페이지");
-		model.addAttribute("msg", "하지만 막혔죠?");
+		model.addAttribute("msg", "로그인 후 이용하세요");
 		model.addAttribute("icon", "warning");
 		model.addAttribute("loc", "/admin/adminLogin");
 		return "common/msg";
@@ -307,5 +307,27 @@ public class AdminController {
 			return "common/msg";
 		}
 	}
+	
+	@PostMapping(value = "/modifyGo")
+	public String modifyGo(int pw, String phone,Model model,HttpSession session,HttpServletRequest request) {
+		session = request.getSession();
+		Admin a = (Admin)session.getAttribute("a");
+		int result = adminService.modifyGo(pw,phone,a.getAdminId());
+		if(result!=0) {
+			session.invalidate();
+			model.addAttribute("title", "수정완료");
+			model.addAttribute("msg", "수정 완료 다시 로그인 하세요");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/adminLogin");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "수정실패");
+			model.addAttribute("msg", "잠시후 시도해주세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/admin/member?memberCode=1&input=");
+			return "common/msg";
+		}
+	}
+	
 	
 }

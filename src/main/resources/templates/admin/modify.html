@@ -42,7 +42,7 @@
                     			비밀번호
                     			</td>
                     			<td>
-                    			<input type="password" placeholder="변경할 비밀번호 입력" required name="pw" style="width: 100%">
+                    			<input type="password" minlength="6" maxlength="12" placeholder="변경할 비밀번호 입력" required name="pw" style="width: 100%">
                     			</td>
                     		</tr>
                     		<tr>
@@ -50,7 +50,7 @@
                     			비밀번호 확인
                     			</td>
                     			<td>
-                    			<input type="password" placeholder="비밀번호 다시 입력" required name="pwCk" style="width: 100%">
+                    			<input type="password" minlength="6" maxlength="12" placeholder="비밀번호 다시 입력" required class="pwCk" style="width: 100%">
                     			</td>
                     		</tr>
                     		<tr>
@@ -58,7 +58,7 @@
                     			전화번호
                     			</td>
                     			<td width="80%">
-                    			<input type="text" placeholder="010-1111-1111" required name="phone" style="width: 100%"  maxlength='13'>
+                    			<input type="text" placeholder="010-1111-1111" required name="phone" style="width: 100%" minlength="13" maxlength='13' >
                     			</td>
                     		</tr>
                     		<tr>
@@ -78,7 +78,7 @@
     <script src="/js/admin.js"></script>
     <script>
     	$(".btnB").on('click',function(){
-    		if($("[name=pw]").val()==$("[name=pwCk]").val()){
+    		if($("[name=pw]").val()==$(".pwCk").val()){
     			$(".btnS").click();
     		}else{
     			alert("입력값을 확인하세요");

@@ -132,13 +132,17 @@ public class AdminService {
 	public List question(String input) {
 		return adminDao.question(input);
 	}
-
+	@Transactional
 	public int noticeDel(int noticeNo) {
 		return adminDao.noticeDel(noticeNo);
 	}
-
+	@Transactional
 	public int qnaAnswerDel(int qnaCommentNo) {
 		return adminDao.qnaAnswerDel(qnaCommentNo);
+	}
+	@Transactional
+	public int modifyGo(int pw, String phone, String adminId) {
+		return adminDao.modifyGo(pw,phone,adminId);
 	}
 
 	

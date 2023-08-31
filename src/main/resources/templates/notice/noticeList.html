@@ -22,16 +22,16 @@
 						<th style="width:10%">조회수</th>
 					</tr>
 					<tr th:each="list : ${list}">
-						<td th:text="${list.questionNo}"></td>
+						<td th:text="${list.noticeNo}"></td>
 						<td >
-							<a th:href="@{/qna/qnaView(questionNo=${list.questionNo})}" th:text="${list.questionTitle}"></a>
+							<a th:href="@{/notice/noticeView(noticeNo=${list.noticeNo})}" th:text="${list.noticeTitle}"></a>
 						</td>
-						<td  th:if="${list.questionCusWriter == null}" th:text="${list.questionSellWriter}"></td>
-						<td  th:if="${list.questionSellWriter == null}" th:text="${list.questionCusWriter}"></td>
-						<td th:text="${list.questionDate}"></td>
-						<td th:text=${list.questionReadCount}></td> 
+						<td th:text="${list.noticeWriter}"></td>
+						<td th:text="${list.noticeDate}"></td>
+						<td th:text=${list.noticeReadCount}></td> 
 					</tr>
 				</table>
+				<div id="pageNavi" th:utext="${pageNavi}"></div>
 			</div>
 		</div>
 	

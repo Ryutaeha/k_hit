@@ -64,7 +64,7 @@ function pModal(pNo){
 		dataType : "json",
 		success: function(data){
 			console.log(data)
-			$(".mImgP").append($("<h2>").append(data[0].productImg));
+			$(".mImgP").append($("<img>").append(data[0].productImg));
 			$(".mNameP").append($("<h2>").append(data[0].productName));
 			$(".mSellerIdP").append($("<h3>").append(data[0].sellerId));
 			$(".mRegDateP").append($("<h4>").append(data[0].productRegDate));
@@ -74,20 +74,21 @@ function pModal(pNo){
 	    	if(data[0].productCheck==4){
 	   			$(".pModal").append($("<div></div>").append($("<h2>").append("현재 판매가 중지 된 상품입니다")));
 	   		}else{
-	   			var checkP = $("<form action=/admin/productCheckChange method=post></form>");
-	   			var select = $("<select name=productCheck></select>");
+	   			var checkP = $("<form action=/admin/productCheckChange method=post style='text-align: center; margin-top:10px '></form>");
+	   			var select = $("<select name=productCheck style='width: 30%; font-size: 30px; text-align: center;'></select>");
 	   			select.attr("id","pCheck");
 	   			select.append($("<option value=1>승인</option>"));
 	   			select.append($("<option value=2>검수</option>"));
 	   			select.append($("<option value=3>반려</option>"));
 	   			checkP.append(select);
-	   			checkP.append("<input type=submit value=변경 class = pCheckChange>");
+	   			checkP.append("<input type=submit value=변경 class = pCheckChange style='width: 30%; font-size: 30px;'>");
 	   			checkP.append("<input type=hidden value="+data[0].productNo+" class = pNo name=productNo>");
 	   			$(".pModal").append(checkP);
 	   			$("#pCheck").val(data[0].productCheck);
-	   			$(".mContentDetailP img").css('width','100%')
-	   			
 	    	}
+	   			$(".mContentDetailP img").css('width','100%');
+	   			$(".mImgP img").css('width','100%');
+	   			$(".mImgP img").attr('src','/product/'+data[0].productImg+'');
 	    }
     })
 
@@ -149,13 +150,15 @@ function sModal(sId){
 		data : {sId : sId},
 		dataType : "json",
 		success: function(data){
-			$(".mImgS").append($("<span>").append(data.sellerImg));
+			$(".mImgS").append($("<img>"))
 			$(".mIdS").append($("<span>").append(data.sellerId));
 			$(".mRegDateS").append($("<span>").append(data.sellerEnrollDate));
 			$(".mEmailS").append($("<span>").append(data.sellerEmail));
 			$(".mNameS").append($("<span>").append(data.sellerName));
 			$(".mPhoneS").append($("<span>").append(data.sellerPhone));
 			$(".mIntroduceS").append($("<span>").append(data.sellerIntroduce));
+	   		$(".mImgS img").css('width','100%');
+	   		$(".mImgS img").attr('src','/seller/'+data.sellerImg+'');			
 		}
 	})
 }
@@ -288,6 +291,7 @@ function nModal(nNo){
 				$(".modifyNoticeFrm").append($("<button value=0 class = fix>").append("고정해제"));
 			}
 			$(".modifyNotice>form>button:first-child").val(data.noticeNo);
+			$(".mContentN img").css('width','100%')
 		}
 	})
 	$(".modal-inpo").css("display","none");
@@ -354,13 +358,13 @@ $.ajax({
 			console.log(data)
 			if(data.length==0){
 				$(".mContentQC").append($("<h3>").append('작성된 답변이 없습니다'));
-				$(".qnaAnswer").append($("<textarea name = qnaAnswerComment>"));
+				$(".qnaAnswer").append($("<textarea name = qnaAnswerComment style='resize: none; width: 100%;height: 200px;padding: 10px;font-size: 20px;box-sizing: border-box;'>"));
 				$(".qnaAnswer").append($("<input type = hidden name = qnaNo value= "+qNo+">"));
-				$(".qnaAnswer").append($("<input type = submit value= 작성>"));
+				$(".qnaAnswer").append($("<input type = submit value= 작성 style='height: 40px; width: 100%; font-size: 25px;'>"));
 			}else{
 				$(".mContentQC").append($("<h3>").append(data[0].questionContent));
 				$(".qnaAnswerDel").append($("<input type = hidden name = qnaCommentNo value= "+data[0].questionCommentNo+">"));
-				$(".qnaAnswerDel").append($("<input type = submit value= 삭제>"));
+				$(".qnaAnswerDel").append($("<input type = submit value= 삭제 style='width: 100%;height: 40px;margin-top: 10px;font-size: 25px;'>"));
 				}
 			}
 		})
