@@ -62,6 +62,12 @@ function searchAddress(){
 			$("#postalCode").val(data.zonecode);
 			$("#address").val(data.roadAddress);
 			$("#detail").focus();
+			$("#detail").val("");
+			
+			$("#updatePostalCode").val(data.zonecode);
+			$("#updateAddress").val(data.roadAddress);
+			$("#updateDetail").focus();
+			$("#updateDetail").val("");
 		}
 	}).open();
 }
@@ -72,13 +78,44 @@ function inputDeliver(obj, customerNo){
 	const addressPostalCode = $("#postalCode").val();
 	const addressSimple = $("#address").val();
 	const addressDetail = $("#detail").val();
-	console.log(addressName);
 	$.ajax({
 		url : "/customer/inputDeliver",
 		type : "post",
 		data : {customerNo : customerNo, addressName : addressName, addressPhone : addressPhone, addressPostalCode : addressPostalCode, addressSimple : addressSimple, addressDetail : addressDetail},
 		success : function(data){
-			
+			$(".new-deliver-info input").prop("readonly",true);
+			$(".submitBtn-wrap>input").css("display","none");
+			$("#newInputTitle").text("배송지");
+			$(".searchBtn").hide();
+		}
+	});
+}
+
+$("#updateDeliverFrm").on("click",function(){
+	$(".searchBtn").show();
+	$(".new-deliver-info input").prop("readonly",false);
+	$(this).hide();
+	$(this).next().show();
+	$(".updateInputTitle").text("배송지 수정");
+});
+
+
+function updateDeliver(obj, customerNo){
+	const addressName = $("#updateName").val();
+	const addressPhone = $("#updatePhone").val();
+	const addressPostalCode = $("#updatePostalCode").val();
+	const addressSimple = $("#updateAddress").val();
+	const addressDetail = $("#updateDetail").val();
+	$.ajax({
+		url : "/customer/updateDeliver",
+		type : "post",
+		data : {customerNo : customerNo, addressName : addressName, addressPhone : addressPhone, addressPostalCode : addressPostalCode, addressSimple : addressSimple, addressDetail : addressDetail},
+		success : function(data){
+			$(".searchBtn").hide();
+			$(".new-deliver-info input").prop("readonly",true);
+			$(obj).hide();
+			$(obj).prev().show();
+			$(".updateInputTitle").text("기본배송지");
 		}
 	});
 }

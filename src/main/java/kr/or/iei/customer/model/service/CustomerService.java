@@ -146,6 +146,11 @@ public class CustomerService {
 		List cr = customerDao.cancelRefundapplication(customerNo,orderNo);
 		return cr;
 	}
+	@Transactional
+	public int updateDeliver(Address a) {
+		int result = customerDao.updateDeliver(a);
+		return result;
+	}
 
 }
 

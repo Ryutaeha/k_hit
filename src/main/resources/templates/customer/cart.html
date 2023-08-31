@@ -115,8 +115,9 @@
 			<!-- 배송지 정보 -->
 			<div class="customer-info">
 				<div class="deliver-info-title infoTitle">배송 정보</div>
+				<!-- 신규입력 -->
 				<div class="customer-info-content" th:if="${a == null}">
-					<div class="deliver-title">신규 입력</div>
+					<div class="deliver-title" id="newInputTitle">신규 입력</div>
 					<div class="new-deliver-info">
 						<table class="input-tbl">
 							<tr class="input-tr addrTr">
@@ -151,26 +152,46 @@
 						</div>
 					</div>
 				</div>
+				<!-- 기본배송지 -->
 				<div class="customer-info-content" th:if="${a != null}">
-					<div class="deliver-title">기본 배송지</div>
+					<div class="deliver-title updateInputTitle">기본 배송지</div>
 					<div class="new-deliver-info">
 						<table class="input-tbl">
-							<tr class="addrTr1">
+							<tr class="input-tr addrTr">
 								<th>수령인</th>
+								<td><input type="text" name="addressName" id="updateName"
+									class="deliverInput" th:value="${a.addressName}" readonly></td>
 							</tr>
-							<tr class="addrTr1">
-								<td>전화번호</td>
+							<tr class="input-tr1 addrTr">
+								<th>전화번호</th>
+								<td><input type="text" name="addressPhone" id="updatePhone"
+									class="deliverInput" th:value="${a.addressPhone}" readonly></td>
 							</tr>
-							<tr class="addrTr1">
-								<td>주소</td>
+							<tr class="input-tr2 addrTr">
+								<th rowspan="3">주소</th>
+								<td><input type="text" name="addressPostalCode"
+									class="deliverInput dShortInput" id="updatePostalCode"
+									th:value="${a.addressPostalCode}" readonly>
+									<button type="button" class="searchBtn" style="display:none";
+										onclick="searchAddress();">주소찾기</button></td>
+							</tr>
+							<tr class="input-tr2">
+								<td><input type="text" name="addressSimple"
+									class="deliverInput" id="updateAddress" th:value="${a.addressSimple}" readonly></td>
+							</tr>
+							<tr class="input-tr2">
+								<td><input type="text" name="addressDetails"
+									class="deliverInput" id="updateDetail" th:value="${a.addressDetail}" readonly></td>
 							</tr>
 						</table>
 						<div class="submitBtn-wrap">
-							<input type="button" value="정보 수정" id="updateDeliver">
+							<button type="button" id="updateDeliverFrm">정보 수정</button>
+							<button type="button" style="display:none" th:onclick="updateDeliver(this,[[${session.c.customerNo}]]);">배송지 수정</button>
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>	
+				
 			<div class="content-bottom">
 				<button type="button" class="keepShopping">계속 쇼핑하기</button>
 				<button type="button" class="payment">구매하기</button>

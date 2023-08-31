@@ -255,6 +255,14 @@ public class CustomerController {
 		return result;
 	}
 
+	
+	//배송정보 수정
+	@ResponseBody
+	@PostMapping(value="/updateDeliver")
+	public int updateDeliver(Address a) {
+		int result = customerService.updateDeliver(a);
+		return result;
+	}
 }
 
 

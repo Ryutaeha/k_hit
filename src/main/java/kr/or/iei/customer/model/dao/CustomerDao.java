@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.iei.customer.model.vo.Address;
 import kr.or.iei.customer.model.vo.AdressRowMapper;
@@ -160,6 +162,13 @@ public class CustomerDao {
 		return cr;
 	}
 
-
+	//배송정보 수정
+	public int updateDeliver(Address a) {
+		String query = "update address_tbl set address_name=?,address_phone=?,address_postal_code=?,address_simple=?,address_detail=? where customer_no=?";
+		Object[] params = {a.getAddressName(),a.getAddressPhone(),a.getAddressPostalCode(),a.getAddressSimple(),a.getAddressDetail(),a.getCustomerNo()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+	
 
 }
