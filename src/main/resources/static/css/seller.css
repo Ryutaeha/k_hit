@@ -293,6 +293,12 @@
     color: #fff;
     background-color: #61677A;
 }
+.btn-del>a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 25px;
+}
 .btn-del>a:hover{
     color: #fff;
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.qna.model.vo.Qna;
 import kr.or.iei.qna.model.vo.QnaRowMapper;
 import kr.or.iei.seller.model.vo.Seller;
@@ -59,6 +60,28 @@ public class QnaDao {
 		String query = "select * from seller_file where seller_no=?";
 		//List list = jdbc.query(query, )
 		return null;
+	}
+
+
+	public List selectCommentList(int sellerNo, int questionNo) {
+		String query="select ";
+		return null;
+	}
+
+
+	public int insertSellerQna(Qna q,Seller s, Customer c) {
+		String query = "insert into question_tbl values(question_tbl_seq.nextval,?,?,to_char(sysdate,yyyy-mm-dd),null,?,default)";
+		Object[] params = {q.getQuestionTitle(),q.getQuestionContent(),s.getSellerId()};
+		int result = jdbc.update(query,params);
+		return result;
+	}
+
+
+	public int insertCustomerQna(Qna q, Seller s, Customer c) {
+		String query = "insert into question_tbl values(question_tbl_seq.nextval,?,?,to_char(sysdate,yyyy-mm-dd),?,null,default";
+		Object[] params = {q.getQuestionTitle(),q.getQuestionContent(),c.getCustomerId()};
+		int result = jdbc.update(query,params);
+		return result;
 	}
 }
 
