@@ -6,24 +6,19 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import kr.or.iei.customer.model.vo.Customer;
+import kr.or.iei.seller.model.vo.Seller;
 
-
-public class CustomerInterceptor implements HandlerInterceptor{
+public class SellerInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-		Customer c = (Customer)session.getAttribute("c");
-		if(c == null) {
-			response.sendRedirect("/customer/customerMsg");
+		Seller s = (Seller)session.getAttribute("s");
+		if(s == null) {
+			response.sendRedirect("/seller/sellerMsg");
 			return false;
-
 		}else {
 			return true;
-
-		}		
-
-
+		}
 	}
 }

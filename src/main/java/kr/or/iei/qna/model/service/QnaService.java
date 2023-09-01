@@ -93,15 +93,15 @@ public class QnaService {
 			
 	}
 	@Transactional
-	public int insertQna(Qna q,Seller s, Customer c) {
+	public int insertQna(Qna q,String writer, String type) {
 		int result=0;
-		if(s.getSellerId()!=null && c.getCustomerId()==null) {
+		if(type.equals("s")) {
 			//판매자
-			result = qnaDao.insertSellerQna(q,s,c);
+			result = qnaDao.insertSellerQna(q,writer);
 			
 		}else{
 			//고객
-			result = qnaDao.insertCustomerQna(q,s,c);
+			result = qnaDao.insertCustomerQna(q,writer);
 			
 		}
 		

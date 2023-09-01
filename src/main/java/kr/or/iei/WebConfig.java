@@ -29,9 +29,17 @@ public class WebConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 	
 	
-	registry.addInterceptor(new AdminIntercentor())
-	.addPathPatterns("/admin/**")
-	.excludePathPatterns("/admin/adminLogin","/admin/login","/admin/adminMsg");
+		registry.addInterceptor(new AdminIntercentor())
+		.addPathPatterns("/admin/**")
+		.excludePathPatterns("/admin/adminLogin","/admin/login","/admin/adminMsg");
+	
+		registry.addInterceptor(new SellerInterceptor())
+		.addPathPatterns("/seller/**", "/product/deleteProduct", "/product/updateFrm", "/product/update", "/product/changeStockStatus")
+		.excludePathPatterns("/seller/cancelRefundBtn","/seller/joinConfirm","/seller/join","/seller/joinComplete","/seller/checkId","/seller/searchConfirm","/seller/searchIdPwFrm","/seller/sellerMsg","/seller/signin","seller/logout");
+		
+		registry.addInterceptor(new CustomerInterceptor())
+		.addPathPatterns("/customer/**","/review/reviewWriteFrm","/review/write","/review/addLike","/review/removeLIke","/review/insertComment","/review/deleteComment","/review/updateComment","/product/deleteProduct","/seller/cancelRefundBtn")
+		.excludePathPatterns("/customer/joinConfirm","/customer/join","/customer/joinComplete","/customer/searchIdPwFrm","/customer/customerMsg","/customer/signin","customer/logout");
 	}
 	
 }

@@ -25,6 +25,8 @@
                             <th class="info4">상품금액</th>
                             <th class="info5">주문상태</th>
                     </tr>
+                    <tr th:if="${orderList.isEmpty()}">
+                    	<th colspan="5">주문내역이 없습니다.</th>
                     <tr class="tbl info-main" th:each="orderList : ${orderList}">
                             <th class="info1">
                                 <span th:text="${orderList.orderListDate}"></span>
