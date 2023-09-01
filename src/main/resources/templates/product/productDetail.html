@@ -289,26 +289,12 @@
 
 	window.onload = function(){
 	    //페이지 로드가 완료되면 자동으로 실행되는 함수
-	    //페이지를 정상화하기위한 기본작업 수행
 	    //첫번째 탭, 첫번째 컨텐츠를 활성화
 	    const activeLi = document.querySelector(".tab>ul>li:first-child");
 	    const activeContent = document.querySelector(".tab-content>div:first-child");
 	    activeLi.classList.add("active-tab");
 	    activeContent.classList.add("active-content");
 	}
-	//이러면 시작할때 켜져 있다.
-	//클래스에 넣어버리면 쉽지 않나? 싶겠지만 어떤 링크를 타고 들어가면 이용안내 혹은 주의사항이 켜져있기도 해.
-	//그걸 html에 넣으면 만들어야하는게 세 배가 되어버려. 클래스를 옮겨야하니까
-	//스크립트에 넣으면 특정 상황에 함수가 동작하게 하면 되는거니까 더 나아서 이 방식을 채택한다.
-
-	const moreBtn = document.querySelector("#more-btn")
-	moreBtn.addEventListener("click",function(){
-	    //이벤트 발생하면 morebtn 안보이게 하고 원래 길이 보여주고.
-	    moreBtn.style.display="none";
-	    const detail = document.querySelector(".product-detail");
-	    detail.style.height = "auto";
-	});
-	
 	
 	</script>
 	

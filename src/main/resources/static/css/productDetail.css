@@ -155,16 +155,19 @@
 	padding-top: 20px;
 }
 .review-tbl-menu>div{
+	font-size: 20px;
 	float: left;
 	text-align: center;
+	margin-bottom: 20px;
 }
 .tbl-row{
 	overflow: hidden;
+	margin-bottom: 20px;
 }
 .tbl-row>div{
 	float: left;
 	text-align: center;
-	line-height: 100px;
+	/*line-height: 100px;*/
 }
 .option-dropdown{
 	padding: 10px;
@@ -223,6 +226,8 @@
 	/*text-overflow: ellipsis;*/
     white-space: pre-line;
     overflow-wrap: break-word;
+    height: 100px;
+    overflow-y: auto;
 }
 #review-content{
 	text-align: left;
@@ -325,3 +330,28 @@
 	overflow: auto;
 }
 */
+
+.tab>ul>li.active-tab{
+    /*활성화되었을때 디자인 달라짐*/
+    border-top: 3px solid #888787;
+    color: #888787;
+    font-weight: 900;
+    border-bottom: none;
+}
+.tab-content>div{
+    box-sizing: border-box;
+    padding: 50px 30px;
+    display: none;
+}
+.tab-content>div.active-content{
+    display: block;
+}
+.product-detail{
+    overflow: hidden;
+}
+.delivery-notice{
+    overflow: hidden;
+}
+.product-review{
+    overflow: hidden;
+}
