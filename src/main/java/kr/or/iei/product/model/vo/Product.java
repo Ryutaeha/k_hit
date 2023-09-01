@@ -25,4 +25,6 @@ public class Product {
 	
 	//옵션은 종속된거라 여기 생성
 	private List productOptionList;
+	//리뷰목록 8/31...생성해도 되나?
+	private List reviewList;
 }

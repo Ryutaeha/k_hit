@@ -148,6 +148,24 @@
     padding-left: 20px;
     text-align: left;
 }
+.review-tbl-menu{
+	overflow: hidden;
+}
+.review-tbl{
+	padding-top: 20px;
+}
+.review-tbl-menu>div{
+	float: left;
+	text-align: center;
+}
+.tbl-row{
+	overflow: hidden;
+}
+.tbl-row>div{
+	float: left;
+	text-align: center;
+	line-height: 100px;
+}
 .option-dropdown{
 	padding: 10px;
 	padding-top: 30px;
@@ -158,6 +176,7 @@
 .tab-wrap{
 	padding-top: 50px;
 }
+
 .txt-preline{
 	white-space: pre-line;
 }
@@ -166,9 +185,25 @@
     background-color: rgba(136, 135, 135, 0.3);
     width: 150px;
 }
-.product-detail>div>table td{
+.delivery-notice>div>div>table td{
 	padding: 20px;
 }
+/*
+.review-tbl td{
+	padding: 20px;
+}
+*/
+.reviewStar{
+	overflow: hidden;
+}
+.avgStarReview{
+	text-align: right;
+}
+/*
+.5pointsReview{
+	float: left;
+}
+*/
 /*
 .product-detail>div>div{
 	font-size: 24px;
@@ -177,18 +212,26 @@
 .product-detail>div{
 	padding: 30px;
 }
-.explanation{
-	font-size: 20px;
-	margin-bottom: 20px;
+.delivery-notice>div{
+	padding: 30px;
 }
 .product-review>div{
-	padding: 20px;
+	padding: 30px;
 }
-.product-comment>div>span{
-	font-size: 20px;
+.review-content{
+	/*overflow: auto;*/
+	/*text-overflow: ellipsis;*/
+    white-space: pre-line;
+    overflow-wrap: break-word;
 }
-.product-comment>div{
-	padding: 20px;
+#review-content{
+	text-align: left;
+}
+.explanation {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
 }
 .seller-line{
 	overflow: hidden;
@@ -274,3 +317,11 @@
 .totalProductWon{
 	float: left;
 }
+.customerLoginCheck{
+	
+}
+/*
+.tbl-row>tr{
+	overflow: auto;
+}
+*/
