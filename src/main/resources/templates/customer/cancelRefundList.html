@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+0<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
@@ -24,6 +24,9 @@
                                     <th class="info3">수량</th>
                                     <th class="info4">상품금액</th>
                                     <th class="info5">처리상태</th>
+                            </tr>
+                            <tr th:if="${cancelRefundList.isEmpty()}">
+                            	<th colspan="5">취소목록이 없습니다.</th>
                             </tr>
                             <tr class="tbl info-main" th:each="cancelRefundList : ${cancelRefundList}">
                                     <th class="info1">

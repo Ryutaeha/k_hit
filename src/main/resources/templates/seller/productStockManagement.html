@@ -27,6 +27,10 @@
 							<th style="width:10%">재고</th>
 							<th style="width:15%">재고변경</th>
 						</tr>
+						<tr th:if="${prductOptionList.isEmpty()}">
+							<th colspan="6">등록된 상품이 없습니다.</th>
+						</tr>
+						
 						<tr class="tbl-row" th:each="productOption : ${prductOptionList}">
 							<td th:text="${productOption.productNo}"></td>
 							<td th:text="${productOption.productName}"></td>
