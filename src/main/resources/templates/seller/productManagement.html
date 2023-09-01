@@ -27,6 +27,10 @@
 							<th style="width:20%">수정/판매중지</th>
 							<!-- foreach 돌리지 않고 얻으려면의 참고 코드 : <th th:text="${productList[0].productNo}"></th> -->
 						</tr>
+						<tr th:if="${productList.isEmpty()}">
+							<th colspan="6">등록된 상품이 없습니다.</th>
+						</tr>
+						
 						<tr class="tbl-row" th:each="product : ${productList}">
 							<td th:text="${product.productNo}"></td>
 							<td class="product-img">
