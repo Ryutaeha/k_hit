@@ -72,17 +72,17 @@ public class QnaDao {
 	}
 
 
-	public int insertSellerQna(Qna q,Seller s, Customer c) {
+	public int insertSellerQna(Qna q,String writer) {
 		String query = "insert into question_tbl values(question_tbl_seq.nextval,?,?,null,?,to_char(sysdate,'yyyy-mm-dd'),DEFAULT)";
-		Object[] params = {q.getQuestionTitle(),q.getQuestionContent(),s.getSellerId()};
+		Object[] params = {q.getQuestionTitle(),q.getQuestionContent(),writer};
 		int result = jdbc.update(query,params);
 		return result;
 	}
 
 
-	public int insertCustomerQna(Qna q, Seller s, Customer c) {
+	public int insertCustomerQna(Qna q,String writer) {
 		String query = "insert into question_tbl values(question_tbl_seq.nextval,?,?,?,null,to_char(sysdate,'yyyy-mm-dd'),DEFAULT)";
-		Object[] params = {q.getQuestionTitle(),q.getQuestionContent(),c.getCustomerId()};
+		Object[] params = {q.getQuestionTitle(),q.getQuestionContent(),writer};
 		int result = jdbc.update(query,params);
 		return result;
 	}

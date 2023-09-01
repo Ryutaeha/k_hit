@@ -269,8 +269,9 @@
   /*판매상품 관리 수정,삭제 버튼*/
 .btn-up{
     width: 30px;
-    height: 27px;
+    /*height: 27px;*/
     border: 1px solid #D8D9DA;
+    width: 40px;
     background-color: #D8D9DA;
     display: inline-block;
     padding: 10px;
@@ -281,6 +282,11 @@
     /*box-sizing: border-box;*/
     height: 25px;
     line-height: 25px;
+    transition-duration: 0.3s;
+}
+.btn-up:hover{
+    color: #fff;
+    background-color: #61677A;
 }
 .btn-del{
     background-color: #D8D9DA;
