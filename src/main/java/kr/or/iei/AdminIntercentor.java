@@ -17,13 +17,13 @@ public class AdminIntercentor implements HandlerInterceptor{
 		HttpSession session = request.getSession();
 		Admin a = (Admin)session.getAttribute("a");
 		if(a == null) {
-			response.sendRedirect("/admin/customerMsg");
+			response.sendRedirect("/admin/adminMsg");
 			return false;
 		}else {			
 			if(a.getMemberCode()==1) {
 				return true;
 			}else {
-				response.sendRedirect("/admin/customerMsg");
+				response.sendRedirect("/admin/adminMsg");
 				return false;
 			}
 		}
