@@ -16,13 +16,13 @@ public class CustomerInterceptor implements HandlerInterceptor{
 		HttpSession session = request.getSession();
 		Customer c = (Customer)session.getAttribute("c");
 		if(c == null) {
-			response.sendRedirect("/customer/customer");
+			response.sendRedirect("/customer/customerMsg");
 			return false;
 		}else {			
 			if(c.getMemberCode()==1) {
 				return true;
 			}else {
-				response.sendRedirect("/customer/customer");
+				response.sendRedirect("/customer/customerMsg");
 				return false;
 			}
 		}

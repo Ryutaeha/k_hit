@@ -287,7 +287,7 @@ public class CustomerController {
 	}
 	@GetMapping(value = "/customerMsg")
 	public String adminMsg(Model model) {
-		model.addAttribute("title", "관리자 페이지");
+		model.addAttribute("title", "고객 로그인");
 		model.addAttribute("msg", "로그인 후 이용하세요");
 		model.addAttribute("icon", "warning");
 		model.addAttribute("loc", "/customer/signin");
