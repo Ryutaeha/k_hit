@@ -315,6 +315,7 @@
 }
 .btn-del>a:hover{
     color: #fff;
+    background-color: #61677A;
 }
 .img-prd>img{
     width: 100px;

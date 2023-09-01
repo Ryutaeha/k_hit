@@ -359,3 +359,9 @@
 .product-review{
     overflow: hidden;
 }
+.qty-buttons>button{
+	width: 20px;
+	height: 25px;
+	font-size: 20px;
+	
+}
