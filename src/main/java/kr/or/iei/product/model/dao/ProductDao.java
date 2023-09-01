@@ -10,6 +10,9 @@ import kr.or.iei.product.model.vo.Product;
 import kr.or.iei.product.model.vo.ProductOption;
 import kr.or.iei.product.model.vo.ProductOptionRowMapper;
 import kr.or.iei.product.model.vo.ProductRowMapper;
+import kr.or.iei.review.model.vo.DetailReviewListRowMapper;
+import kr.or.iei.review.model.vo.Review;
+import kr.or.iei.review.model.vo.ReviewRowMapper;
 
 @Repository
 public class ProductDao {
@@ -19,6 +22,8 @@ public class ProductDao {
 	private ProductRowMapper productRowMapper;
 	@Autowired
 	private ProductOptionRowMapper productOptionRowMapper;
+	@Autowired
+	private DetailReviewListRowMapper detailReviewListRowMapper;
 	
 	public int deleteProduct(int productNo) {
 		String query = "UPDATE PRODUCT_TBL SET PRODUCT_CHECK='4' WHERE product_no=?";
@@ -96,6 +101,12 @@ public class ProductDao {
 		Object[] params = {customerNo,productOptionNo,selectOptionStock};
 		int result = jdbc.update(query,params);
 		return result;
+	}
+
+	public List ReviewListData(int productNo) {
+		String query = "select review_writer,star_count,review_content,review_date,read_count from product_tbl join product_option_tbl using(product_no) join order_tbl using(product_option_no) join review_tbl using(order_no) where product_no=?";
+		List list = jdbc.query(query, detailReviewListRowMapper,productNo);
+		return list;
 	}
 
 }

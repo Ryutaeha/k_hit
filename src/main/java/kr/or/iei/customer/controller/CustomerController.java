@@ -250,9 +250,12 @@ public class CustomerController {
 	//배송정보 입력
 	@ResponseBody
 	@PostMapping(value="/inputDeliver")
-	public int insertDeliver(Address a){
+	public int insertDeliver(Address a, @SessionAttribute(required = false)Customer c){
+		int customerNo = c.getCustomerNo();
 		int result = customerService.insertDeliver(a);
-		return result;
+		Address address = customerService.selectAddressNo(customerNo);
+		int addressNo = address.getAddressNo();
+		return addressNo;
 	}
 
 	
@@ -281,6 +284,14 @@ public class CustomerController {
 			model.addAttribute("loc", "/cusotmer/cart");
 			return "common/msg";
 		}
+	}
+	@GetMapping(value = "/customerMsg")
+	public String adminMsg(Model model) {
+		model.addAttribute("title", "고객 로그인");
+		model.addAttribute("msg", "로그인 후 이용하세요");
+		model.addAttribute("icon", "warning");
+		model.addAttribute("loc", "/customer/signin");
+		return "common/msg";
 	}
 	
 }

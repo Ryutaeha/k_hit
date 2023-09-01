@@ -161,6 +161,8 @@ public class ProductController {
 		model.addAttribute("avgStar", pdld.getAvgStar());
 		model.addAttribute("sellerName", pdld.getSellerName());
 		model.addAttribute("sellerImg", pdld.getSellerImg());
+		//model.addAttribute("reviewList", pdld.getReviewList());
+		
 		return "product/productDetail";
 	}
 	
