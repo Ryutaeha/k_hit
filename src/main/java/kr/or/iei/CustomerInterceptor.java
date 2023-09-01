@@ -19,7 +19,7 @@ public class CustomerInterceptor implements HandlerInterceptor{
 			response.sendRedirect("/customer/customerMsg");
 			return false;
 		}else {			
-			if(c.getMemberCode()==1) {
+			if(c.getMemberCode()==3) {
 				return true;
 			}else {
 				response.sendRedirect("/customer/customerMsg");
