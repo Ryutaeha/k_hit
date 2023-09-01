@@ -286,6 +286,7 @@ public class CustomerController {
 		}
 	}
 
+
 	@GetMapping(value = "/customerMsg")
 	public String adminMsg(Model model) {
 		model.addAttribute("title", "고객만 가능합니다.");

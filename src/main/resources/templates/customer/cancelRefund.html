@@ -54,9 +54,10 @@
 		                    <div class="cancel-way-content">
 			                    <div class="total-cancel-btn">
 			                        <form action="/seller/cancelRefundBtn">
-			                        <button type="button" class="crBtn">취소</button>
+			                        <button type="button" class="crBtn"> <a href="/customer/orderList" style="display: block;line-height: 60px;width: 100%; height: 100%;">취소</a></button>
+			                       
 									<input type="hidden" name="orderNo" th:value=" ${cancelRefund[0].orderNo}">                    
-			                        <button type="submit" class="crBtn" th:if="${cancelRefund[0].orderState==1 || cancelRefund[0].orderState==3}">취소/환불</button>
+			                        <button type="submit" class="crBtn" th:if="${cancelRefund[0].orderState==1 || cancelRefund[0].orderState==3}">취소/환불 접수</button>
 			                        </form>
 			                    </div>
 		                </div>
@@ -64,5 +65,9 @@
 	    	</div>
 	    </div> 
 	<th:bolck th:include="common/footer"></th:bolck>
+	<script>
+		$(".crBtn").on("click",function(){
+		});
+	</script>
 </body>
 </html>

@@ -137,6 +137,9 @@
 	padding-top: 30px;
 	text-align: left;
 }
+.product-info>div{
+	text-align: center;
+}
 .product-name{
 	padding: 10px;
 }
@@ -148,6 +151,27 @@
     padding-left: 20px;
     text-align: left;
 }
+.review-tbl-menu{
+	overflow: hidden;
+}
+.review-tbl{
+	padding-top: 20px;
+}
+.review-tbl-menu>div{
+	font-size: 20px;
+	float: left;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.tbl-row{
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.tbl-row>div{
+	float: left;
+	text-align: center;
+	/*line-height: 100px;*/
+}
 .option-dropdown{
 	padding: 10px;
 	padding-top: 30px;
@@ -158,6 +182,7 @@
 .tab-wrap{
 	padding-top: 50px;
 }
+
 .txt-preline{
 	white-space: pre-line;
 }
@@ -166,9 +191,25 @@
     background-color: rgba(136, 135, 135, 0.3);
     width: 150px;
 }
-.product-detail>div>table td{
+.delivery-notice>div>div>table td{
 	padding: 20px;
 }
+/*
+.review-tbl td{
+	padding: 20px;
+}
+*/
+.reviewStar{
+	overflow: hidden;
+}
+.avgStarReview{
+	text-align: right;
+}
+/*
+.5pointsReview{
+	float: left;
+}
+*/
 /*
 .product-detail>div>div{
 	font-size: 24px;
@@ -177,18 +218,28 @@
 .product-detail>div{
 	padding: 30px;
 }
-.explanation{
-	font-size: 20px;
-	margin-bottom: 20px;
+.delivery-notice>div{
+	padding: 30px;
 }
 .product-review>div{
-	padding: 20px;
+	padding: 30px;
 }
-.product-comment>div>span{
-	font-size: 20px;
+.review-content{
+	/*overflow: auto;*/
+	/*text-overflow: ellipsis;*/
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    height: 100px;
+    overflow-y: auto;
 }
-.product-comment>div{
-	padding: 20px;
+#review-content{
+	text-align: left;
+}
+.explanation {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
 }
 .seller-line{
 	overflow: hidden;
@@ -273,4 +324,44 @@
 }
 .totalProductWon{
 	float: left;
+}
+.customerLoginCheck{
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+/*
+.tbl-row>tr{
+	overflow: auto;
+}
+*/
+
+.tab>ul>li.active-tab{
+    /*활성화되었을때 디자인 달라짐*/
+    border-top: 3px solid #888787;
+    color: #888787;
+    font-weight: 900;
+    border-bottom: none;
+}
+.tab-content>div{
+    box-sizing: border-box;
+    padding: 50px 30px;
+    display: none;
+}
+.tab-content>div.active-content{
+    display: block;
+}
+.product-detail{
+    overflow: hidden;
+}
+.delivery-notice{
+    overflow: hidden;
+}
+.product-review{
+    overflow: hidden;
+}
+.qty-buttons>button{
+	width: 20px;
+	height: 25px;
+	font-size: 20px;
+	
 }

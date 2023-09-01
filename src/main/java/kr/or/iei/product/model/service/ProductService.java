@@ -14,6 +14,7 @@ import kr.or.iei.product.model.dao.ProductDao;
 import kr.or.iei.product.model.vo.Product;
 import kr.or.iei.product.model.vo.ProductDetailListData;
 import kr.or.iei.product.model.vo.ProductOption;
+import kr.or.iei.review.model.vo.Review;
 
 @Service
 public class ProductService {
@@ -75,8 +76,15 @@ public class ProductService {
 		productList.setProductOptionList(productOptionList);
 		String sellerName = productDao.getSellerName(productNo);
 		String sellerImg = productDao.getSellerImg(productNo);
+		
+		List reviewList = productDao.ReviewListData(productNo);
+		productList.setReviewList(reviewList);
+		System.out.println(reviewList);
+		
+		
 		//System.out.println(productOptionList);
 		ProductDetailListData pdld = new ProductDetailListData(productList,avgStar,sellerName,sellerImg);
+		//System.out.println(pdld);
 		return pdld;
 	}
 

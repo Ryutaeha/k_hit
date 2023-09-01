@@ -21,8 +21,8 @@
 					<li class="prdbox" th:each="allPrd : ${allPrd}">
 						<div class="item_list_box">
 							<div class="tumbnail">								
-								<a href="#">
-									<img th:src="'/seller/' + ${allPrd.productImg}">
+								<a th:href="@{/product/productDetail(productNo=${allPrd.productNo})}">
+									<img th:src="'/product/' + ${allPrd.productImg}">
 								</a>
 														
 							</div>
@@ -30,7 +30,7 @@
 						<div class="prd_info">
 							<div class="inner">
 								<strong>
-									<a href="#" th:text="${allPrd.productName}"></a>
+									<a th:href="@{/product/productDetail(productNo=${allPrd.productNo})}" th:text="${allPrd.productName}"></a>
 								</strong>
 								
 								<ul class="spec">

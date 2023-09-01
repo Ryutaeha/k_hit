@@ -2,6 +2,8 @@ package kr.or.iei.seller.model.service;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +36,7 @@ public class SellerService {
 		
 		List productList = sellerDao.selectProductList(sellerNo,start,end);
 		int totalCount = sellerDao.selectProductTotalCount(sellerNo);
+		
 		int totalPage = (int)(Math.ceil(totalCount)/(double)numPerPage);
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
@@ -259,7 +262,6 @@ public class SellerService {
 	@Transactional
 	public int cancelRefundBtn(int orderNo) {
 		int result = sellerDao.cancelRefundBtn(orderNo);
-		// TODO Auto-generated method stub
 		return result;
 	}
 	
@@ -270,9 +272,6 @@ public class SellerService {
 	}
 	
 
-	
-
-	
 
 
 }

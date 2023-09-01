@@ -20,12 +20,12 @@
 				<th:block th:include="common/prdMenu"></th:block>
 				<div class="prdList-wrap">
 				<div class="search-list-wrap">	
-				<ul class="prdList">	
+				<ul class="prdList">
 					<li class="prdbox" th:each="newPrd : ${newPrd}">
 						<div class="item_list_box">
 							<div class="tumbnail">								
-								<a href="#">
-									<img th:src="'/seller/' + ${list.productImg}">
+								<a th:href="@{/product/productDetail(productNo=${newPrd.productNo})}">
+									<img th:src="'/product/' + ${newPrd.productImg}">
 								</a>
 													
 							</div>
@@ -33,7 +33,7 @@
 						<div class="prd_info">
 							<div class="inner">
 								<strong>
-									<a href="#" th:text="${newPrd.productName}"></a>
+									<a th:href="@{/product/productDetail(productNo=${newPrd.productNo})}" th:text="${newPrd.productName}"></a>
 								</strong>
 								
 								<ul class="spec">

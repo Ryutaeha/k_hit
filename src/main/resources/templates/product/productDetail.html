@@ -62,17 +62,20 @@
 		          				<select name="productOptionNo" id="productOptionNo" class="optionSelectLine">
 	                				<option th:value="${productOption.productOptionNo}" th:each="productOption : ${productDetailList.productOptionList}" th:text="'사이즈 : ' + ${productOption.optionSize} +' / 색상 : ' + ${productOption.optionColor}  +'  ( 재고수량  : ' + ${productOption.optionStock}+' )'">
 	                			</select>	
-	          					</div>
-                					             					           													
+	          					</div>      					           													
 							</div>
-							<div class="total-price">
+							<div th:if="${session.c == null}">
+								<div class="customerLoginCheck">로그인 한 고객만 주문 가능합니다.</div>
+								
+							</div>							
+							<div class="total-price" th:if="${session.c != null}">
 								<div class="totalProductPriceLine">총 상품금액 : </div>
 								<div class="totalProductPrice">
 									<div id="price" th:text="${productDetailList.productPrice}"></div>
 								</div>
 								<div class="totalProductWon">원</div>
 							</div>
-							<div class="buy-button">
+							<div class="buy-button" th:if="${session.c != null}">
 							<!-- <input class="selectOptionStock" type="number" name="selectOptionStock" min="1" max="5" step="1" value="1"> -->
 								<div>
 									<input class="selectOptionStock" name="selectOptionStock" id="selectOptionStock" value="1">
@@ -96,9 +99,9 @@
 				<div class="tab-wrap">
 					<div class="tab">
 					<ul>
-						<li>구매정보</li>
+						<li>상품소개</li>
+						<li>배송안내</li>
 						<li>상품리뷰</li>
-						<li>상품댓글</li>
 						<!-- <li>관련상품</li> -->
 					</ul>
 					</div>
@@ -109,8 +112,11 @@
 							<div class="explanation">상품 소개</div>
 							<div class="product-content" th:utext="${productDetailList.productContentDetails}"></div>
 						</div>
+					</div>
+					<div class="delivery-notice">
 						<div>
 							<div class="explanation">배송 안내</div>
+							<div>
 							<table>
 								<tr>
 									<td class="beforeth">배송비</td>
@@ -129,35 +135,53 @@
 									택배사와 확인 후 재발송, 환불을 도와드리고 있습니다.
 									그 외에 단순 변심으로 인한 교환 및 활불은 불가능합니다.</span></td>
 								</tr>															
-							</table>							
-						</div>
+							</table>
+							</div>							
+						</div>							
 					</div>
 					<div class="product-review">
 						<div>
 							<div class="explanation">상품리뷰</div>
+							<div>
+								<div class="review-tbl">
+									<div class="review-tbl-menu">
+										<div style="width:15%">작성자</div>
+										<div style="width:50%">리뷰코멘트</div>
+										<div style="width:15%">별점</div>
+										<div style="width:20%">작성일</div>
+										<!-- <th style="width:15%">조회수</th> -->
+									</div>
+									<!-- 
+									<tr class="tbl-row" th:each="review : ${reviewList}">
+									  -->
+									<div class="tbl-row" th:each="reviewList : ${productDetailList.reviewList}">
+										<div style="width:15%" th:text="${reviewList.reviewWriter}"></div>
+										<div style="width:50%" id="review-content" class="review-content" th:text="${reviewList.reviewContent}"></div>
+										<div class="reviewStar" style="width:15%">
+											<span class="avgStarReview" th:text="${reviewList.starCount}"></span>
+											<span class="5pointsReview">/ 5</span>
+										</div>
+										<div style="width:20%" th:text="${reviewList.reviewDate}"></div>
+										<!-- <td th:text="${reviewList.reviewCount}"></td> -->
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="product-comment">
-						<div>
-							<div class="explanation">상품댓글</div>
-							
-						</div>
-					</div>
-					<!-- 
-					<div>
-						<p>관련상품</p>
-					</div>
-					 -->
+				</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 	
 	<th:block th:include="common/footer"></th:block>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-	
+	<th:block th:if="${session.c != null}">
+		<script>
+		const customerNo = [[${session.c.customerNo}]];
+		</script>
+	</th:block>
 	<script>
 	
 	$("#btnPlus").on("click",function(){
@@ -215,30 +239,62 @@
 	
 	//장바구니 추가
 	$(".cart").on("click",function(){
-		const customerNo = [[${session.c.customerNo}]];
-		const productOptionNo = $("#productOptionNo").children().val();
-		const selectOptionStock = $("#selectOptionStock").val();
 		
-		console.log(customerNo);
-		console.log(productOptionNo);
-		console.log(selectOptionStock);
-		
-		$.ajax({
-			url : "/product/cart",
-			type : "get",
-			data : {customerNo : customerNo, productOptionNo : productOptionNo, selectOptionStock : selectOptionStock},
-			success : function(data){
-				Swal.fire({
-					title : "장바구니 추가 완료",
-					text : "장바구니에 상품이 추가되었습니다.",
-					icon : "success",
-			        confirmButtonColor: '#61677A',
-			        confirmButtonText: '확인',
-				});
-			}
-		})
+			
+			const productOptionNo = $("#productOptionNo").children().val();
+			const selectOptionStock = $("#selectOptionStock").val();
+			
+			console.log(customerNo);
+			console.log(productOptionNo);
+			console.log(selectOptionStock);
+			
+			$.ajax({
+				url : "/product/cart",
+				type : "get",
+				data : {customerNo : customerNo, productOptionNo : productOptionNo, selectOptionStock : selectOptionStock},
+				success : function(data){
+					Swal.fire({
+						title : "장바구니 추가 완료",
+						text : "장바구니에 상품이 추가되었습니다.",
+						icon : "success",
+				        confirmButtonColor: '#61677A',
+				        confirmButtonText: '확인',
+					});
+				}
+			});
 	});
+			
 	
+	const tabs = document.querySelectorAll(".tab>ul>li");
+	tabs.forEach(function(tab,index){
+	    //li 3개에 모두 클릭이벤트 적용
+	    tab.addEventListener("click",function(){
+	        //추가하기 전에 li 세개 모두에게 active-tab클래스를 제거
+	        tabs.forEach(function(removeTab){
+	            removeTab.classList.remove("active-tab");
+	        });
+	        //클릭한 li에 active-tab이라는 클래스를 추가
+	        tab.classList.add("active-tab");
+	        //선택한 탭에 해당하는 컨텐츠를 보여주는 코드
+	        const contents = document.querySelectorAll(".tab-content>div");
+	        //모든 컨텐츠에 active-content클래스 제거
+	        contents.forEach(function(content){
+	            content.classList.remove("active-content");
+	        });
+	        //클릭한 li와 같은 인덱스에 있는 컨텐츠에 active-content클래스를 추가
+	        //그게 바로 네번째줄의 index.
+	        contents[index].classList.add("active-content");
+	    });
+	});
+
+	window.onload = function(){
+	    //페이지 로드가 완료되면 자동으로 실행되는 함수
+	    //첫번째 탭, 첫번째 컨텐츠를 활성화
+	    const activeLi = document.querySelector(".tab>ul>li:first-child");
+	    const activeContent = document.querySelector(".tab-content>div:first-child");
+	    activeLi.classList.add("active-tab");
+	    activeContent.classList.add("active-content");
+	}
 	
 	</script>
 	

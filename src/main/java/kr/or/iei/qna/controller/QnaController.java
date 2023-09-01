@@ -60,7 +60,9 @@ public class QnaController {
 	public String insertQna(Qna q,Model model,@SessionAttribute(required = false)Seller s,@SessionAttribute(required = false) Customer c) {
 		System.out.println("s :"+s );
 		System.out.println("c : "+c);
-		int result = qnaService.insertQna(q,s,c);
+		String writer = s!=null?s.getSellerId():c.getCustomerId();
+		String type = s!=null?"s":"c";
+		int result = qnaService.insertQna(q,writer,type);
 		if(result>0) {
 			model.addAttribute("title", "문의사항 작성 성공");
 			model.addAttribute("msg", "문의사항이 작성되었습니다.");

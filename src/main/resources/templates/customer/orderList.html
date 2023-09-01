@@ -25,6 +25,8 @@
                             <th class="info4">상품금액</th>
                             <th class="info5">주문상태</th>
                     </tr>
+                    <tr th:if="${orderList.isEmpty()}">
+                    	<th colspan="5">주문내역이 없습니다.</th>
                     <tr class="tbl info-main" th:each="orderList : ${orderList}">
                             <th class="info1">
                                 <span th:text="${orderList.orderListDate}"></span>
@@ -50,6 +52,10 @@
                                  </form>
                                  <span th:case="2">배송중</span>
                             	 <span th:case="3">배송완료</span>
+                            	 <form action="/customer/cancelRefund">
+                            	 <input type="hidden" name="orderNo" th:value="${orderList.orderNo}">
+                                 <button type="submit" class="cancelRefundBtn" th:if="${orderList.orderState==3}" style="width:150px;  border: none; border-radius: 5px; cursor:pointer;">취소/환불 접수</button>
+                                 </form>
                                  <span th:case="4">구매확정</span>
                                  <form action="/review/reviewWriteFrm">
                                  <input type="hidden" name="orderNo" th:value="${orderList.orderNo}">

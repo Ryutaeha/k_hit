@@ -254,13 +254,13 @@ public class SellerController {
 	public String cancelRefundBtn(int orderNo, Model model) {
 		int result = sellerService.cancelRefundBtn(orderNo);
 		if (result == 0) {
-			model.addAttribute("title", "실패");
-			model.addAttribute("msg", "취소 실패.");
+			model.addAttribute("title", "취소/환불 접수 실패");
+			model.addAttribute("msg", "취소 실패되었습니다. 관리자에게 문의하세요.");
 			model.addAttribute("icon", "error");
 			model.addAttribute("loc", "/customer/orderList");
 		} else {
-			model.addAttribute("title", "성공");
-			model.addAttribute("msg", "취소 성공");
+			model.addAttribute("title", "취소/환불 접수 성공");
+			model.addAttribute("msg", "취소/환불 접수 성공되었습니다.");
 			model.addAttribute("icon", "success");
 			model.addAttribute("loc", "/customer/cancelRefundList");
 		}
