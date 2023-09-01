@@ -42,9 +42,9 @@
 									<span id="best" th:text="${listStat.count}">
 									
 									</span>
-										<a href="#">
+										<a th:href="@{/product/productDetail(productNo=${list.productNo})}">
 											<img th:src="'/seller/' + ${list.productImg}">
-										</a>											
+										</a>												
 									</div>
 								</div>
 								<div class="prd_info">
