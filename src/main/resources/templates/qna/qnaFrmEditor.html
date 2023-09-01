@@ -3,18 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="/css/qna.css">
+<link rel="stylesheet" href="/css/qna.css">
+<link rel="stylesheet" href="/css/seller.css">
+<link rel="stylesheet" href="/css/myinfo.css">
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
-	
-	<div>
-		<th:block th:include="qna/qnaHeader"></th:block>
-		<div class="qna-write">
-		문의사항 작성 페이지
+	<div class="page-content">
+		<div class="seller-header">
+			<span class="move">Q & A</span>
+		</div>
+		<div class="qna-wrap">
+			<div id="write-btn">
+				<button type="button" class="btn-del">
+					<a href="/qna/qnaList?reqPage=1">목록가기</a>
+				</button>
+				<div class="qnaFrm">
+					
+					<div class="info-wrap">
+						<form action="/qna/qnaWrite" method="post" enctype="multipart/form-data">															
+							
+								<table class="input-tbl qna-a"> 									
+									<tr class="input-tr">
+										<th>아이디</th>
+										<td>
+											<input type="text" th:if="${session.s !=null}" th:value="${session.s.sellerId}"  th:name="${session.s.sellerId}" readonly>
+											<input type="text" th:if="${session.c !=null}" th:value="${session.c.customerId}"  th:name="${session.c.customerId}" readonly>											
+										</td>
+									</tr>			
+									<tr class="input-tr">
+										<th>문의제목<span>*</span></th>
+										<td>
+											<input type="text" name="questionTitle" required>											
+										</td>
+									</tr>
+									<tr class="input-tr">
+										<th>문의내용<span>*</span></th>
+										<td>
+											<textarea class="input-form qnaText"  name="questionContent" placeholder required></textarea>
+										</td>
+									</tr>								
+								</table>
+								<div class="input-btn">
+									<input type="submit" value="작성하기">
+									<a href="/qna/qnaList?reqPage=1">
+										<input type="button" value="취소">
+									</a>
+								</div>
+						</form>
+					 </div>
+				</div>
+			</div>
 		</div>
 	</div>
-	
 	<th:block th:include="common/footer"></th:block>
 </body>
 </html>

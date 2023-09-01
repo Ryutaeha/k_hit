@@ -19,7 +19,7 @@
 	   	 		<div class="refund info-top">
                         <table class="refundListTbl info-top">
                             <tr class="tbl-top">
-                                    <th class="info1">No.</th>
+                                    <th class="info1">주문일시</th>
                                     <th class="info2">상품정보</th>
                                     <th class="info3">수량</th>
                                     <th class="info4">상품금액</th>
@@ -31,7 +31,7 @@
                                     </th>
                                     <th class="info2">
                                    		<div class="info-img">
-                                            <img th:src="'/cancelRefundList/'+${cancelRefundList.productImg}">
+                                            <img th:src="'/product/'+${cancelRefundList.productImg}">
                                         </div>
                                         <div class="info-name">
                                             <span th:text="${cancelRefundList.productName}"></span>
@@ -44,7 +44,7 @@
                                     <th class="info4"><span th:text="${cancelRefundList.productPrice}">3800원</span></th>
                                     <th class="info5" th:switch="${cancelRefundList.orderState}">
                                        <span th:case="5">취소/환불 접수</span>
-                                        <span th:case="6">취소/환불 완료</span>
+                                       <span th:case="6">취소/환불 완료</span>
                                     </th>
                             </tr>
                         </table>

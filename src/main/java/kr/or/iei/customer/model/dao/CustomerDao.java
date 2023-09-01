@@ -4,6 +4,7 @@ import java.util.List;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.iei.customer.model.vo.Address;
 import kr.or.iei.customer.model.vo.AdressRowMapper;
+import kr.or.iei.customer.model.vo.CancelRefundListRowMapper;
 import kr.or.iei.customer.model.vo.CancelRefundRowMapper;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.CartList;
@@ -20,7 +22,6 @@ import kr.or.iei.customer.model.vo.CartRowMapper;
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.customer.model.vo.CustomerRowMapper;
 import kr.or.iei.customer.model.vo.OrderDetailRowMapper;
-import kr.or.iei.customer.model.vo.WishListRowMapper;
 import kr.or.iei.review.model.vo.ReviewListRowMapper;
 
 @Repository
@@ -32,17 +33,18 @@ public class CustomerDao {
 	@Autowired
 	private ReviewListRowMapper reviewListRowMapper;
 	@Autowired 
-	private WishListRowMapper wishListRowMapper;	
-	@Autowired
 	private CartListRowMapper cartListRowMapper;
 	@Autowired
 	private OrderDetailRowMapper orderDetailRowMapper;
 	@Autowired
-	private CancelRefundRowMapper cancelRefundRowMapper;
+	private CancelRefundListRowMapper cancelRefundListRowMapper;
 	@Autowired
 	private AdressRowMapper addressRowMapper;
+	@Autowired 
+	private CancelRefundRowMapper cancelRefundRowMapper;
 	@Autowired
 	private CartRowMapper cartRowMapper;
+
 
 	public int insertCustomer(Customer customer, String customerEmail2) {
 		String query = "insert into customer_tbl values(customer_seq.nextval,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),default)";
@@ -88,12 +90,6 @@ public class CustomerDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
-	//찜목록
-	public List selectWishList(int customerNo, int start, int end) {
-		String query = "select * from (select rownum as rnum, n.* from (select * from product_like where customer_no=? order by 1 desc)n) where rnum between ? and ?";
-		List list = jdbc.query(query, wishListRowMapper, customerNo, start, end);
-		return list;
-	}
 	//고객리뷰 전체 수
 	public int reviewTotalCount(String reviewWriter) {
 		String query = "select count(*) from review_tbl where review_writer=?";
@@ -121,7 +117,7 @@ public class CustomerDao {
 	}
 
 	public List selectOrderList(int customerNo) {
-		String query ="select     a.customer_no,    o.order_no,    ol.order_list_date,     p.product_img,     p.product_name,     op.option_size,     op.option_color,     o.order_count,    p.product_price,    o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where customer_no=? and not order_state in ('5','6')";
+		String query ="select     a.customer_no,    o.order_no,    ol.order_list_date,     p.product_img,     p.product_name,     op.option_size,     op.option_color,     o.order_count,    p.product_price,    o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where customer_no=? and not order_state in ('5','6') order by ol.order_list_date desc";
 		List orderList = jdbc.query(query,orderDetailRowMapper,customerNo);
 		return orderList;
 	}
@@ -133,9 +129,9 @@ public class CustomerDao {
 		return result;
 	}
 
-	public List selectcanCelList(int customerNo) {
-		String query ="select a.customer_no, ol.order_list_date, p.product_img, p.product_name, op.option_size, op.option_color, o.order_count,p.product_price,o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where customer_no=? and(order_state=5 or order_state=6)";
-		List cancelRefundList = jdbc.query(query,cancelRefundRowMapper,customerNo);
+	public List selectCancelRefundList(int customerNo) {
+		String query ="select a.customer_no, o.order_no, ol.order_list_date, p.product_img, p.product_name, op.option_size, op.option_color, o.order_count,p.product_price,o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where customer_no=? and(order_state=5 or order_state=6) order by ol.order_list_date desc";
+		List cancelRefundList = jdbc.query(query,cancelRefundListRowMapper,customerNo);
 		return cancelRefundList;
 
 	}
@@ -155,6 +151,15 @@ public class CustomerDao {
 		int result = jdbc.update(query,params);
 		return result;
 	}
+
+	public List cancelRefundapplication(int customerNo,int orderNo) {
+		String query = "select a.customer_no, o.order_no, ol.order_list_date, p.product_img, p.product_name, op.option_size, op.option_color, o.order_count,p.product_price,o.order_state from order_list_tbl ol join order_tbl o on ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join address_tbl a on o.address_no = a.address_no where order_no=? and(order_state=1 or order_state=3)";
+		List cr = jdbc.query(query, cancelRefundRowMapper, orderNo);
+		System.out.println(cr);
+		System.out.println(orderNo+"  "+customerNo);
+		return cr;
+	}
+
 	//배송정보 수정
 	public int updateDeliver(Address a) {
 		String query = "update address_tbl set address_name=?,address_phone=?,address_postal_code=?,address_simple=?,address_detail=? where customer_no=?";

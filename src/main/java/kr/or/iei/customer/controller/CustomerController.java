@@ -2,6 +2,7 @@ package kr.or.iei.customer.controller;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import kr.or.iei.customer.model.service.CustomerService;
 import kr.or.iei.customer.model.vo.Address;
 import kr.or.iei.customer.model.vo.Cart;
 import kr.or.iei.customer.model.vo.Customer;
-import kr.or.iei.customer.model.vo.WishListData;
+import kr.or.iei.customer.model.vo.Order;
 
 @Controller
 @RequestMapping("/customer")
@@ -66,32 +67,25 @@ public class CustomerController {
 		model.addAttribute("orderList", ol);
 		return "customer/orderList";
 	}
+	//고객 취소/환불 신청 페이지
+	@GetMapping(value="/cancelRefund")
+	public String cancelRefund(@SessionAttribute(required = false) Customer c,int orderNo, Model model) {
+		List cr =  customerService.cancelRefundapplication(c.getCustomerNo(),orderNo);
+		System.out.println(cr);
+		model.addAttribute("cancelRefund", cr);
+		return "customer/cancelRefund";
+	}
 	
 	//고객 취소/환불 목록 페이지
 	@GetMapping(value="/cancelRefundList")
-	public String refundList(@SessionAttribute(required = false) Customer c, Model model) {
+	public String cancelRefundList(@SessionAttribute(required = false) Customer c, Model model) {
 		List crl = customerService.selectCancelRefundList(c.getCustomerNo());
+		System.out.println(crl);
 		model.addAttribute("cancelRefundList",crl);
 		return "customer/cancelRefundList";
 	}
-	
-	//취소 신청 페이지
-	@GetMapping(value="/cancel")
-	public String cancel() {
-		return "customer/cancel";
-	}
-	
-//	//찜목록
-//	@GetMapping(value="/wishList") 
-//	public String wishList(@SessionAttribute(required = false) Customer c, Model model, int reqPage){
-//		WishListData wld = customerService.selectWishList(c.getCustomerNo(),reqPage);
-//		model.addAttribute("wishList",wld.getWishList());
-//		model.addAttribute("pageNavi",wld.getPageNavi());
-//		
-//		return "customer/wishList";
-//	}
 
-	
+		
 	//회원가입
 	@PostMapping(value="/joinComplete")
 
@@ -263,6 +257,7 @@ public class CustomerController {
 		int addressNo = address.getAddressNo();
 		return addressNo;
 	}
+
 	
 	//배송정보 수정
 	@ResponseBody

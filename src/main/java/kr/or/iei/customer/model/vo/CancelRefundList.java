@@ -1,14 +1,14 @@
-package kr.or.iei.seller.model.vo;
+package kr.or.iei.customer.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class SellingDetail {
-	private int sellerNo;
+public class CancelRefundList {
+	private int customerNo;
 	private String orderListDate;
 	private String productImg;
 	private String productName;
@@ -18,5 +18,4 @@ public class SellingDetail {
 	private int orderState;
 	private int productPrice;
 	private int orderNo;
-	private int productNo;
 }

@@ -38,14 +38,14 @@
                         </div>
                         <input type="hidden" id="star-result" name="starCount">
                         <div class="review-info-title">상세 리뷰</div>
-                        <textarea class="detailed-review" name="reviewContent" placeholder="상품에 대한 평가를 상세히 작성해 주세요."></textarea>
+                        <textarea class="detailed-review" name="reviewContent" placeholder="상품에 대한 평가를 상세히 작성해 주세요." required></textarea>
                         <div class="review-info-title">사진 첨부</div>
                         <div class="review-image">
                             <label for="review-img" class="review-img-label">
                             	<span class="material-icons">photo_camera</span>
                             	<div class="review-img-btn">사진 첨부하기</div>
                             </label>
-                            <input type="file" name="imageFile" id="review-img" accept=".jpg,.png,.jpeg">
+                            <input type="file" name="imageFile" id="review-img" accept=".jpg,.png,.jpeg" required>
                         </div>
                         <div class="review-img-viewer">
                             <img id="review-img-view" style="display: none; margin-top: 20px; margin-right: 300px; width:300px; height:300px;">

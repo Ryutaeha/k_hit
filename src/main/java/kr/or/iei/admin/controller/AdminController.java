@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,7 @@ public class AdminController {
 	public String adminLogin() {
 		return "/admin/adminLogin";
 	}
+	
 	@PostMapping(value = "/login")
 	public String login(String adminSignId, String adminSignPw, Model model,HttpSession session) {
 		Admin a = adminService.AdminLogin(adminSignId,adminSignPw);
@@ -48,7 +50,7 @@ public class AdminController {
 			model.addAttribute("title","로그인 성공");
 			model.addAttribute("msg", "환영합니다.");
 			model.addAttribute("icon", "success");
-			model.addAttribute("loc", "/admin/adminIndex");		
+			model.addAttribute("loc", "/admin/member?memberCode=1&input=");		
 		}else {
 			model.addAttribute("title","로그인 실패");
 			model.addAttribute("msg", "아이디/비밀번호를 확인해 주세요.");
@@ -57,10 +59,13 @@ public class AdminController {
 		}
 		return "common/msg";
 	}
-	@GetMapping(value = "/adminIndex")
-	public String adminIndex() {
-		return "/admin/adminIndex";
+	@GetMapping(value = "/logout")
+	public String logout(HttpSession session) {
+//		현재세션에 저장되어 있는 정보 파기
+		session.invalidate();
+		return "/admin/adminLogin";
 	}
+
 	
 	@GetMapping(value = "/test")
 	public String test(Model model) {
@@ -75,7 +80,15 @@ public class AdminController {
 		model.addAttribute("qna",list);
 		return "/admin/question";
 	}
-
+	
+	@GetMapping(value = "/questionSearch")
+	public String questionSearch(Model model,String input) {
+		List list = adminService.question(input);
+		System.out.println(input);
+		System.out.println(list);
+		model.addAttribute("qna",list);
+		return "/admin/question";
+	}
 
 	@GetMapping(value="/member")
 	public String member(int memberCode,String input, Model model){
@@ -178,7 +191,19 @@ public class AdminController {
 	@PostMapping(value = "/write")
 	public String noticeWrite(Notice n ,Model model) {
 		int result = adminService.insertNotice(n);
-		return "/admin/noticeFrm";
+		if(result!=0) {
+			model.addAttribute("title", "작성완료");
+			model.addAttribute("msg", "공지사항 처리완료");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/noticeList?noticeFix=2&input=");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "작성실패");
+			model.addAttribute("msg", "잠시후 시도해주세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/noticeList?noticeFix=2&input=");
+			return "common/msg";
+		}
 	}
 	@PostMapping(value="/productCheckChange")
 	public String productCheckChange(int productCheck,int productNo,Model model){
@@ -212,4 +237,97 @@ public class AdminController {
 	public List qContent(String qNo){
 		return adminService.selectQna(qNo);
 	}
+	@ResponseBody
+	@PostMapping(value="/qContentC")
+	public List qContentC(String qNo){
+	return adminService.selectQnaC(qNo);
+	}
+	@GetMapping(value = "/adminMsg")
+	public String adminMsg(Model model) {
+		model.addAttribute("title", "관리자 페이지");
+		model.addAttribute("msg", "로그인 후 이용하세요");
+		model.addAttribute("icon", "warning");
+		model.addAttribute("loc", "/admin/adminLogin");
+		return "common/msg";
+	}
+	
+	@PostMapping(value="/qnaAnswer")
+	public String qnaAnswer(int qnaNo, String qnaAnswerComment, Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Admin a = (Admin)session.getAttribute("a");
+		String adminId =a.getAdminId();
+		System.out.println(qnaNo+qnaAnswerComment+adminId);
+		int result = adminService.qnaAnswer(qnaNo,qnaAnswerComment,adminId);
+		if(result!=0) {
+			model.addAttribute("title", "작성완료");
+			model.addAttribute("msg", "문의 사항 처리 완료");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/question");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "작성실패");
+			model.addAttribute("msg", "잠시후 시도해주세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/question");
+			return "common/msg";
+		}
+	}
+	
+	@PostMapping(value = "/noticeDel")
+	public String noticeDel(int noticeNo,Model model) {
+		int result = adminService.noticeDel(noticeNo);
+		if(result!=0) {
+			model.addAttribute("title", "삭제완료");
+			model.addAttribute("msg", "공지사항 삭제 완료");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/noticeList?noticeFix=2&input=");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "삭제실패");
+			model.addAttribute("msg", "잠시후 시도해주세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/noticeList?noticeFix=2&input=");
+			return "common/msg";
+		}
+	}
+	@PostMapping(value = "/qnaAnswerDel")
+	public String qnaAnswerDel(int qnaCommentNo,Model model) {
+		int result = adminService.qnaAnswerDel(qnaCommentNo);
+		if(result!=0) {
+			model.addAttribute("title", "삭제완료");
+			model.addAttribute("msg", "공지사항 삭제 완료");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/noticeList?noticeFix=2&input=");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "삭제실패");
+			model.addAttribute("msg", "잠시후 시도해주세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/noticeList?noticeFix=2&input=");
+			return "common/msg";
+		}
+	}
+	
+	@PostMapping(value = "/modifyGo")
+	public String modifyGo(int pw, String phone,Model model,HttpSession session,HttpServletRequest request) {
+		session = request.getSession();
+		Admin a = (Admin)session.getAttribute("a");
+		int result = adminService.modifyGo(pw,phone,a.getAdminId());
+		if(result!=0) {
+			session.invalidate();
+			model.addAttribute("title", "수정완료");
+			model.addAttribute("msg", "수정 완료 다시 로그인 하세요");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/admin/adminLogin");
+			return "common/msg";
+		}else {
+			model.addAttribute("title", "수정실패");
+			model.addAttribute("msg", "잠시후 시도해주세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/admin/admin/member?memberCode=1&input=");
+			return "common/msg";
+		}
+	}
+	
+	
 }

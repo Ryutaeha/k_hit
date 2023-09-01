@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.FileUtil;
+import kr.or.iei.customer.model.vo.Cart;
+import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.product.model.service.ProductService;
 import kr.or.iei.product.model.vo.Product;
 import kr.or.iei.product.model.vo.ProductDetailListData;
@@ -161,5 +163,25 @@ public class ProductController {
 		model.addAttribute("sellerImg", pdld.getSellerImg());
 		return "product/productDetail";
 	}
+	
+	//상품 상세페이지에서 카트로 이동
+	@ResponseBody
+	@GetMapping(value="/cart")
+	public String addCart(int productOptionNo, int selectOptionStock, int customerNo) {
+		/*System.out.println(productOptionNo);
+		System.out.println(selectOptionStock);
+		System.out.println(c.getCustomerNo());*/
+		int result = productService.addCart(productOptionNo, selectOptionStock, customerNo);
+		if(result > 0) {
+			return "0";
+		}else {
+			return "1";
+		}
+	}
+	
+	
+	
+	
+	
 	
 }

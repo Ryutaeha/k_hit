@@ -2,6 +2,8 @@ package kr.or.iei.admin.model.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,7 @@ import kr.or.iei.product.model.vo.CategoryRowMapper;
 import kr.or.iei.product.model.vo.ProductDetailRowMapper;
 import kr.or.iei.product.model.vo.ProductOptionRowMapper;
 import kr.or.iei.product.model.vo.ProductRowMapper;
+import kr.or.iei.qna.model.vo.QnaCommentRowMapper;
 import kr.or.iei.qna.model.vo.QnaRowMapper;
 import kr.or.iei.seller.model.vo.Seller;
 import kr.or.iei.seller.model.vo.SellerRowMapper;
@@ -48,6 +51,8 @@ public class AdminDao {
 	private ProductOptionRowMapper productOptionRowMapper;
 	@Autowired
 	private QnaRowMapper qnaRowMapper;
+	@Autowired
+	private QnaCommentRowMapper qnaCommentRowMapper;
 	
 	public List customerList(String input) {
 		System.out.println(input);
@@ -101,7 +106,11 @@ public class AdminDao {
 	public Admin adminLogin(String adminSignId, String adminSignPw) {
 		String query = "SELECT * FROM ADMIN_TBL WHERE ADMIN_ID=? and ADMIN_PW=?";
 		List list = jdbc.query(query, adminRowMapper, adminSignId, adminSignPw);
-		return (Admin)list.get(0);
+		if(list.isEmpty()) {
+			return null;
+		}else {
+			return (Admin)list.get(0);			
+		}
 	}
 
 	public int insertNotice(Notice n) {
@@ -172,5 +181,35 @@ public class AdminDao {
 		String query = "SELECT PRODUCT_NO, SELLER_NO, PRODUCT_NAME, PRODUCT_IMG, PRODUCT_PRICE, PRODUCT_CONTENT, PRODUCT_CONTENT_DETAILS, PRODUCT_REG_DATE, PRODUCT_CHECK, CATEGORY_NO  FROM view1 WHERE customer_id LIKE ?";
 		return jdbc.query(query, productRowMapper , cId);
 		
+	}
+
+	public int qnaAnswer(int qnaNo, String qnaAnswerComment, String adminId) {
+		String query = "INSERT into QUESTION_COMMENT_TBL values(QUESTION_COMMENT_SEQ.NEXTVAL,?,?,?,to_char(sysdate,'YYYY-MM-DD'))";
+		return jdbc.update(query,qnaNo,adminId,qnaAnswerComment);
+	}
+
+	public List selectQnaC(String qNo) {
+		String query ="SELECT * FROM QUESTION_COMMENT_TBL where QUESTION_no = ?";
+		return jdbc.query(query, qnaCommentRowMapper,qNo);
+	}
+
+	public List question(String input) {
+		String query = "SELECT * FROM QUESTION_TBL where QUESTION_TITLE like ?";
+		return jdbc.query(query, qnaRowMapper,"%"+input+"%");
+	}
+
+	public int noticeDel(int noticeNo) {
+		String query = "DELETE FROM notice_tbl where notice_no = ?";
+		return jdbc.update(query,noticeNo);
+	}
+
+	public int qnaAnswerDel(int qnaCommentNo) {
+		String query = "DELETE FROM QUESTION_COMMENT_TBL where QUESTION_COMMENT_NO = ?";
+		return jdbc.update(query,qnaCommentNo);
+	}
+
+	public int modifyGo(int pw, String phone, String adminId) {
+		String qurey = "UPDATE admin_TBL SET admin_pw=?,admin_phone=?  WHERE admin_id=?";
+		return jdbc.update(qurey, pw,phone,adminId);
 	}
 }

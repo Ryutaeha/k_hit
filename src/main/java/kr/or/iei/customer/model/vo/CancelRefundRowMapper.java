@@ -7,22 +7,22 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CancelRefundRowMapper  implements RowMapper<CancelRefund>{
+public class CancelRefundRowMapper implements RowMapper<CancelRefund>{
 
 	@Override
 	public CancelRefund mapRow(ResultSet rs, int rowNum) throws SQLException {
-		CancelRefund cl = new CancelRefund();
-		cl.setCustomerNo(rs.getInt("customer_no"));
-		cl.setOptionColor(rs.getString("option_color"));
-		cl.setOptionSize(rs.getString("option_size"));
-		cl.setOrderCount(rs.getInt("order_count"));
-		cl.setOrderListDate(rs.getString("order_list_date"));
-		cl.setOrderState(rs.getInt("order_state"));
-		cl.setProductImg(rs.getNString("product_img"));
-		cl.setProductName(rs.getString("product_name"));
-		cl.setProductPrice(rs.getInt("product_price"));
-		// TODO Auto-generated method stub
-		return cl;
+		CancelRefund cr = new CancelRefund();
+		cr.setCustomerNo(rs.getInt("customer_no"));
+		cr.setOptionColor(rs.getString("option_color"));
+		cr.setOptionSize(rs.getString("option_size"));
+		cr.setOrderCount(rs.getInt("order_count"));
+		cr.setOrderListDate(rs.getString("order_list_date"));
+		cr.setOrderState(rs.getInt("order_state"));
+		cr.setProductImg(rs.getNString("product_img"));
+		cr.setProductName(rs.getString("product_name"));
+		cr.setProductPrice(rs.getInt("product_price"));
+		cr.setOrderNo(rs.getInt("order_no"));
+		return cr;
 	}
-	
+
 }

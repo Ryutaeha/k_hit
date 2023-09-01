@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="/css/admin.css"/>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <script src="/js/jquery-3.6.0.js"></script>
 <body>
+
 	<form action="/admin/login" method="post">
-	                <div class="login-content">
-	                    <div class="login-inputbox">
-	                        <input type="text" name="adminSignId" id="adminSignId" class="input-form" placeholder="아이디를 입력하세요"  required>
-	                    </div>
-	                    <div class="login-inputbox">
-	                        <input type="password" name="adminSignPw" id="adminSignPw" class="input-form" placeholder="비밀번호를 입력하세요" required>
-	                    </div>
-	                <div class="login-button">
-	                    <button type="submit">LOGIN</button>
-	                </div>
-	    </form>
-	    <script>
-	    $(function(){
-	    	$("#adminSignId").val('admin');
-	    	$("#adminSignPw").val('1234');
-	    	$(".login-button>button").click();
-	    	
-	    })
-	    </script>
+		<h1 class="logo">K-hIT</h1>
+		<table style="margin: auto; padding-top: 200px">
+			<tr>
+				<th colspan="2">
+					<h1 style="padding-bottom: 20px;">Manager LOGIN</h1>
+				</th>
+			</tr>
+			<tr>
+				<td>
+				<input type="text" name="adminSignId" id="adminSignId"
+					class="input-form" placeholder="아이디를 입력하세요" required style='height: 50px;'>
+				</td>
+				<td rowspan="2" height="100px;">
+				<button type="submit" style="height: 100%; display: block; width: 100px">LOGIN</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="password" name="adminSignPw" id="adminSignPw" class="input-form" placeholder="비밀번호를 입력하세요" required style='height: 50px;'> 
+				</td>
+			</tr>
+		</table>
+	</form>
+	<script>
+		$(function() {
+			/*
+			$("#adminSignId").val('admin');
+			$("#adminSignPw").val('123456');
+			$(".login-button>button").click();
+			 */
+
+		})
+	</script>
 </body>
 </html>

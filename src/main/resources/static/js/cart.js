@@ -32,15 +32,7 @@ function calcTotalPrice(){
 	
 }
 
-//쇼핑계속하기
-$(".keepShopping").on("click",function() {
-	history.back();
-});
 
-//계속구매하기
-$(".payment").on("click",function() {
-
-});
 
 function cartDelete(obj, cartNo){
 	const deleteBtn = $(obj);
@@ -134,6 +126,7 @@ $("#buyBtn").on("click",function(){
 				        
 				    });
 	}
+
 	/*
 	const priceStr = $("#paymentPrice").text();
 	const price = Number(priceStr);
@@ -182,5 +175,5 @@ $("#buyBtn").on("click",function(){
 		}
 	});
 	*/
-
 });
+

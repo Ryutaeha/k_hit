@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.qna.model.dao.QnaDao;
 import kr.or.iei.qna.model.vo.Qna;
 import kr.or.iei.qna.model.vo.QnaListData;
@@ -74,15 +75,37 @@ public class QnaService {
 		return qld;
 	}
 	@Transactional
-	public QnaViewData selectOneQna(int questionNo,int sellerNo,int customer) {
+	public QnaViewData selectOneQna(int questionNo,int sellerNo,int customerNo) {
 		
-		int result = qnaDao.updateReadCount(questionNo);
-		if(result>0) {
-			Seller s = qnaDao.selectOneQna(sellerNo);
-			List fileList = qnaDao.selectSellerFile(sellerNo);
+			//판매자 세션이 있고 고객 세션이 0일때
+			
+				int result = qnaDao.updateReadCount(questionNo);
+				if(result>0) {
+				Qna q = qnaDao.selectOneQna(questionNo);	
+				
+				//댓글조회-일반댓글
+				List commentList = qnaDao.selectCommentList(sellerNo,questionNo);
+				QnaViewData qvd = new QnaViewData(q,commentList);
+				return qvd;
+			}else{
+				return null;
+			}
+			
+	}
+	@Transactional
+	public int insertQna(Qna q,Seller s, Customer c) {
+		int result=0;
+		if(s.getSellerId()!=null && c.getCustomerId()==null) {
+			//판매자
+			result = qnaDao.insertSellerQna(q,s,c);
+			
+		}else{
+			//고객
+			result = qnaDao.insertCustomerQna(q,s,c);
+			
 		}
-		List fileList = qnaDao.selectQnaFile(questionNo);
-		return null;
+		
+		return result;
 	}
 }
 
