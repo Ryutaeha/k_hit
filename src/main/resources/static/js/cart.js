@@ -115,19 +115,6 @@ function updateDeliver(obj, customerNo){
 
 $("#buyBtn").on("click",function(){
 	const addrNo = $("input[name=addressNo]").val();
-	if(addrNo != ""){
-		$("#cartForm").submit();	
-	}else{
-		Swal.fire({
-						text : "주소지를 입력해 주세요.",
-						icon : "info",
-				        confirmButtonColor: '#61677A',
-				        confirmButtonText: '확인',
-				        
-				    });
-	}
-
-	/*
 	const priceStr = $("#paymentPrice").text();
 	const price = Number(priceStr);
 	const d = new Date();
@@ -174,6 +161,6 @@ $("#buyBtn").on("click",function(){
 				    });	
 		}
 	});
-	*/
+
 });
 
