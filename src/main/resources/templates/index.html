@@ -50,7 +50,7 @@
 								<div class="prd_info">
 									<div class="inner">
 										<strong>
-											<a href="#" th:text="${list.productName}"></a>
+											<a th:href="@{/product/productDetail(productNo=${list.productNo})}" th:text="${list.productName}"></a>
 										</strong>
 										
 										<ul class="spec">
@@ -85,7 +85,7 @@
 								<span id="best" th:text="${newPrdStat.count}">
 								 
 								</span>
-									<a href="#">
+									<a th:href="@{/product/productDetail(productNo=${newPrd.productNo})}">
 										<img th:src="'/seller/' + ${newPrd.productImg}">
 									</a>
 									
@@ -95,7 +95,7 @@
 							<div class="prd_info">
 								<div class="inner">
 									<strong>
-										<a href="#" th:text="${newPrd.productName}"></a>
+										<a th:href="@{/product/productDetail(productNo=${newPrd.productNo})}" th:text="${newPrd.productName}"></a>
 									</strong>
 									
 									<ul class="spec">
