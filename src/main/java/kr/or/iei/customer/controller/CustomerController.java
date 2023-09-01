@@ -250,9 +250,12 @@ public class CustomerController {
 	//배송정보 입력
 	@ResponseBody
 	@PostMapping(value="/inputDeliver")
-	public int insertDeliver(Address a){
+	public int insertDeliver(Address a, @SessionAttribute(required = false)Customer c){
+		int customerNo = c.getCustomerNo();
 		int result = customerService.insertDeliver(a);
-		return result;
+		Address address = customerService.selectAddressNo(customerNo);
+		int addressNo = address.getAddressNo();
+		return addressNo;
 	}
 
 	
