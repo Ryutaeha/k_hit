@@ -153,7 +153,7 @@
 							<div class="submitBtn-wrap">
 								<input type="button" value="배송지 입력" th:onclick="inputDeliver(this,[[${session.c.customerNo}]]);">
 							</div>
-							<input type="hidden" name="addressNo">
+							<input type="hidden" name="addressNo" id="inputAddressNo" value="" >
 						</div>
 					</div>
 					<!-- 기본배송지 -->
@@ -196,10 +196,12 @@
 						</div>
 					</div>
 				</div>	
-					
+											
+
+	
 				<div class="content-bottom">
-					<button type="button" class="keepShopping">계속 쇼핑하기</button>
-					<button type="button" class="payment" id="buyBtn">구매하기</button>
+					<button type="button" class="keepShopping" onclick="location.href='/page/all'">계속 쇼핑하기</button>
+					<button type="button" class="payment" id="buyBtn" th:if="${!cartList.isEmpty()}">구매하기</button>
 				</div>
 			</form>
 		</div>

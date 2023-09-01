@@ -87,6 +87,7 @@ function inputDeliver(obj, customerNo){
 			$(".submitBtn-wrap>input").css("display","none");
 			$("#newInputTitle").text("배송지");
 			$(".searchBtn").hide();
+			$("#inputAddressNo").val(data);
 		}
 	});
 }
@@ -121,7 +122,19 @@ function updateDeliver(obj, customerNo){
 }
 
 $("#buyBtn").on("click",function(){
-	
+	const addrNo = $("input[name=addressNo]").val();
+	if(addrNo != ""){
+		$("#cartForm").submit();	
+	}else{
+		Swal.fire({
+						text : "주소지를 입력해 주세요.",
+						icon : "info",
+				        confirmButtonColor: '#61677A',
+				        confirmButtonText: '확인',
+				        
+				    });
+	}
+	/*
 	const priceStr = $("#paymentPrice").text();
 	const price = Number(priceStr);
 	const d = new Date();
@@ -146,8 +159,18 @@ $("#buyBtn").on("click",function(){
 	},function(rsp){
 		alert(rsp);
 		if(rsp.success){
-			$("#cartForm").submit();	
-		}else{
+			if(addrNo != ""){
+				$("#cartForm").submit();	
+			}else{
+				Swal.fire({
+								text : "주소지를 입력해 주세요.",
+								icon : "info",
+						        confirmButtonColor: '#61677A',
+						        confirmButtonText: '확인',
+						        
+						    });
+			}	
+				}else{
 			Swal.fire({
 						title : "결제 실패",
 						text : "결제 실패하였습니다. 다시 시도해 주세요.",
@@ -158,6 +181,6 @@ $("#buyBtn").on("click",function(){
 				    });	
 		}
 	});
-
+	*/
 
 });
