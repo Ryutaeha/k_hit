@@ -77,8 +77,8 @@ function pModal(pNo){
 	   			var checkP = $("<form action=/admin/productCheckChange method=post style='text-align: center; margin-top:10px '></form>");
 	   			var select = $("<select name=productCheck style='width: 30%; font-size: 30px; text-align: center;'></select>");
 	   			select.attr("id","pCheck");
-	   			select.append($("<option value=1>승인</option>"));
-	   			select.append($("<option value=2>검수</option>"));
+	   			select.append($("<option value=1>검수</option>"));
+	   			select.append($("<option value=2>승인</option>"));
 	   			select.append($("<option value=3>반려</option>"));
 	   			checkP.append(select);
 	   			checkP.append("<input type=submit value=변경 class = pCheckChange style='width: 30%; font-size: 30px;'>");
