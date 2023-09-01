@@ -171,7 +171,7 @@ public class SellerDao {
 	}
 
 	public List selectSelling(int sellerNo) {
-		String query ="SELECT    s.seller_no,    ol.ORDER_LIST_DATE,    p.product_img,    p.PRODUCT_NAME, op.OPTION_SIZE, op.OPTION_COLOR, o.ORDER_COUNT, p.product_price, o.ORDER_STATE FROM order_list_tbl ol JOIN order_tbl o ON ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join seller_tbl s on s.seller_no = p.seller_no where s.seller_no=?";
+		String query ="SELECT    s.seller_no,    o.order_no, ol.ORDER_LIST_DATE,  p.product_no,  p.product_img,    p.PRODUCT_NAME, op.OPTION_SIZE, op.OPTION_COLOR, o.ORDER_COUNT, p.product_price, o.ORDER_STATE FROM order_list_tbl ol JOIN order_tbl o ON ol.order_list_no = o.order_list_no join product_option_tbl op on o.product_option_no = op.product_option_no join product_tbl p on p.product_no = op.product_no join seller_tbl s on s.seller_no = p.seller_no where s.seller_no=? order by ol.order_list_date desc";
 		List selling = jdbc.query(query, sellingDetailRowMapper, sellerNo);
 		return selling;
 	}
@@ -182,8 +182,16 @@ public class SellerDao {
 		return result;
 	}
 
-	public int updateOrderState(int orderState) {
-		String query = "";
-		return 0;
+	public int cancelRefundBtn(int orderNo) {
+		String query = "update order_tbl set order_state=5 where order_no=?";
+		int result = jdbc.update(query,orderNo);
+		return result;
 	}
+
+	public int updateOrderState(int orderState,int orderNo) {
+		String query ="update order_tbl set order_state=? where order_no=?";
+		int result = jdbc.update(query,orderState,orderNo);
+		return result;
+	}
+
 }

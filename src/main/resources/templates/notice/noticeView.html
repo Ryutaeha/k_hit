@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>INOTICE</title>
+	<link rel="stylesheet" href="/css/qna.css">
+	<link rel="stylesheet" href="/css/review.css">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	
+	<div class="page-content">
+		<div class="seller-header">
+			<span class="move">NOTICE</span>
+		</div>
+		<div class="qna-wrap">
+			<div id="write-btn">
+				<button type="button" class="btn-del">
+					<a href="/notice/noticeList?reqPage=1">목록가기</a>
+				</button>
+				<div class="qnaFrm">
+					<ul class="qnaFrm-title-wrap">
+						<li class="qnaFrm-id">
+							<span th:text="${n.noticeWriter}+님"></span>			
+						</li>
+						<li class="qnaFrm-date">
+							<span th:text="${n.noticeDate}"></span>
+						</li>
+						<li class="qnaFrm-count">
+							<span>view : </span>
+							<span th:text="${n.noticeReadCount}"></span>
+						</li>
+					</ul>
+						<div class="qnaFrm-title">
+							<span th:text="${n.noticeTitle}"></span>
+						</div>
+						<div class="qnaFrm-content" th:utext="${n.noticeContent}">
+										
+						</div>
+						
+				</div>				
+			</div>
+		</div>
+		
+		
+	</div>
+	 <script>
+	
+	 $(function(){
+		 $(".qnaFrm-content img").css('width','100%')
+	 })
+  	</script>
+	
+	<th:block th:include="common/footer"></th:block>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+</body>
+</html>

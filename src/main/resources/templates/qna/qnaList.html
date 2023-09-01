@@ -30,9 +30,14 @@
 					</tr>
 					<tr th:each="list : ${list}">
 						<td th:text="${list.questionNo}"></td>
-						<td >
+						<td th:if="${session.s != null || session.c != null}">
 							<a th:href="@{/qna/qnaView(questionNo=${list.questionNo})}" th:text="${list.questionTitle}"></a>
 						</td>
+						
+						<td th:if="${session.s == null && session.c == null}">
+							<a href="/common/login" th:text="${list.questionTitle}"></a>
+						</td>
+						
 						<td  th:if="${list.questionCusWriter == null}" th:text="${list.questionSellWriter}"></td>
 						<td  th:if="${list.questionSellWriter == null}" th:text="${list.questionCusWriter}"></td>
 						<td th:text="${list.questionDate}"></td>

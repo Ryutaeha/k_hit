@@ -77,22 +77,20 @@ public class QnaService {
 	@Transactional
 	public QnaViewData selectOneQna(int questionNo,int sellerNo,int customerNo) {
 		
-		int result = qnaDao.updateReadCount(questionNo);
-		if(result>0) {
 			//판매자 세션이 있고 고객 세션이 0일때
-			if(sellerNo>0 && customerNo==0) {
-				Seller s = qnaDao.selectOneQna(sellerNo);
-				List fileList = qnaDao.selectSellerFile(sellerNo);
-				s.setFileList(fileList);
-				//댓글조회
-				List commentList = qnaDao.selectCommentList(sellerNo,questionNo);
+			
+				int result = qnaDao.updateReadCount(questionNo);
+				if(result>0) {
+				Qna q = qnaDao.selectOneQna(questionNo);	
 				
-			}else if(customerNo>0 && sellerNo ==0){
-				//고객 세션이 있고 판매자 세션이 0일때 
+				//댓글조회-일반댓글
+				List commentList = qnaDao.selectCommentList(sellerNo,questionNo);
+				QnaViewData qvd = new QnaViewData(q,commentList);
+				return qvd;
+			}else{
+				return null;
 			}
-		}
-		List fileList = qnaDao.selectQnaFile(questionNo);
-		return null;
+			
 	}
 	@Transactional
 	public int insertQna(Qna q,Seller s, Customer c) {
@@ -101,7 +99,7 @@ public class QnaService {
 			//판매자
 			result = qnaDao.insertSellerQna(q,s,c);
 			
-		}else if(c.getCustomerId()!=null && s.getSellerId()==null) {
+		}else{
 			//고객
 			result = qnaDao.insertCustomerQna(q,s,c);
 			

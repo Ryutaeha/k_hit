@@ -19,7 +19,7 @@
             <div class="order info-top">
                 <table class="orderListTbl info-top">
                     <tr class="tbl-top">
-                            <th class="info1">No.</th>
+                            <th class="info1">주문일시</th>
                             <th class="info2">상품정보</th>
                             <th class="info3">수량</th>
                             <th class="info4">상품금액</th>
@@ -50,6 +50,10 @@
                                  </form>
                                  <span th:case="2">배송중</span>
                             	 <span th:case="3">배송완료</span>
+                            	 <form action="/customer/cancelRefund">
+                            	 <input type="hidden" name="orderNo" th:value="${orderList.orderNo}">
+                                 <button type="submit" class="cancelRefundBtn" th:if="${orderList.orderState==3}" style="width:150px;  border: none; border-radius: 5px; cursor:pointer;">취소/환불 접수</button>
+                                 </form>
                                  <span th:case="4">구매확정</span>
                                  <form action="/review/reviewWriteFrm">
                                  <input type="hidden" name="orderNo" th:value="${orderList.orderNo}">

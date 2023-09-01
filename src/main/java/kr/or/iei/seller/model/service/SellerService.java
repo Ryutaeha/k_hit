@@ -2,9 +2,12 @@ package kr.or.iei.seller.model.service;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.iei.product.model.vo.Product;
@@ -33,6 +36,7 @@ public class SellerService {
 		
 		List productList = sellerDao.selectProductList(sellerNo,start,end);
 		int totalCount = sellerDao.selectProductTotalCount(sellerNo);
+		
 		int totalPage = (int)(Math.ceil(totalCount)/(double)numPerPage);
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
@@ -255,14 +259,19 @@ public class SellerService {
 		return selling;
 	}
 
-	public int updateOrderState(int orderState) {
-		int result = sellerDao.updateOrderState(orderState);
-		return 0;
+	@Transactional
+	public int cancelRefundBtn(int orderNo) {
+		int result = sellerDao.cancelRefundBtn(orderNo);
+		return result;
 	}
-
+	
+	@Transactional
+	public int updateOrderState(int orderState, int orderNo) {
+		int result =  sellerDao.updateOrderState(orderState,orderNo);
+		return result;
+	}
 	
 
-	
 
 
 }

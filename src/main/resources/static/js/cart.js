@@ -32,15 +32,7 @@ function calcTotalPrice(){
 	
 }
 
-//쇼핑계속하기
-$(".keepShopping").on("click",function() {
-	history.back();
-});
 
-//계속구매하기
-$(".payment").on("click",function() {
-
-});
 
 function cartDelete(obj, cartNo){
 	const deleteBtn = $(obj);
@@ -87,6 +79,7 @@ function inputDeliver(obj, customerNo){
 			$(".submitBtn-wrap>input").css("display","none");
 			$("#newInputTitle").text("배송지");
 			$(".searchBtn").hide();
+			$("#inputAddressNo").val(data);
 		}
 	});
 }
@@ -119,3 +112,68 @@ function updateDeliver(obj, customerNo){
 		}
 	});
 }
+
+$("#buyBtn").on("click",function(){
+	const addrNo = $("input[name=addressNo]").val();
+	if(addrNo != ""){
+		$("#cartForm").submit();	
+	}else{
+		Swal.fire({
+						text : "주소지를 입력해 주세요.",
+						icon : "info",
+				        confirmButtonColor: '#61677A',
+				        confirmButtonText: '확인',
+				        
+				    });
+	}
+
+	/*
+	const priceStr = $("#paymentPrice").text();
+	const price = Number(priceStr);
+	const d = new Date();
+	const date = d.getFullYear()+""+(d.getMonth()+1)+""+d.getDate()
+				+""+d.getHours()+""+d.getMinutes()+""+d.getSeconds();
+	const customerName = $("input[name=addressName]").val();
+	const customerPhone = $("input[name=addressPhone]").val();
+	const address = $("input[name=addressSimple]").val();
+	const post = $("input[name=addressPostalCode]").val();
+	
+	IMP.init("imp57311522");
+	
+	IMP.request_pay({
+		pg : "html5_inicis",
+		pay_method : "card",	
+		name : "KHIT",
+		amount : price,
+		buyer_name : customerName,
+		buyer_tel : customerPhone,
+		buyer_addr : address,
+		buyer_post : post
+	},function(rsp){
+		alert(rsp);
+		if(rsp.success){
+			if(addrNo != ""){
+				$("#cartForm").submit();	
+			}else{
+				Swal.fire({
+								text : "주소지를 입력해 주세요.",
+								icon : "info",
+						        confirmButtonColor: '#61677A',
+						        confirmButtonText: '확인',
+						        
+						    });
+			}	
+				}else{
+			Swal.fire({
+						title : "결제 실패",
+						text : "결제 실패하였습니다. 다시 시도해 주세요.",
+						icon : "error",
+				        confirmButtonColor: '#61677A',
+				        confirmButtonText: '확인',
+				        
+				    });	
+		}
+	});
+	*/
+});
+

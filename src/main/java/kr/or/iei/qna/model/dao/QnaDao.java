@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.iei.customer.model.vo.Customer;
 import kr.or.iei.qna.model.vo.Qna;
+import kr.or.iei.qna.model.vo.QnaCommentRowMapper;
 import kr.or.iei.qna.model.vo.QnaRowMapper;
 import kr.or.iei.seller.model.vo.Seller;
 import kr.or.iei.seller.model.vo.SellerRowMapper;
@@ -20,7 +21,8 @@ public class QnaDao {
 	private QnaRowMapper qnaRowMapper;
 	@Autowired
 	private SellerRowMapper sellerRowMapper;
-	
+	@Autowired
+	private QnaCommentRowMapper qnaCommentRowMapper;
 	
 	public List searchAllQna(int start,int end) {
 		String query="select * from(select rownum as rnum,n.* from(SELECT * FROM QUESTION_TBL order by 1 desc)n)where rnum between ? and ?";
@@ -37,7 +39,7 @@ public class QnaDao {
 
 
 	public int updateReadCount(int questionNo) {
-		String query = "update notice set read_cont = read_count+1 where question_no=?";
+		String query = "update question_tbl set question_read_count = question_read_count+1 where question_no=?";
 		Object[] params = {questionNo};
 		int result =jdbc.update(query,params);
 		return result;
@@ -50,10 +52,10 @@ public class QnaDao {
 	}
 
 
-	public Seller selectOneQna(int sellerNo) {
-		String query = "select * from seller_tbl where seller_no = ?";
-		List list = jdbc.query(query, sellerRowMapper,sellerNo);
-		return (Seller)list.get(0);
+	public Qna selectOneQna(int questionNo) {
+		String query = "select * from question_tbl where question_no = ?";
+		List list = jdbc.query(query, qnaRowMapper,questionNo);
+		return (Qna)list.get(0);
 	}
 
 	public List selectSellerFile(int sellerNo) {
@@ -64,13 +66,14 @@ public class QnaDao {
 
 
 	public List selectCommentList(int sellerNo, int questionNo) {
-		String query="select ";
-		return null;
+		String query="select * from qna_comment where qna_ref=? and qna_comment_ref is null order by 1";
+		List list = jdbc.query(query, qnaCommentRowMapper,questionNo);
+		return list;
 	}
 
 
 	public int insertSellerQna(Qna q,Seller s, Customer c) {
-		String query = "insert into question_tbl values(question_tbl_seq.nextval,?,?,to_char(sysdate,yyyy-mm-dd),null,?,default)";
+		String query = "insert into question_tbl values(question_tbl_seq.nextval,?,?,null,?,to_char(sysdate,'yyyy-mm-dd'),DEFAULT)";
 		Object[] params = {q.getQuestionTitle(),q.getQuestionContent(),s.getSellerId()};
 		int result = jdbc.update(query,params);
 		return result;
@@ -78,7 +81,7 @@ public class QnaDao {
 
 
 	public int insertCustomerQna(Qna q, Seller s, Customer c) {
-		String query = "insert into question_tbl values(question_tbl_seq.nextval,?,?,to_char(sysdate,yyyy-mm-dd),?,null,default";
+		String query = "insert into question_tbl values(question_tbl_seq.nextval,?,?,?,null,to_char(sysdate,'yyyy-mm-dd'),DEFAULT)";
 		Object[] params = {q.getQuestionTitle(),q.getQuestionContent(),c.getCustomerId()};
 		int result = jdbc.update(query,params);
 		return result;
