@@ -22,6 +22,7 @@ public class SellingDetailRowMapper implements RowMapper<SellingDetail> {
 		sd.setProductName(rs.getString("product_name"));
 		sd.setProductPrice(rs.getInt("product_price"));
 		sd.setOrderNo(rs.getInt("order_no"));
+		sd.setProductNo(rs.getInt("product_no"));
 		return sd;
 	}
 	

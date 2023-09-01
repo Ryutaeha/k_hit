@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+
 @Component
 public class QnaCommentRowMapper implements RowMapper<QnaComment>{
 	@Override
@@ -17,4 +18,5 @@ public class QnaCommentRowMapper implements RowMapper<QnaComment>{
 		qc.setQuestionDate(rs.getString("QUESTION_DATE"));
 		return qc;
 	}
+
 }

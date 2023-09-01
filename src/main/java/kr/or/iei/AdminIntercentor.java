@@ -14,7 +14,6 @@ public class AdminIntercentor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("dd");
 		HttpSession session = request.getSession();
 		Admin a = (Admin)session.getAttribute("a");
 		if(a == null) {

@@ -1,9 +1,9 @@
 package kr.or.iei.qna.model.vo;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,3 +15,4 @@ public class QnaComment{
 	private String questionContent; 
 	private String questionDate;
 } 
+

@@ -21,14 +21,17 @@
 						<th style="width:20%">작성일</th>
 						<th style="width:10%">조회수</th>
 					</tr>
-					<tr >
-						<td>1</td>
-						<td>제목제목</td>
-						<td>관리자</td>
-						<td>2023-11-01</td>
-						<td>0</td> 
+					<tr th:each="list : ${list}">
+						<td th:text="${list.noticeNo}"></td>
+						<td >
+							<a th:href="@{/notice/noticeView(noticeNo=${list.noticeNo})}" th:text="${list.noticeTitle}"></a>
+						</td>
+						<td th:text="${list.noticeWriter}"></td>
+						<td th:text="${list.noticeDate}"></td>
+						<td th:text=${list.noticeReadCount}></td> 
 					</tr>
 				</table>
+				<div id="pageNavi" th:utext="${pageNavi}"></div>
 			</div>
 		</div>
 	

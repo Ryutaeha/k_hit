@@ -18,4 +18,5 @@ public class SellingDetail {
 	private int orderState;
 	private int productPrice;
 	private int orderNo;
+	private int productNo;
 }

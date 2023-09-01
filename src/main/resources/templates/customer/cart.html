@@ -20,17 +20,17 @@
 					<div class="content-info">
 						<table class="cartTbl info-top">
 							<tr class="tbl-top">
-								<th class="info1">선택</th>
-								<th class="info2">상품정보</th>
-								<th class="info3">수량</th>
-								<th class="info4">상품금액</th>
-								<th class="info5">배송비</th>
-								<th class="info6"></th>
+								<th class="info11">선택</th>
+								<th class="info22">상품정보</th>
+								<th class="info33">수량</th>
+								<th class="info44">상품금액</th>
+								<th class="info55">배송비</th>
+								<th class="info66"></th>
 							</tr>
 							<tr class="tbl info-main" th:each="cl : ${cartList}">
-								<th class="info1"><input type="checkbox" name="cartNo" id="useCheck" th:value="${cl.cartNo}"
+								<th class="info11"><input type="checkbox" name="cartNo" id="useCheck" th:value="${cl.cartNo}"
 									class="check"></th>
-								<th class="info2">
+								<th class="info22">
 									<div class="info-img">
 										<img th:src="${cl.productImg}">
 									</div>
@@ -42,13 +42,18 @@
 										</div>
 									</div>
 								</th>
-								<th class="info3">
+								<th class="info33">
 									<div th:text="${cl.cartCount}"></div>
 								</th>
-								<th class="info4" th:text="${cl.productPrice}*${cl.cartCount}+원"></th>
-								<th class="info5"><span>0 원</span></th>
-								<th class="info6"><span class="material-icons"
+								<th class="info44" th:text="${cl.productPrice}*${cl.cartCount}+원"></th>
+								<th class="info55"><span>0 원</span></th>
+								<th class="info66"><span class="material-icons"
 									th:onclick="cartDelete(this,[[${cl.cartNo}]]);">close</span></th>
+							</tr>
+							<tr th:if="${cartList.isEmpty()}" class="noCartProduct">
+								<td colspan="6" >
+								등록된 상품이 없습니다.
+								</td>
 							</tr>
 						</table>
 					</div>
@@ -147,6 +152,7 @@
 							<div class="submitBtn-wrap">
 								<input type="button" value="배송지 입력" th:onclick="inputDeliver(this,[[${session.c.customerNo}]]);">
 							</div>
+							<input type="hidden" name="addressNo" id="inputAddressNo" value="" >
 						</div>
 					</div>
 					<!-- 기본배송지 -->
@@ -185,14 +191,16 @@
 								<button type="button" id="updateDeliverFrm">정보 수정</button>
 								<button type="button" style="display:none" th:onclick="updateDeliver(this,[[${session.c.customerNo}]]);">배송지 수정</button>
 							</div>
+							<input type="hidden" name="addressNo" th:value="${a.addressNo}">
 						</div>
 					</div>
 				</div>	
-					
-				<input type="hidden" name="addressNo" th:value="${a.addressNo}">
+											
+
+	
 				<div class="content-bottom">
-					<button type="button" class="keepShopping">계속 쇼핑하기</button>
-					<button type="button" class="payment" id="buyBtn">구매하기</button>
+					<button type="button" class="keepShopping" onclick="location.href='/page/all'">계속 쇼핑하기</button>
+					<button type="button" class="payment" id="buyBtn" th:if="${!cartList.isEmpty()}">구매하기</button>
 				</div>
 			</form>
 		</div>
