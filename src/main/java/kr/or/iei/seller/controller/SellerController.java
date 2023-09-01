@@ -443,5 +443,13 @@ public class SellerController {
 			return "common/msg";
 		}
 	}
+	@GetMapping(value = "/sellerMsg")
+	public String adminMsg(Model model) {
+		model.addAttribute("title", "판매자만 가능합니다.");
+		model.addAttribute("msg", "판매자 로그인 후 이용해 주세요.");
+		model.addAttribute("icon", "warning");
+		model.addAttribute("loc", "/");
+		return "common/msg";
+	}
 
 }
