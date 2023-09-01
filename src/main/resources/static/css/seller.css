@@ -268,15 +268,20 @@
   }
   /*판매상품 관리 수정,삭제 버튼*/
 .btn-up{
+    width: 30px;
+    /*height: 27px;*/
+    border: 1px solid #D8D9DA;
     width: 40px;
-    
-    
     background-color: #D8D9DA;
     display: inline-block;
     padding: 10px;
     text-align: 35px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    font-size: 14px;
+    /*box-sizing: border-box;*/
+    height: 25px;
+    line-height: 25px;
     transition-duration: 0.3s;
 }
 .btn-up:hover{
@@ -285,7 +290,6 @@
 }
 .btn-del{
     background-color: #D8D9DA;
-    
     height: 25px;
     border: 1px solid #D8D9DA;
     padding: 10px;
@@ -294,6 +298,10 @@
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,.25);
     transition-duration: 0.3s;
+    font-size: 12px;
+    width: 50px;
+    height: 25px;
+    line-height: 25px;
 }
 .btn-del:hover{
     color: #fff;

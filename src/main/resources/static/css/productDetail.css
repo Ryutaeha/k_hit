@@ -137,6 +137,9 @@
 	padding-top: 30px;
 	text-align: left;
 }
+.product-info>div{
+	text-align: center;
+}
 .product-name{
 	padding: 10px;
 }
@@ -323,7 +326,8 @@
 	float: left;
 }
 .customerLoginCheck{
-	
+	padding-top: 30px;
+	padding-bottom: 20px;
 }
 /*
 .tbl-row>tr{
