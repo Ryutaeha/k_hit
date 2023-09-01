@@ -285,6 +285,14 @@ public class CustomerController {
 			return "common/msg";
 		}
 	}
+	@GetMapping(value = "/customerMsg")
+	public String adminMsg(Model model) {
+		model.addAttribute("title", "관리자 페이지");
+		model.addAttribute("msg", "로그인 후 이용하세요");
+		model.addAttribute("icon", "warning");
+		model.addAttribute("loc", "/customer/signin");
+		return "common/msg";
+	}
 	
 }
 

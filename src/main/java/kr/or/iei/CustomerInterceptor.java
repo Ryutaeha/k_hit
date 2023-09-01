@@ -6,24 +6,23 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import kr.or.iei.admin.model.vo.Admin;
+import kr.or.iei.customer.model.vo.Customer;
 
 
-public class AdminIntercentor implements HandlerInterceptor{
-	
+public class CustomerInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-		Admin a = (Admin)session.getAttribute("a");
-		if(a == null) {
-			response.sendRedirect("/admin/customerMsg");
+		Customer c = (Customer)session.getAttribute("c");
+		if(c == null) {
+			response.sendRedirect("/customer/customer");
 			return false;
 		}else {			
-			if(a.getMemberCode()==1) {
+			if(c.getMemberCode()==1) {
 				return true;
 			}else {
-				response.sendRedirect("/admin/customerMsg");
+				response.sendRedirect("/customer/customer");
 				return false;
 			}
 		}
