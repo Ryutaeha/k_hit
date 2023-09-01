@@ -89,7 +89,7 @@ public class PageDao {
 		return list;
 	}
 	public List searchOther() {
-		String query = "select * from product_tbl where category_no = 7";
+		String query = "select * from product_tbl where category_no = 7 and PRODUCT_CHECK=2";
 		List list = jdbc.query(query, productRowMapper);
 		return list;
 	}
