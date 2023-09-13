@@ -39,7 +39,7 @@ public class WebConfig implements WebMvcConfigurer{
 		
 		registry.addInterceptor(new CustomerInterceptor())
 		.addPathPatterns("/customer/**","/review/reviewWriteFrm","/review/write","/review/addLike","/review/removeLIke","/review/insertComment","/review/deleteComment","/review/updateComment","/product/deleteProduct","/seller/cancelRefundBtn")
-		.excludePathPatterns("/customer/joinConfirm","/customer/join","/customer/joinComplete","/customer/searchIdPwFrm","/customer/customerMsg","/customer/signin","customer/logout");
+		.excludePathPatterns("/customer/joinConfirm","/customer/join","/customer/joinComplete","/customer/searchIdPwFrm","/customer/customerMsg","/customer/signin","customer/logout","/customer/checkId");
 	}
 	
 }
