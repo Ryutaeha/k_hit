@@ -115,11 +115,13 @@ select{
 }
 .option-tbl{
     font-size: 18px;
+    text-align: center;
 }
 .optionRemoveBtn{
     background-color: #dedede;
-    border: 1px solid black;
+    border: none;
     width: 30px;
+    font-size: 16px;
 }
 .input-tbl tr>th{
     width: 250px;
